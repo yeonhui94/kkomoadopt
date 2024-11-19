@@ -1,27 +1,36 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 const StyledButton = styled.button`
     padding : 12px ${props => props.horizontalPadding || "12px"};
-    color: ${props => props.bg1color ? props.bg1color : 'var(--main-color)' };
-    background-color: ${props => props.bg1color ? "white" : props.bg1color };
-    border: 2px solid ${props => props.bg1color ? props.bg1color : 'var(--main-color)' };
-    border-radius : 10px;
+    color: ${props => props.bg1color ? props.bg1color : "black" };
+    background-color: ${props =>  
+        props.clicked ? props.clickedColor : 
+        props.bg1color ? "white" : props.bg1color };
+    border: 2px solid var(--sub-color);
 
     &:hover {
-        color: white; /* 호버 시 텍스트는 항상 흰색 */
-        background-color: ${props => props.bg1color || "#F8755B"}; /* 배경색 */
-    }
-`;
+        background-color: ${props => props.bg1color || "var(--sub-color)"};
+`
 
-function Button({bg1color, text, horizontalPadding}){
+function LinkButton({bg1color, clickedColor="var(--sub-color)", text, horizontalPadding}){
+    const[clicked,setClicked] = useState(false)
+
+    const handleClick = () => {
+        setClicked(!clicked); // 클릭 시 상태 토글
+    };
+
     return(
         <StyledButton
             bg1color={bg1color}
             horizontalPadding={horizontalPadding}
-        >
+            clicked={clicked}
+            clickedColor={clickedColor}
+            onClick={handleClick}
+        >    
             {text}
         </StyledButton>
     )
 }
 
-export default Button;
+export default LinkButton;

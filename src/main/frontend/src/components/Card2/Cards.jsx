@@ -19,8 +19,8 @@ import img12 from "../../assets/CardImage/12.jpg";
 const CardContainer = styled.div`
   display: grid; 
   grid-template-columns: repeat(4, 1fr); 
-  grid-gap: 16px; 
-  padding: 16px;
+  grid-gap: 66px; 
+  // padding: 16px;
   width: 100%;
 `;
 

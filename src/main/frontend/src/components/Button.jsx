@@ -9,7 +9,7 @@ const StyledButton = styled.button`
 
     &:hover {
         color: white; /* 호버 시 텍스트는 항상 흰색 */
-        background-color: ${props => props.bg1color || "#F8755B"}; /* 배경색 */
+        background-color: ${props => props.bg1color || "var(--main-color)"}; /* 배경색 */
     }
 `;
 

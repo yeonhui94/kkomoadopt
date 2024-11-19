@@ -1,25 +1,27 @@
 import styled from "styled-components";
 
 const StyledButton = styled.button`
-    padding: 21px 29px; 
-    color : ${props => props.color || '#F8755B'};
-    background-color : ${props => props.bgcolor || '#ffffff'}; /* 수정된 부분 */
-    border: 3px solid #F8755B;
+    padding : 12px ${props => props.horizontalPadding || "12px"};
+    color: ${props => props.bg1color ? props.bg1color : 'var(--main-color)' };
+    background-color: ${props => props.bg1color ? "white" : props.bg1color };
+    border: 2px solid ${props => props.bg1color ? props.bg1color : 'var(--main-color)' };
+    border-radius : 10px;
 
     &:hover {
-        color: #ffffff;
-        background-color: #F8755B;
+        color: white; /* 호버 시 텍스트는 항상 흰색 */
+        background-color: ${props => props.bg1color || "#F8755B"}; /* 배경색 */
     }
 `;
 
-function LinkButton({bgcolor, text }) {
-    return (
+function Button({bg1color, text, horizontalPadding}){
+    return(
         <StyledButton
-            bgcolor={bgcolor}
+            bg1color={bg1color}
+            horizontalPadding={horizontalPadding}
         >
             {text}
         </StyledButton>
-    );
+    )
 }
 
-export default LinkButton;
+export default Button;

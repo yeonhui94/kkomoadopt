@@ -4,6 +4,8 @@ import './index.css'
 import App from './App.jsx'
 import Button from './components/Button.jsx'
 import LinkButton from './components/LinkButton.jsx'
+import Card2 from './components/Card2/Card2.jsx'
+import AdoptionDropdown from './components/test.jsx'
 
 
 
@@ -11,7 +13,9 @@ import LinkButton from './components/LinkButton.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />
-    <Button text={"로그아웃"}/>
-    <LinkButton text={"스크랩"}/>
+    {/* <Button text={"로그아웃"}/> */}
+    {/* <LinkButton text={"스크랩"}/> */}
+    <Card2/>
+    {/* <AdoptionDropdown/> */}
   </StrictMode>,
 )

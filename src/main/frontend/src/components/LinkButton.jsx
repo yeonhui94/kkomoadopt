@@ -18,7 +18,7 @@ function LinkButton({bg1color, clickedColor="var(--sub-color)", text, horizontal
 
     const handleClick = () => {
         if (!clicked) {
-            setClicked(true); // 클릭 시 색상 고정 __토글로 만들어야할까용?
+            setClicked(true); // 클릭 시 색상 고정 __토글로 만들어야할까용? ㅎㅎ
         }
     };
 

@@ -5,9 +5,12 @@ import App from './App.jsx'
 import Button from './components/Button.jsx'
 
 
+
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />
-    <Button text={"ㅎㅇ"}/>
+    <Button text={"로그아웃"}/>
+
   </StrictMode>,
 )

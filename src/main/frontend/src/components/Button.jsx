@@ -16,7 +16,7 @@ function Button({bg1color, text, horizontalPadding}){
     return(
         <StyledButton
             bg1color={bg1color}
-            
+            horizontalPadding={horizontalPadding}
         >    
             {text}
         </StyledButton>

@@ -17,7 +17,9 @@ function LinkButton({bg1color, clickedColor="var(--sub-color)", text, horizontal
     const[clicked,setClicked] = useState(false)
 
     const handleClick = () => {
-        setClicked(!clicked); // 클릭 시 상태 토글
+        if (!clicked) {
+            setClicked(true); // 클릭 시 색상 고정
+        }
     };
 
     return(

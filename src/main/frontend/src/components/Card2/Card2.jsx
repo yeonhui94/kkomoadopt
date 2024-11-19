@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import img1 from '../../assets/CardImage/1.jpg';
 import Img from "./Img";
 import TextBox from "./TextBox";
 
@@ -11,15 +10,16 @@ const CardBox = styled.div`
     display : flex;
     flex-direction : column;
     gap : 16px;
+    overflow: hidden;
 `;
 
-const Card2 = ()=>{
+const Card2 = ({imageFile,text1,text2})=>{  
     return(
 
         <CardBox>
-            <Img imageFile={img1}></Img>
-            <TextBox text={"gdgd"}>gdgd</TextBox>
-            <TextBox></TextBox>
+            <Img imageFile={imageFile}></Img>
+            <TextBox text={text1 || "Text "}></TextBox>
+            <TextBox text={text2 || "Text "}></TextBox>
         </CardBox>
     )
 }

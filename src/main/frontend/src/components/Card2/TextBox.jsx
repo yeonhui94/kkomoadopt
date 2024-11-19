@@ -5,6 +5,11 @@ const Text = styled.div`
     height : 36px;
     background-color : var(--line-color);
     color : black;
+    display: flex;
+    text-align : center;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 `;
 
 const TextBox=({text})=>{

@@ -13,9 +13,5 @@ import AdoptionDropdown from './components/test.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />
-    {/* <Button text={"로그아웃"}/> */}
-    {/* <LinkButton text={"스크랩"}/> */}
-    <Card2/>
-    {/* <AdoptionDropdown/> */}
   </StrictMode>,
 )

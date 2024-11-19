@@ -15,6 +15,7 @@ import img11 from "../../assets/CardImage/11.jpg";
 import img12 from "../../assets/CardImage/12.jpg";
 
 
+
 const CardContainer = styled.div`
   display: grid; 
   grid-template-columns: repeat(4, 1fr); 
@@ -37,6 +38,7 @@ const Cards = () => {
     { image: img10, text1: "Card 10" },
     { image: img11, text1: "Card 11" },
     { image: img12, text1: "Card 12" },
+
   ];
 
   return (

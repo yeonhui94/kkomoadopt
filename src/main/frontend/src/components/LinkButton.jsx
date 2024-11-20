@@ -8,6 +8,8 @@ const StyledButton = styled.button`
         props.clicked ? props.clickedColor : 
         props.bg1color ? "white" : props.bg1color };
     border: 2px solid var(--sub-color);
+    font-weight : bold;
+    font-family : var(--main-font);
 
     &:hover {
         background-color: ${props => props.bg1color || "var(--sub-color)"};

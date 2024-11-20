@@ -5,22 +5,22 @@ import { useState } from "react";
 // 부모 div 스타일
 const StyledDiv = styled.div`
   padding : 0;
-  display: flex;             /* 버튼들을 가로로 배치 */
-  width: 806px;               /* 부모 div의 너비는 100%로 설정 */
-  height: 70px;              /* 부모 div의 고정된 높이 */
-  align-items: stretch;      /* 버튼들이 세로로 늘어나도록 설정 */
-  justify-content: space-between; /* 버튼들 사이의 간격을 일정하게 배분 */
+  display: flex;             
+  width: 806px;               
+  height: 70px;              
+  align-items: stretch;      
+  justify-content: space-between; 
 `;
 
 // LinkButton을 styled-components로 감싼 스타일 정의
 const StyledLinkButton = styled(LinkButton)`
-  flex: 1;                   /* 각 버튼이 부모 div의 너비를 균등하게 나누어 가짐 */
-  height: 100%;              /* 버튼이 div의 높이에 꽉 차게 설정 */
+  flex: 1;                   
+  height: 100%;              
   width : 100%
-  display: flex;             /* 버튼 내부의 내용도 flexbox로 설정하여 중앙 정렬 */
-  justify-content: center;   /* 버튼 텍스트를 가로로 중앙 정렬 */
-  align-items: center;       /* 버튼 텍스트를 세로로 중앙 정렬 */
-  min-width: 0;              /* 최소 너비를 0으로 설정하여 버튼들이 고정된 크기 유지 */
+  display: flex;             
+  justify-content: center;   
+  align-items: center;       
+  min-width: 0;              
 
 
 `;

@@ -1,32 +1,38 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-
 const StyledButton = styled.button`
-    padding: 21px 29px; 
-    color : ${props => props.isClicked ? "white" : "#fffff" };
-    background-color : ${props => props.isClicked ?  props.bgcolor : "white"};
-    border: 3px solid var(--sub-color);
-`;
+    padding : 12px ${props => props.horizontalPadding || "12px"};
+    color: ${props => props.bg1color ? props.bg1color : "black" };
+    background-color: ${props =>  
+        props.clicked ? props.clickedColor : 
+        props.bg1color ? "white" : props.bg1color };
+    border: 2px solid var(--sub-color);
 
+    &:hover {
+        background-color: ${props => props.bg1color || "var(--sub-color)"};
+`
 
-function LinkButton({bgcolor, text }) {
-
-    const [isClicked, setIsClicked] = useState(false);
+function LinkButton({bg1color, clickedColor="var(--sub-color)", text, horizontalPadding}){
+    const[clicked,setClicked] = useState(false)
 
     const handleClick = () => {
-        setIsClicked(prevState => !prevState);
+        if (!clicked) {
+            setClicked(true); // 클릭 시 색상 고정 __토글로 만들어야할까용?
+        }
     };
 
-    return (
-        <StyledButton 
-            bgcolor={bgcolor}
-            isClicked={isClicked}
+    return(
+        <StyledButton
+            bg1color={bg1color}
+            horizontalPadding={horizontalPadding}
+            clicked={clicked}
+            clickedColor={clickedColor}
             onClick={handleClick}
-        >
+        >    
             {text}
         </StyledButton>
-    );
+    )
 }
 
 export default LinkButton;

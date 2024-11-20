@@ -12,6 +12,7 @@ const Modal = ({
     cancelText = "취소", 
     children,
     modalText,
+    zIndex=1050,
     inPut})=>{
 
         const handleOverlayClick = (e) =>{
@@ -23,9 +24,7 @@ const Modal = ({
           <div
             className={`modal-overlay ${isOpen ? "is-open" : ""}`}
             onClick={handleOverlayClick}
-            style={{
-              zIndex: isOpen ? "2000" : "-1000"
-            }}
+            style={{zIndex : zIndex}}
           >
               <AnimatePresence>
                 {isOpen && (
@@ -35,6 +34,7 @@ const Modal = ({
                     animate={{opacity:1, y: 0 }}
                     exit={{opacity : 0}}
                     transition={{ duration: 0.5 }}
+                    style={{ zIndex: zIndex + 10 }}
                   >
                     <p>{modalText}</p>
                     {inPut}

@@ -8,13 +8,18 @@ const ModalEx = ()=>{
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [inputValue, setInputValue] = useState('')
     const [confirmModal, setConfirmModal] = useState(false);
+    const [modalZIndex, setModalZIndex] = useState(1050);
+    
   
-    const openModal = () => setIsModalOpen(true);
+    const openModal = () => {
+        setIsModalOpen(true); 
+        setModalZIndex(1050);};
     const closeModal = () => setIsModalOpen(false);
   
     const handleConfirm = () => {
     //   alert("삭제되었습니다.")
         setConfirmModal(true);
+        setModalZIndex(1100);
       closeModal();
     };
 
@@ -32,6 +37,7 @@ const ModalEx = ()=>{
                 modalText={"삭제되었습니다."}
                 confirmText={null}
                 cancelText={null}
+                zIndex={modalZIndex + 10}
                 >
                 <Button text={"확인"} onClick={closeConfirmModal}></Button>
                 </Modal>
@@ -51,7 +57,8 @@ const ModalEx = ()=>{
             }
             confirmText="확인"
             cancelText="취소"
-        ></Modal>
+            zIndex={modalZIndex}
+        />
       </>
     )
 }

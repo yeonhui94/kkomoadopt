@@ -23,6 +23,9 @@ const Modal = ({
           <div
             className={`modal-overlay ${isOpen ? "is-open" : ""}`}
             onClick={handleOverlayClick}
+            style={{
+              zIndex: isOpen ? "2000" : "-1000"
+            }}
           >
               <AnimatePresence>
                 {isOpen && (

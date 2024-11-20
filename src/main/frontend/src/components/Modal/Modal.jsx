@@ -8,7 +8,7 @@ const ModalOverlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.1);  /* 배경 투명도 설정 */
+  background-color: rgba(0, 0, 0, 0.1);
   display: ${(props) => (props.isOpen ? "flex" : "none")};
   justify-content: center;
   align-items: center;

@@ -2,7 +2,7 @@ import React from "react";
 import styles from '../components/Header.module.css'
 import HeaderDivider from "./HeaderDivider";
 import Mypageicon from "./Mypageicon";
-import Button from "../button/Button";
+import Button from "../Button";
 
 
 

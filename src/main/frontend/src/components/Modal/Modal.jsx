@@ -1,42 +1,7 @@
 import styled from "styled-components";
 import Button from "../Button";
 import {AnimatePresence, motion} from "framer-motion";
-
-const ModalOverlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.1);
-  display: ${(props) => (props.isOpen ? "flex" : "none")};
-  justify-content: center;
-  align-items: center;;
-  z-index: 1000;
-`;
-
-const ModalContent = styled(motion.div)`
-  background-color: white;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-  padding: 30px;
-  border-radius: 10px;
-  border : 1px solid var(--main-color);
-  width: 423px;
-  height : 238px;
-  max-width: 100%;
-  display : flex;
-  flex-direction : column;
-  justify-content: space-evenly;
-  align-items: center;
-  text-align: center;
-`;
-
-
-const ButtonContainer=styled.div`
-    display: flex;
-    justify-content: center;
-    gap : 10px;
-`
+import "./Modal.css";
 
 
 const Modal = ({
@@ -55,10 +20,14 @@ const Modal = ({
             }
         }
         return (
-            <ModalOverlay isOpen={isOpen} onClick={handleOverlayClick}>
+          <div
+            className={`modal-overlay ${isOpen ? "is-open" : ""}`}
+            onClick={handleOverlayClick}
+          >
               <AnimatePresence>
                 {isOpen && (
-                  <ModalContent
+                  <motion.div 
+                    className="modal-content"
                     initial={{opacity:0, y: "-50%" }}
                     animate={{opacity:1, y: 0 }}
                     exit={{opacity : 0}}
@@ -67,18 +36,18 @@ const Modal = ({
                     <p>{modalText}</p>
                     {inPut}
                     {children}
-                    <ButtonContainer>
+                    <div className="button-container">
                     {confirmText && (
                       <Button text={cancelText} onClick={closeModal}></Button>
                     )}
                     {cancelText &&(
                       <Button text={confirmText} onClick={onConfirm}></Button>
                     )}
-                    </ButtonContainer>
-                  </ModalContent>
+                    </div>
+                    </motion.div>
                 )}
               </AnimatePresence>
-            </ModalOverlay>
+            </div>
           );
         };
 export default Modal;

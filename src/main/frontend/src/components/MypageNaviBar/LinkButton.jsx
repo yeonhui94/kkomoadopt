@@ -6,13 +6,10 @@ const StyledButton = styled.button`
   color: black;
   background-color: ${(props) =>
     props.selected ? "var(--sub-color)" : "white"};
-  border: 4px solid var(--sub-color);
-  border-top: 6px solid var(--sub-color);
-  border-bottom: 6px solid var(--sub-color);
+  border: 3px solid var(--sub-color);
   font-weight: bold;
   font-family: var(--main-font);
   font-size: 20px;
-
   &:hover {
     background-color: var(--sub-color) ;
   }

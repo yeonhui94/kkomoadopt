@@ -1,0 +1,68 @@
+:root {
+    --main-color: #F8755B;
+    --sub-color: #FDDCD5;
+    --mainpage-dark: #898989;
+    --title-black: #000000;
+    --title-white: #FFFFFF;
+    --line-color: #E5E5E5;
+}
+.pagenumber {
+    display: flex;
+    align-items: center;
+    justify-self: center;
+}
+.side {
+    background-image: url('../pagelink/side.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 8px;
+    height: 8px;
+    margin-right:3px;
+    margin-top: 3px;
+}
+
+.rightside {
+    transform: scaleX(-1);
+    /* bottom: 10px; */
+    background-image: url('../pagelink/side.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 8px;
+    height: 8px;
+    margin-left: 3px;
+    
+}
+
+a {
+    text-decoration: none;
+    outline: none;
+    color: #000000;
+    font-size: medium;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    caret-color: transparent;
+    margin-inline: 2px; 
+
+}
+
+a:hover {
+    color: var(--main-color);
+
+}
+
+a:active {
+    color: var(--main-color);
+
+
+}
+
+a.active {
+    color: var(--main-color); /* 클릭된 링크에 고정되는 색 */
+    outline: none;
+    cursor: pointer;
+ 
+}
+
+
+

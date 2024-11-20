@@ -1,0 +1,77 @@
+.asd{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0px 40px;
+    background-color: #fff;
+    border-top: 1px solid #eee;
+  }
+  
+  .logoSection {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
+    width: 250px;
+    height: 250px;
+  }
+  
+  .adoptionText {
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 10px;
+    color: #333;
+  }
+  
+  .separator {
+    width: 5px;
+    height: 150px;
+    background-color: #f2856b;
+    margin-left: -10px;
+    margin-right: 40px;
+  }
+  
+  .infoSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    flex: 1;
+  }
+  
+  .infoText {
+    margin: 0;
+    line-height: 2.5;
+    color: #666;
+    font-family: sans-serif;
+    font-weight: bold;
+  }
+  
+    
+  .infoText a{
+    margin-left: 5px;
+    color: #666;
+    font-family: sans-serif;
+    font-weight: bold;
+  }
+
+  .highlight {
+    color: #f2856b;
+    font-weight: bold;
+    opacity: 0.5;
+  }
+  
+  .copyright {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #999;
+  }
+  

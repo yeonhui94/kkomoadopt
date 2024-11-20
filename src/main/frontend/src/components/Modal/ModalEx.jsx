@@ -9,6 +9,7 @@ const ModalEx = ()=>{
     const [inputValue, setInputValue] = useState('')
     const [confirmModal, setConfirmModal] = useState(false);
     const [modalZIndex, setModalZIndex] = useState(1050);
+    const [selectedOption, setSelectedOption] = useState("");
     
   
     const openModal = () => {
@@ -26,6 +27,10 @@ const ModalEx = ()=>{
     const closeConfirmModal = () => {
         setConfirmModal(false);
     }
+
+    const handleDropdownChange = (e) => {
+      setSelectedOption(e.target.value);
+    };
 
     return(
         <>
@@ -48,12 +53,20 @@ const ModalEx = ()=>{
             onConfirm={handleConfirm}
             modalText={"정말 삭제하시겠습니까?"}
             inPut={
+            <>
               <input
                 type='password'
                 value={inputValue}
                 onChange={(e)=>setInputValue(e.target.value)}
                 placeholder='비밀번호를 입력하세요'
               />
+              <select value={selectedOption} onChange={handleDropdownChange}>
+              <option value="">옵션을 선택하세요</option>
+              <option value="option1">옵션 1</option>
+              <option value="option2">옵션 2</option>
+              <option value="option3">옵션 3</option>
+            </select>
+              </>
             }
             confirmText="확인"
             cancelText="취소"

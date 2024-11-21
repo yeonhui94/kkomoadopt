@@ -1,0 +1,84 @@
+:root {
+    --main-color: #F8755B;
+    --sub-color: #FDDCD5;
+    --mainpage-dark: #898989;
+    --title-black: #000000;
+    --title-white: #FFFFFF;
+    --line-color: #E5E5E5;
+}
+
+.head {
+    width: 100%;
+    display: flex;  /* 내부 요소를 가로로 배치 */
+    align-items: center;
+    padding: 10px 20px;
+    padding-bottom: 0px;
+    position: relative;
+    flex-grow: 1;
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    padding-bottom: 0px;
+    position: absolute;
+}
+
+/* 로고 스타일 */
+.logo {
+    width: 182px;
+    height: 120px;
+    margin-right: 55px;
+    background-image: url('../logo/Group366.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.menuItem {
+    display:flow-root;  /* 텍스트를 포함하는 루트 박스로 설정 */
+    height: 35px;
+    margin-right: 55px; /* 메뉴 간의 고정 간격 */
+    margin-left: 55px;
+    padding-left: 0;
+    font-size: 30px;
+    font-weight: 700;
+    color: black;
+    font-family: 'Noto Sans KR';
+    position: relative;  /* 자식 요소의 위치를 조정할 수 있도록 설정 */
+    cursor: pointer;
+    padding-bottom: 10px;
+    transition: font-size 0.4s ease, color 0.4s ease, transform 0.4s ease;
+    caret-color: transparent; 
+    /* 커서 세로줄 색깔 투명 */
+ 
+}
+
+.menuItem:hover {
+    color: var(--main-color);
+    cursor: pointer;
+    outline: none;
+
+} 
+    
+
+.menuItem:active {
+    color: var(--main-color);
+    cursor: pointer;
+}
+
+.underline {
+    display: none;
+    cursor: pointer;
+}
+
+
+/* 오른쪽에 있는 마이페이지 아이콘과 로그아웃 버튼 */
+.headerright {
+    display: flex; /* 아이콘과 버튼을 가로로 배치 */
+    align-items: center; /* 세로 가운데 정렬 */
+    position: absolute;
+    right: 100px /* 오른쪽 끝에 위치 */
+}

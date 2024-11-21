@@ -3,7 +3,7 @@ import styled from "styled-components";
 const StyledButton = styled.button`
     padding : 12px ${props => props.horizontalPadding || "26px"}; /* 두글자 기준 26px, 네글자 12px */
     color: ${props => props.bg1color ? props.bg1color : 'var(--main-color)' };
-    background-color: ${props => props.bg1color ? "white" : props.bg1color };
+    background-color: white;
     border: 2px solid ${props => props.bg1color ? props.bg1color : 'var(--main-color)' };
     border-radius : 10px;
 

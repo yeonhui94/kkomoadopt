@@ -8,79 +8,140 @@
 }
 
 .head {
-    width: 100%;
-    display: flex;  /* 내부 요소를 가로로 배치 */
+    display: flex;
+    justify-content: center; /* 가운데 정렬 */
     align-items: center;
-    padding: 10px 20px;
-    padding-bottom: 0px;
+    padding: 10px 5%; /* 여백을 5%로 설정하여 양끝에 여백을 준다 */
     position: relative;
-    flex-grow: 1;
+    width: 100%;
 }
 
 .header {
-    width: 100%;
     display: flex;
     align-items: center;
-    padding: 10px 20px;
-    padding-bottom: 0px;
+    padding: 10px 5%; /* 여백을 화면 크기에 맞게 설정 */
     position: absolute;
+    width: 100%;
 }
 
 /* 로고 스타일 */
 .logo {
-    width: 182px;
-    height: 120px;
-    margin-right: 55px;
-    /* background-image: url('../../components/logo/Group366.svg'); */
+    height: 10vw; /* 로고 크기를 화면 너비에 비례하도록 설정 */
+    max-height: 120px; /* 로고 크기의 최대 크기 제한 */
+    margin-right: 5vw; /* 오른쪽 여백을 화면 크기에 비례하게 설정 */
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
 }
 
+/* 메뉴 아이템 */
 .menuItem {
-    display:flow-root;  /* 텍스트를 포함하는 루트 박스로 설정 */
+    display: flow-root;
     height: 35px;
-    margin-right: 55px; /* 메뉴 간의 고정 간격 */
-    margin-left: 55px;
+    margin-right: 5vw; /* 메뉴 간의 고정 간격 */
+    margin-left: 5vw;
     padding-left: 0;
-    font-size: 30px;
+    font-size: 2vw; /* 화면 크기에 맞춰 폰트 크기 조정 */
     font-weight: 700;
     color: black;
     font-family: 'Noto Sans KR';
-    position: relative;  /* 자식 요소의 위치를 조정할 수 있도록 설정 */
+    position: relative;
     cursor: pointer;
     padding-bottom: 10px;
     transition: font-size 0.4s ease, color 0.4s ease, transform 0.4s ease;
-    caret-color: transparent; 
-    /* 커서 세로줄 색깔 투명 */
- 
+    caret-color: transparent;
 }
 
+/* 메뉴 아이템 hover, active 상태 */
 .menuItem:hover {
     color: var(--main-color);
-    cursor: pointer;
-    outline: none;
-
-} 
-    
+}
 
 .menuItem:active {
     color: var(--main-color);
-    cursor: pointer;
 }
 
-.underline {
-    display: none;
-    cursor: pointer;
-}
-
-
-/* 오른쪽에 있는 마이페이지 아이콘과 로그아웃 버튼 */
+/* 마이페이지 아이콘 및 로그아웃 버튼 */
 .headerright {
-    display: flex; /* 아이콘과 버튼을 가로로 배치 */
-    align-items: cent; /* 세로 가운데 정렬 */
-    justify-items: right;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
     position: relative;
-    right: 0px; /* 오른쪽 끝에 위치 */
     margin-top: 10px;
+}
+
+/* 라인 스타일 */
+.line-container {
+    display: flex;
+    justify-content: center; /* 라인을 가운데 정렬 */
+    width: 100%;
+    margin-top: 10px;
+}
+
+.line {
+    width: 90%; /* 라인의 너비를 부모 요소에 맞게 90%로 설정 */
+    height: 2px; /* 라인의 높이 */
+    background-color: var(--line-color); /* 라인의 색상 설정 */
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+    .head {
+        padding: 10px 2%; /* 화면이 좁아지면 여백을 더 줄임 */
+    }
+
+    .logo {
+        height: 15vw; /* 로고 크기를 화면 크기에 맞춰 조정 */
+        max-height: 80px; /* 로고 최대 높이 제한 */
+    }
+
+    .menuItem {
+        font-size: 3vw; /* 작은 화면에서 글씨 크기를 줄임 */
+        margin-right: 2vw;
+        margin-left: 2vw;
+    }
+
+    .headerright {
+        justify-content: flex-start; /* 작은 화면에서 버튼을 왼쪽 정렬 */
+        margin-top: 5px;
+    }
+
+    .line-container {
+        margin-top: 5px;
+    }
+
+    .line {
+        width: 90%; /* 라인의 너비를 부모 요소에 맞춰 90%로 설정 */
+    }
+}
+
+/* 모바일 대응 */
+@media (max-width: 480px) {
+    .logo {
+        height: 20vw; /* 로고 크기를 더 작게 설정 */
+        max-height: 60px;
+    }
+
+    .menuItem {
+        font-size: 4vw; /* 모바일에서 글씨 크기를 더 작게 설정 */
+        margin-right: 1vw;
+        margin-left: 1vw;
+    }
+
+    .head {
+        flex-direction: column; /* 작은 화면에서는 요소를 세로로 배치 */
+        align-items: flex-start; /* 왼쪽 정렬 */
+    }
+
+    .headerright {
+        margin-top: 0; /* 아이콘과 버튼 여백 줄이기 */
+    }
+
+    .line-container {
+        margin-top: 5px;
+    }
+
+    .line {
+        width: 100%; /* 모바일에서도 라인이 화면에 맞춰 늘어나도록 설정 */
+    }
 }

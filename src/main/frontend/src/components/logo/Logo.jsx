@@ -2,10 +2,15 @@ import React from "react";
 import logo from "../logo/Group366.svg";
 
 function Logo() {
+  const aStyle = {
+    display : "flex",
+    justifyContent : "center",
+    width: "100%"
+  }
+
   const logoStyle = {
-    width: "182px",
-    height: "120px",
-    marginRight: "55px",
+    width: "100%",
+    height: "100px",
     backgroundImage: `url(${logo})`,
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
@@ -13,7 +18,7 @@ function Logo() {
   };
 
   return (
-    <a href="">
+    <a style={aStyle} href="">
       <div style={logoStyle} />
     </a>
   );

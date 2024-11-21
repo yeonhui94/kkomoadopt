@@ -1,0 +1,24 @@
+.checkboxContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  font-family: Arial, sans-serif;
+}
+
+.checkbox {
+  accent-color: #007bff; /* 체크박스 스타일 변경 */
+  width: 20px;
+  height: 20px;
+}
+
+.label {
+  font-size: 16px;
+  margin-left: 5px;
+}
+
+.text {
+  font-size: 14px;
+  color: #555;
+  margin: 0;
+}

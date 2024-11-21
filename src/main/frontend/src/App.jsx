@@ -1,26 +1,27 @@
-import './App.css'
-import Card2 from './components/Card2/Card2'
-// import Header from './components/Header'
-// import Card2 from './components/Card2/Card2'
-import img1 from "./assets/CardImage/1.jpg";
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import SubMenu from './container/SubMenu';
+import Announcement  from './components/SubMenuPages/Announcement '
+import BuySell from './components/SubMenuPages/BuySell';
+import FindChild from './components/SubMenuPages/FindChild';
+import AdoptReview from './components/SubMenuPages/AdoptReview';
+import Report from './components/SubMenuPages/Report';
 
-import TopButton from './components/Button/TopButton';
-
-import Button from './components/Button/Button';
-import UserProfile from './components/MyPage/Profile/UserProfile';
-import AdminProfile from './components/MyPage/Profile/AdminProfile';
-
-function App() {
-
-
+const App = () => {
   return (
-    <>
-      <Card2 imageFile={img1}></Card2>
+    <Router>
+      <div className="app">
+        <SubMenu />
+        <Routes>
+          <Route path="/Announcement" element={<Announcement />} />
+          <Route path="/find-child" element={<FindChild />} />
+          <Route path="/adopt-review" element={<AdoptReview />} />
+          <Route path="/buy-sell" element={<BuySell />} />
+          <Route path="/report" element={<Report />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+};
 
-      {/* <Header></Header> */}
-      {/* <Button></Button> */}
-    </>
-  )
-}
-
-export default App
+export default App;

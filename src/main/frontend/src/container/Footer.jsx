@@ -18,7 +18,7 @@ const Footer = () => {
             사업자번호 : 000-00-00000 <span className={styles.highlight}>|</span><a href="mailto:abcd@naver.com" className={styles.infoText}>abcd@naver.com</a>
           </p>
           <p className={styles.copyright}>
-            Copyright© 2024 KKOMO센터 All Rights Reserved ><
+            Copyright© 2024 KKOMO센터 All Rights Reserved 
           </p>
         </div>
       </footer>

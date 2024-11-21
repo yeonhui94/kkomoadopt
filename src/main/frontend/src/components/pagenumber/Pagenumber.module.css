@@ -12,7 +12,7 @@
     justify-self: center;
 }
 .side {
-    background-image: url('../pagelink/side.svg');
+    background-image: url('../pagenumber/side.svg');
     background-repeat: no-repeat;
     background-size: cover;
     width: 8px;
@@ -24,7 +24,7 @@
 .rightside {
     transform: scaleX(-1);
     /* bottom: 10px; */
-    background-image: url('../pagelink/side.svg');
+    background-image: url('../pagenumber/side.svg');
     background-repeat: no-repeat;
     background-size: cover;
     width: 8px;

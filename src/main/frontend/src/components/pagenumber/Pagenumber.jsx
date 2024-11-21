@@ -1,7 +1,7 @@
 import { useState } from "react";
-import style from "../pagelink/Pagelink.module.css";
+import style from '../pagenumber/Pagenumber.module.css';
 
-function Pagealink() {
+function Pagenumber() {
   // 현재 클릭된 링크의 인덱스를 저장
   const [activeIndex, setActiveIndex] = useState(null);
 
@@ -40,37 +40,4 @@ function Pagealink() {
   );
 }
 
-export default Pagealink;
-
-// import { useState } from 'react';
-// import style from '../pagelink/Pagelink.module.css';
-
-
-// function Pagealink(){
-
-//     const [colorlink, setColorlink] = useState(null);
-
-//     const pagenums = [
-//         { text: '1', link: './intro' },
-//         { text: '2', link: 'https://www.naver.com/' },
-//         { text: '3', link: 'https://www.google.com/' },
-//         { text: '4', link: 'https://www.youtube.com/' },
-//         { text: '5', link: 'https://motion.dev/docs/react-examples'}
-//     ]
-
-//     const handleClick = (i) => {
-//         setColorlink(i);
-//     }
-
-//     return(
-//         <div className={style.pagenumber}>
-//             <div className={style.side}/>   
-//             <a
-//             key={i}
-//             href={page.link}
-//             className={}
-//             <div className={style.rightside}/>
-//         </div>
-//     )
-// }
-// export default Pagealink;
+export default Pagenumber;

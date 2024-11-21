@@ -31,7 +31,7 @@
     width: 182px;
     height: 120px;
     margin-right: 55px;
-    background-image: url('../logo/Group366.svg');
+    background-image: url('../../components/logo/Group366.svg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -78,7 +78,9 @@
 /* 오른쪽에 있는 마이페이지 아이콘과 로그아웃 버튼 */
 .headerright {
     display: flex; /* 아이콘과 버튼을 가로로 배치 */
-    align-items: center; /* 세로 가운데 정렬 */
-    position: absolute;
-    right: 100px /* 오른쪽 끝에 위치 */
+    align-items: cent; /* 세로 가운데 정렬 */
+    justify-items: right;
+    position: relative;
+    right: 0px; /* 오른쪽 끝에 위치 */
+    
 }

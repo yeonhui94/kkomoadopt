@@ -6,7 +6,7 @@ import { useState } from "react";
 const StyledDiv = styled.div`
   padding : 0;
   display: flex;             
-  width: 806px;             
+              
   height: 70px;             
   align-items: stretch;     
   justify-content: space-between;

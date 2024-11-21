@@ -1,0 +1,58 @@
+.profile-container {
+    background-color: var(--sub-color);
+    display: grid;
+    grid-template:
+        '... ... ...' 2fr
+        '... contents ...' 458px
+        '... ... ...' 3fr / 1fr 234px 1fr;
+    height: 788px;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+.profile-contents {
+    grid-area: contents;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-img {
+    width: 234px;
+    height: 234px;
+    border-radius: 50%;  /* 원 모양으로 */
+    background-color: var(--title-white);
+    z-index: 9999999;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+}
+
+
+
+.profile-text1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+.profile-name {
+    font-size: 30px;
+}
+
+.profile-text2 {
+    font-size: 16px;
+    padding-top: 18px;
+}
+
+.profile-btns {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+

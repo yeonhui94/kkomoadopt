@@ -5,8 +5,7 @@ import { useState } from "react";
 // 부모 div 스타일
 const StyledDiv = styled.div`
   padding : 0;
-  display: flex;             
-  width: 806px;               
+  display: flex;                         
   height: 70px;              
   align-items: stretch;      
   justify-content: space-between; 
@@ -20,9 +19,7 @@ const StyledLinkButton = styled(LinkButton)`
   display: flex;             
   justify-content: center;   
   align-items: center;       
-  min-width: 0;              
-
-
+  min-width: 0;
 `;
 
 

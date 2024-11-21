@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import styles from '../components/Header.module.css';
+import styles from '../header/Header.module.css';
+
 
 function Tab({ label, isSelected, onClick, onMouseEnter, onMouseLeave, link }) {
 

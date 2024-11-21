@@ -19,7 +19,10 @@ function Header() {
   return (
       <>
           <div className={styles.head}>
-              <div className={styles.logo} /> {/* 로고 섹션 */}
+            <a href="https://www.w3schools.com/">
+            <div className={styles.logo} /> 
+            </a>
+            {/* 로고 섹션 */}
               <LayoutGroup> {/* 애니메이션을 그룹화 */}
                   <TabRow
                       items={tabs} // 탭 목록 전달

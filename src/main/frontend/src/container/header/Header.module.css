@@ -10,15 +10,17 @@
 .head {
     display: flex;
     justify-content: center; /* 가운데 정렬 */
-    align-items: center;
+    align-items: center; /* 수직 정렬 */
     padding: 10px 5%; /* 여백을 5%로 설정하여 양끝에 여백을 준다 */
     position: relative;
     width: 100%;
+    box-sizing: border-box; /* padding을 포함한 너비 계산 */
+    flex-wrap: wrap; /* 화면이 좁아지면 항목들이 자동으로 줄어들게 설정 */
 }
 
 .header {
     display: flex;
-    align-items: center;
+    align-items: center; /* 수직 정렬 */
     padding: 10px 5%; /* 여백을 화면 크기에 맞게 설정 */
     position: absolute;
     width: 100%;
@@ -32,6 +34,7 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
+    align-self: center; /* 로고를 수직 중앙에 배치 */
 }
 
 /* 메뉴 아이템 */
@@ -64,10 +67,12 @@
 /* 마이페이지 아이콘 및 로그아웃 버튼 */
 .headerright {
     display: flex;
-    align-items: center;
-    justify-content: flex-end;
+    flex-direction: row; /* 아이콘과 버튼을 가로로 배치 */
+    align-items: center; /* 수직으로 중앙 정렬 */
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    top: 20px; /* 전체 헤더에서 적당히 떨어지게 */
+    gap: 10px; /* 아이콘과 버튼 사이 간격 설정 */
     position: relative;
-    margin-top: 10px;
 }
 
 /* 라인 스타일 */
@@ -75,11 +80,11 @@
     display: flex;
     justify-content: center; /* 라인을 가운데 정렬 */
     width: 100%;
-    margin-top: 10px;
+    margin-top: 20px; /* 마지막 콘텐츠를 아래로 좀 더 내려줌 */
 }
 
 .line {
-    width: 90%; /* 라인의 너비를 부모 요소에 맞게 90%로 설정 */
+    width: 90%; /* 라인의 너비를 부모 요소에 맞춰 90%로 설정 */
     height: 2px; /* 라인의 높이 */
     background-color: var(--line-color); /* 라인의 색상 설정 */
 }
@@ -88,6 +93,8 @@
 @media (max-width: 768px) {
     .head {
         padding: 10px 2%; /* 화면이 좁아지면 여백을 더 줄임 */
+        flex-direction: column; /* 세로로 배치 */
+        justify-content: center; /* 중앙 정렬 */
     }
 
     .logo {
@@ -102,12 +109,13 @@
     }
 
     .headerright {
-        justify-content: flex-start; /* 작은 화면에서 버튼을 왼쪽 정렬 */
-        margin-top: 5px;
+        justify-content: center; /* 화면 크기가 작아지면 버튼을 가운데 정렬 */
+        margin-top: 10px; /* 버튼의 간격을 증가시켜서 로고와 분리 */
+        margin-bottom: 10px; /* 버튼 아래 간격 추가 */
     }
 
     .line-container {
-        margin-top: 5px;
+        margin-top: 30px; /* 마지막 콘텐츠 아래를 더 여유 있게 설정 */
     }
 
     .line {
@@ -130,11 +138,16 @@
 
     .head {
         flex-direction: column; /* 작은 화면에서는 요소를 세로로 배치 */
-        align-items: flex-start; /* 왼쪽 정렬 */
+        align-items: center; /* 중앙 정렬 */
     }
 
     .headerright {
-        margin-top: 0; /* 아이콘과 버튼 여백 줄이기 */
+        position: absolute; /* 오른쪽 상단에 위치하도록 고정 */
+        top: 10px; /* 상단에서 10px 떨어지도록 설정 */
+        right: 10px; /* 오른쪽에서 10px 떨어지도록 설정 */
+        justify-content: center; /* 오른쪽 상단에서 중앙 정렬 */
+        margin-top: 0; /* 추가 마진 없이 바로 위치 */
+        margin-bottom: 0; /* 추가 마진 없이 바로 위치 */
     }
 
     .line-container {

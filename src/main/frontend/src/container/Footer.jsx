@@ -6,7 +6,9 @@ const Footer = () => {
   return (
       <footer className={styles.footer}>
         <div className={styles.logoSection}>
-          <img src={logo} alt="로고" className={styles.logo} />
+          <a href="./intro" style={{height : "250px"}}>
+          <img src={logo} alt="로고" className={styles.logo}/>
+          </a>
         </div>
         <div className={styles.separator}></div>
         <div className={styles.infoSection}>

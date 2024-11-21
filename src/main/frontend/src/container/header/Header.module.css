@@ -82,5 +82,5 @@
     justify-items: right;
     position: relative;
     right: 0px; /* 오른쪽 끝에 위치 */
-    
+    margin-top: 10px;
 }

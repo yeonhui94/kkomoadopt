@@ -3,9 +3,9 @@ import logo from "../../components/logo/Group366.svg";
 
 function Logo() {
   const aStyle = {
-    display : "flex",
-    justifyContent : "center",
-    width: "100%"
+    // display : "flex",
+    justifyContent : "left",
+     width: "182px"
   }
 
   const logoStyle = {

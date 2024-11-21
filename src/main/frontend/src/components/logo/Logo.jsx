@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../logo/Group366.svg";
+import logo from "../../components/logo/Group366.svg";
 
 function Logo() {
   const aStyle = {

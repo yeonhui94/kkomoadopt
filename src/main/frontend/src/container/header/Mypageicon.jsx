@@ -1,5 +1,5 @@
-import Mypageimg from '../logo/mypageimg.svg';
-import styles from '../components/Header.module.css';
+import Mypageimg from '../../components/logo/Mypageicon.svg';
+import styles from '../header/Header.module.css';
 
 function Mypageicon (){
     

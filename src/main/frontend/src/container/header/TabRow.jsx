@@ -1,5 +1,6 @@
 import { useState } from "react";
-import Tab from "./Tab.jsx";
+import Tab from "./Tab";
+
 
 function TabRow({ items, selectedTab, onSelect, link }) {
 

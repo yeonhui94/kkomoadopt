@@ -1,5 +1,4 @@
 
-
 function HeaderDivider() {
     return (
         <div style={{
@@ -10,7 +9,7 @@ function HeaderDivider() {
             display: 'flex',
         }}>
             <div style={{
-                width: '1278px',
+                width: '1440px',
                 height: '4px',
                 backgroundColor: '#E5E5E5',
             }} />

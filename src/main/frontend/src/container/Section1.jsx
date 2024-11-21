@@ -119,7 +119,7 @@ function Section1() {
           onAnimationComplete={() => {
             // 애니메이션이 끝난 후에 상태 변경이 필요할 경우
             if (mainBg === "rgba(0, 0, 0, 0.5)") {
-              // 배경색이 rgba(0, 0, 0, 0.5)일 때 스크롤 상태 리셋
+              // 배경색이 rgba(0, 0, 0, 0.5)일 때 스크롤 상태 리셋 >
               setIsScrolling(false); 
             }
           }}

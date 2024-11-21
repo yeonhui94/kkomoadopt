@@ -1,0 +1,16 @@
+/* Scrap.css */
+.scrap-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.scrap-icon {
+  width: 36px;
+  height: 49px;
+  transition: transform 0.3s ease; /* 이미지 전환 효과 */
+}
+
+.scrap-button:hover .scrap-icon {
+  transform: scale(1.1); /* 호버 시 이미지 확대 */
+}

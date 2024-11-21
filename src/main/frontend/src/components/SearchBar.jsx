@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './SearchBar.css';
+import styles from './SearchBar.module.css';
 
 function SearchBar() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -13,17 +13,17 @@ function SearchBar() {
   };
 
   return (
-    <div className="search-container">
+    <div className={styles["search-container"]}>
       <input
         type="text"
         placeholder="검색어를 입력해주세요."
         value={searchQuery}
         onChange={handleInputChange}
-        className="search-input"
+        className={styles['search-input']}
       />
-      <button onClick={handleSearch} className="search-button">
+      <button onClick={handleSearch} className={styles['search-button']}>
         <svg
-          width="300"
+          width="40"
           height="40"
           viewBox="0 0 40 40"
           fill="none"

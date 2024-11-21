@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Button from "../Button";
+import Button from "../Button/Button";
 import {AnimatePresence, motion} from "framer-motion";
 import "./Modal.css";
 
@@ -9,7 +9,7 @@ const Modal = ({
     closeModal, 
     onConfirm, 
     confirmText = "확인", 
-    cancelText = "취소", 
+    cancelText = "취소",
     children,
     modalText,
     zIndex=1050,

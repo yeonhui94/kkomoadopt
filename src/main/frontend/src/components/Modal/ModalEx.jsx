@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import Modal from "./Modal";
-import Button from "../Button";
+import Button from "../Button/Button";
 
 const ModalEx = ()=>{
 

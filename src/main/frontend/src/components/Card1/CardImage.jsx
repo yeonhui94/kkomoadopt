@@ -15,10 +15,14 @@ const BackgroundDiv = styled.div`
 
 const ImageWrapper = styled.div`
   display: grid;
-  grid-template-rows: auto auto auto 2px auto;
-  grid-template-columns: 1fr;
+  grid-template:
+    "image" auto
+    "text" auto
+    "..." auto
+    "divider" 2px
+    "additional-text" auto / 1fr;
   justify-content: ${({ ps }) => (ps === "top" ? "left" : "center")};
-  align-items: ${({ ps }) => (ps === "top" ? "left" : "center")};
+  align-items: ${({ ps }) => (ps === "top" ? "flex-start" : "center")};
   position: relative;
   border-radius: 10px;
   width: 100%;
@@ -31,10 +35,10 @@ const ImageWrapper = styled.div`
 `;
 
 const Divider = styled.div`
+  grid-area: divider ;
   height: 2px;
   background-color: white;
   width: 90%;
-  grid-row: 4;
   justify-self: center;
   z-index: 3;
   transition: opacity 0.5s ease, transform 0.5s ease;
@@ -49,8 +53,21 @@ const AdditionalTextWrapper = styled.div`
   padding-bottom: 10px;
 `;
 
+const ThirdText = styled.div`
+  color: white;
+  font-size: 0.7rem;
+  font-weight : bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+  justify-self: center;
+  align-self: center;
+  z-index: 3;
+  white-space: nowrap;
+  padding-top: 10px;
+`;
+
+
 const AdditionalText = styled.div`
-  grid-row: 5;
+  grid-area: additional-text;
   color: white;
   font-size: 1rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
@@ -64,13 +81,14 @@ const AdditionalText = styled.div`
   transition: opacity 0.5s ease, transform 0.5s ease;
 `;
 
-const CardImage = ({ imageFile, text, additionalText, ps, size, isFirst }) => {
+const CardImage = ({ imageFile, text, additionalText, ps, size, isFirst,thirdtext }) => {
   return (
     <ImageWrapper url={imageFile} ps={ps}>
       <BackgroundDiv />
       {isFirst && <Divider />}
-      <TextBox2 text={text} size={size} />
+      <TextBox2 text={text} size={size}  />
       <AdditionalText>{additionalText}</AdditionalText>
+      {thirdtext && <ThirdText>{thirdtext}</ThirdText>}
     </ImageWrapper>
   );
 };

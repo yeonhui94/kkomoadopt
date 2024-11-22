@@ -89,13 +89,10 @@ const Card1 = ({ images }) => {
       <CardContainer className="card-container">
         {images.slice(1).map((card, index) => (
           <StyledCard key={index} className="styled-card small-card" width={card.width} height={card.height}>
-            {/* 마지막 이미지에만 "자세히 보기" 텍스트 추가 */}
             {index === images.length - 2 ? (
               <CardImage
                 imageFile={card.image}
-                text={"자세히 보기"}
-                ps={"center"}
-                size={"0.6rem"}
+                thirdtext={"자세히 보기"}
                 isFirst={false}
               />
             ) : (

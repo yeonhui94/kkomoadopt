@@ -65,8 +65,8 @@ function LoginContents() {
   const buttonWidth = "400px"; // 여기에 버튼 너비를 고정값 또는 동적으로 설정 (예시로 400px)
 
   return (
-    <div style={{width:"607px", height: "650px"}}>
-      <Divider text="회원가입" />
+    <div style={{width:"607px", height: "700px"}}>
+      <Divider text="회원가입" marTop="50px" />
       <StyledLoginBox>
         <StyledButton1
           text="이메일로 회원가입"

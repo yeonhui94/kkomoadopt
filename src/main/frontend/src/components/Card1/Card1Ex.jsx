@@ -16,7 +16,6 @@ function Card1Ex() {
 
   return (
     <div className="App">
-      {/* Test1 컴포넌트에 이미지 배열 전달 */}
       <Card1 images={images} />
     </div>
   );

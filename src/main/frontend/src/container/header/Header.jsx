@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import {LayoutGroup, LayoutGroupContext} from "framer-motion";
 import styles from "../header/Header.module.css";
 import TabRow from "./TabRow";
-import HeaderDivider from "./HeaderDivider";
+// import HeaderDivider from "./HeaderDivider";
 import Button from '../../components/Button/Button';
 import Mypageicon from "./Mypageicon";
 import Logo from "../../components/logo/Logo";
+import Divider from "../../components/Divider";
 
 
 function Header() {
@@ -39,7 +40,7 @@ function Header() {
                         <Button text="로그아웃"/> {/* 로그아웃 버튼 */}
                     </div>
                 </LayoutGroup>
-                <HeaderDivider />
+                <Divider width="100%" paddingbt="20px"></Divider>
             </div>
             {/* 헤더 아래 구분선 */}
         </>

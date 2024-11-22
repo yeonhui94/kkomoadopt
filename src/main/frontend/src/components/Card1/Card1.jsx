@@ -86,7 +86,7 @@ const Card1 = ({ images }) => {
       </StyledCard>
 
       {/* Additional images in CardContainer */}
-      <CardContainer className="card-container">
+      <CardContainer className="card-container"> 
         {images.slice(1).map((card, index) => (
           <StyledCard key={index} className="styled-card small-card" width={card.width} height={card.height}>
             {index === images.length - 2 ? (

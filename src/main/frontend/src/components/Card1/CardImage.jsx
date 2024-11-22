@@ -75,7 +75,7 @@ const AdditionalText = styled.div`
   align-self: center;
   z-index: 3;
   white-space: nowrap;
-  overflow: hidden;
+  overflow: hidden;  
   text-overflow: ellipsis;
   max-width: 20ch;
   transition: opacity 0.5s ease, transform 0.5s ease;

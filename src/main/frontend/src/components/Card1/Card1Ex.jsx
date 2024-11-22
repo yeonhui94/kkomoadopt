@@ -12,7 +12,7 @@ function Card1Ex() {
     { image: img2, width: '72px', height: '72px' },   
     { image: img3, width: '72px', height: '72px' },  
     { image: img4, width: '72px', height: '72px' } 
-  ];
+  ]; 
 
   return (
     <div className="App">

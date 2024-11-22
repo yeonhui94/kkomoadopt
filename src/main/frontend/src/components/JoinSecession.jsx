@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Logo from "./logo/Logo";
 import Button from "./Button/Button";
+import logo from "../assets/logo.svg";
 
 // 텍스트 데이터 관리
 const texts = {
@@ -20,12 +21,17 @@ const StyledDiv = styled.div`
   align-items: center;
 `;
 
-const StyledLogo = styled(Logo)``;
+const StyledLogo = styled.img`
+  margin-top : -150px;
+  width: 400px;  /* 원하는 너비로 설정 */
+  height: 400px;  /* 원하는 높이로 설정 */
+
+`;
 
 const StyledP1 = styled.p`
   font-size: 40px;
   font-weight: bold;
-  margin-top: 65px;
+  margin-top: -65px;
   margin-bottom: 42px;
   font-family: var(--main-font);
 `;
@@ -50,7 +56,9 @@ function JoinSecession() {
   // 텍스트를 컴포넌트 내에서 관리
   return (
     <StyledDiv>
-      <StyledLogo />
+      <a href="./intro" >
+          <StyledLogo src={logo} alt="로고" />
+          </a>
       <StyledP1>{texts.h1}</StyledP1>
       <StyledP2>{texts.text1}</StyledP2>
       <StyledP2>{texts.text2}</StyledP2>

@@ -5,6 +5,7 @@ import Screen1 from "./centerintro/screen1";
 import PinkLine from "./centerintro/PinkLine";
 import { useRef } from "react";
 import Header from "../container/header/Header";
+import Divider from "../components/Divider";
 
 const CenterIntro = () => {
 
@@ -22,32 +23,105 @@ const CenterIntro = () => {
 
 
     const cntintscreens = [
+        //1 
+        <div>
         <div className={`${centerintrosty.centint_big_text} 
         ${centerintrosty.centint_screen1}`}>
             <p className={`${centerintrosty.centint_sc1_text}`}> 
                 KKOMO 보호센터는 <br/>사지 않고 <span className={centerintrosty.centint_highlight}>입양</span>하는 
                 문화를 만듭니다.
             </p>
+        
+        </div> 
+        <Divider
+                width="100%"
+                backgroundColor="#d5d5d5"
+                height="2px"
+                
+        />   
         </div>,
+        //2
+        <div>
         <div className={centerintrosty.centint_screen2}>
-            <div className={centerintrosty.centint_sc2_textbox}>
+            <div className={centerintrosty.centint_sc2_contents}>
                 <p className={`${centerintrosty.centint_medium_text} ${centerintrosty.centint_sr2_text1}`}>
                 매년 전국적으로 <span className={centerintrosty.centint_blacktextshadow}>10만 마리</span> 이상의<br/>유기 동물들이 보호소로 구조되고 있습니다.
                 </p>
                 <p className={`${centerintrosty.centint_medium_graytext} ${centerintrosty.centint_sr2_text2}`}>
                 안타깝게도 이 중 절반에 가까운 동물들은 <br/>
-                다시 가족을 만나지 못하고<br/>안락사 되거나 자연사 하고 있습니다.
+                다시 가족을 만나지 못하고 안락사 되거나 자연사 하고 있습니다.
                 </p>
-                <div className={`${centerintrosty.centint_img1}`}/>
+                <div className={`${centerintrosty.centint_img1} ${centerintrosty.centint_imgs}`}/>
             </div>
-            <PinkLine/>
+        </div>
+        <Divider
+                paddingbt="2px"
+                width="100%"
+                backgroundColor="#d5d5d5"
+                height="2px"
+                
+        />
+        </div>,
+        // 3
+        <div>
+            <div className={centerintrosty.centint_screen3} >
+                <p className={`${centerintrosty.centint_big_text} ${centerintrosty.centint_sc1_text}`}>
+                        KKOMO 보호센터는<br/> <span className={centerintrosty.centint_highlight}>매년 1만 마리</span> 이상의 유기동물에게
+                        <br/>새로운 가족을 찾아주고 있습니다.
+                </p>
+            </div>
+            <Divider
+                paddingbt="2px"
+                width="100%"
+                backgroundColor="#d5d5d5"
+                height="2px"
+                
+        />
+        </div>,
+        // 4
+        <div>
+            <div className={centerintrosty.centint_screen4}>
+                <div className={centerintrosty.centint_sc4_contents}>
+                    <div className={`${centerintrosty.centint_medium_text} ${centerintrosty.centint_sr4_text1}`}>
+                        사랑이 필요한 그 작은 생명<br/>당신의 따뜻한 손길을 기다리고 있어요.<br/>
+                    </div>
+                    <div className={`${centerintrosty.centint_medium_graytext} ${centerintrosty.centint_sr4_text2} `}>
+                        유기동물 보호소에 구조된 유기동물 알림 서비스를 통해
+                    <br />입양을 돕고 있습니다.
+                    </div>
+                    <div className={`${centerintrosty.centint_img2} ${centerintrosty.centint_imgs}`}/>
+                </div>
+            </div>
+            <Divider
+                paddingbt="2px"
+                width="100%"
+                backgroundColor="#d5d5d5"
+                height="2px"
+                
+            />
+        </div>,
+        //5
+        <div>
+            <div>
+                <p className={centerintrosty.centint_big_text}>
+                KKOMO 보호센터는<br/> 매 해 천여 마리 이상의 실종 동물을<br/>
+                따뜻한 가족의 품으로 돌려보내주고 있습니다.
+                </p>
+                <Divider
+                paddingbt="2px"
+                width="100%"
+                backgroundColor="#d5d5d5"
+                height="2px"
+                
+                />
+            </div>
         </div>
 
     ]
 
     return (
         <div className={centerintrosty.centint_all}>
-          <Header /> {/* 헤더 컴포넌트 렌더링 */}
+          <Header className={centerintrosty.centint_header} /> {/* 헤더 컴포넌트 렌더링 */}
           
           {/* cntintscreens 배열을 map으로 순회하여 각 화면을 렌더링 */}
           {cntintscreens.map((cntintscreen, index) => (

@@ -1,6 +1,19 @@
 
 .centint_all {
-    height: 3000px;
+    height: 5000px;
+    padding-top: 60px;
+}
+.centint_header {
+    position: sticky;  /* 페이지 스크롤 시 고정 */
+    top: 0;           /* 상단에 고정 */
+    left: 0;
+    width: 100%;      /* 화면 너비에 맞게 확장 */
+    z-index: 1000;    /* 다른 요소들 위에 보이도록 설정 */
+    padding: 10px 0; 
+    
+}
+.centint_line {
+    grid-area: cenintd;
 }
 
 .centint_highlight {
@@ -8,7 +21,9 @@
 }
 
 .centint_blacktextshadow {
-    text-shadow: 1px 1px 2px #232323;
+    /* text-shadow: 1px 1px 2px #232323; */
+    font-weight: bolder;
+    color: #444;
 }
 
 /* .centint_graytextshadow {
@@ -31,33 +46,31 @@
 
 .centint_medium_graytext {
     /* color: rgba(0, 0, 0, 0.50);  */
-    color: #F29F8E;
-    font-size: 25px;
+    color: #FD9A7C;
+    font-size: 23px;
     font-family: 'Noto Sans KR'; 
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .centint_small_text {
     width: 100%;
     height: 100%;
     color: #222222;
-    font-size: 32px;
+    font-size: 30px;
     font-family: 'Noto Sans KR';
     font-weight: 700;
 }
-
-
-.centint_screen1 {
+.centint_screen1, .centint_screen3 {
     display: grid;
     grid-template: 
         '... ... ...' 300px
-        '... firstsctext ...' 200px
-        '... ... ...' 400px/ 1fr 6fr 1fr;
+        '... sc13text ...' 200px
+        '... ... ...' 300px/ 1fr 6fr 1fr;
       
 }
 
-.centint_sc1_text {
-    grid-area: firstsctext;
+.centint_sc1_text, .centint_sc3_text {
+    grid-area: sc13text;
     text-align: center;
  
 }
@@ -65,24 +78,10 @@
 .centint_screen2 {
     display: grid;
     grid-template: 
-        '... ... ...' 400px
-        '... secondsctext ...' 600px
-        '... ... ...' 300px/ 40px 6fr 40px;
-    
+        '... ... ...' 150px
+        '... ctitscreen2 ...' 600px
+        '... ... ...' 150px/ 40px 6fr 40px;
       
-}
-
-.centint_img1 {
-    grid-area: centintimg1;
-    background-image: url(./centerintro/img/centerintroimg1.svg);
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    margin: 0;
-    filter: blur(0.6px);
 }
 
 /* .centint_img1::after {
@@ -91,12 +90,13 @@
     z-index: -1;
 } */
 
-.centint_sc2_textbox {
-    grid-area: secondsctext;
+
+.centint_sc2_contents {
+    grid-area: ctitscreen2;
     display: grid;
     grid-template: 
-    'centintimg1 ... secondsctext1'1fr
-    'centintimg1 ... secondsctext2'1fr/1fr 40px 1fr;
+    'centintimg1 ... sc2468text1'1fr
+    'centintimg1 ... sc2468text2'1fr/1fr 40px 1fr;
     width: 100%;
     height: 100%;
     align-items: center;
@@ -104,47 +104,52 @@
  
 }
 
-.centint_sr2_text1 {
-    grid-area: secondsctext1;
+.centint_sc4_contents {
+    grid-area: screen2468;
+    display: grid;
+    grid-template: 
+    'sc2468text1 ... centintimg2'1fr
+    'sc2468text2 ... centintimg2'1fr/1fr 40px 1fr;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-items: right;
+ 
+}
+.centint_imgs {
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    filter: blur(0.6px);
+
+}
+.centint_img1 {
+    grid-area: centintimg1;
+    background-image: url(./centerintro/img/centerintroimg1.svg);
+}
+
+.centint_img2 {
+    grid-area: centintimg2;
+    background-image: url(./centerintro/img/centerintroimg2.svg);
+}
+
+.centint_sr2_text1, .centint_sr4_text2 {
+    grid-area: sc2468text1;
     text-align: start;
     width: 100%;
 
 
 }
 
-.centint_sr2_text2 {
-    grid-area: secondsctext2;
+.centint_sr2_text2, .centint_sr4_text2 {
+    grid-area: sc2468text2;
     text-align: start;
     /* 이 글씨체만 align : start가 적용되도록 설정 */
     align-self: start; 
     width: 100%;
 
 }
-
-
-
-/* .box {
-    width: 100%;
-    height: 500px;
-    font-size: 30px;
-    display: flex;
-
-    margin-top: 3000px;
-    margin-bottom: 5000px;
-
-}
-
-.box:nth-child(1) {
-    background-color: bisque;
-
-}
-
-.box:nth-child(2) {
-    background-color: skyblue;
-
-}
-
-.box:nth-child(3) {
-    background-color: lightgreen;
-
-} */

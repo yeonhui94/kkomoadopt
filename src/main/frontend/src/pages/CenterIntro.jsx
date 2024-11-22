@@ -11,12 +11,10 @@ const CenterIntro = () => {
             <PinkLine/>
         {/* 세 번째 요소 */}
         <motion.div
-            className={styles.box}
-            initial={{ opacity: 0, y: 1000 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ amount: 0.5 }} // 요소의 50%가 보일 때 애니메이션 시작
-            transition={{ duration: 0.8 }}
-        >
+                    initial={{ opacity: 0, scale: 0.9 }} // 초기 상태  
+                    //뷰포트에 들어왔을때 (isInView) 애니메이션 설정한다. 
+                    animate={{ opacity: isInView ? 1 : 0, scale: isInView ? 1 : 0.9 }} // 애니메이션 상태
+                    transition={{ duration: 0.5 }}>
             <h2>세 번째 요소</h2>
         </motion.div>
 

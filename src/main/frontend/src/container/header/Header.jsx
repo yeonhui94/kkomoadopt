@@ -40,7 +40,7 @@ function Header() {
                         <Button text="로그아웃"/> {/* 로그아웃 버튼 */}
                     </div>
                 </LayoutGroup>
-                <Divider width="100%" paddingbt="20px"></Divider>
+                <Divider width="100%" paddingbt="20px" backgroundColor="var(--line-color)"></Divider>
             </div>
             {/* 헤더 아래 구분선 */}
         </>

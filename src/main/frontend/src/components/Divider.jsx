@@ -7,7 +7,8 @@ const StyledDivider = styled.div`
   font-size: ${(props) => props.fontSize || '32px'}; /* 텍스트 크기 */
   font-weight : bold;
   font-family: var(--main-font);
-  padding-bottom: 5px;
+  padding-bottom: ${(props) => props.paddingbt || '5px'};
+  width: ${(props) => props.width || 'auto'}; /* width가 전달되도록 설정 */
 `;
 
 const Underline = styled.div`
@@ -20,10 +21,10 @@ const Underline = styled.div`
   
 `;
 
-function Divider({ text, fontSize, width, backgroundColor, height }) {
+function Divider({ text, fontSize, width, backgroundColor, height ,paddingbt}) {
   return (
-    <StyledDivider fontSize={fontSize}>
-      {text}
+    <StyledDivider fontSize={fontSize}  width={width} paddingbt={paddingbt}>
+      {text && text}
       <Underline width={width} backgroundColor={backgroundColor} height={height} />
     </StyledDivider>
   );

@@ -6,8 +6,8 @@
 }
 
 .scrap-icon {
-  width: 36px;
-  height: 49px;
+  width: 30px;
+  height: 40px;
   transition: transform 0.3s ease; /* 이미지 전환 효과 */
 }
 

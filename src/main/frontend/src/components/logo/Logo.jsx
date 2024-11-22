@@ -1,11 +1,12 @@
 import React from "react";
 import logo from "../../components/logo/Group366.svg";
+import logo2 from "../../assets/logo.svg"
 
 function Logo() {
   const aStyle = {
-    // display : "flex",
+    display : "flex",
     justifyContent : "left",
-     width: "182px"
+     width: "140px"
   }
 
   const logoStyle = {

@@ -1,9 +1,10 @@
 import centerintrosty from '../CenterIntro.module.css';
+import { motion } from 'framer-motion';
 
 const Screen2 = () => {
 
     return (
-        <div className={centerintrosty.centint_screen2}>
+        <motion.div className={centerintrosty.centint_screen2}>
             <div className={centerintrosty.centint_sc2_textbox}>
                 <p className={`${centerintrosty.centint_medium_text} ${centerintrosty.centint_sr2_text1}`}>
                 매년 전국적으로 <span className={centerintrosty.centint_blacktextshadow}>10만 마리</span> 이상의<br/>유기 동물들이 보호소로 구조되고 있습니다.
@@ -15,7 +16,7 @@ const Screen2 = () => {
                 <div className={`${centerintrosty.centint_img1}`}/>
             </div>
             {/* <div className={`${centerintrosty.centint_img1}`}/> */}
-        </div>
+        </motion.div>
     )
 
 }

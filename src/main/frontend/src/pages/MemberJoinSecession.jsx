@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import JoinSecession from "../components/JoinSecession";
 import Footer from "../container/Footer";
 import Header from "../container/header/Header";
+import JoinSecession from "../contents/JoinSecession";
 
 const StyledDiv = styled.div`
   display: grid;

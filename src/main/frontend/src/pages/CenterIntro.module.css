@@ -1,25 +1,33 @@
+
+.centint_highlight {
+    color : #F8755B;
+}
+
+.centint_blacktextshadow {
+    text-shadow: 1px 1px 2px #232323;
+}
+
+/* .centint_graytextshadow {
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.10);
+} */
 .centint_big_text {
     text-align: center; 
-    color: black; 
+    color: #222222; 
     font-size: 48px; 
     font-family: "Noto Sans KR"; 
     font-weight: 700;
 }
 
 .centint_medium_text {
-    width: '100%'; 
-    height: '100%'; 
-    color: 'black'; 
-    font-size: 36px; 
+    color: #222222; 
+    font-size: 40px; 
     font-family: 'Noto Sans KR'; 
     font-weight: 700;
 }
 
 .centint_medium_graytext {
-    width: '100%';
-    height: '100%';
     color: rgba(0, 0, 0, 0.50); 
-    font-size: 36px;
+    font-size: 25px;
     font-family: 'Noto Sans KR'; 
     font-weight: 700;
 }
@@ -27,7 +35,7 @@
 .centint_small_text {
     width: 100%;
     height: 100%;
-    color: black;
+    color: #222222;
     font-size: 32px;
     font-family: 'Noto Sans KR';
     font-weight: 700;
@@ -37,15 +45,71 @@
 .centint_screen1 {
     display: grid;
     grid-template: 
-        '... ... ...' 320px
-        '... firstsctext ...' 480px
-        '... ... ...' 320px / 258px 742px 258px;
-        width: 100%;
+        '... ... ...' 250px
+        '... firstsctext ...' 200px
+        '... ... ...' 250px/ 1fr 6fr 1fr;
+      
 }
 
 .centint_sc1_text {
     grid-area: firstsctext;
+    text-align: center;
+ 
 }
+
+.centint_screen2 {
+    display: grid;
+    grid-template: 
+        '... ... ...' 250px
+        '... secondsctext ...' 600px
+        '... ... ...' 250px/ 40px 6fr 40px;
+    
+      
+}
+
+.centint_img1 {
+    grid-area: centintimg1;
+    background-image: url(./centerintro/img/centerintroimg1.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    
+}
+
+.centint_sc2_textbox {
+    grid-area: secondsctext;
+    display: grid;
+    grid-template: 
+    'centintimg1 ... secondsctext1'1fr
+    'centintimg1 ... secondsctext2'1fr/1fr 40px 1fr;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-items: start;
+ 
+}
+
+.centint_sr2_text1 {
+    grid-area: secondsctext1;
+    text-align: start;
+    width: 100%;
+
+
+}
+
+.centint_sr2_text2 {
+    grid-area: secondsctext2;
+    text-align: start;
+    /* 이 글씨체만 align : start가 적용되도록 설정 */
+    align-self: start; 
+    width: 100%;
+
+}
+
 
 
 /* .box {

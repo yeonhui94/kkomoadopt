@@ -9,6 +9,7 @@ const StyledDivider = styled.div`
   font-family: var(--main-font);
   padding-bottom: ${(props) => props.paddingbt || '5px'};
   width: ${(props) => props.width || 'auto'}; /* width가 전달되도록 설정 */
+  margin-top : ${(props) => props.marTop || 'none'};
 `;
 
 const Underline = styled.div`
@@ -21,9 +22,9 @@ const Underline = styled.div`
   
 `;
 
-function Divider({ text, fontSize, width, backgroundColor, height ,paddingbt}) {
+function Divider({ text, fontSize, width, backgroundColor, height ,paddingbt,marTop}) {
   return (
-    <StyledDivider fontSize={fontSize}  width={width} paddingbt={paddingbt}>
+    <StyledDivider fontSize={fontSize}  width={width} paddingbt={paddingbt} marTop={marTop}>
       {text && text}
       <Underline width={width} backgroundColor={backgroundColor} height={height} />
     </StyledDivider>

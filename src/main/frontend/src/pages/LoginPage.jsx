@@ -1,45 +1,50 @@
 import styled from "styled-components";
 import Footer from "../container/Footer";
 import Header from "../container/header/Header";
+import LoginContents from "../contents/LoginContents";
 
-
+// 전체 레이아웃을 잡을 스타일 컴포넌트
 const StyledDiv = styled.div`
   display: grid;
   grid-template:
     'header' 200px
     '... ... ...' 1fr
-    'footer' 264px / 1fr 557px 1fr; /* 푸터의 높이를 고정 */
+    '... contents ...' 546px
+    '... ... ...' 1fr
+    'footer' 264px / 1fr 607px 1fr; /* 푸터의 높이를 고정 */
+  height: 100vh;  /* 화면 높이에 맞추기 위해 100vh 사용 */
   padding: 0;
   margin: 0;
-  height: 100vh; /* 화면 높이에 맞춰 100vh 설정 */
-  min-height: 120vh; /* 화면 크기에 따라 최소 높이를 100vh로 설정 */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* 콘텐츠와 푸터 사이 여백을 자동으로 설정 */
+  align-items: center;
+    justify-items: center;
+  padding-bottom : 0;
 `;
 
 const StyledHeader = styled(Header)`
   grid-area: header;
 `;
 
+const StyledContent1 = styled(LoginContents)`
+
+  grid-area: contents;
+  margin-bottom: 0;
+  flex-grow: 1;  /* 콘텐츠가 화면 크기에 맞춰 늘어나도록 설정 */
+`;
 
 const StyledFooter = styled(Footer)`
-  grid-area: footer;
+  grid-area: footer  /* 푸터는 세 번째 줄 */
   padding-bottom: 0;
   margin-bottom: 0;
 `;
 
-
-function LoginPage(){
-
-
-    return(
-        <div>
-            <StyledHeader />
-
-            <StyledFooter />
-        </div>
-    )
+function LoginPage() {
+  return (
+    <StyledDiv>
+      <StyledHeader />
+      <StyledContent1 />
+      <StyledFooter />
+    </StyledDiv>
+  );
 }
 
 export default LoginPage;

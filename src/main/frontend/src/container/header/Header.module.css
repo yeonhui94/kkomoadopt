@@ -34,6 +34,7 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
+
     align-self: center; /* 로고를 수직 중앙에 배치 */
 }
 
@@ -70,7 +71,7 @@
     flex-direction: row; /* 아이콘과 버튼을 가로로 배치 */
     align-items: center; /* 수직으로 중앙 정렬 */
     justify-content: flex-end; /* 오른쪽 정렬 */
-    top: 20px; /* 전체 헤더에서 적당히 떨어지게 */
+    top: 25px; /* 전체 헤더에서 적당히 떨어지게 */
     gap: 10px; /* 아이콘과 버튼 사이 간격 설정 */
     position: relative;
 }
@@ -110,8 +111,8 @@
 
     .headerright {
         justify-content: center; /* 화면 크기가 작아지면 버튼을 가운데 정렬 */
-        margin-top: 10px; /* 버튼의 간격을 증가시켜서 로고와 분리 */
-        margin-bottom: 10px; /* 버튼 아래 간격 추가 */
+        padding: 0;
+        margin: 0; /* 버튼 아래 간격 추가 */
     }
 
     .line-container {

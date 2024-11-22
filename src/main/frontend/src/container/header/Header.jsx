@@ -39,8 +39,9 @@ function Header() {
                         <Button text="로그아웃"/> {/* 로그아웃 버튼 */}
                     </div>
                 </LayoutGroup>
+                <HeaderDivider />
             </div>
-            <HeaderDivider /> {/* 헤더 아래 구분선 */}
+            {/* 헤더 아래 구분선 */}
         </>
     );
   }

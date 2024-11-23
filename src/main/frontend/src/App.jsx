@@ -1,22 +1,28 @@
-import React from 'react';
-import Footer from './container/Footer';
-import Header from "./container/header/Header";
-import Logo from './components/logo/Logo';
-import Profile from './components/MyPage/Profile/Profile';
+import './App.css'
+import styles from './container/header/Header.module.css';
+import Logo from './components/logo/Logo'
+import Header from './container/header/Header';
+import Screen1 from './pages/centerintro/screen1';
+import PinkLine from './pages/centerintro/PinkLine';
+import Screen2 from './pages/centerintro/Screen2';
 import Card1Ex from './components/Card1/Card1Ex';
+import CenterIntro from './pages/CenterIntro';
 
 
+function App() {
 
-const App = () => {
+
   return (
     <>
-    <Logo />
-    <Header />
-    <Footer />
-    <Profile  text1="소개할 글이 없습니다" name="관리자" btnName1="프로필 변경" btnName2="로그아웃" hori2="12px"/>
-    <Card1Ex></Card1Ex>
+      {/* <Logo/> */}
+      {/* <Header/>
+      <Screen1/>
+      <PinkLine/>
+      <Screen2/>
+      <PinkLine/> */}
+      <CenterIntro/>
     </>
   )
-};
+}
 
-export default App;
+export default App

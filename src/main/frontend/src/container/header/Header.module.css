@@ -24,6 +24,7 @@
     padding: 10px 5%; /* 여백을 화면 크기에 맞게 설정 */
     position: absolute;
     width: 100%;
+    z-index: 100;
 }
 
 /* 로고 스타일 */

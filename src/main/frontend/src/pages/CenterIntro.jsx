@@ -21,6 +21,9 @@ const CenterIntro = () => {
     //     once: false,
     //     }));
 
+    const screen4Ref = useRef(null); // 스크린 4 전체를 참조
+    const isInView = useInView(screen4Ref, { once: false, margin: "0px" }); // 스크린 4가 보이는지 확인
+    
 
     const cntintscreens1 = [
         //1 
@@ -78,101 +81,91 @@ const CenterIntro = () => {
                 
         />
         </div>,
-        // // 4
-        // <div>
-        //     <div className={centerintrosty.centint_screen4}>
-
-        //         <div className={centerintrosty.centint_sc41_contents}>
-        //             <p className={`${centerintrosty.centint_medium_text} ${centerintrosty.centint_sr41_text1}`}>
-        //                 사랑이 필요한 그 작은 생명<br/>당신의 따뜻한 손길을 기다리고 있어요.<br/>
-        //             </p>
-        //             <p className={`${centerintrosty.centint_medium_graytext} ${centerintrosty.centint_sr41_text2} `}>
-        //                 유기동물 보호소에 구조된 유기동물 알림 서비스를 통해
-        //             <br />입양을 돕고 있습니다.
-        //             </p>
-        //             <p className={`${centerintrosty.centint_medium_text} ${centerintrosty.centint_sr42_text1} `}>
-        //                 잃어버린 가족을 찾기 위해<br/>
-        //                 아주 작은 힘이라도 보태겠습니다.
-        //             </p>
-        //             <p className={`${centerintrosty.centint_medium_graytext} ${centerintrosty.centint_sr42_text2}`}>
-        //                 유기동물 보호소에 구조된 아이를 찾아드리고 있습니다.
-        //             <br/>사라진 반려동물을 찾는 가장 빠르고 안전한 방법, 함께 합니다.
-        //             </p>
-        //         </div>
-
-        //         <div className={centerintrosty.centint_sc42_contents}>
-        //             <div className={`${centerintrosty.centint_img2} ${centerintrosty.centint_imgs}`}/>
-        //             <div className={`${centerintrosty.centint_img3} ${centerintrosty.centint_imgs}`}/>
-        //         </div>
-        //     </div>
-        //     <Divider
-        //         paddingbt="2px"
-        //         width="100%"
-        //         backgroundColor="#d5d5d5"
-        //         height="2px"
-        //     />
-        // </div>,
-        //5
-        // <div>
-        //     <div>
-        //         <p className={centerintrosty.centint_big_text}>
-        //         KKOMO 보호센터는<br/> 매 해 천여 마리 이상의 실종 동물을<br/>
-        //         따뜻한 가족의 품으로 돌려보내주고 있습니다.
-        //         </p>
-        //         <Divider
-        //         paddingbt="2px"
-        //         width="100%"
-        //         backgroundColor="#d5d5d5"
-        //         height="2px"
-                
-        //         />
-        //     </div>
-        // </div>
-
-    ]
-
-
-    const cntintscreens2 = [
-        // 4
+        <div className={centerintrosty.centint_sc41_texts}>
+        <p className={`${centerintrosty.centint_medium_text} ${centerintrosty.centint_sr41_text1}`}>
+            사랑이 필요한 그 작은 생명<br/>당신의 따뜻한 손길을 기다리고 있어요.<br/>
+        </p>
+        <p className={`${centerintrosty.centint_medium_graytext} ${centerintrosty.centint_sr41_text2} `}>
+            유기동물 보호소에 구조된 유기동물 알림 서비스를 통해
+        <br />입양을 돕고 있습니다.
+        </p>
+        <div className={`${centerintrosty.centint_img2} ${centerintrosty.centint_imgs}`}/>
+         </div>,
+         <div>
+         <div className={`${centerintrosty.centint_screen5}`}>
+             <p className={`${centerintrosty.centint_big_text} ${centerintrosty.centint_sc1_text}`}>
+             KKOMO 보호센터는<br/> 매 해 <span className={centerintrosty.centint_highlight}>천여 마리</span> 이상의 실종 동물을<br/>
+             따뜻한 가족의 품으로 돌려보내주고 있습니다.
+             </p>
+             <Divider
+             paddingbt="2px"
+             width="100%"
+             backgroundColor="#d5d5d5"
+             height="2px"
+             
+             />
+         </div>
+     </div>,
+         <div className={centerintrosty.centint_sc42_texts}>
+         <p className={`${centerintrosty.centint_medium_text} ${centerintrosty.centint_sr42_text1} `}>
+             잃어버린 가족을 찾기 위해<br/>
+             아주 작은 힘이라도 보태겠습니다.
+         </p>
+         <p className={`${centerintrosty.centint_medium_graytext} ${centerintrosty.centint_sr42_text2}`}>
+             유기동물 보호소에 구조된 아이를 찾아드리고 있습니다.
+         <br/>사라진 반려동물을 찾는 가장 빠르고 안전한 방법, 함께 합니다.
+         </p>
+         <div className={`${centerintrosty.centint_img3} ${centerintrosty.centint_imgs}`}/>
+     </div>,
+        <div className={`${centerintrosty.centint_sc2_contents}${centerintrosty.centint_screen2}`}>
         <div>
-            <div className={centerintrosty.centint_screen4}>
+            <p className={centerintrosty.centint_big_text}>
+            오시는 길
+            </p>
+            <br />
+            <br />
+            <br />
+        <div>
+        <div>
+            <p className={centerintrosty.}>
+                주소
+            </p>
+            <p >
+                서울시 금천구 가산디지털2로 101<br/>한라원앤원 타워 3층
+            </p>
+        </div>
+        <br />
+        <div>
+            <p>
+                번호
+            </p>
+            <p>
+                010-1234-5678
+            </p>
+        <br />
+        </div>
+        <div>
+        <p>
+            이메일
+        </p>
+        <p>
+            abcd@kkomo.com
+        </p>
+        </div>
+        </div>
+        <div className={`${centerintrosty.centint_img4} ${centerintrosty.centint_imgs}`}/>
+    </div>
 
-                <div className={centerintrosty.centint_sc41_contents}>
-                    <p className={`${centerintrosty.centint_medium_text} ${centerintrosty.centint_sr41_text1}`}>
-                        사랑이 필요한 그 작은 생명<br/>당신의 따뜻한 손길을 기다리고 있어요.<br/>
-                    </p>
-                    <p className={`${centerintrosty.centint_medium_graytext} ${centerintrosty.centint_sr41_text2} `}>
-                        유기동물 보호소에 구조된 유기동물 알림 서비스를 통해
-                    <br />입양을 돕고 있습니다.
-                    </p>
-                    <p className={`${centerintrosty.centint_medium_text} ${centerintrosty.centint_sr42_text1} `}>
-                        잃어버린 가족을 찾기 위해<br/>
-                        아주 작은 힘이라도 보태겠습니다.
-                    </p>
-                    <p className={`${centerintrosty.centint_medium_graytext} ${centerintrosty.centint_sr42_text2}`}>
-                        유기동물 보호소에 구조된 아이를 찾아드리고 있습니다.
-                    <br/>사라진 반려동물을 찾는 가장 빠르고 안전한 방법, 함께 합니다.
-                    </p>
-                </div>
-
-                <div className={centerintrosty.centint_sc42_contents}>
-                    <div className={`${centerintrosty.centint_img2} ${centerintrosty.centint_imgs}`}/>
-                    <div className={`${centerintrosty.centint_img3} ${centerintrosty.centint_imgs}`}/>
-                </div>
-            </div>
-            <Divider
-                paddingbt="2px"
-                width="100%"
-                backgroundColor="#d5d5d5"
-                height="2px"
-            />
-        </div>,
     ]
 
     return (
-        <div className={centerintrosty.centint_all}>
         <div>
-          <Header className={centerintrosty.centint_header} /> {/* 헤더 컴포넌트 렌더링 */}
+            <Header className={centerintrosty.centint_header} />
+        <div className={centerintrosty.centint_all}>
+            <div className={`${centerintrosty.moving_circle1} ${centerintrosty.moving_circles}`}></div>
+
+            {/* 스크린 1~3 */}
+        <div> {/* 헤더 컴포넌트 렌더링 */}
           
           {/* cntintscreens 배열을 map으로 순회하여 각 화면을 렌더링 */}
           {cntintscreens1.map((cntintscreen1, index) => (
@@ -197,18 +190,20 @@ const CenterIntro = () => {
             </motion.div>
           ))}
         </div>
-        <div>
-           <div className={centerintrosty.centint_screen4}>
+          {/* 스크린 4-1 */}
+        {/* <div>
+           <div className={centerintrosty.centint_sc4_contents}>
+            <div></div>
                 <div className={centerintrosty.centint_sc41_contents}>
                     <motion.div
                     className="cntintscreen"
-                    initial={{opacity: 0, y: -50}}
-                    whileInView={{opacity: 1, y: 0}}
-                    viewport={{
-                        margin: "-30%",
-                        once: false
-                    }}
-                    transition={{duration: 1.4}}>
+                    initial={{ opacity: 0, y: -50 }}
+                    whileInView={{opacity: 1, y : 0}}
+                    viewport={{ 
+                        margin : "-30%",
+                        once: false }}
+                    transition={{ duration: 1 }}
+                    >
                             <div className={centerintrosty.centint_sc41_texts}>
                                 <p className={`${centerintrosty.centint_medium_text} ${centerintrosty.centint_sr41_text1}`}>
                                     사랑이 필요한 그 작은 생명<br/>당신의 따뜻한 손길을 기다리고 있어요.<br/>
@@ -219,26 +214,72 @@ const CenterIntro = () => {
                                 </p>
                             </div>
                     </motion.div>
-                  {/* div*7 */}
-                  <div></div>
-                  <div></div>
-                  <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
                     <motion.div
                     className="cntintscreen"
                     initial={{opacity: 0, y: 50}}
+                    whileInView={{opacity: 1, y : 0}}
+                    viewport={{
+                        margin: "-30%",
+                        once: false
+                    }}
+                    transition={{duration: 0.6,
+                    }}>
+                    <div className={`${centerintrosty.centint_img2} ${centerintrosty.centint_imgs}`}/>
+                    </motion.div>
+                    
+                    </div>
+                </div> */}
+
+                {/* screen 4-2 */}
+                {/* <div className={centerintrosty.centint_sc42_contents}>
+                    <div></div>
+                    <div></div>
+                    <motion.div
+                    className="cntintscreen"
+                    initial={{opacity: 0, y: -50}}
                     whileInView={{opacity: 1, y: 0}}
                     viewport={{
                         margin: "-30%",
                         once: false
                     }}
                     transition={{duration: 1.4}}>
-                    <div className={`${centerintrosty.centint_img2} ${centerintrosty.centint_imgs}`}/>
+                            <div className={centerintrosty.centint_sc42_texts}>
+                                <p className={`${centerintrosty.centint_medium_text} ${centerintrosty.centint_sr42_text1} `}>
+                                    잃어버린 가족을 찾기 위해<br/>
+                                    아주 작은 힘이라도 보태겠습니다.
+                                </p>
+                                <p className={`${centerintrosty.centint_medium_graytext} ${centerintrosty.centint_sr42_text2}`}>
+                                    유기동물 보호소에 구조된 아이를 찾아드리고 있습니다.
+                                <br/>사라진 반려동물을 찾는 가장 빠르고 안전한 방법, 함께 합니다.
+                                </p>
+                            </div>
+                    </motion.div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <motion.div
+                    className="cntintscreen"
+                    initial={{opacity: 0, y: 50}}
+                    whileInView={{opacity: 1, y: 0}}
+                    viewport={{
+                        margin: "-10%",
+                        once: false
+                    }}
+                    transition={{duration: 0.8}}>
+                    <div className={`${centerintrosty.centint_img3} ${centerintrosty.centint_imgs}`}/>
                     </motion.div>
                     </div>
                 </div>
             </div>
-        
-            </div>
+
+        <div>      */}
+        </div>
+      </div>
+      
       );
     };
 

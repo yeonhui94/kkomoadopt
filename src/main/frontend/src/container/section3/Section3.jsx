@@ -27,18 +27,53 @@ const Section3 = () => {
   };
 
   const imageData = [
-    { main: img3, others: [img1, img2, img8], texts: ["인삼이"], additionalTexts: ["조인삼 바보 기여운 똥강아지에요"] },
-    { main: img4, others: [img7, img8, img9], texts: ["인삼이 바보"], additionalTexts: ["기여운 인삼이"] },
-    { main: img5, others: [img10, img11, img12], texts: ["조랭삼"], additionalTexts: ["조인삼 바보 기여운 똥강아지에요"] },
-    { main: img6, others: [img1, img2, img3], texts: ["조랭이"], additionalTexts: ["조인삼 바보 기여운 똥강아지에요"] }
+    { 
+      main: img3, 
+      others: [ // 작은 카드들
+        { image: img2 },
+        { image: img3 },
+        { image: img4 },
+      ],
+      texts: ["인삼이"], 
+      additionalTexts: ["조인삼 바보 기여운 똥강아지에요"] 
+    },
+    { 
+      main: img4, 
+      others: [ // 작은 카드들
+        { image: img7 },
+        { image: img8 },
+        { image: img9 },
+      ],
+      texts: ["인삼이 바보"], 
+      additionalTexts: ["기여운 인삼이"] 
+    },
+    { 
+      main: img5, 
+      others: [ // 작은 카드들
+        { image: img10 },
+        { image: img11 },
+        { image: img12 },
+      ],
+      texts: ["조랭삼"], 
+      additionalTexts: ["조인삼 바보 기여운 똥강아지에요"] 
+    },
+    { 
+      main: img6, 
+      others: [ // 작은 카드들
+        { image: img13 },
+        { image: img14 },
+        { image: img15 },
+      ],
+      texts: ["조랭이"], 
+      additionalTexts: ["조인삼 바보 기여운 똥강아지에요"] 
+    }
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0); // 현재 슬라이드 상태 관리
 
   useEffect(() => {
-    // 슬라이드 자동 이동 설정 (3초 간격)
     const interval = setInterval(() => {
-      setCurrentSlide(prevSlide => (prevSlide + 1) % imageData.length); // 이미지 데이터의 개수만큼 슬라이드
+      setCurrentSlide(prevSlide => (prevSlide + 1) % imageData.length);
     }, 3000);
 
     return () => clearInterval(interval); // 클린업
@@ -46,11 +81,11 @@ const Section3 = () => {
 
   return (
     <SectionBoxWrapper>
-      {/* Card1 컴포넌트에 imageData를 넘겨서 각 슬라이드에 대한 이미지와 텍스트 표시 */}
       <Card1 images={imageData[currentSlide]} />
     </SectionBoxWrapper>
   );
 };
+
 
 const SectionBoxWrapper = styled.div`
   display: flex;

@@ -86,12 +86,20 @@ const Card1 = ({ images }) => {
 
       {/* Additional images in CardContainer */}
       <CardContainer className="card-container"> 
-        {images.others.map((card, index) => (
-          <StyledCard key={index} className="styled-card small-card" width="72px" height="72px">
-            
-            <CardImage imageFile={card} text={""} />
-          </StyledCard>
-        ))}
+      {images.others.map((card, index) => (
+  <StyledCard key={index} className="styled-card small-card" width="72px" height="72px">
+    {index === images.others.length - 1 ? ( // 마지막 카드에만 '자세히 보기' 추가
+      <CardImage
+        imageFile={card.image}
+        thirdtext={"자세히 보기"}
+        isFirst={false}
+      />
+    ) : (
+      <CardImage imageFile={card.image} text={""} />
+    )}
+  </StyledCard>
+))}
+
       </CardContainer>
     </CardWrapper>
   );

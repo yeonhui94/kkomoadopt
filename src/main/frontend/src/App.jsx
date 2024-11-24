@@ -1,27 +1,13 @@
 import './App.css'
-import styles from './container/header/Header.module.css';
-import Logo from './components/logo/Logo'
-import Header from './container/header/Header';
-import Screen1 from './pages/centerintro/screen1';
-import PinkLine from './pages/centerintro/PinkLine';
-import Screen2 from './pages/centerintro/Screen2';
-import Card1Ex from './components/Card1/Card1Ex';
-import CenterIntro from './pages/CenterIntro';
-
+import Card1Ex from './components/Card1/Card1Ex'
+import Section3333 from './container/section3/Section3333'
 
 function App() {
 
 
   return (
-    <>
-      {/* <Logo/> */}
-      {/* <Header/>
-      <Screen1/>
-      <PinkLine/>
-      <Screen2/>
-      <PinkLine/> */}
-      <CenterIntro/>
-    </>
+    <Section3333></Section3333>
+    // <Card1Ex></Card1Ex>
   )
 }
 

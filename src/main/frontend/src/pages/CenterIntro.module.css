@@ -88,13 +88,9 @@
 .centint_screen4 {
     display: grid;
     grid-template: 
-    '... ... ... ... ...' 150px
-    '... sc41text1 ... sc42text1 ...' 300px
-    '... sc41text2 ... sc42text2 ...' 300px
-    '... ... ... ... ...'40px
-    '... centintimg3 ... centintimg2 ...' 300px
-    '... centintimg3 ... centintimg2 ...' 300px
-    '... ... ... ... ...' 150px / 40px 1fr 40px 1fr 40px;
+    '... ... ...' 150px
+    '... centintscr4 ...' 600px
+    '... ... ...' 150px / 40px 12fr 40px;
     width: 100%;
     height: 100%;
 }
@@ -120,23 +116,35 @@
 }
 
 .centint_sc41_contents {
-    grid-area: centintscr41;
+    grid-area: centintscr4;
     display: grid;
     grid-template: 
-    'sc41text1 ... sc42text1'1fr
-    'sc41text2 ... sc42text2'1fr /1fr 40px 1fr;
+    'sc41texts ... ...'2fr
+    '... ... centintimg2'2fr /1fr 1fr;
     width: 100%;
     height: 100%;
 
  
 }
 
-.centint_sc42_contents {
-    grid-area: centintscr42;
+.centint_sc41_texts {
+    grid-area:sc41texts;
     display: grid;
     grid-template: 
-    'centintimg3 ... centintimg2' 1fr
-    'centintimg3 ... centintimg2' 1fr/1fr 40px 1fr;
+    'sc41text1'1fr
+    '...'80px
+    'sc41text2' 1fr / 1fr;
+}
+
+.centint_sc42_contents {
+    grid-area: centintscr4;
+    display: grid;
+    grid-template: 
+    '... ... sc42text1'1fr
+    '... ... sc42text2'1fr 
+    '... ... ...' 40px
+    'centintimg3 ... ...'1fr
+    'centintimg3 ... ...' 1fr /1fr 40px 1fr;
     width: 100%;
     height: 100%;
   

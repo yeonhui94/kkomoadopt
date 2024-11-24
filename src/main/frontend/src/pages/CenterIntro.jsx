@@ -78,40 +78,40 @@ const CenterIntro = () => {
                 
         />
         </div>,
-        // 4
-        <div>
-            <div className={centerintrosty.centint_screen4}>
+        // // 4
+        // <div>
+        //     <div className={centerintrosty.centint_screen4}>
 
-                <div className={centerintrosty.centint_sc41_contents}>
-                    <p className={`${centerintrosty.centint_medium_text} ${centerintrosty.centint_sr41_text1}`}>
-                        사랑이 필요한 그 작은 생명<br/>당신의 따뜻한 손길을 기다리고 있어요.<br/>
-                    </p>
-                    <p className={`${centerintrosty.centint_medium_graytext} ${centerintrosty.centint_sr41_text2} `}>
-                        유기동물 보호소에 구조된 유기동물 알림 서비스를 통해
-                    <br />입양을 돕고 있습니다.
-                    </p>
-                    <p className={`${centerintrosty.centint_medium_text} ${centerintrosty.centint_sr42_text1} `}>
-                        잃어버린 가족을 찾기 위해<br/>
-                        아주 작은 힘이라도 보태겠습니다.
-                    </p>
-                    <p className={`${centerintrosty.centint_medium_graytext} ${centerintrosty.centint_sr42_text2}`}>
-                        유기동물 보호소에 구조된 아이를 찾아드리고 있습니다.
-                    <br/>사라진 반려동물을 찾는 가장 빠르고 안전한 방법, 함께 합니다.
-                    </p>
-                </div>
+        //         <div className={centerintrosty.centint_sc41_contents}>
+        //             <p className={`${centerintrosty.centint_medium_text} ${centerintrosty.centint_sr41_text1}`}>
+        //                 사랑이 필요한 그 작은 생명<br/>당신의 따뜻한 손길을 기다리고 있어요.<br/>
+        //             </p>
+        //             <p className={`${centerintrosty.centint_medium_graytext} ${centerintrosty.centint_sr41_text2} `}>
+        //                 유기동물 보호소에 구조된 유기동물 알림 서비스를 통해
+        //             <br />입양을 돕고 있습니다.
+        //             </p>
+        //             <p className={`${centerintrosty.centint_medium_text} ${centerintrosty.centint_sr42_text1} `}>
+        //                 잃어버린 가족을 찾기 위해<br/>
+        //                 아주 작은 힘이라도 보태겠습니다.
+        //             </p>
+        //             <p className={`${centerintrosty.centint_medium_graytext} ${centerintrosty.centint_sr42_text2}`}>
+        //                 유기동물 보호소에 구조된 아이를 찾아드리고 있습니다.
+        //             <br/>사라진 반려동물을 찾는 가장 빠르고 안전한 방법, 함께 합니다.
+        //             </p>
+        //         </div>
 
-                <div className={centerintrosty.centint_sc42_contents}>
-                    <div className={`${centerintrosty.centint_img2} ${centerintrosty.centint_imgs}`}/>
-                    <div className={`${centerintrosty.centint_img3} ${centerintrosty.centint_imgs}`}/>
-                </div>
-            </div>
-            <Divider
-                paddingbt="2px"
-                width="100%"
-                backgroundColor="#d5d5d5"
-                height="2px"
-            />
-        </div>,
+        //         <div className={centerintrosty.centint_sc42_contents}>
+        //             <div className={`${centerintrosty.centint_img2} ${centerintrosty.centint_imgs}`}/>
+        //             <div className={`${centerintrosty.centint_img3} ${centerintrosty.centint_imgs}`}/>
+        //         </div>
+        //     </div>
+        //     <Divider
+        //         paddingbt="2px"
+        //         width="100%"
+        //         backgroundColor="#d5d5d5"
+        //         height="2px"
+        //     />
+        // </div>,
         //5
         // <div>
         //     <div>
@@ -199,41 +199,46 @@ const CenterIntro = () => {
         </div>
         <div>
            <div className={centerintrosty.centint_screen4}>
-                <div>
-                <motion.div
-                className="cntintscreen"
-                initial={{opacity: 0, y: -50}}
-                whileInView={{opacity: 1, y: 0}}
-                viewport={{
-                    margin: "-30%",
-                    once: false
-                }}
-                transition={{duration: 1.4}}>
-                    <p className={`${centerintrosty.centint_medium_text} ${centerintrosty.centint_sr41_text1}`}>
-                        사랑이 필요한 그 작은 생명<br/>당신의 따뜻한 손길을 기다리고 있어요.<br/>
-                    </p>
-                    <p className={`${centerintrosty.centint_medium_graytext} ${centerintrosty.centint_sr41_text2} `}>
-                        유기동물 보호소에 구조된 유기동물 알림 서비스를 통해
-                    <br />입양을 돕고 있습니다.
-                    </p>
-                </motion.div>
-                <motion.div
-                className="cntintscreen"
-                initial={{opacity: 0, y: 50}}
-                whileInView={{opacity: 1, y: 0}}
-                viewport={{
-                    margin: "-30%",
-                    once: false
-                }}
-                transition={{duration: 1.4}}>
-                <div className={`${centerintrosty.centint_img2} ${centerintrosty.centint_imgs}`}/>
-                </motion.div>
-
+                <div className={centerintrosty.centint_sc41_contents}>
+                    <motion.div
+                    className="cntintscreen"
+                    initial={{opacity: 0, y: -50}}
+                    whileInView={{opacity: 1, y: 0}}
+                    viewport={{
+                        margin: "-30%",
+                        once: false
+                    }}
+                    transition={{duration: 1.4}}>
+                            <div className={centerintrosty.centint_sc41_texts}>
+                                <p className={`${centerintrosty.centint_medium_text} ${centerintrosty.centint_sr41_text1}`}>
+                                    사랑이 필요한 그 작은 생명<br/>당신의 따뜻한 손길을 기다리고 있어요.<br/>
+                                </p>
+                                <p className={`${centerintrosty.centint_medium_graytext} ${centerintrosty.centint_sr41_text2} `}>
+                                    유기동물 보호소에 구조된 유기동물 알림 서비스를 통해
+                                <br />입양을 돕고 있습니다.
+                                </p>
+                            </div>
+                    </motion.div>
+                  {/* div*7 */}
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                    <motion.div
+                    className="cntintscreen"
+                    initial={{opacity: 0, y: 50}}
+                    whileInView={{opacity: 1, y: 0}}
+                    viewport={{
+                        margin: "-30%",
+                        once: false
+                    }}
+                    transition={{duration: 1.4}}>
+                    <div className={`${centerintrosty.centint_img2} ${centerintrosty.centint_imgs}`}/>
+                    </motion.div>
+                    </div>
                 </div>
             </div>
         
             </div>
-        </div>
       );
     };
 

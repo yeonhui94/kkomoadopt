@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import Card1 from "../../components/Card1/Card1";
+import Card1 from "../../components/Card1/Card1";  // Card1 컴포넌트를 import합니다.
 import img1 from '../../assets/img2/1.jpg';
 import img2 from '../../assets/img2/2.jpg';
 import img3 from '../../assets/img2/3.jpg';
@@ -26,90 +26,36 @@ const Section3 = () => {
     ];
   };
 
-  const image1 = createImageArray(img1, [img2, img3, img4]);
-  const image2 = createImageArray(img5, [img6, img7, img8]);
-  const image3 = createImageArray(img9, [img10, img11, img12]);
-  const image4 = createImageArray(img13, [img14, img15, img16]);
-
-  const texts = [
-    ["인삼이"],
-    ["인삼이 바보"],
-    ["조랭삼"],
-    ["조랭이"]
+  const imageData = [
+    { main: img3, others: [img1, img2, img8], texts: ["인삼이"], additionalTexts: ["조인삼 바보 기여운 똥강아지에요"] },
+    { main: img4, others: [img7, img8, img9], texts: ["인삼이 바보"], additionalTexts: ["기여운 인삼이"] },
+    { main: img5, others: [img10, img11, img12], texts: ["조랭삼"], additionalTexts: ["조인삼 바보 기여운 똥강아지에요"] },
+    { main: img6, others: [img1, img2, img3], texts: ["조랭이"], additionalTexts: ["조인삼 바보 기여운 똥강아지에요"] }
   ];
 
-  const additionalTexts = [
-    ["조인삼 바보 기여운 똥강아지에요"],
-    ["기여운 인삼이"],
-    ["조인삼 바보 기여운 똥강아지에요"],
-    ["조인삼 바보 기여운 똥강아지에요"]
-  ];
-
-  const [visibleCards, setVisibleCards] = useState([false, false, false, false]); // 각 카드의 보임 상태를 관리
+  const [currentSlide, setCurrentSlide] = useState(0); // 현재 슬라이드 상태 관리
 
   useEffect(() => {
-    // 각 카드가 3초 간격으로 보이도록 설정
-    const timeouts = [];
-    for (let i = 0; i < 4; i++) {
-      const timeout = setTimeout(() => {
-        setVisibleCards(prevState => {
-          const newState = [...prevState];
-          newState[i] = true; // 해당 카드만 보이도록 설정
-          return newState;
-        });
-      }, i * 3000); // 3초 간격으로 카드가 나타나게 함
-      timeouts.push(timeout);
-    }
+    // 슬라이드 자동 이동 설정 (3초 간격)
+    const interval = setInterval(() => {
+      setCurrentSlide(prevSlide => (prevSlide + 1) % imageData.length); // 이미지 데이터의 개수만큼 슬라이드
+    }, 3000);
 
-    // 클린업: 컴포넌트가 언마운트될 때 타이머를 정리
-    return () => {
-      timeouts.forEach(timeout => clearTimeout(timeout));
-    };
-  }, []);
+    return () => clearInterval(interval); // 클린업
+  }, []); 
 
   return (
-    <SliderWrapper>
-      <SlideContainer>
-        {visibleCards[0] && (
-          <CardWrapper>
-            <Card1 images={image1} texts={texts[0]} additionalTexts={additionalTexts[0]} />
-          </CardWrapper>
-        )}
-        {visibleCards[1] && (
-          <CardWrapper>
-            <Card1 images={image2} texts={texts[1]} additionalTexts={additionalTexts[1]} />
-          </CardWrapper>
-        )}
-        {visibleCards[2] && (
-          <CardWrapper>
-            <Card1 images={image3} texts={texts[2]} additionalTexts={additionalTexts[2]} />
-          </CardWrapper>
-        )}
-        {visibleCards[3] && (
-          <CardWrapper>
-            <Card1 images={image4} texts={texts[3]} additionalTexts={additionalTexts[3]} />
-          </CardWrapper>
-        )}
-      </SlideContainer>
-    </SliderWrapper>
+    <SectionBoxWrapper>
+      {/* Card1 컴포넌트에 imageData를 넘겨서 각 슬라이드에 대한 이미지와 텍스트 표시 */}
+      <Card1 images={imageData[currentSlide]} />
+    </SectionBoxWrapper>
   );
 };
 
-export default Section3;
-
-const SliderWrapper = styled.div`
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-`;
-
-const SlideContainer = styled.div`
+const SectionBoxWrapper = styled.div`
   display: flex;
-  transition: transform 1.5s ease-in-out;
-  width: 400%;
+  justify-content: center;
+  align-items: center;
 `;
 
-const CardWrapper = styled.div`
-  width: 100%; /* 한 번에 하나의 카드만 보이도록 설정 */
-  height: 100%;
-`;
+export default Section3;

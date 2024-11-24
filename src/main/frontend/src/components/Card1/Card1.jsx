@@ -38,6 +38,7 @@ const StyledCard = styled.div`
   display: ${({ display }) => display || "block"};
   flex-wrap: wrap;
   transition: height 0.5s ease;
+   transition: transform 0.5s ease-in-out;
 
   &.styled-card.small-card {
     width: ${({ width }) => width || "72px"};
@@ -73,13 +74,11 @@ const Card1 = ({ images }) => {
       {/* Main image card */}
       <StyledCard className="styled-card large-card">
         <CardImage
-          imageFile={images[0].image}
-          text={"인삼이"}
+          imageFile={images.main}
+          text={images.texts[0]}
           ps={"top"}
           size={"2rem"}
-          additionalText={
-            "이곳은 컨텐츠 부분으로 자세한 글이 나오는 곳입니다."
-          }
+          additionalText={images.additionalTexts[0]}
           fontSize={"1rem"}
           isFirst={true}
         />
@@ -87,17 +86,10 @@ const Card1 = ({ images }) => {
 
       {/* Additional images in CardContainer */}
       <CardContainer className="card-container"> 
-        {images.slice(1).map((card, index) => (
-          <StyledCard key={index} className="styled-card small-card" width={card.width} height={card.height}>
-            {index === images.length - 2 ? (
-              <CardImage
-                imageFile={card.image}
-                thirdtext={"자세히 보기"}
-                isFirst={false}
-              />
-            ) : (
-              <CardImage imageFile={card.image} text={""} />
-            )}
+        {images.others.map((card, index) => (
+          <StyledCard key={index} className="styled-card small-card" width="72px" height="72px">
+            
+            <CardImage imageFile={card} text={""} />
           </StyledCard>
         ))}
       </CardContainer>

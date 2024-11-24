@@ -9,7 +9,7 @@ const BackgroundDiv = styled.div`
   top: 0;
   bottom: 0;
   right: 0;
-  opacity: 0.3;
+  opacity: 0.4;
   z-index: 2;
 `;
 
@@ -85,9 +85,9 @@ const CardImage = ({ imageFile, text, additionalText, ps, size, isFirst,thirdtex
   return (
     <ImageWrapper url={imageFile} ps={ps}>
       <BackgroundDiv />
-      {isFirst && <Divider />}
+      {isFirst && <Divider className="divider" />}
       <TextBox2 text={text} size={size}  />
-      <AdditionalText>{additionalText}</AdditionalText>
+      <AdditionalText className="additional-text">{additionalText}</AdditionalText>
       {thirdtext && <ThirdText>{thirdtext}</ThirdText>}
     </ImageWrapper>
   );

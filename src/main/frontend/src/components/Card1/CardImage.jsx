@@ -93,4 +93,4 @@ const CardImage = ({ imageFile, text, additionalText, ps, size, isFirst,thirdtex
   );
 };
 
-export default CardImage;
+export default CardImage;  

@@ -8,7 +8,7 @@ const CardWrapper = styled.div`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   position: relative;
   overflow: hidden;
-  transition:transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out;
 
   &:hover {
     .styled-card.large-card {
@@ -39,7 +39,6 @@ const StyledCard = styled.div`
   display: ${({ display }) => display || "block"};
   flex-wrap: wrap;
 
-
   &.styled-card.small-card {
     width: ${({ width }) => width || "72px"};
     height: ${({ height }) => height || "72px"};
@@ -60,7 +59,7 @@ const CardContainer = styled.div`
   opacity: 0;
   position: absolute;
   bottom: 0;
-  transition: opacity 0.5s ease, transform 0.5s ease;  //작은 카드들 애니메이션
+  transition: opacity 0.5s ease, transform 0.5s ease;
 
   &:hover {
     opacity: 1;
@@ -68,22 +67,28 @@ const CardContainer = styled.div`
   }
 `;
 
-const Card1 = ({ images }) => {
+const Card1 = ({ images, currentSlide, boxWidth }) => {
   return (
-    <CardWrapper >
+    <CardWrapper>
       {/* 메인카드 분리 */}
-      <StyledCard className="styled-card large-card">
-        <CardImage
-          imageFile={images.main}
-          text={images.texts[0]}
-          ps={"top"}
-          size={"2rem"}
-          additionalText={images.additionalTexts[0]}
-          fontSize={"1rem"}
-          isFirst={true}
-        />
-      </StyledCard>
-
+      <div
+        style={{
+          transform: `translateX(-${currentSlide * boxWidth}px)`,
+          transition: "transform 0.5s ease-in-out",
+        }}
+      >
+        <StyledCard className="styled-card large-card">
+          <CardImage
+            imageFile={images.main}
+            text={images.texts[0]}
+            ps={"top"}
+            size={"2rem"}
+            additionalText={images.additionalTexts[0]}
+            fontSize={"1rem"}
+            isFirst={true}
+          />
+        </StyledCard>
+      </div>
       {/* 작은 이미지 컨테이너로 묶음 */}
       <CardContainer className="card-container">
         {images.others.map((card, index) => (

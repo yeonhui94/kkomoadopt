@@ -71,7 +71,7 @@ const Section3333 = () => {
         </div>
       </div>
       {/* Section3에 currentSlide와 setCurrentSlide 전달 */}
-      <Section3 currentSlide={currentSlide3} setCurrentSlide={setCurrentSlide3} />
+        <Section3 currentSlide={currentSlide3} setCurrentSlide={setCurrentSlide3} />
       <div className={styles.smallWrapper2}>
         <SectionBox
           images={images3}

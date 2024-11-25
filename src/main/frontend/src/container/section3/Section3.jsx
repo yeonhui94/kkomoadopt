@@ -19,6 +19,8 @@ import img15 from '../../assets/img2/15.jpg';
 import img16 from '../../assets/img2/16.jpg';
 
 const Section3 = ({ currentSlide, setCurrentSlide }) => {
+  const boxWidth = 260;  // Assuming boxWidth is fixed as 260px
+
   const imageData = [
     { 
       main: img3, 
@@ -64,7 +66,11 @@ const Section3 = ({ currentSlide, setCurrentSlide }) => {
 
   return (
     <div>
-      <Card1 images={imageData[currentSlide]} currentSlide={currentSlide} boxWidth={"260px"} />
+      <Card1
+        images={imageData[currentSlide]}
+        currentSlide={currentSlide}
+        boxWidth={boxWidth}
+      />
     </div>
   );
 };

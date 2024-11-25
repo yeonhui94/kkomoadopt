@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './SearchBar.module.css';
 
-function SearchBar() {
+function SearchBar({ placeholder = "검색어를 입력해주세요.", width = "100%" }) {
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleInputChange = (event) => {
@@ -13,10 +13,10 @@ function SearchBar() {
   };
 
   return (
-    <div className={styles["search-container"]}>
+    <div className={styles["search-container"]} style={{ width }} >
       <input
         type="text"
-        placeholder="검색어를 입력해주세요."
+        placeholder={placeholder}
         value={searchQuery}
         onChange={handleInputChange}
         className={styles['search-input']}

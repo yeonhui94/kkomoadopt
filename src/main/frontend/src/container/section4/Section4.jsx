@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Button from "./components/Button";
-import Asd from "./components/Asd.jsx";
 import styles from "./Section4.module.css";
 import MyCenterBg from "./components/CenterBg";
+import SlickSlide from "./components/SlickSlide";
 
 function Section4() {
-  const [slideIndex, setSlideIndex] = useState(2);
 
   return (
     <section className={styles.section4}>
@@ -17,10 +16,10 @@ function Section4() {
           </a>
         </div>
         <div className={styles.sliderWrapper}>
-          <Asd setSlideIndex={setSlideIndex} className={styles.Asd} />
+          <SlickSlide className={styles.SlickSlide} />
         </div>
-        <div>
-          <MyCenterBg slideIndex={slideIndex} className={styles.centerbg} />
+        <div className={styles.centerWrap}>
+          <MyCenterBg  className={styles.centerbg} />
         </div>
       </div>
     </section>

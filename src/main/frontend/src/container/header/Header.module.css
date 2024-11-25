@@ -1,11 +1,3 @@
-:root {
-    --main-color: #F8755B;
-    --sub-color: #FDDCD5;
-    --mainpage-dark: #898989;
-    --title-black: #000000;
-    --title-white: #FFFFFF;
-    --line-color: #E5E5E5;
-}
 
 .head {
     display: flex;
@@ -48,8 +40,8 @@
     padding-left: 0;
     font-size: 2vw; /* 화면 크기에 맞춰 폰트 크기 조정 */
     font-weight: 700;
-    color: black;
-    font-family: 'Noto Sans KR';
+    color: var(--title-black);
+    font-family: var(--main-font);
     position: relative;
     cursor: pointer;
     padding-bottom: 10px;

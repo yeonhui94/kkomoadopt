@@ -24,7 +24,7 @@ function Tab({ label, isSelected, onClick, onMouseEnter, onMouseLeave, link }) {
                     layoutId="underline"
                     style={{
                         height: 4,
-                        background: "#F8755B",
+                        background: `var(--main-color)`,
                         borderRadius: 4,
                         marginTop: 2,
                         

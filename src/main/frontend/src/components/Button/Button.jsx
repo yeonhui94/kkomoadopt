@@ -18,7 +18,7 @@ const StyledButton = styled.button`
     }
 `;
 
-function Button({color, bg1color,backColor, text, horizontalPadding,verticalPadding,onClick, fontWeight, fontSize, marginBottom, marginTop}){
+function Button({color,hovercolor, bg1color,backColor, text, horizontalPadding,verticalPadding,onClick, fontWeight, fontSize, marginBottom, marginTop}){
     return(
         <StyledButton
             color={color}
@@ -30,6 +30,7 @@ function Button({color, bg1color,backColor, text, horizontalPadding,verticalPadd
             marginBottom={marginBottom}
             marginTop={marginTop}
             backColor={backColor}
+            hovercolor={hovercolor}
             onClick={onClick}
         >
             {text}

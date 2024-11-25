@@ -22,7 +22,7 @@
   }
   
   .section4::after {
-    bottom: 5%;
+    bottom: 8%;
   }
   
   .container {
@@ -34,15 +34,15 @@
   }
   
   .titles {
-    position: absolute; /* 절대 위치로 변경 */
-    top: 10%; /* 원하는 위치로 조정 */
+    position: absolute; 
+    top: 10%;
     left: 50%;
-    transform: translateX(-50%); /* 수평 중앙 정렬 */
+    transform: translateX(-50%); 
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 95%;
-    z-index: 10; /* 다른 요소들보다 앞에 배치 */
+    z-index: 10; 
   }
   
   
@@ -54,30 +54,35 @@
   
   .sliderWrapper {
     position: relative;
-    top: 50px;
+    top: 0px;
     width: 95%;
-    height: 100%; /* 부모 요소의 크기를 100%로 설정 */
+    height: 100%; 
   }
   
-  /* Asd의 스타일 수정 */
-  .Asd {
-    transform: translate(-50%, -50%); /* 수평 중앙 정렬, 수직 중앙 정렬 */
+  
+  .SlickSlide {
+    transform: translate(-50%, -50%); 
     width: 100%;
     height: 100%;
     z-index: 1;
     border-radius: 20px;
 }
 
+.centerWrap{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: 50px;
+}
+
 .centerbg {
   position: absolute;
   top: 0%;
   left: 50%;
-  transform: translate(-20%, -50%);
+  transform: translate(50%, -50%);
   width: 100%;
   height: 100%;
-  z-index: -1; /* 배경 이미지가 뒤로 가도록 설정 */
-  /* object-fit: contain; */
-  border-radius: 20px;
+  object-fit: contain;
 }
 
   
@@ -85,10 +90,4 @@ span{
   display: flex;
   width: 100%;
   height: 100%;
-}
-    
-@media (max-width: 768px) {
-  .section4::after {
-    bottom: 1%;
-  }
 }

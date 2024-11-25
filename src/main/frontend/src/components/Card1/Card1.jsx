@@ -3,12 +3,12 @@ import CardImage from "./CardImage";
 
 const CardWrapper = styled.div`
   width: 260px;
-  height: 427px;
+  height: 100%;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   position: relative;
   overflow: hidden;
-  transition: transform 0.5s ease-in-out;
+  transition:transform 0.5s ease-in-out;
 
   &:hover {
     .styled-card.large-card {
@@ -33,11 +33,13 @@ const StyledCard = styled.div`
   height: ${({ height }) => height || "427px"};
   border-radius: 10px;
   position: relative;
+  overflow : visible;
   margin-top: ${({ top }) => top || "0"};
   min-width: ${({ minWidth }) => minWidth || "0"};
   min-height: ${({ minHeight }) => minHeight || "0"};
   display: ${({ display }) => display || "block"};
   flex-wrap: wrap;
+
 
   &.styled-card.small-card {
     width: ${({ width }) => width || "72px"};
@@ -59,7 +61,7 @@ const CardContainer = styled.div`
   opacity: 0;
   position: absolute;
   bottom: 0;
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition: opacity 0.5s ease, transform 0.5s ease;  //작은 카드들 
 
   &:hover {
     opacity: 1;
@@ -67,28 +69,22 @@ const CardContainer = styled.div`
   }
 `;
 
-const Card1 = ({ images, currentSlide, boxWidth }) => {
+const Card1 = ({ images }) => {
   return (
-    <CardWrapper>
+    <CardWrapper >
       {/* 메인카드 분리 */}
-      <div
-        style={{
-          transform: `translateX(-${currentSlide * boxWidth}px)`,
-          transition: "transform 0.5s ease-in-out",
-        }}
-      >
-        <StyledCard className="styled-card large-card">
-          <CardImage
-            imageFile={images.main}
-            text={images.texts[0]}
-            ps={"top"}
-            size={"2rem"}
-            additionalText={images.additionalTexts[0]}
-            fontSize={"1rem"}
-            isFirst={true}
-          />
-        </StyledCard>
-      </div>
+      <StyledCard className="styled-card large-card">
+        <CardImage
+          imageFile={images.main}
+          text={images.texts[0]}
+          ps={"top"}
+          size={"2rem"}
+          additionalText={images.additionalTexts[0]}
+          fontSize={"1rem"}
+          isFirst={true}
+        />
+      </StyledCard>
+
       {/* 작은 이미지 컨테이너로 묶음 */}
       <CardContainer className="card-container">
         {images.others.map((card, index) => (

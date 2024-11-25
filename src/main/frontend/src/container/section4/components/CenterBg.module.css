@@ -1,0 +1,42 @@
+/* 
+.centerBgWrapper {
+    position: absolute;
+    top: 10%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('./centerBg.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: -1;
+    border-radius: 20px;
+    background-size: cover; 
+  }
+  
+  .titleText {
+    position: absolute;
+    top: 22%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: black;
+    text-align: center;
+    width: 80%;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+  
+  .contentText {
+    position: absolute;
+    bottom: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: black;
+    text-align: center;
+    width: 80%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+   */
+
+   

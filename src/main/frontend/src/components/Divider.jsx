@@ -10,6 +10,7 @@ const StyledDivider = styled.div`
   padding-bottom: ${(props) => props.paddingbt || '5px'};
   width: ${(props) => props.width || 'auto'}; /* width가 전달되도록 설정 */
   margin-top : ${(props) => props.marTop || 'none'};
+  margin-bottom : ${(props) => props.marBot || 'none'};
 `;
 
 const Underline = styled.div`
@@ -22,9 +23,9 @@ const Underline = styled.div`
   
 `;
 
-function Divider({ text, fontSize, width, backgroundColor, height ,paddingbt,marTop}) {
+function Divider({ text, fontSize, width, backgroundColor, height ,paddingbt,marTop, marBot}) {
   return (
-    <StyledDivider fontSize={fontSize}  width={width} paddingbt={paddingbt} marTop={marTop}>
+    <StyledDivider fontSize={fontSize}  width={width} paddingbt={paddingbt} marTop={marTop} marBot={marBot}>
       {text && text}
       <Underline width={width} backgroundColor={backgroundColor} height={height} />
     </StyledDivider>

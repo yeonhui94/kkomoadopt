@@ -1,0 +1,10 @@
+.mainContainer{
+    display: grid;
+    grid-template:
+    "h1" 20px,
+    "Divider" auto,
+    "Input1" auto,
+    "Input2" auto,
+    "Input3" auto/1fr;
+    margin: 30px 80px;
+}

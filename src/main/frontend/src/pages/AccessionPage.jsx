@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Footer from "../container/Footer";
 import Header from "../container/header/Header";
-import LoginContents from "../contents/LoginContents";
+import AccesstionPageContents from "../contents/AccessionPageContents";
 
 // 전체 레이아웃을 잡을 스타일 컴포넌트
 const StyledDiv = styled.div`
@@ -24,7 +24,7 @@ const StyledHeader = styled(Header)`
   grid-area: header;
 `;
 
-const StyledContent1 = styled(LoginContents)`
+const StyledContent1 = styled(AccesstionPageContents)`
 
   grid-area: contents;
   margin-bottom: 0;
@@ -37,7 +37,7 @@ const StyledFooter = styled(Footer)`
   margin-bottom: 0;
 `;
 
-function LoginPage() {
+function AccesstionPage() {
   return (
     <StyledDiv>
       <StyledHeader />
@@ -47,4 +47,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default AccesstionPage;

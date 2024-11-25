@@ -38,17 +38,19 @@ import Footer from "../container/Footer";
 // 이미지 데이터를 미리 정의합니다.
 const data = [
       {main: img1, others: [{ image: img2 },{ image: img3 },{ image: img4 },],texts: ["메인 카드 설명"],additionalTexts: ["추가 설명"]},
-      {main: img5, others: [{ image: img6 },{ image: img7 },{ image: img8 },],texts: ["메인 카드 설명"],additionalTexts: ["추가 설명"]},
-      {main: img9, others: [{ image: img10 },{ image: img11 },{ image: img12 },],texts: ["메인 카드 설명"],additionalTexts: ["추가 설명"]},
-      {main: img13, others: [{ image: img14 },{ image: img15 },{ image: img16 },],texts: ["메인 카드 설명"],additionalTexts: ["추가 설명"]},
-      {main: img17, others: [{ image: img18 },{ image: img19 },{ image: img20 },],texts: ["메인 카드 설명"],additionalTexts: ["추가 설명"]},
-      {main: img21, others: [{ image: img22 },{ image: img23 },{ image: img24 },],texts: ["메인 카드 설명"],additionalTexts: ["추가 설명"]},
-      {main: img25, others: [{ image: img26 },{ image: img27 },{ image: img23 },],texts: ["메인 카드 설명"],additionalTexts: ["추가 설명"]},
-      {main: img28, others: [{ image: img29 },{ image: img30 },{ image: img28 },],texts: ["메인 카드 설명"],additionalTexts: ["추가 설명"]},
-      {main: img6, others: [{ image: img10 },{ image: img15 },{ image: img20 },],texts: ["메인 카드 설명"],additionalTexts: ["추가 설명"]},
-      {main: img10, others: [{ image: img14 },{ image: img19 },{ image: img16 },],texts: ["메인 카드 설명"],additionalTexts: ["추가 설명"]},
-      {main: img8, others: [{ image: img18 },{ image: img17 },{ image: img23 },],texts: ["메인 카드 설명"],additionalTexts: ["추가 설명"]},
-      {main: img7, others: [{ image: img25 },{ image: img27 },{ image: img14 },],texts: ["메인 카드 설명"],additionalTexts: ["추가 설명"]},
+      {main: img5, others: [{ image: img6 },{ image: img7 },{ image: img8 },],texts: ["인쟘이가 세상에서 제일 기여워요"],additionalTexts: ["어릴적부터 입양에 관심이 많았습니다"]},
+      {main: img9, others: [{ image: img10 },{ image: img11 },{ image: img12 },],texts: ["우리집 막내가 된 인삼"],additionalTexts: ["매일 장난꾸러기처럼 장난도 치고"]},
+      {main: img15, others: [{ image: img14 },{ image: img15 },{ image: img16 },],texts: ["입양해서 마음이 너무 좋아요"],additionalTexts: ["집에오면 반겨주는 인삼이가 있어서"]},
+      {main: img20, others: [{ image: img18 },{ image: img19 },{ image: img20 },],texts: ["내이름은 조랭"],additionalTexts: ["너무 행복하고 매일이 즐거워요"]},
+      {main: img21, others: [{ image: img22 },{ image: img23 },{ image: img24 },],texts: ["조인쟘은 바보"],additionalTexts: ["파보로 처음엔 힘들었지만"]},
+      {main: img25, others: [{ image: img26 },{ image: img27 },{ image: img23 },],texts: ["조랭 뽕꾸뽕꾸"],additionalTexts: ["무럭무럭 자라는 인삼이가 "]},
+      {main: img28, others: [{ image: img29 },{ image: img30 },{ image: img28 },],texts: ["행운이 보고싶다"],additionalTexts: ["마냥 귀엽고 사랑스러운 동생입니다"]},
+      {main: img23, others: [{ image: img10 },{ image: img15 },{ image: img20 },],texts: ["기여운 우리 동생"],additionalTexts: ["처음 입양하던 마음 그대로 "]},
+      {main: img10, others: [{ image: img14 },{ image: img19 },{ image: img16 },],texts: ["인삼이 덕분에"],additionalTexts: ["평생을 행복하게 키워줄 자신 있어요"]},
+      {main: img8, others: [{ image: img18 },{ image: img17 },{ image: img23 },],texts: ["사지말고 입양하세요"],additionalTexts: ["인삼이가 세상을 구한다"]},
+      {main: img7, others: [{ image: img25 },{ image: img27 },{ image: img14 },],texts: ["간식비 벌자!"],additionalTexts: ["조랭삼 만만세 으쌰으쌰"]},
+    //  첫 이미지 제외 제목, 글 입력해놓기
+
 ];
 
 const Review = () => {

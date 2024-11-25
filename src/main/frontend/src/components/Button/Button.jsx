@@ -13,13 +13,14 @@ const StyledButton = styled.button`
     }
 `;
 
-function Button({bg1color, text, horizontalPadding,hovercolor,bgcolor}){
+function Button({bg1color, text, horizontalPadding,hovercolor,bgcolor, onClick}){
     return(
         <StyledButton
             bg1color={bg1color}
             horizontalPadding={horizontalPadding}
             hovercolor={hovercolor}
             bgcolor={bgcolor}
+            onClick={onClick}
         >
             {text}
         </StyledButton>

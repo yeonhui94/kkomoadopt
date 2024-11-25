@@ -19,12 +19,6 @@ import img15 from '../../assets/img2/15.jpg';
 import img16 from '../../assets/img2/16.jpg';
 
 const Section3 = () => {
-  const createImageArray = (mainImage, additionalImages) => {
-    return [
-      { image: mainImage, width: '260px', height: '427px' },
-      ...additionalImages.map(img => ({ image: img, width: '72px', height: '72px' }))
-    ];
-  };
 
   const imageData = [
     { 
@@ -76,8 +70,8 @@ const Section3 = () => {
       setCurrentSlide(prevSlide => (prevSlide + 1) % imageData.length);
     }, 3000);
 
-    return () => clearInterval(interval); // 클린업
-  }, []); 
+    return () => clearInterval(interval);
+  }, [imageData]); 
 
   return (
     <SectionBoxWrapper>
@@ -91,6 +85,7 @@ const SectionBoxWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: transform 0.5s ease-in-out;
 `;
 
 export default Section3;

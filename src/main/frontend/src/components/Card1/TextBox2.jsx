@@ -4,7 +4,7 @@ const TextBoxWrapper = styled.div`
     color: white;
     font-weight: bold;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9); 
-    font-size: ${({ fontSize }) => fontSize }; /* 기본 폰트 크기 1rem */
+    font-size: ${({ fontSize }) => fontSize }; 
     z-index: 3;
 `;
 

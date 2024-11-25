@@ -11,6 +11,8 @@
     padding: 10px 0; 
     
 }
+
+.moving-circle1 { position: relative; width: 100px; height: 100px; background-color: var(--sub-color); /* 연한 빨간색 시작 */ border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); transition: background-color 1s, width 1s, height 1s}
 .centint_line {
     grid-area: cenintd;
 }
@@ -32,7 +34,7 @@
     text-align: center; 
     color: var(--title-black); 
     font-size: 48px; 
-    font-family: "Noto Sans KR"; 
+    font-family: var(--main-font); 
     font-weight: 700;
 }
 
@@ -55,23 +57,25 @@
 .centint_small_text {
     width: 100%;
     height: 100%;
-    color: #222222;
+    color: var(--title-black);
     font-size: 30px;
     font-family: var(--main-font);
     font-weight: 700;
 }
-.centint_screen1, .centint_screen3 {
+
+
+.centint_screen1, .centint_screen3, .centint_screen5 {
     display: grid;
     z-index: 400;
     grid-template:
         '... ... ...' 300px
-        '... sc13text ...' 200px
+        '... sc135text ...' 200px
         '... ... ...' 300px/ 1fr 6fr 1fr;
       
 }
 
 .centint_sc1_text, .centint_sc3_text, .centint_sc5_text {
-    grid-area: sc13text;
+    grid-area: sc135text;
     text-align: center;
  
 }
@@ -80,13 +84,13 @@
     display: grid;
     grid-template: 
         '... ... ...' 150px
-        '... centintscr2 ...' 600px
+        '... centintscr26 ...' 600px
         '... ... ...' 150px/ 40px 6fr 40px;
       
 }
 
 .centint_sc2_contents {
-    grid-area: centintscr2;
+    grid-area: centintscr26;
     display: grid;
     grid-template: 
     'centintimg1 ... sc2text1'1fr
@@ -188,6 +192,90 @@
     width: 100%;
 } */
 
+.centint_screen6 {
+    display: grid;
+    grid-area: centintscr26;
+    grid-template: 
+    '... ... ... ... ...' 20px
+    '... ... sc6title ... ....' 200px
+    '... ... ... ... ...'20px
+    '... sc6texts ... centintimg4 ...' 600px
+    ' ... ... ... ... ...' 200px / 40px 1fr 200px 1fr 40px;
+    width: 100%;
+
+}
+.centint_sc6_title {
+    grid-area: sc6title;
+    
+}
+.centint_sc6_texts {
+    display: grid;
+    grid-area: sc6texts;
+    grid-template: 
+    ' ... sc6textad'1fr
+    '... ...' 20px
+    '... sc6textnum' 1fr
+    '... ...' 20px
+    '... sc6textemail' 1fr
+    '... ...' / 50px 400px;
+    justify-self: end;
+    width: 450px;
+}
+
+.centint_sc6_text1_ad {
+    display: grid;
+    grid-area: sc6textad;
+    grid-template: 
+        'sc6textad1'1fr
+        '...'10px
+        'sc6textad2' 1fr / 1fr;
+}
+
+.centint_sc6_text2_num {
+    display: grid;
+    grid-area: sc6textnum;
+    grid-template: 
+        'sc6textnum1'1fr
+        '...'10px
+        'sc6textnum2' 1fr / 1fr;
+}
+
+.centint_sc6_text3_email {
+    display: grid;
+    grid-area: sc6textemail;
+    grid-template: 
+        'sc6textemail1'1fr
+        '...'10px
+        'sc6textemail2' 1fr / 1fr;
+}
+
+.centint_sc6_text1_ad1 {
+    grid-area: sc6textad1;
+}
+
+.centint_sc6_text1_ad2 {
+    grid-area: sc6textad2;
+    font-size: 20px;
+}
+
+.centint_sc6_text2_num1 {
+    grid-area: sc6textnum1;
+}
+
+.centint_sc6_text2_num2 {
+    grid-area: sc6textnum2;
+    font-size: 20px;
+}
+
+.centint_sc6_text3_email1 {
+    grid-area: sc6textemail1;
+}
+
+.centint_sc6_text3_email2 {
+    grid-area: sc6textemail2;
+    font-size: 20px;
+}
+
 .centint_imgs {
     background-repeat: no-repeat;
     display: grid;
@@ -223,5 +311,13 @@
     width: 550px;
     height: 600px;
     background-image: url(./centerintro/img/centerintroimg3.svg);
+
+}
+
+.centint_img4 {
+    grid-area: centintimg4;
+    width: 550px;
+    height: 600px;
+    background-image: url(./centerintro/img/centerintroimg4.svg);
 
 }

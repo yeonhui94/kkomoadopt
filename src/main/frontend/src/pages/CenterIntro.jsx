@@ -96,7 +96,7 @@ const CenterIntro = () => {
         // 3
         <div>
             <div className={centerintrosty.centint_screen3} >
-                <p className={`${centerintrosty.centint_big_text} ${centerintrosty.centint_sc1_text}`}>
+                <p className={`${centerintrosty.centint_big_text} ${centerintrosty.centint_sc3_text}`}>
                         KKOMO 보호센터는<br/> <span className={centerintrosty.centint_highlight}>매년 1만 마리</span> 이상의 유기동물에게
                         <br/>새로운 가족을 찾아주고 있습니다.
                 </p>
@@ -112,10 +112,48 @@ const CenterIntro = () => {
      </div>]
 
     const cntintscreens2 = [
-        <p className={centerintrosty.centint_big_text}>
-            KKOMO 보호센터는<br/> 매 해 천여 마리 이상의 실종 동물을<br/>
-            따뜻한 가족의 품으로 돌려보내주고 있습니다.
-        </p>,
+        // 5
+        <div className={`${centerintrosty.centint_screen5}`}>
+        <p className={`${centerintrosty.centint_big_text} ${centerintrosty.centint_sc5_text}`}>
+            KKOMO 보호센터는<br/> 매 해 <span className={centerintrosty.centint_blacktextshadow}>천여 마리</span>이상의 실종 동물을<br/>
+            <span className={centerintrosty.centint_highlight}>따뜻한 가족의 품</span>으로 돌려보내주고 있습니다.
+        </p>
+        </div>
+        ,
+
+        //6
+        <div className={centerintrosty.centint_screen6}>
+            <p className={`${centerintrosty.centint_big_text} ${centerintrosty.centint_sc6_title}`}>
+            오시는 길
+            </p>
+            <div className={`${centerintrosty.centint_small_text} ${centerintrosty.centint_sc6_texts}`}>
+                <div className={`${centerintrosty.centint_sc6_text1_ad}`}>
+                    <p className={`${centerintrosty.centint_sc6_text1_ad1 }`}>
+                        주소
+                    </p>
+                    <p className={`${centerintrosty.centint_sc6_text1_ad2 }`}>
+                        서울시 금천구 가산디지털2로 101<br/>한라원앤원 타워 3층
+                    </p>
+                </div>
+                <div className={`${centerintrosty.centint_sc6_text2_num}`}>
+                <p className={`${centerintrosty.centint_sc6_text2_num1 }`}>
+                        번호
+                    </p>
+                    <p className={`${centerintrosty.centint_sc6_text2_num2 }`}>
+                        010-1234-5678
+                    </p>
+                </div>
+                <div className={`${centerintrosty.centint_sc6_text3_email}`}>
+                    <p className={`${centerintrosty.centint_sc6_text3_email1 }`}>
+                        이메일
+                    </p>
+                    <p className={`${centerintrosty.centint_sc6_text3_email2 }`}>
+                        abcd@kkomo.com
+                    </p>
+                </div>
+            </div>
+            <div className={`${centerintrosty.centint_img4} ${centerintrosty.centint_imgs}`}/>
+        </div>
 
     ]
 

@@ -8,7 +8,7 @@ const CardWrapper = styled.div`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   position: relative;
   overflow: hidden;
-  // transition:transform 0.5s ease-in-out;
+  transition:transform 0.5s ease-in-out;
 
   &:hover {
     .styled-card.large-card {
@@ -60,7 +60,7 @@ const CardContainer = styled.div`
   opacity: 0;
   position: absolute;
   bottom: 0;
-  transition: opacity 0.5s ease, transform 0.5s ease;  //작은 카드들 부드럽게 보여주기
+  transition: opacity 0.5s ease, transform 0.5s ease;  //작은 카드들 애니메이션
 
   &:hover {
     opacity: 1;

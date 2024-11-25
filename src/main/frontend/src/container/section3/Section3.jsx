@@ -18,12 +18,11 @@ import img14 from '../../assets/img2/14.jpg';
 import img15 from '../../assets/img2/15.jpg';
 import img16 from '../../assets/img2/16.jpg';
 
-const Section3 = () => {
-
+const Section3 = ({ currentSlide, setCurrentSlide }) => {
   const imageData = [
     { 
       main: img3, 
-      others: [ // 작은 카드들
+      others: [
         { image: img2 },
         { image: img3 },
         { image: img4 },
@@ -33,7 +32,7 @@ const Section3 = () => {
     },
     { 
       main: img4, 
-      others: [ // 작은 카드들
+      others: [
         { image: img7 },
         { image: img8 },
         { image: img9 },
@@ -43,7 +42,7 @@ const Section3 = () => {
     },
     { 
       main: img5, 
-      others: [ // 작은 카드들
+      others: [
         { image: img10 },
         { image: img11 },
         { image: img12 },
@@ -53,7 +52,7 @@ const Section3 = () => {
     },
     { 
       main: img6, 
-      others: [ // 작은 카드들
+      others: [
         { image: img13 },
         { image: img14 },
         { image: img15 },
@@ -63,29 +62,11 @@ const Section3 = () => {
     }
   ];
 
-  const [currentSlide, setCurrentSlide] = useState(0); // 현재 슬라이드 상태 관리
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide(prevSlide => (prevSlide + 1) % imageData.length);
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [imageData]); 
-
   return (
-    <SectionBoxWrapper>
-      <Card1 images={imageData[currentSlide]} />
-    </SectionBoxWrapper>
+    <div>
+      <Card1 images={imageData[currentSlide]} currentSlide={currentSlide} boxWidth={"260px"} />
+    </div>
   );
 };
-
-
-const SectionBoxWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: transform 0.5s ease-in-out;
-`;
 
 export default Section3;

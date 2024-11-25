@@ -8,8 +8,26 @@
     top: 0;           /* 상단에 고정 */
     left: 0;
     width: 100%;      /* 화면 너비에 맞게 확장 */   /* 다른 요소들 위에 보이도록 설정 */
-    padding: 10px 0; 
+    padding: 10px 0;
+    grid-area : ctheader;
     
+}
+
+.centint_footer {
+    grid-area : ctfooter;
+}
+
+.centint_container {
+    display: grid;
+    grid-template :
+    'ctheader' 220px
+    'ctsc1' 900px
+    'ctsc2' 1000px
+    'ctsc3' 900px
+    'ctsc4' 2400px
+    'ctsc5' 900px
+    'ctsc6' 1000px
+    'ctfooter' 254px / 1440px ;
 }
 
 .moving-circle1 { position: relative; width: 100px; height: 100px; background-color: var(--sub-color); /* 연한 빨간색 시작 */ border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); transition: background-color 1s, width 1s, height 1s}
@@ -74,6 +92,19 @@
       
 }
 
+.centint_screen1 {
+    grid-area : ctsc1;
+}
+
+.centint_screen3 {
+    grid-area: ctsc3;
+}
+
+.centint_screen5 {
+    grid-area : ctsc5;
+}
+
+
 .centint_sc1_text, .centint_sc3_text, .centint_sc5_text {
     grid-area: sc135text;
     text-align: center;
@@ -82,6 +113,7 @@
 
 .centint_screen2 {
     display: grid;
+    grid-area: ctsc2;
     grid-template: 
         '... ... ...' 150px
         '... centintscr26 ...' 600px
@@ -133,6 +165,7 @@
     width: 100%;
     height: 100vh;
     position: sticky;
+    grid-area : ctsc4;
 
  
 }
@@ -202,7 +235,7 @@
     '... sc6texts ... centintimg4 ...' 600px
     ' ... ... ... ... ...' 200px / 40px 1fr 200px 1fr 40px;
     width: 100%;
-
+    grid-area : ctsc6;
 }
 .centint_sc6_title {
     grid-area: sc6title;

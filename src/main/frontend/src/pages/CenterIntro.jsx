@@ -160,7 +160,7 @@ const CenterIntro = () => {
 
     return (
 <div>
-    <Header className={centerintrosty.centint_header} />
+    <Header className={`${centerintrosty.centint_header}`} />
     <div className={centerintrosty.centint_all}>
             <div className={`${centerintrosty.moving_circle1} ${centerintrosty.moving_circles}`}></div>
 
@@ -276,7 +276,7 @@ const CenterIntro = () => {
             </motion.div>
           ))}
         </div>
-        <Footer/>
+        <Footer className={`${centerintrosty.centint_footer}`}/>
     </div>
         
 </div>

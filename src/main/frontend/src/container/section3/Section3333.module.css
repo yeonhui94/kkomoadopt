@@ -40,7 +40,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 30px;
+  }
+
+  .smallWrapper3{
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
   }
   
   @media (max-width: 768px) {
@@ -65,4 +74,22 @@
     display: flex;
     justify-content: space-between;
     width: 60%;
+  }
+  .progressBarFill{
+    height: 100%;
+    background-color: #F8755B;
+    border-radius: 2px;
+    transition: width 0.5s ease-in-out;
+  }
+  .progressBar {
+    top: 650px;
+    right: 140px;
+    width: 200px;
+    height: 5px;
+    background-color: #ddd;
+    border-radius: 2px;
+  }
+  .playPauseButton{
+    color: var(--main-color);
+    font-size: large;
   }

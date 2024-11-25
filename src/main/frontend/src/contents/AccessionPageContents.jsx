@@ -60,7 +60,7 @@ const OrText = styled.span`
   transform: translateX(-50%); /* 텍스트의 가로 길이를 고려하여 정확한 중앙 배치 */
 `;
 
-function LoginContents() {
+function AccesstionPageContents() {
   // 버튼의 너비를 구하기 위해 inline-block을 사용하여 버튼의 렌더링 후 너비를 계산
   const buttonWidth = "400px"; // 여기에 버튼 너비를 고정값 또는 동적으로 설정 (예시로 400px)
 
@@ -113,4 +113,4 @@ function LoginContents() {
   );
 }
 
-export default LoginContents;
+export default AccesstionPageContents;

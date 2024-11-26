@@ -2,9 +2,9 @@ import React from "react";
 import styles from "./Footer.module.css";
 import logo from "../assets/logo.svg";
 
-const Footer = () => {
+const Footer = ({ marginTop }) => {
   return (
-      <footer className={styles.footer}>
+      <footer className={styles.footer} style={{ marginTop: marginTop }}>
         <div className={styles.logoSection}>
           <a href="./intro" style={{height : "250px"}}>
           <img src={logo} alt="로고" className={styles.logo}/>

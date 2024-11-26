@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import Footer from "../container/Footer";
-import Header from "../container/header/Header";
-import AccesstionPageContents from "../contents/AccessionPageContents";
-import LoginPageContents from "../contents/LoginPageContents";
+import Footer from "../../container/Footer";
+import Header from "../../container/header/Header";
+import AccesstionPageContents from "../../contents/AccessionPageContents";
+import LoginPageContents from "../../contents/LoginPageContents";
 
 // 전체 레이아웃을 잡을 스타일 컴포넌트
 const StyledDiv = styled.div`
@@ -46,7 +46,7 @@ function LoginPage() {
     <StyledDiv>
       <StyledHeader/>
       <StyledContent1 text="로그인" />
-      <StyledFooter />
+      <StyledFooter marginTop="80px"/>
     </StyledDiv>
   );
 }

@@ -24,6 +24,7 @@ const StyledForm = styled.form`
 
 
 const StyledH1 = styled.h1`
+  margin-top : 40px;
   color : var(--main-color);
   font-size : 64px;
   font-weight : bold;

@@ -1,0 +1,140 @@
+/* 기본 스타일 */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 40px;
+    background-color: #fff;
+}
+
+.navbar {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.menuList {
+    display: flex;
+    gap: 10vw;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-family: var(--main-font);
+}
+
+.menuItem {
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    white-space: nowrap;
+}
+
+.myPageicon {
+    padding: 20px;
+}
+
+.menuItem:hover {
+    color: #ff5733;
+}
+
+.menuItem::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #ff5733;
+    transition: width 0.3s;
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+}
+
+.menuItem:hover::after {
+    width: 100%;
+}
+
+.menuLink {
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s;
+}
+
+.menuLink:hover {
+    color: #ff5733;
+}
+
+/* 미디어 쿼리 1024px 이하 */
+@media screen and (max-width: 1024px) {
+  .header {
+    padding: 0px 20px; /* 화면이 작을 때 양쪽 여백을 줄임 */
+  }
+  
+  .menuItem {
+    font-size: 20px; /* 메뉴 아이템 글자 크기 조정 */
+  }
+
+  .menuList {
+    gap: 5vw; /* 메뉴 아이템 사이 간격 줄이기 */
+  }
+
+  .myPageicon {
+    padding: 10px; /* 마이페이지 아이콘 크기 줄이기 */
+  }
+}
+
+/* 미디어 쿼리 768px 이하 */
+@media screen and (max-width: 768px) {
+  .header {
+    flex-direction: column; /* 화면이 좁아지면 세로로 배치 */
+    padding: 10px 15px; /* 여백 조정 */
+  }
+
+  .menuList {
+    flex-direction: column; /* 메뉴 리스트 세로로 정렬 */
+    gap: 2vw; /* 간격 줄이기 */
+  }
+
+  .menuItem {
+    font-size: 18px; /* 글자 크기 줄이기 */
+  }
+
+  .myPageicon {
+    padding: 5px; /* 아이콘 크기 조정 */
+  }
+
+  .navbar {
+    justify-content: flex-start; /* 네비게이션 메뉴 왼쪽 정렬 */
+  }
+}
+
+/* 미디어 쿼리 480px 이하 */
+@media screen and (max-width: 480px) {
+  .header {
+    padding: 5px 10px; /* 매우 작은 화면에서 여백을 줄임 */
+  }
+
+  .menuItem {
+    font-size: 16px; /* 글자 크기 더 줄이기 */
+  }
+
+  .menuList {
+    gap: 3vw; /* 메뉴 아이템 간격 좀 더 줄이기 */
+  }
+
+  .myPageicon {
+    padding: 5px; /* 아이콘 크기 더 줄이기 */
+  }
+
+  .navbar {
+    flex-direction: column; /* 메뉴를 세로로 나열 */
+  }
+
+  .menuList {
+    gap: 10px; /* 세로로 배치했을 때 메뉴 간 간격 */
+  }
+
+  .menuItem {
+    text-align: center; /* 메뉴 아이템 가운데 정렬 */
+  }
+}

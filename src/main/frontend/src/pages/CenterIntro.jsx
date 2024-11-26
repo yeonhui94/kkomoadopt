@@ -16,6 +16,7 @@ import Screen4 from "./centerintro/Screen4";
 const CenterIntro = () => {
 
     return (
+
 <div>
 
     <Header className={`${centerintrosty.centint_header}`} />

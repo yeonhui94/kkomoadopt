@@ -1,4 +1,6 @@
+import { motion } from 'framer-motion';
 import centerintrosty from '../CenterIntro.module.css';
+
 
 const Screen4 = () => {
 

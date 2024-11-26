@@ -3,8 +3,8 @@
     position: fixed;
     background-color: var(--main-color);
     border-radius: 90%;
-    opacity: 50%;
-    filter: blur(60px);  
+    opacity: 40%;
+    filter: blur(90px);  
 }
 .moving_circle1 {
     z-index: 2;
@@ -12,15 +12,15 @@
     left: 20%;
     right: 50%;
     bottom: 50%;
-    width: 250px;
-    height: 250px;
+    width: 500px;
+    height: 500px;
     transform: translate(50,-30% );
     animation: moveCircle1  7s infinite alternate;
 }
 
 .moving_circle2 {
-    width: 250px;
-    height: 250px;
+    width: 500px;
+    height: 500px;
     z-index: 2;
     top: 30%;
     left: 50%;
@@ -30,23 +30,23 @@
 
 .moving_circle3 {
     z-index: 2;
-    width: 250px;
-    height: 250px;
+    width: 500px;
+    height: 500px;
     top: 70%;
     left: 20%;
     animation: moveCircle3 10s infinite alternate;
 }
 
 .moving_circle4 {
-    width: 250px;
-    height: 250px;
+    width: 500px;
+    height: 500px;
     z-index: 2;
     top: 50%;
     left: 80%;
     animation: moveCircle4  9s infinite alternate;
 }
 
-.moving_circle4 {
+.moving_circle5 {
     width: 250px;
     height: 250px;
     z-index: 2;

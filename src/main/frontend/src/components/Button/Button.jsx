@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 const StyledButton = styled.button`
+     height: ${({ height }) => height || "auto"};  // 높이를 받도록 설정
+  width: ${({ width }) => width || "auto"};  
     padding :   ${props => props.verticalPadding || "12px"}
                 ${props => props.horizontalPadding || "26px"}; /* 두글자 기준 26px, 네글자 12px */
     color: ${props => props.color ? props.color : 'var(--main-color)' };
@@ -11,6 +13,7 @@ const StyledButton = styled.button`
     font-size : ${props => props.fontSize ? props.fontSize : 'none' };
     margin-bottom : ${props => props.marginBottom ? props.marginBottom : '0px' };
     margin-top : ${props => props.marginTop ? props.marginTop : '0px' };
+    margin-left : ${props => props.marginLeft ? props.marginLeft : '0px' };
 
     &:hover {
         color: ${props => props.hovercolor ? props.hovercolor : 'white' };/* 호버 시 텍스트는 항상 흰색 */
@@ -18,9 +21,14 @@ const StyledButton = styled.button`
     }
 `;
 
-function Button({color,hovercolor, bg1color,backColor, text, horizontalPadding,verticalPadding,onClick, fontWeight, fontSize, marginBottom, marginTop}){
+function Button({
+            width,height, color,hovercolor, bg1color,backColor,
+            text, horizontalPadding,verticalPadding,onClick, 
+            fontWeight, fontSize, marginBottom, marginTop, marginLeft}){
     return(
         <StyledButton
+            width={width}
+            height={height}
             color={color}
             bg1color={bg1color} 
             verticalPadding={verticalPadding}
@@ -32,6 +40,7 @@ function Button({color,hovercolor, bg1color,backColor, text, horizontalPadding,v
             backColor={backColor}
             hovercolor={hovercolor}
             onClick={onClick}
+            marginLeft={marginLeft}
         >
             {text}
         </StyledButton>

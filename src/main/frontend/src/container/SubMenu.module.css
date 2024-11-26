@@ -1,27 +1,26 @@
 .submenucontainer {
   display: flex;
-  justify-content: center; 
-
+  justify-content: center;
 }
 
 .submenu {
-  display: flex; 
+  display: flex;
   padding: 0;
   margin: 0;
-  width: 100%; 
-  justify-content: space-between; 
-  border-bottom: 3px solid var(--main-color); 
+  width: 100%;
+  justify-content: space-between;
+  border-bottom: 3px solid var(--main-color);
 }
 
 .submenu ul {
-  display: flex; 
+  display: flex;
   padding: 0;
   margin: 0;
-  width: 100%; 
+  width: 100%;
 }
 
 .submenu li {
-  list-style: none; 
+  list-style: none;
   margin-right: auto; /* 메뉴 항목 간 간격을 더 넓힘 */
   margin-left: auto;
 }
@@ -35,23 +34,25 @@
   text-align: center; /* 가운데 정렬 */
   cursor: pointer;
   text-decoration: none; /* 링크 기본 스타일 제거 */
-  color: black; 
-  display: block; 
+  color: black;
+  display: block;
 }
 
+/* 호버 스타일 */
 .menuitem:hover {
-  color:var(--main-color); 
+  color: var(--main-color);
 }
 
-.menuitem:active {
-  color:var(--main-color); 
+/* 클릭된 항목 스타일 */
+.menuitem:active, .menuitem.active {
+  color: var(--main-color); /* 클릭 후 색상 변경 */
 }
 
-
+/* 모바일 뷰에 맞는 스타일 */
 @media (max-width: 1024px) {
   .menuitem {
     font-size: 1rem;
-    padding: 10px 12px; 
+    padding: 10px 12px;
   }
 }
 

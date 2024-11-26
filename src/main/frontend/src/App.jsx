@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import CenterIntro from './pages/CenterIntro'; // 올바른 파일 경로로 수정
+// import CenterIntro from './pages/CenterIntro'; // 올바른 파일 경로로 수정
 import ParentComponent from './pages/ParentComponent';
 import Review from './pages/Review';
 

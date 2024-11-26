@@ -33,6 +33,11 @@ import img30 from "../assets/img2/30.jpg";
 import styles from "./Review.module.css";
 import Header from "../container/header/Header";
 import Footer from "../container/Footer";
+import Divider from "../components/Divider";
+import AdoptionDropdown from "../components/DropDown";
+import SearchBar from "../components/SearchBar";
+import Dropdown from "../components/DropDown";
+import Button from "../components/Button/Button";
 
 
 // 이미지 데이터를 미리 정의합니다.
@@ -54,14 +59,30 @@ const data = [
 ];
 
 const Review = () => {
+
+  const options = ["최신 순", "오래된 순", "조회 수 높은 순","조회 수 낮은 순"];
+
+
   return (
     <>
-    <Header></Header>
-    <div className={styles.rwmaincontainer}>
-      {data.map((slideData, index) => (
+    {/* <Header></Header> */}
+    <div className={styles.rwWrapper}>
+      <div className={styles.rwsubcontainer}>
+          <div className={styles.rwsubcontainer2}>
+            <Dropdown options={options} />
+            <SearchBar placeholder={"글 내용 & 글 제목"} width="300px"></SearchBar>
+          </div>
+      </div>
+      <div className={styles.rwmaincontainer}>
+        <Divider className={styles.divider} width={"100%"} backgroundColor={"var(--line-color)"} />
+        {data.map((slideData, index) => (
         <Card1 key={index} images={slideData} />
-      ))};
-    </div>
+        ))}
+      </div>
+      <div className={styles.buttonContainer}>
+          <Button text={"글쓰기"} />
+      </div>
+      </div>
     <Footer></Footer>
     </>
   );

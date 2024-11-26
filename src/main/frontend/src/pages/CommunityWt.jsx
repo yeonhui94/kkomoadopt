@@ -35,7 +35,7 @@ const CommunityWt = ({ text = "아이를 찾습니다" }) => {
         {/* 내용 입력 */}
         <div className={styles.textAreaContainer}>
           <h3>내용</h3>
-          <textarea className={styles.textArea} />
+          <textarea className={styles.textArea} defaultValue={`\n동물 종류:\n\n잃어버린 날짜:\n잃어버린 장소:\n\n연락처:\n필수정보:\n알아야할 내용:\n\n사진첨부\n`} />
         </div>
       </div>
       <Footer />

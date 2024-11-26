@@ -6,6 +6,10 @@ const TextBoxWrapper = styled.div`
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9); 
     font-size: ${({ fontSize }) => fontSize }; 
     z-index: 3;
+    overflow: hidden;
+    white-space: nowrap; 
+    text-overflow: ellipsis;
+    width: 100%;
 `;
 
 const TextBox2 = ({ text, size }) => {

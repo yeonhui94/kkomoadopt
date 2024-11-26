@@ -38,6 +38,7 @@ import AdoptionDropdown from "../components/DropDown";
 import SearchBar from "../components/SearchBar";
 import Dropdown from "../components/DropDown";
 import Button from "../components/Button/Button";
+import ParentComponent from "./ParentComponent";
 
 
 // 이미지 데이터를 미리 정의합니다.
@@ -65,8 +66,9 @@ const Review = () => {
 
   return (
     <>
-    {/* <Header></Header> */}
+    <Header></Header>
     <div className={styles.rwWrapper}>
+    <ParentComponent></ParentComponent>
       <div className={styles.rwsubcontainer}>
           <div className={styles.rwsubcontainer2}>
             <Dropdown options={options} />
@@ -74,7 +76,9 @@ const Review = () => {
           </div>
       </div>
       <div className={styles.rwmaincontainer}>
-        <Divider className={styles.divider} width={"100%"} backgroundColor={"var(--line-color)"} />
+        <div  className={styles.rwdivider} >
+        <Divider width={"100%"} backgroundColor={"var(--line-color)"} />
+        </div>
         {data.map((slideData, index) => (
         <Card1 key={index} images={slideData} />
         ))}

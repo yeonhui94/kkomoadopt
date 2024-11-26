@@ -58,7 +58,7 @@
       display: none;
     }
     
-    /* 첫 번째 SectionBox만 보이게 설정 */
+    /* 두 번째 SectionBox만 보이게 설정 */
     .Wrapper > :nth-child(2) {
       display: block;
     }

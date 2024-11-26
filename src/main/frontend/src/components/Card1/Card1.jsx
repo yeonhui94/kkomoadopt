@@ -78,7 +78,7 @@ const Card1 = ({ images }) => {
           imageFile={images.main}
           text={images.texts[0]}
           ps={"top"}
-          size={"2rem"}
+          size={"1.5rem"}
           additionalText={images.additionalTexts[0]}
           fontSize={"1rem"}
           isFirst={true}

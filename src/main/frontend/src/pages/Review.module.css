@@ -1,91 +1,102 @@
-/* .rwWrapper: 전체 너비와 패딩 설정 */
 .rwWrapper {
     width: 100%;
     padding: 0 75px;
   }
   
-  /* .rwmaincontainer: 기본 그리드 설정 (4열 3행) */
+ 
   .rwmaincontainer {
     display: grid;
     grid-template: 
-      "divider divider divider divider" auto /* divider 영역 */
-      "Card1 Card1 Card1 Card1" 1fr           /* Card1 영역 */
-      "Card1 Card1 Card1 Card1" 1fr           /* Card1 영역 */
-      "Card1 Card1 Card1 Card1" 1fr           /* Card1 영역 */
+      "divider divider divider divider" auto 
+      "Card1 Card1 Card1 Card1" 1fr           
+      "Card1 Card1 Card1 Card1" 1fr          
+      "Card1 Card1 Card1 Card1" 1fr           
       / 1fr 1fr 1fr 1fr;                      
     gap: 50px;
     width: 100%;
     justify-content: center;
     align-items: center;
     justify-items: center;
-    padding: 20px 75px;
-    position: relative; /* 위치 기준으로 설정 */
+    position: relative;
   }
   
-  /* .rwmaincontainer > *: 모든 자식 요소는 너비 100% */
+ 
   .rwmaincontainer > * {
     width: 100%;
   }
   
-  /* .rwdivider: divider 영역 */
+
   .rwdivider {
-    width: 100%;
-    background-color: var(--line-color);
-    height: 1px; /* Divider 두께 */
-    margin: 0;
-    grid-area: divider; /* grid-template-areas에서 지정한 divider 영역에 배치 */
+    grid-area: divider;
+    display: flex;
   }
   
-  /* .Card1: 카드 영역 */
+
   .Card1 {
-    grid-area: Card1; /* grid-template-areas에서 지정한 Card1 영역에 배치 */
+    grid-area: Card1;
   }
   
-  /* .rwsubcontainer: 세로 방향으로 정렬 */
+
   .rwsubcontainer {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 20px;
-    padding: 20px 75px;
+    margin: 20px 0;
   }
   
-  /* .rwsubcontainer2: 가로 방향으로 배치, 좌우 공간 균등 배치 */
   .rwsubcontainer2 {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    gap: 10px; /* 드롭다운과 검색창 사이의 간격 */
   }
   
-  /* .buttonContainer: 버튼을 오른쪽으로 배치 */
+
   .buttonContainer {
     display: flex;
-    justify-content: flex-end; /* 오른쪽 정렬 */
-    padding: 0 75px;
+    justify-content: flex-end;
+    margin: 50px 0;
   }
   
-  /* 768px 이상 1024px 이하: 3*3 그리드 */
-  @media (max-width: 768px) {
-    .rwmaincontainer {
-      grid-template-columns: repeat(3, 1fr);  /* 3열 */
-      grid-template-rows: repeat(3, auto);    /* 3행 */
-    }
-  }
   
-  /* 480px 이상 768px 이하: 1*3 그리드 */
-  @media (max-width: 480px) {
-    .rwmaincontainer {
-      grid-template-columns: 1fr;  /* 1열 */
-      grid-template-rows: repeat(3, auto);    /* 3행 */
-    }
 
-      /* .rwsubcontainer2: 480px 이하일 때, 상하 정렬로 변경 */
-    .rwsubcontainer2 {
-        flex-direction: column; /* 좌우가 아니라 상하로 나열 */
-        align-items: center; /* 가운데 정렬 */
+  
+  /* 1024px 이하: 3*3 그리드 */
+  @media (max-width: 1024px) {
+    .rwmaincontainer {
+      display: grid;
+      grid-template: 
+        "divider divider divider" auto
+        "Card1 Card1 Card1" 1fr
+        "Card1 Card1 Card1" 1fr
+        "Card1 Card1 Card1" 1fr 
+        "Card1 Card1 Card1" 1fr / 1fr 1fr 1fr; /* 3열로 설정 */
+      gap: 50px;
     }
   }
   
+  /* 768px 이하: 1열로 세로 정렬, 3줄까지만 보이게 하고 스크롤 적용 */
+@media (max-width: 768px) {
+    .rwmaincontainer {
+      display: grid;
+      grid-template:
+        "divider" auto 
+        "Card1" 1fr / 1fr;  /* 1열로 설정 */
+
+    }
+  
+    .rwdivider {
+      grid-area: divider;
+    }
+  
+    .Card1 {
+      grid-area: Card1;
+    }
+  
+    .rwsubcontainer2 {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+  }

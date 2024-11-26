@@ -4,16 +4,17 @@
   width: 100%;
   height: 500px; /* 높이를 고정값으로 설정 */
   display: flex;
-  justify-content: center;
+  justify-content:center;
   align-items: center;
   overflow: hidden;
+  gap: 10px;
 }
 .slidewrap{
   width: 100%;
-  margin-left: 65px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  margin-left: calc(50% - 44.8vw);
+  margin-left: 80px;
+  /* padding: 0px 30px; */
+  /* gap: 1000px; 슬라이드 간의 간격 설정 */
 }
 .slick-slide {
   display: flex;
@@ -23,6 +24,7 @@
 
 .slide {
   flex: 0 0 calc(100% / 5); /* 화면에서 5개의 슬라이드가 보이도록 설정 */
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -53,14 +55,32 @@
 }
 
 .slideTextContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   top: 20%; 
   left: 50%;
-  transform: translateX(-50%);
+  /* transform: translateX(-50%); */
   color: #fff;
   text-align: center;
   width: 100%;
   z-index: 1000;
+}
+
+.titleAndninckname{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0%;
+  left: 50.5%;
+  transform: translateX(-50%);
+  color: black;
+  text-align: center;
+  width: 100%;
+  /* z-index: 1000; */
 }
 
 .slideTitle {
@@ -72,6 +92,16 @@
 .slideNickname {
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.8);
+}
+
+.contents{
+  position: absolute;
+  bottom: 0%;
+  left: 50%;
+  transform:translateX(-50%);
+  color: black;
+  text-align: center;
+  width: 80%;
 }
 
 .slideContent {
@@ -138,12 +168,15 @@
 
   .slide img {
     width: 60%; /* 이미지 너비 100%로 수정 */
-    height: auto; /* 높이 자동으로 조정 */
+    /* height: auto; */
     margin-left: 55px;
   }
 
   .controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly; 
     gap: 200px; /* 버튼 간의 간격을 일정하게 유지 */
-    left: 50%;
+    left: 26%;
   }
 }

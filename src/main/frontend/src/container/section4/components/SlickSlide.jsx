@@ -64,7 +64,7 @@ function SlickSlide() {
   useEffect(() => {
     const intervalId = setInterval(() => {
       next();
-    }, 3000); 
+    }, 30000); 
     return () => clearInterval(intervalId); 
   }, [slideIndex]);
 
@@ -91,16 +91,7 @@ function SlickSlide() {
       <div className={styles.textContent}>
         <motion.div
           key={slideIndex}
-          style={{
-            position: 'absolute',
-            top: '0%',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            color: 'black',
-            textAlign: 'center',
-            width: '100%',
-            zIndex: '1000',
-          }}
+          className={styles.titleAndninckname}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -112,15 +103,7 @@ function SlickSlide() {
 
         <motion.div
           key={`content-${slideIndex}`}
-          style={{
-            position: 'absolute',
-            bottom: '0%',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            color: 'black',
-            textAlign: 'center',
-            width: '80%',
-          }}
+          className={styles.contents}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

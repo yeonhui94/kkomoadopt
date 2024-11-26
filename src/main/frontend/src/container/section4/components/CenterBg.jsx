@@ -1,6 +1,6 @@
 import styled from "styled-components"; 
 import CenterBgImage from './centerBg.png'; 
-
+import CenterBgImage2 from './Group26.png';
 const CenterBgWrapper = styled.div`
   position: absolute;
   top: 10%;

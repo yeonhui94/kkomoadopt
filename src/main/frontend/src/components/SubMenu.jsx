@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import styles from '../container/SubMenu.module.css';
 
 const SubMenu = ({ menuItems }) => {
-  // 클릭된 항목을 추적하기 위한 상태 변수
+  // 클릭된 항목 스테이트 값
   const [activeIndex, setActiveIndex] = useState(null);
 
   const handleClick = (index) => {
-    setActiveIndex(index); // 클릭된 항목의 인덱스를 상태로 저장
+    setActiveIndex(index); // 클릭된 항목의 인덱스 저장
   };
 
   return (

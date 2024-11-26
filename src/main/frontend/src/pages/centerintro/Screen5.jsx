@@ -21,8 +21,8 @@ const Screen5 = () => {
         transition={{ duration: 0.8 }} // 애니메이션이 0.5초 동안 실행되도록 설정
         >
         <p className={`${centerintrosty.centint_big_text} ${centerintrosty.centint_sc5_text}`}>
-            KKOMO 보호센터는<br/> 매 해 <span className={centerintrosty.centint_blacktextshadow}>천여 마리</span>이상의 실종 동물을<br/>
-            <span className={centerintrosty.centint_highlight}>따뜻한 가족의 품</span>으로 돌려보내주고 있습니다.
+            KKOMO 보호센터는 <span className={centerintrosty.centint_blacktextshadow}>모든 생명</span>이 <br /> 
+            <span className={centerintrosty.centint_highlight}>행복할 수 있는 세상</span>을 만들어갑니다
         </p>
         </motion.div>
     )

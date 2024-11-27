@@ -1,4 +1,6 @@
 .profile-container {
+    width: 100%;
+    min-width: 350px;
     background-color: var(--sub-color);
     display: grid;
     grid-template:
@@ -57,3 +59,8 @@
     gap: 12px;
 }
 
+@media (max-width: 768px) {
+    .profile-container{
+        height: 500px;
+    }
+}

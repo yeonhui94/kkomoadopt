@@ -1,4 +1,5 @@
 import SubNaviBar from "../../components/MyPage/SubNavi/SubNaviBar";
+import styles from "./MyPage.module.css";
 
 const Csdetail =()=>{
 
@@ -8,9 +9,9 @@ const Csdetail =()=>{
     ];
 
     return(
-       <div>
-        <SubNaviBar tabs={tabs}></SubNaviBar>
-       </div>
-    )
+        <div className={styles.subNaviBar}>
+         <SubNaviBar tabs={tabs}></SubNaviBar>
+        </div>
+     )
 }
 export default Csdetail;

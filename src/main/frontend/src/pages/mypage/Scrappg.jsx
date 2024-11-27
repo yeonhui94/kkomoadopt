@@ -1,5 +1,8 @@
+import Divider from "../../components/Divider";
 import SubNaviBar from "../../components/MyPage/SubNavi/SubNaviBar";
 import styles from "./MyPage.module.css";
+import SearchBar from "../../components/SearchBar";
+import Card2 from "../../components/Card2/Card2";
 
 const Scrappg =()=>{
 
@@ -11,8 +14,18 @@ const Scrappg =()=>{
     ];
 
     return(
-       <div className={styles.subNaviBar}>
-        <SubNaviBar tabs={tabs}></SubNaviBar>
+       <div className={styles.mpcontainer}>
+            <div className={styles.SearchBar}>
+            <SearchBar width="300px"></SearchBar>
+            </div>
+            <div className={styles.SubNaviBar}>
+            <SubNaviBar tabs={tabs}></SubNaviBar>
+            </div>
+            <div className={styles.content}>
+            <Card2></Card2>
+            <Card2></Card2>
+            <Card2></Card2>
+            </div>
        </div>
     )
 }

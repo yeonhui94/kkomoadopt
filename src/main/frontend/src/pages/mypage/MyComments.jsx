@@ -1,4 +1,5 @@
 import SubNaviBar from "../../components/MyPage/SubNavi/SubNaviBar";
+import styles from "./MyPage.module.css";
 
 const MyComments =()=>{
 
@@ -11,9 +12,9 @@ const MyComments =()=>{
     ];
 
     return(
-       <div>
-        <SubNaviBar tabs={tabs}></SubNaviBar>
-       </div>
-    )
+        <div className={styles.subNaviBar}>
+         <SubNaviBar tabs={tabs}></SubNaviBar>
+        </div>
+     )
 }
 export default MyComments;

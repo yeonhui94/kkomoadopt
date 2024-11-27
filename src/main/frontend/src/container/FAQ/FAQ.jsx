@@ -60,7 +60,7 @@ const FAQ = () => {
   }, [selectedCategory]);
 
   return (
-    <div id={styles['main-area']}>
+    <div id={styles['main-area']} style={{gridArea:"section"}}>
       <Category selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
       <div id={styles['list-area']}>
         <SearchArea

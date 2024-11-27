@@ -31,13 +31,7 @@ const Screen2 = () => {
                 </p>
                 <div className={`${centerintrosty.centint_img1} ${centerintrosty.centint_imgs}`}/>
             </div>
-        <Divider
-                paddingbt="2px"
-                width="100%"
-                backgroundColor="#d5d5d5"
-                height="2px"
-                
-        />
+       
         </motion.div>
     )
 

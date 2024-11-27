@@ -1,33 +1,84 @@
-import styled from 'styled-components';
+// import styled from 'styled-components';
+
+// // Divider 스타일 설정
+// const StyledDivider = styled.div`
+//   display: inline-block;
+//   position: relative;
+//   font-size: ${(props) => props.fontSize || '32px'}; /* 텍스트 크기 */
+//   font-weight : bold;
+//   font-family: var(--main-font);
+//   padding-bottom: ${(props) => props.paddingbt || '5px'};
+//   width: ${(props) => props.width || 'auto'}; /* width가 전달되도록 설정 */
+//   margin-top : ${(props) => props.marTop || 'none'};
+//   margin-bottom : ${(props) => props.marBot || 'none'};
+// `;
+
+// const Underline = styled.div`
+//   position: absolute;
+//   bottom: 0;
+//   left: 0;
+//   width: ${(props)=> props.width || "100%"};
+//   height:${(props)=> props.height || "4px"};  /* 밑줄 두께 */
+//   background-color: ${(props) => props.backgroundColor || 'var(--main-color)'};
+  
+// `;
+
+// function Divider({ text, fontSize, width, backgroundColor, height ,paddingbt,marTop, marBot}) {
+//   return (
+//     <StyledDivider fontSize={fontSize}  width={width} paddingbt={paddingbt} marTop={marTop} marBot={marBot}>
+//       {text && text}
+//       <Underline width={width} backgroundColor={backgroundColor} height={height} />
+//     </StyledDivider>
+//   );
+// }
+
+// export default Divider;
+import styled from "styled-components";
 
 // Divider 스타일 설정
 const StyledDivider = styled.div`
   display: inline-block;
   position: relative;
-  font-size: ${(props) => props.fontSize || '32px'}; /* 텍스트 크기 */
-  font-weight : bold;
+  font-size: ${(props) => props.fontSize || "32px"}; /* 텍스트 크기 */
+  font-weight: bold;
   font-family: var(--main-font);
-  padding-bottom: ${(props) => props.paddingbt || '5px'};
-  width: ${(props) => props.width || 'auto'}; /* width가 전달되도록 설정 */
-  margin-top : ${(props) => props.marTop || 'none'};
-  margin-bottom : ${(props) => props.marBot || 'none'};
+  padding-bottom: ${(props) => props.paddingbt || "5px"};
+  width: ${(props) => props.width || "auto"}; /* width가 전달되도록 설정 */
+  margin-top: ${(props) => props.marTop || "none"};
+  text-align: ${(props) => props.textAlign || "left"};
 `;
 
 const Underline = styled.div`
   position: absolute;
   bottom: 0;
   left: 0;
-  width: ${(props)=> props.width || "100%"};
-  height:${(props)=> props.height || "4px"};  /* 밑줄 두께 */
-  background-color: ${(props) => props.backgroundColor || 'var(--main-color)'};
-  
+  width: ${(props) => props.width || "100%"};
+  height: ${(props) => props.height || "4px"}; /* 밑줄 두께 */
+  background-color: ${(props) => props.backgroundColor || "var(--main-color)"};
 `;
 
-function Divider({ text, fontSize, width, backgroundColor, height ,paddingbt,marTop, marBot}) {
+function Divider({
+  text,
+  fontSize,
+  width,
+  height,
+  paddingbt,
+  marTop,
+  textAlign
+}) {
   return (
-    <StyledDivider fontSize={fontSize}  width={width} paddingbt={paddingbt} marTop={marTop} marBot={marBot}>
+    <StyledDivider
+      fontSize={fontSize}
+      width={width}
+      paddingbt={paddingbt}
+      marTop={marTop}
+      textAlign={textAlign}
+    >
       {text && text}
-      <Underline width={width} backgroundColor={backgroundColor} height={height} />
+      <Underline
+        width={width}
+        height={height}
+      />
     </StyledDivider>
   );
 }

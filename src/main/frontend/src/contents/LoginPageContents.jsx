@@ -100,11 +100,11 @@ const handleClick = () => {
     window.location.href = '/accesstion'; // '/accesstion' 경로로 이동
 };
 
-function LoginPageContents({text}) {
+function LoginPageContents({text, gridArea}) {
   const buttonWidth = "400px"; // 여기에 버튼 너비를 고정값 또는 동적으로 설정 (예시로 400px)
 
   return (
-    <div style={{width:"607px", height: "700px"}}>
+    <div style={{width:"607px", height: "700px", gridArea: gridArea}}>
       <StyledH1>{text}</StyledH1>
       <StyledLoginBox>
         {/* StyledALink들을 가로로 배치하는 부모 wrapper 추가 */}

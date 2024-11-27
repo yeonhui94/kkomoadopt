@@ -1,3 +1,6 @@
+// 삭제하세요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
 import styled from "styled-components";
 import Footer from "../../container/Footer";
 import Header from "../../container/header/Header";

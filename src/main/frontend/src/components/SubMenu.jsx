@@ -1,29 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from '../container/SubMenu.module.css';
+import './SubMenu.css';
 
 const SubMenu = ({ menuItems }) => {
-  // 클릭된 항목 스테이트 값
-  const [activeIndex, setActiveIndex] = useState(null);
-
-  const handleClick = (index) => {
-    setActiveIndex(index); // 클릭된 항목의 인덱스 저장
-  };
-
   return (
-    <div className={styles.submenucontainer}>
-      <nav className={styles.submenu}>
+    <div className="submenu-container">
+      <nav className="submenu">
         <ul>
           {menuItems.map((item, index) => (
-            <li
-              key={index}
-              className={activeIndex === index ? styles.active : ''} // 활성화된 항목에 클래스 추가
-            >
-              <Link
-                to={item.path}
-                className={`${styles.menuitem} ${activeIndex === index ? styles.active : ''}`} 
-                onClick={() => handleClick(index)} // 항목 클릭 시 상태 변경
-              >
+            <li key={index}>
+              <Link to={item.path} className="menu-item">
                 {item.label}
               </Link>
             </li>

@@ -27,14 +27,7 @@ const Screen3 = () => {
                     KKOMO 보호센터는<br/> <span className={centerintrosty.centint_highlight}>매년 1만 마리</span> 이상의 유기동물에게
                     <br/>새로운 가족을 찾아주고 있습니다.
             </p>
-                {/* <Divider
-                paddingbt="2px"
-                width="100%"
-                backgroundColor="#d5d5d5"
-                height="2px"
-                className={`${centerintrosty.centint_divider_sc3}`}
-                style={{gridArea: "3/2/4/3"}}/>
-         */}
+                
       
         </motion.div>
     )

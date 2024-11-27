@@ -1,24 +1,34 @@
 package com.kosmo.kkomoadopt.entity;
 
+import com.kosmo.kkomoadopt.converter.BlacklistConverter;
+import com.kosmo.kkomoadopt.converter.ScrapConverter;
+import com.kosmo.kkomoadopt.dto.Authority;
+import com.kosmo.kkomoadopt.dto.BlacklistDTO;
+import com.kosmo.kkomoadopt.dto.Provider;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
-@Table
+@Table(
+        name = "user",
+        indexes = {
+                @Index(name = "idx_user_nickname", columnList = "nickname"),
+        })
 public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "user_id", nullable = false, updatable = false, length = 36)
+    @Column(name = "user_id", nullable = false, length = 36)
     private String userId;  // Primary Key (PK)
 
     // 일반 회원 가입
-    @Column
+    @Column(nullable = false, unique = true, updatable = false)
     private String email;
 
     @Column
@@ -27,13 +37,13 @@ public class UserEntity {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(length = 20)
+    @Column(length = 20, unique = true)
     private String nickname;
 
     @Column(nullable = false, length = 16)
     private String password;
 
-    @Column(name = "user_create", nullable = false)
+    @Column(name = "user_create", nullable = false, updatable = false)
     private LocalDateTime userCreate;
 
     @Column(name = "user_img_url")
@@ -46,16 +56,27 @@ public class UserEntity {
     private LocalDateTime userLastLogin;
 
     @Column(name = "is_blacklisted", nullable = false)
-    private Boolean isBlacklisted;
+    private Boolean isBlacklisted = false;
 
+    // 네이버, 카카오 로그인 ID
     @Column(name = "social_Id", unique = true, length = 50)
     private String socialId;
 
+    @Enumerated(EnumType.STRING)
     @Column(length = 10)
-    private String provider;
+    private Provider provider;
 
-    @OneToOne(mappedBy = "user")  // BlacklistEntity와의 관계
-    private BlacklistEntity blacklistEntity;  // 블랙리스트 관련 정보
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 10)
+    private Authority authority;
+
+    @Convert(converter = BlacklistConverter.class)
+    @Column(columnDefinition = "longtext")
+    private List<BlacklistDTO> blacklists;
+
+    @Convert(converter = ScrapConverter.class)
+    @Column(columnDefinition = "longtext")
+    private List<String> scraps;
 
     @Override
     public String toString() {
@@ -73,6 +94,9 @@ public class UserEntity {
                 ", isBlacklisted=" + isBlacklisted +
                 ", socialId='" + socialId + '\'' +
                 ", provider='" + provider + '\'' +
+                ", role='" + role + '\'' +
+                ", blacklists=" + blacklists +
+                ", scraps=" + scraps +
                 '}';
     }
 }

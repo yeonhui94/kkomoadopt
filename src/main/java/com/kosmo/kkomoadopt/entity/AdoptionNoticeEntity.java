@@ -1,5 +1,7 @@
 package com.kosmo.kkomoadopt.entity;
 
+import com.kosmo.kkomoadopt.dto.AdoptStatus;
+import com.kosmo.kkomoadopt.dto.NoticeCategory;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,6 +16,7 @@ import java.time.LocalDateTime;
         name = "adoption_notice",
         indexes = {
                 @Index(name = "idx_adoption_notice_announcement_num", columnList = "announcement_num"),
+                @Index(name = "idx_adoption_notice_animal_type", columnList = "animal_type")
         })
 public class AdoptionNoticeEntity {
 
@@ -22,12 +25,12 @@ public class AdoptionNoticeEntity {
     @Column(name = "notice_uid", nullable = false, length = 36)
     private String noticeUid;
 
-    @Column(name = "notice_id", nullable = false)
+    @Column(name = "notice_id", updatable = false, nullable = false, unique = true)
     private Integer noticeId;
-    
-    // 강아지, 고양이, 기타 3개중 하나
+
+    @Enumerated(EnumType.STRING)
     @Column(name = "notice_category", nullable = false)
-    private String noticeCategory;
+    private NoticeCategory noticeCategory;
 
     @Column(name = "notice_title")
     private String noticeTitle;
@@ -38,9 +41,9 @@ public class AdoptionNoticeEntity {
     @Column(name = "animal_type")
     private String animalType;
 
-    // 입양가능, 예약중, 입양불가 3개중 하나
-    @Column(name = "adoption_status")
-    private String adoptionStatus;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "adopt_status", nullable = false)
+    private AdoptStatus adoptStatus;
 
     @Column(name = "announcement_num", length = 10)
     private String announcementNum;
@@ -57,37 +60,30 @@ public class AdoptionNoticeEntity {
     @Column(name = "notice_content")
     private String noticeContent;
 
-    @Column(name = "notice_created_at")
+    @Column(name = "notice_created_at", updatable = false, nullable = false)
     private LocalDateTime noticeCreatedAt;
 
-    @Column(name = "notice_updated_at")
+    @Column(name = "notice_updated_at", nullable = false)
     private LocalDateTime noticeUpdatedAt;
-
-    //
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "scrap_id", nullable = false)  // ScrapEntity와의 관계를 설정하는 외래 키
-    private ScrapEntity scrapEntity;  // 하나의 Scrap에 여러 AdoptionNotice가 속할 수 있음
     
     // 입양불가 상태의 사유
-    @Column
-    private String reason;
+    @Column(name = "impossible_reason")
+    private String impossibleReason;
 
-    // Many 입양공지가 하나의 Admin에 속함
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "admin_uid", nullable = false)
-    @Column(name = "admin_uid", nullable = false, length = 36)
-    private AdminEntity adminUid;
+    // 입양공지 작성자(nickname)
+    @Column(name = "adoption_author", nullable = false)
+    private String adoptionAuthor;
 
     @Override
     public String toString() {
         return "AdoptionNoticeEntity{" +
                 "noticeUid='" + noticeUid + '\'' +
                 ", noticeId=" + noticeId +
-                ", noticeCategory='" + noticeCategory + '\'' +
+                ", noticeCategory=" + noticeCategory +
                 ", noticeTitle='" + noticeTitle + '\'' +
                 ", noticeViewCount=" + noticeViewCount +
                 ", animalType='" + animalType + '\'' +
-                ", adoptionStatus='" + adoptionStatus + '\'' +
+                ", adoptStatus=" + adoptStatus +
                 ", announcementNum='" + announcementNum + '\'' +
                 ", uniqueNum=" + uniqueNum +
                 ", noticeImgUrl='" + noticeImgUrl + '\'' +
@@ -95,8 +91,8 @@ public class AdoptionNoticeEntity {
                 ", noticeContent='" + noticeContent + '\'' +
                 ", noticeCreatedAt=" + noticeCreatedAt +
                 ", noticeUpdatedAt=" + noticeUpdatedAt +
-                ", reason='" + reason + '\'' +
-                ", adminUid=" + adminUid +
+                ", impossibleReason='" + impossibleReason + '\'' +
+                ", adoptionAuthor='" + adoptionAuthor + '\'' +
                 '}';
     }
 }

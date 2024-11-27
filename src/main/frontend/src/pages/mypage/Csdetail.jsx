@@ -10,7 +10,7 @@ const Csdetail =()=>{
 
     return(
         <div className={styles.subNaviBar}>
-         <SubNaviBar tabs={tabs}></SubNaviBar>sedf
+         <SubNaviBar tabs={tabs}></SubNaviBar>
         </div>
      )  
 }

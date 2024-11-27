@@ -11,7 +11,6 @@ const CardBox = styled.div`
     flex-direction : column;
     gap : 16px;
     overflow: hidden;
-        //반갑습니다
 `;
 
 const Card2 = ({imageFile,text1,text2})=>{  

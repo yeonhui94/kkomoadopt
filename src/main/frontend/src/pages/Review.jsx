@@ -31,10 +31,8 @@ import img28 from "../assets/img2/28.jpg";
 import img29 from "../assets/img2/29.jpg";
 import img30 from "../assets/img2/30.jpg";
 import styles from "./Review.module.css";
-import Header from "../container/header/Header";
 import Footer from "../container/Footer";
 import Divider from "../components/Divider";
-import AdoptionDropdown from "../components/DropDown";
 import SearchBar from "../components/SearchBar";
 import Dropdown from "../components/DropDown";
 import Button from "../components/Button/Button";
@@ -61,33 +59,32 @@ const data = [
 
 const Review = () => {
 
-  const options = ["최신 순", "오래된 순", "조회 수 높은 순","조회 수 낮은 순"];
+  const options = ["전체보기","최신 순", "오래된 순", "조회 수 높은 순","조회 수 낮은 순"];
 
 
   return (
     <>
-    <Header></Header>
-    <div className={styles.rwWrapper}>
-    <ParentComponent></ParentComponent>
-      <div className={styles.rwsubcontainer}>
+      <div className={styles.rwWrapper}>
+        {/* <ParentComponent></ParentComponent> */}
+        <div className={styles.rwsubcontainer}>
           <div className={styles.rwsubcontainer2}>
             <Dropdown options={options} />
             <SearchBar placeholder={"글 내용 & 글 제목"} width="300px"></SearchBar>
           </div>
-      </div>
-      <div className={styles.rwmaincontainer}>
-        <div  className={styles.rwdivider} >
-        <Divider width={"100%"} backgroundColor={"var(--line-color)"} />
         </div>
-        {data.map((slideData, index) => (
-        <Card1 key={index} images={slideData} />
-        ))}
-      </div>
-      <div className={styles.buttonContainer}>
+        <div className={styles.rwmaincontainer}>
+          <div className={styles.rwdivider} >
+            <Divider width={"100%"} backgroundColor={"var(--line-color)"} />
+          </div>
+          {data.map((slideData, index) => (
+            <Card1 key={index} images={slideData} />
+          ))}
+        </div>
+        <div className={styles.buttonContainer}>
           <Button text={"글쓰기"} />
+        </div>
       </div>
-      </div>
-    <Footer></Footer>
+      <Footer></Footer>
     </>
   );
 };

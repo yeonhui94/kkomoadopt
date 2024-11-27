@@ -8,7 +8,7 @@ import Divider from "../../components/Divider";
 
 function HeaderMain() {
   return (
-    <div className="headerGroup">
+    <div className="headerGroup" style={{gridArea: "header"}}>
     <div className={styles.header}>
       <Logo />
       <HeaderList />

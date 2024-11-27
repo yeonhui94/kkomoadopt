@@ -15,23 +15,23 @@ import JoinPage from './pages/Login/JoinPage';
 import CenterIntro from './pages/CenterIntro';
 import { createBrowserRouter, Outlet, Router, RouterProvider } from 'react-router-dom';
 import Main from './pages/Main/Main';
-import AccesstionPageContents from './contents/AccessionPageContents';
 
+import Announcement from './pages/Announcement';
 
 const router = createBrowserRouter([
   {
       path : "/", element : <Main/>,
       children : [
-        { path : "/", element : <AccesstionPageContents gridArea={"section"}/>}
+        { path : "/", element : <AccesstionPageContents gridArea={"section"}/>},
+        { path : "/community/announcement", element : <Announcement gridArea={"section"}/>}
       ]
   }
 ])
 
-function App() {
+function App() {+
   return (
     <div>
       <RouterProvider router={router} />
-      {/* <AccesstionPageContents/> */}
     </div>
   );
 }

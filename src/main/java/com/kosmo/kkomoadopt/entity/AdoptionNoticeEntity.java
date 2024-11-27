@@ -1,7 +1,7 @@
 package com.kosmo.kkomoadopt.entity;
 
 import com.kosmo.kkomoadopt.dto.AdoptStatus;
-import com.kosmo.kkomoadopt.dto.AnimalType;
+import com.kosmo.kkomoadopt.dto.NoticeCategory;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,7 +30,7 @@ public class AdoptionNoticeEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "notice_category", nullable = false)
-    private AnimalType noticeCategory;
+    private NoticeCategory noticeCategory;
 
     @Column(name = "notice_title")
     private String noticeTitle;

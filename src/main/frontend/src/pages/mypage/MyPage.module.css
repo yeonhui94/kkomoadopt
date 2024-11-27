@@ -68,7 +68,7 @@
       grid-column: 1;
     }
   
-    .mpsmallWrapper {ssss
+    .mpsmallWrapper {
       grid-column: 1;
       padding: 15px; /* 작은 화면에서 여백 줄이기 */
     }

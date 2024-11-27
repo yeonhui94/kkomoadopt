@@ -7,7 +7,7 @@ const  EditProfile =()=>{
 
     return(
        <div>
-       </div>sdfsd
+       </div>
     )
 }
 export default EditProfile;  

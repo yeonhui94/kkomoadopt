@@ -15,7 +15,7 @@ function MyPage() {
     <>
     <div className={styles.mpWrapper}>
     <Profile></Profile>
-    <div className={styles.mpsmallWrapper}>sdf
+    <div className={styles.mpsmallWrapper}>
     <Router>
       <UserNavi /> {/* 네비게이션 바 추가 */}
       <Routes>

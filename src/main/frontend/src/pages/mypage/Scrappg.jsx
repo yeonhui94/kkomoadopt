@@ -19,7 +19,7 @@ const Scrappg =()=>{
             <SearchBar width="300px"></SearchBar>
             </div>ss
             <div className={styles.SubNaviBar}>
-            <SubNaviBar tabs={tabs}></SubNaviBar>
+            <SubNaviBar tabs={tabs}>  </SubNaviBar>
             </div>
             <div className={styles.content}>
             <Card2></Card2>

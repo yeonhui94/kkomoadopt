@@ -13,7 +13,7 @@ const Mypost =()=>{
     return(
         <div className={styles.subNaviBar}>
          <SubNaviBar tabs={tabs}></SubNaviBar>
-        </div>
+        </div>ss
      )
 }
 export default Mypost;

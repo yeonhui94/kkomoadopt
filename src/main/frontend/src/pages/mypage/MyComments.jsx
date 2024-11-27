@@ -13,8 +13,8 @@ const MyComments =()=>{
 
     return(
         <div className={styles.subNaviBar}>
-         <SubNaviBar tabs={tabs}></SubNaviBar>
-        </div>
+         <SubNaviBar tabs={tabs}></SubNaviBar>sfd
+        </div>  
      )
 }
 export default MyComments;

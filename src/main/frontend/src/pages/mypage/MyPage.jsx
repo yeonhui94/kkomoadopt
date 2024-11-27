@@ -15,7 +15,7 @@ function MyPage() {
     <>
     <div className={styles.mpWrapper}>
     <Profile></Profile>
-    <div className={styles.mpsmallWrapper}>
+    <div className={styles.mpsmallWrapper}>sdf
     <Router>
       <UserNavi /> {/* 네비게이션 바 추가 */}
       <Routes>
@@ -26,7 +26,7 @@ function MyPage() {
         <Route path="/mypage/cs-detail" element={<Csdetail />} />
       </Routes>
     </Router>
-    </div>
+    </div>  
     </div>
     <Footer></Footer>
     </>

@@ -68,7 +68,7 @@
       grid-column: 1;
     }
   
-    .mpsmallWrapper {
+    .mpsmallWrapper {ssss
       grid-column: 1;
       padding: 15px; /* 작은 화면에서 여백 줄이기 */
     }
@@ -78,11 +78,11 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 20px; /* 작은 화면에서 간격 줄이기 */
+      gap: 20px; /* 작은 화면에서 간격 줄이기 */  
     }
     /* .content의 카드들이 세로로 배치되도록 설정 */
     .content {
       flex-direction: column; 
-    }
+    }  
   }
   

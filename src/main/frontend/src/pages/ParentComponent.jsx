@@ -11,7 +11,7 @@ const ParentComponent = () => {
   ];
 
   return (
-    <div>
+    <div style={{gridArea:"subheader"}}>
       <SubMenu menuItems={menuData} />
     </div>
   );

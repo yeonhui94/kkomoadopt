@@ -20,7 +20,7 @@ function Logo({ width = "140px", height = "100px" }) { // 기본값 설정
   };
 
   return (
-    <a style={aStyle} href="">
+    <a style={aStyle} href="#">
       <div style={logoStyle} />
     </a>
   );

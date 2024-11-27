@@ -7,11 +7,11 @@ import styles from "./Review.module.css";
 
 
 
-const Announcement = () => {
+const Announcement = ({gridArea}) => {
 
 
     return (
-        <div style={{gridArea: "section"}}>
+        <div style={{gridArea}}>
 
             {/* <SubMenu/> */}
             <ParentComponent></ParentComponent>

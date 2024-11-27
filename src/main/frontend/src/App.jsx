@@ -22,13 +22,18 @@ const router = createBrowserRouter([
   {
       path : "/", element : <Main/>,
       children : [
-        { path : "/", element : <AccesstionPageContents gridArea={"section"}/>},
-        { path : "/community/announcement", element : <Announcement gridArea={"section"}/>}
+        { path: "", element: <Intro/>},
+        { path: "login", element: <LoginPageContents gridArea="section"/>},
+        //  { path: "mypage", element: <gridArea="section"/>}, // 마이페이지
+        { path: "join", element: <AccesstionPageContents gridArea="section"/>},
+        // { path: "adopt", element: <gridArea="section"/>}, // 입양
+        { path: "community", element: <Announcement gridArea="section"/>},
+        { path: "customer-service", element: <Customer gridArea="section"/>},
       ]
   }
-])
+]);
 
-function App() {+
+function App() {
   return (
     <div>
       <RouterProvider router={router} />

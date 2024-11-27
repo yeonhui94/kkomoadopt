@@ -1,13 +1,12 @@
-import { Outlet } from "react-router-dom";
 import Button from "../components/Button/Button";
 import Divider from "../components/Divider";
 import styles from '../contents/AccessionPageContents.module.css';
 
 
-function AccesstionPageContents(gridArea) {
+function AccesstionPageContents({gridArea}) {
 
   return (
-    <div className={styles.Box} style={{gridArea: "section"}}>
+    <div className={styles.Box} style={{gridArea: gridArea}}>
 
       <div style={{gridArea :"contents"}}>
       <Divider text="회원가입" marTop="40px" />
@@ -60,9 +59,7 @@ function AccesstionPageContents(gridArea) {
           verticalPadding="14px"
         />
       </div>
-
       </div>
-      <Outlet />  
     </div>
     
   );

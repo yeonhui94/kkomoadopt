@@ -4,16 +4,10 @@ import { LayoutGroup } from "framer-motion";
 
 
 
-function SubNaviBar(){
+function SubNaviBar({ tabs }){
 
     const [selectedTab, setSelectedTab] = useState(0); // 현재 선택된 탭의 인덱스를 관리하는 상태
-  
-    const tabs = [
-        { label: "아이를 찾습니다", link: './intro' }, // 탭 이름과 링크 설정
-        { label: "입양후기", link: 'https://www.naver.com/' },
-        { label: "사고팝니다", link: 'https://www.google.com/' },
-        { label: "신고합니다", link: 'https://www.youtube.com/' }
-    ];
+
 
     return(
     <div>

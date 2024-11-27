@@ -4,7 +4,7 @@ import styles from './CenterIntro.module.css';
 import Screen1 from "./centerintro/screen1";
 import PinkLine from "./centerintro/PinkLine";
 import { useEffect, useRef } from "react";
-import Header from "../container/header/Header";
+// import Header from "../container/header/Header";
 import Divider from "../components/Divider";
 import Footer from "../container/Footer";
 import Screen2 from "./centerintro/Screen2";
@@ -18,8 +18,6 @@ const CenterIntro = () => {
     return (
 
 <div>
-
-    <Header className={`${centerintrosty.centint_header}`} />
 
     <div className={`${centerintrosty.centint_main}`}>
      <div className={`${centerintrosty.moving_circles} ${centerintrosty.moving_circle1}`}></div>

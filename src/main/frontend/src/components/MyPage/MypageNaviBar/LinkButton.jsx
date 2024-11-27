@@ -10,8 +10,9 @@ const StyledButton = styled.button`
   font-weight: bold;
   font-family: var(--main-font);
   font-size: 20px;
+
   &:hover {
-    background-color: var(--sub-color) ;
+    background-color: var(--sub-color);
   }
 `;
 

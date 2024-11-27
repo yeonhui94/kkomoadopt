@@ -1,11 +1,12 @@
-import Profile from "../../components/MyPage/Profile/Profile";
-import UserNavi from "../../components/MyPage/MypageNaviBar/User/UserNavi";
 
-const EditProfile =()=>{
+const  EditProfile =()=>{
+
+    const tabs = [
+
+    ];
+
     return(
        <div>
-            <Profile></Profile>
-            <UserNavi></UserNavi>
        </div>
     )
 }

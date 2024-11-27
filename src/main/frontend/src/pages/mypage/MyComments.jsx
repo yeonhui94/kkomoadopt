@@ -1,10 +1,18 @@
-
-
+import SubNaviBar from "../../components/MyPage/SubNavi/SubNaviBar";
 
 const MyComments =()=>{
+
+    const tabs = [
+        { label: "공지사항", link: './intro' }, // 탭 이름과 링크 설정
+        { label: "아이를 찾습니다", link: 'https://www.naver.com/' },
+        { label: "입양후기", link: 'https://www.naver.com/' },
+        { label: "사고팝니다", link: 'https://www.naver.com/' },
+        { label: "신고합니다", link: 'https://www.naver.com/' },
+    ];
+
     return(
        <div>
-            <h1>나의댓글 페이지</h1>
+        <SubNaviBar tabs={tabs}></SubNaviBar>
        </div>
     )
 }

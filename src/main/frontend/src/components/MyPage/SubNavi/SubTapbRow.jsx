@@ -1,7 +1,7 @@
 import { useState } from "react";
 import SubTab from "./SubTab.jsx";
 
-function SubTabRow({ items, selectedTab, onSelect, link }) {
+function SubTabRow({ items, selectedTab, onSelect }) {
 
     const [hoveredTab, setHoveredTab] = useState(null);
 

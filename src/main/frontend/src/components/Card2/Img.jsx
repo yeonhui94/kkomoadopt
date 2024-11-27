@@ -8,6 +8,9 @@ const ImageBox = styled.div`
 `;
 
 const Image = styled.img`
+  width: 100%;
+  height : 100%;
+  
   &:hover {
     transform: scale(1.2); 
     transition: transform 0.3s ease;
@@ -16,7 +19,7 @@ const Image = styled.img`
 
 const Img = ( {imageFile} ) =>{
     return(
-        <ImageBox>
+        <ImageBox >
             <Image  src={imageFile}></Image>
         </ImageBox>
     )

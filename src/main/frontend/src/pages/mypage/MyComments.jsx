@@ -13,7 +13,7 @@ const MyComments =()=>{
 
     return(
         <div className={styles.subNaviBar}>
-         <SubNaviBar tabs={tabs}></SubNaviBar>sfd
+         <SubNaviBar tabs={tabs}></SubNaviBar>
         </div>  
      )
 }

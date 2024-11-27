@@ -4,7 +4,7 @@ import Divider from "../components/Divider";
 import styles from '../contents/AccessionPageContents.module.css';
 
 
-function AccesstionPageContents() {
+function AccesstionPageContents(gridArea) {
 
   return (
     <div className={styles.Box} style={{gridArea: "section"}}>

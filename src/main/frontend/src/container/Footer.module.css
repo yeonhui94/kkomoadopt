@@ -1,11 +1,14 @@
-.asd{
+/* .asd{
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
 .footer {
-    display: flex;
+    /* display: flex; */
+    display: grid;
+    grid-template:
+        '...logo contents1 ...' 1fr /1fr 160px 600px 1fr;
     justify-content: space-between;
     align-items: center;
     width: 100%;
@@ -13,18 +16,15 @@
     background-color: #fff;
     border-top: 1px solid #eee;
     margin-bottom: 0;
+    margin-left: 0;
   }
   
   .logoSection {
-    display: flex;
+    grid-area: logo;
     align-items: center;
+    justify-content: center;
+    margin-top: 20px;
   }
-  
-  .logo {
-    width: 250px;
-    height: 250px;
-  }
-  
   .adoptionText {
     font-size: 18px;
     font-weight: bold;
@@ -33,18 +33,22 @@
   }
   
   .separator {
+    grid-area: contents1;
     width: 5px;
-    height: 150px;
+    height: 180px;
     background-color: #f2856b;
+    margin-top: 2px;
     margin-left: -10px;
     margin-right: 40px;
   }
   
   .infoSection {
+    grid-area: contents1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: left;
+    margin-left: 8px;
     flex: 1;
   }
   
@@ -76,3 +80,12 @@
     color: #999;
   }
   
+
+  @media (max-width: 760px) {
+    .footer{
+        display: grid;
+        grid-template:       
+        'logo contents1' 1fr / 160px 350px;
+
+    }
+}

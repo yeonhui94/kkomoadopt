@@ -14,6 +14,7 @@ const StyledButton = styled.button`
     margin-bottom : ${props => props.marginBottom ? props.marginBottom : '0px' };
     margin-top : ${props => props.marginTop ? props.marginTop : '0px' };
     margin-left : ${props => props.marginLeft ? props.marginLeft : '0px' };
+    margin-right : ${props => props.marginRight ? props.marginRight : '0px' };
 
     &:hover {
         color: ${props => props.hovercolor ? props.hovercolor : 'white' };/* 호버 시 텍스트는 항상 흰색 */
@@ -24,7 +25,7 @@ const StyledButton = styled.button`
 function Button({
             width,height, color,hovercolor, bg1color,backColor,
             text, horizontalPadding,verticalPadding,onClick, 
-            fontWeight, fontSize, marginBottom, marginTop, marginLeft}){
+            fontWeight, fontSize, marginBottom, marginTop, marginLeft, marginRight}){
     return(
         <StyledButton
             width={width}
@@ -41,6 +42,7 @@ function Button({
             hovercolor={hovercolor}
             onClick={onClick}
             marginLeft={marginLeft}
+            marginRight={marginRight}
         >
             {text}
         </StyledButton>

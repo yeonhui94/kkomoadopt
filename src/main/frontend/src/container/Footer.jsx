@@ -4,7 +4,7 @@ import logo from "../assets/logo.svg";
 
 const Footer = ({ marginTop }) => {
   return (
-      <footer className={styles.footer} style={{ marginTop: marginTop }}>
+      <footer className={styles.footer} style={{gridArea: "footer", marginTop: marginTop }}>
         <div className={styles.logoSection}>
           <a href="./intro" style={{height : "250px"}}>
           <img src={logo} alt="로고" className={styles.logo}/>

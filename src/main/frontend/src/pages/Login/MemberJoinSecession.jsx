@@ -8,9 +8,11 @@ import JoinSecession from "../../contents/JoinSecession";
 const StyledDiv = styled.div`
   display: grid;
   grid-template:
-    'header' 200px
+    'header' 200px'
     '... ... ...' 1fr
-    'footer' 264px / 1fr 557px 1fr; /* 푸터의 높이를 고정 */
+    '... contents ...' 600px
+    '... ... ...' 1fr
+    'footer' 264px / 1fr 607px 1fr; /* 푸터의 높이를 고정 */
   padding: 0;
   margin: 0;
   height: 100vh; /* 화면 높이에 맞춰 100vh 설정 */
@@ -21,6 +23,8 @@ const StyledDiv = styled.div`
 `;
 
 const StyledHeader = styled(Header)`
+  margin-top : 0px;
+  padding-top : 0px;
   grid-area: header;
 `;
 

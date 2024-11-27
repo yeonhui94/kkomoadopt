@@ -1,26 +1,39 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-// import CenterIntro from './pages/CenterIntro'; // 올바른 파일 경로로 수정
-import ParentComponent from './pages/ParentComponent';
-import Review from './pages/Review';
+import Footer from './container/Footer';
+import Header from "./container/header/Header";
+import Logo from './components/logo/Logo';
+import Profile from './components/MyPage/Profile/Profile';
+import JoinSecession from './contents/JoinSecession';
+import Divider from './components/Divider';
+import LoginPageContents from './contents/LoginPageContents';
+import AccesstionPage from './pages/Login/AccessionPage';
+import LoginPage from './pages/Login/LoginPage';
+import IdPasswordPage from './pages/Login/IdPasswordPage';
+import MemberJoinSecession from './pages/Login/MemberJoinSecession';
+import JoinContents from './contents/JoinContents';
+import JoinPage from './pages/Login/JoinPage';
+import CenterIntro from './pages/CenterIntro';
+import { createBrowserRouter, Outlet, Router, RouterProvider } from 'react-router-dom';
+import Main from './pages/Main/Main';
+import AccesstionPageContents from './contents/AccessionPageContents';
 
-const App = () => {
+
+const router = createBrowserRouter([
+  {
+      path : "/", element : <Main/>,
+      children : [
+        { path : "/", element : <AccesstionPageContents gridArea={"section"}/>}
+      ]
+  }
+])
+
+function App() {
   return (
-    <>
-
-    <Router>
-      <Routes>
-        {/* ParentComponent를 기본 경로로 렌더링 */}
-        <Route path="/" element={<ParentComponent />} />
-        <Route path="/Announcement" element={<h1>공지사항</h1>} />
-        <Route path="/find-child" element={<h1>아이를 찾습니다</h1>} />
-        <Route path="/adopt-review" element={<Review></Review>} />
-        <Route path="/buy-sell" element={<h1>사고팝니다</h1>} />
-        <Route path="/report" element={<h1>신고합니다</h1>} />
-      </Routes>
-    </Router>
-    </>
+    <div>
+      <RouterProvider router={router} />
+      {/* <AccesstionPageContents/> */}
+    </div>
   );
-};
+}
 
 export default App;

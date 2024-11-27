@@ -1,5 +1,6 @@
 package com.kosmo.kkomoadopt.entity;
 
+import com.kosmo.kkomoadopt.dto.PostCategory;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +10,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-@Table
+@Table(name = "community_post")
 public class CommunityPostEntity {
 
     @Id
@@ -20,9 +21,9 @@ public class CommunityPostEntity {
     @Column(name = "post_id")
     private Integer postId;
 
-    // 아이를 찾습니다, 입양후기, 사고팝니다, 신고합니다
+    @Enumerated(EnumType.STRING)
     @Column(name = "post_category")
-    private String postCategory;
+    private PostCategory postCategory;
 
     @Column(name = "post_title")
     private String postTitle;
@@ -30,7 +31,7 @@ public class CommunityPostEntity {
     @Column(name = "post_content")
     private String postContent;
 
-    @Column(name = "post_created_at", nullable = false)
+    @Column(name = "post_created_at", nullable = false, updatable = false)
     private LocalDateTime postCreatedAt;
 
     @Column(name = "post_updated_at", nullable = false)
@@ -45,15 +46,9 @@ public class CommunityPostEntity {
     @Column(name = "delete_reason", length = 10)
     private String deleteReason;
 
-    // Many CommunityPost가 하나의 User에 속함
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private UserEntity userId;
-
-    // Many CommunityPost가 하나의 Admin에 의해 관리됨
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "admin_uid", nullable = false)
-    private AdminEntity adminUid;
+    // community 작성자 nickname
+    @Column(name = "community_author", nullable = false)
+    private String communityAuthor;
 
     @Override
     public String toString() {
@@ -68,8 +63,7 @@ public class CommunityPostEntity {
                 ", postImgUrl='" + postImgUrl + '\'' +
                 ", isDeleted=" + isDeleted +
                 ", deleteReason='" + deleteReason + '\'' +
-                ", userId=" + userId +
-                ", adminUid=" + adminUid +
+                ", communityAuthor='" + communityAuthor + '\'' +
                 '}';
     }
 }

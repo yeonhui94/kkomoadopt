@@ -12,14 +12,15 @@ import Csdetail from './Csdetail'; // 상담 신청 페이지
 function MyPage() {
   return (
     <div>
-      <UserNavi />
-      <Routes>
+      {/* <UserNavi /> */}
+      마이페이지
+      {/* <Routes>
         <Route path="/mypage/scrap" element={<Scrap />} />
         <Route path="/mypage/my-posts" element={<MyPost />} />
         <Route path="/mypage/my-comments" element={<MyComments />} />
         <Route path="/mypage/edit-profile" element={<EditProfile />} />
         <Route path="/mypage/cs-detail" element={<Csdetail />} />
-      </Routes>
+      </Routes> */}
     </div>
   );
 }

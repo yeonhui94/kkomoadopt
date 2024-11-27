@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Footer from "../../container/Footer";
-import Header from "../../container/header/Header";
-import IdPasswordContents from "../../contents/IdPasswordContents"
+import IdPasswordContents from "./IdPasswordContents"
+import HeaderMain from "../../container/HeaderMain/HeaderMain";
 // 전체 레이아웃을 잡을 스타일 컴포넌트
 const StyledDiv = styled.div`
   display: grid;
@@ -19,7 +19,7 @@ const StyledDiv = styled.div`
   padding-bottom : 0;
 `;
 
-const StyledHeader = styled(Header)`
+const StyledHeader = styled(HeaderMain)`
   margin-top : 0px;
   padding-top : 0px;
   grid-area: header;

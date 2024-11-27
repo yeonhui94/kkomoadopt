@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Footer from "../../container/Footer";
-import Header from "../../container/header/Header";
-import JoinSecession from "../../contents/JoinSecession";
+import JoinSecession from "./JoinSecession";
+import HeaderMain from "../../container/HeaderMain/HeaderMain";
 
 
 
@@ -22,7 +22,7 @@ const StyledDiv = styled.div`
   justify-content: space-between; /* 콘텐츠와 푸터 사이 여백을 자동으로 설정 */
 `;
 
-const StyledHeader = styled(Header)`
+const StyledHeader = styled(HeaderMain)`
   margin-top : 0px;
   padding-top : 0px;
   grid-area: header;

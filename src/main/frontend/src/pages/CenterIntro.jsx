@@ -6,7 +6,6 @@ import PinkLine from "./centerintro/PinkLine";
 import { useEffect, useRef } from "react";
 // import Header from "../container/header/Header";
 import Divider from "../components/Divider";
-import Footer from "../container/Footer";
 import Screen2 from "./centerintro/Screen2";
 import Screen3 from "./centerintro/Screen3";
 import Screen5 from "./centerintro/Screen5";
@@ -17,7 +16,7 @@ const CenterIntro = () => {
 
     return (
 
-<div>
+<div style={{gridArea : "section"}}>
 
     <div className={`${centerintrosty.centint_main}`}>
      <div className={`${centerintrosty.moving_circles} ${centerintrosty.moving_circle1}`}></div>

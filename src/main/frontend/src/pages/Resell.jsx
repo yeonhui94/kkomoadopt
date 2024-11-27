@@ -15,11 +15,11 @@ import img10 from "../assets/Resell/10.jpg"
 import img11 from "../assets/Resell/11.jpg"
 import img12 from "../assets/Resell/12.jpg"
 import Card2 from "../components/Card2/Card2";
-import Footer from "../container/Footer";
+// import Footer from "../container/Footer";
 import Button from "../components/Button/Button";
 
 
-const Resell =()=>{
+const Resell =({gridArea})=>{
 
     const options = ["전체보기","최신 순", "오래된 순", "조회 수 높은 순","조회 수 낮은 순"];
 
@@ -42,7 +42,7 @@ const Resell =()=>{
 
 
     return(
-        <>
+        <div style={{gridArea : gridArea}}>
             <div className={styles.rwWrapper}>
                 <div className={styles.rwsubcontainer}>
                     <div className={styles.rwsubcontainer2}>
@@ -72,8 +72,8 @@ const Resell =()=>{
                 </div>
 
             </div>
-            <Footer></Footer>
-        </>
+            {/* <Footer></Footer> */}
+        </div>
     )
 }
 export default Resell;

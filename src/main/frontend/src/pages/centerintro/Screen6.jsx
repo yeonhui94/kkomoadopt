@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import centerintrosty from '../CenterIntro.module.css';
+import Map from './Map';
 
 const Screen6 = () => {
 
@@ -49,7 +50,10 @@ const Screen6 = () => {
                 </p>
             </div>
         </div>
-        <div className={`${centerintrosty.centint_img4} ${centerintrosty.centint_imgs}`}/>
+        <div className={`${centerintrosty.centint_img4} ${centerintrosty.centint_imgs}`}>
+            <Map/>
+        </div>
+    
     </motion.div>
     )
 

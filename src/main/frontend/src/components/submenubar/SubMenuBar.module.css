@@ -1,6 +1,7 @@
 .subMenuBar {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* 자동으로 항목을 맞추고 최소 150px 크기 */
+    /*     grid-template: 으로 수정 예정 */
     gap: 20px; /* 각 항목 사이에 간격을 둡니다 */
     background-color: #fff;
     padding: 0px 0; /* 위, 아래 여백 */

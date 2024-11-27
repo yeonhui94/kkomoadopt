@@ -1,8 +1,7 @@
 import styled from "styled-components";
+import JoinContents from "../../pages/Login/JoinContents";
+import HeaderMain from "../../container/HeaderMain/HeaderMain";
 import Footer from "../../container/Footer";
-import Header from "../../container/header/Header";
-
-import JoinContents from "../../contents/JoinContents";
 
 // 전체 레이아웃을 잡을 스타일 컴포넌트
 const StyledDiv = styled.div`
@@ -21,7 +20,7 @@ const StyledDiv = styled.div`
   padding-bottom : 0;
 `;
 
-const StyledHeader = styled(Header)`
+const StyledHeader = styled(HeaderMain)`
   margin-top : 0px;
   padding-top : 0px;
   grid-area: header;

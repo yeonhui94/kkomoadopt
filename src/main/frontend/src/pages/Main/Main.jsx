@@ -1,12 +1,12 @@
 import Footer from "../../container/Footer";
-import HeaderMain from "../../container/HeaderMain/HeaderMain";
+import Header from "../../container/mainheader/MainHeader";
 import styles from "./Main.module.css";
 import { Outlet } from 'react-router-dom';
 function Main() {
 
     return (
       <div className={styles['main-grid']}>
-        <HeaderMain />
+        <Header/>
         <Outlet/>
         <Footer />
       </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom"; // Link 컴포넌트를 사용
-import styles from "../HeaderMain/HeaderMain.module.css";
+import styles from "./HeaderMain.module.css";
 
 function HeaderList() {
   const menuItems = [

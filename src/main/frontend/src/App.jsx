@@ -16,7 +16,7 @@ import Intro from './pages/Main/Intro';
 import AccesstionPageContents from './pages/Login/AccessionPageContents';
 import Customer_service from './pages/customer_service/Customer_service';
 import Resell from './pages/Resell';
-import Community from './pages/community/community';
+import Community from './pages/community/Community';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import UserNavi from './components/MyPage/MypageNaviBar/User/UserNavi'; // UserNavi 컴포넌트 경로에 맞게 설정
 import Scrap from './pages/mypage/Scrappg'; // 예시 페이지

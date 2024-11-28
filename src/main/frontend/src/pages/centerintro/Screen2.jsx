@@ -27,7 +27,7 @@ const Screen2 = () => {
                 </p>
                 <p className={`${centerintrosty.centint_medium_graytext} ${centerintrosty.centint_sr2_text2}`}>
                 안타깝게도 이 중 절반에 가까운 동물들은 <br/>
-                다시 가족을 만나지 못하고 안락사 되거나 자연사 하고 있습니다.
+                다시 가족을 만나지 못하고 안락사 되거나 자연사 하고 있습니다
                 </p>
                 <div className={`${centerintrosty.centint_img1} ${centerintrosty.centint_imgs}`}/>
             </div>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>단일 파일 업로드</title>
+</head>
+<body>
+<h1>단일 파일 업로드</h1>
+<input type="file" id="fileInput"><br><br>
+<button onclick="uploadFile()">업로드</button>
+
+<div id="links"></div>
+
+<script>
+  async function uploadFile() {
+      const fileInput = document.getElementById('fileInput');
+      const file = fileInput.files[0];
+
+      if (!file) {
+          alert("파일을 선택하세요.");
+          return;
+      }
+
+      const formData = new FormData();
+      formData.append('file', file);
+
+      try {
+          const response = await fetch('/uploadFile', {
+              method: 'POST',
+              body: formData
+          });
+
+          const result = await response.text();
+          alert(result);
+
+          if (response.ok) {
+              const savedFilename = result.split(': ')[1]; // 저장된 파일명 추출
+
+              const linksDiv = document.getElementById('links');
+
+              // 다운로드 링크 생성
+              const downloadLink = document.createElement('a');
+              downloadLink.href = '/download/' + savedFilename;
+              downloadLink.textContent = '다운로드: ' + savedFilename;
+              linksDiv.appendChild(downloadLink);
+              linksDiv.appendChild(document.createElement('br'));
+
+              // 이미지 파일일 경우 이미지 보기 링크 추가
+              if (file.type.startsWith('image/')) {
+                  const imageLink = document.createElement('a');
+                  imageLink.href = '/display_image.html?filename=' + savedFilename;
+                  imageLink.textContent = '이미지 보기';
+                  linksDiv.appendChild(imageLink);
+              }
+          }
+
+      } catch (error) {
+          console.error('Error uploading file:', error);
+      }
+  }
+</script>
+</body>
+</html>

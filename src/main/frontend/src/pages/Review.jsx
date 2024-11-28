@@ -36,7 +36,7 @@ import Divider from "../components/Divider";
 import SearchBar from "../components/SearchBar";
 import Dropdown from "../components/DropDown";
 import Button from "../components/Button/Button";
-import ParentComponent from "./ParentComponent";
+
 
 
 // 이미지 데이터를 미리 정의합니다.

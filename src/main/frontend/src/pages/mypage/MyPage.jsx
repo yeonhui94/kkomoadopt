@@ -10,12 +10,13 @@ import styles from "./MyPage.module.css";
 import Footer from '../../container/Footer';
 import Scrappg from './scrappg/Scrappg';
 
-function MyPage({gridArea}) {
+function MyPage({gridArea}, {name, test1 ,btnName, btnName2}) {
   return (
-    <div style={{gridArea : gridArea}}>
+    <div style={{gridArea : gridArea}} >
     <div className={styles.mpWrapper}>
-    <Profile></Profile>
-    <div className={styles.mpsmallWrapper}>
+    <Profile
+     name={"조랭삼"} text1={"자기소개는 부끄렁 인삼이 최고"} btnName1={"프로필 변경"} btnName2={"로그아웃"}></Profile>
+    <div className={styles.mpsmallWrapper} >
     {/* <Router> */}
       <UserNavi /> {/* 네비게이션 바 추가 */}
      {/* <Routes>

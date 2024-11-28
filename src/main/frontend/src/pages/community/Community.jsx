@@ -3,7 +3,7 @@ import React from 'react';
 import SubMenuBar from '../../components/submenubar/SubMenuBar';
 import { Outlet, Route, Routes } from 'react-router-dom';
 
-function Community() {
+function Community({gridArea}) {
   const menuItems = [
     { name: '공지사항', path: '/notice' },
     { name: '아이를 찾습니다', path: '/find-child' },
@@ -13,7 +13,7 @@ function Community() {
   ];
 
   return (
-    <div>
+    <div style={{gridArea : gridArea}}>
       <SubMenuBar menuItems={menuItems} />
       <Outlet/>
     </div>

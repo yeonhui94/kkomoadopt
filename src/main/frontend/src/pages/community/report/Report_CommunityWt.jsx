@@ -1,17 +1,15 @@
-// import styled from "styled-components";
-import Header from "../container/header/Header";
-import Footer from "../container/Footer";
-import Divider from "../components/Divider";
-import styles from "./CommunityWt.module.css";
+import styled from "styled-components";
+// import Header from "../container/header/Header";
+// import Footer from "../../container/Footer";
+import Divider from "../../../components/Divider";
+import styles from "../CommunityWt.module.css";
+import { useOutletContext } from "react-router-dom";
 
-const CommunityWt = ({ text = "아이를 찾습니다" }) => {
+const Report_CommunityWt = ({ gridArea}) => {
+
   return (
-    <div className="commwrapper">
-      <Header />
-      <div className={styles.mainContainer}>
-        <h1>{text}</h1>
-        <Divider />
-
+    <div 
+    style={{gridArea : gridArea}}>
         {/* 등록 버튼 */}
         <div className={styles.submitButtonContainer}>
           <button className={styles.smallButton}>등록</button>
@@ -35,11 +33,9 @@ const CommunityWt = ({ text = "아이를 찾습니다" }) => {
         {/* 내용 입력 */}
         <div className={styles.textAreaContainer}>
           <h3>내용</h3>
-          <textarea className={styles.textArea} defaultValue={`\n동물 종류:\n\n잃어버린 날짜:\n잃어버린 장소:\n\n연락처:\n필수정보:\n알아야할 내용:\n\n사진첨부\n`} />
+          <textarea className={styles.textArea} defaultValue={`\n신고대상:\n\n신고 게시물 번호:\n신고 내용:\n\n첨부자료:\n`} />
         </div>
-      </div>
-      <Footer />
     </div>
   );
 };
-export default CommunityWt;
+export default Report_CommunityWt;

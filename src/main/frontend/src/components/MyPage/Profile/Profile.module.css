@@ -29,6 +29,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    min-width: 234px;
+    min-height:234px
 }
 
 
@@ -60,7 +62,26 @@
 }
 
 @media (max-width: 768px) {
-    .profile-container{
-        height: 500px;
+    .profile-container {
+        width: 100%;
+        min-width: 600px;
+        height: 468px;
+        display: flex;
+        padding: 40px;
+    }
+    .profile-contents{
+        flex-direction: column;
+        width: 100%;
+    }
+    .smallWrapper{
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+
+    }
+    .profile-btns{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start
     }
 }

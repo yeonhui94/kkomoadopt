@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Divider from '../../components/Divider';
 import InputBox from '../../components/InputBox';
 import Button from '../../components/Button/Button';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import styles from "../../pages/Login/JoinContents.module.css";
 
 
@@ -50,7 +50,17 @@ const CheckboxWrapper = styled.div`
   padding: 10px;
 `;
 
+
+
+
 function JoinContents() {
+
+  const navigate = useNavigate();
+
+  const handleButtonClick1 = () => {
+    // 버튼 클릭 시 이동할 주소를 입력
+    navigate('/welcome'); // '/signup'으로 이동
+  };
   return (
     <div className={styles.JoinContentsContainer} style={{gridArea: "section"}}>
       <div className={styles.title}>
@@ -162,7 +172,7 @@ function JoinContents() {
               <input type="checkbox" id="checkbox" style={{ width: "18px", height: "18px", marginLeft: "10px" }} />
             </CheckboxWrapper>
 
-            <Button itype="submit" text="회원가입" width="100%" height="60px"/>  
+            <Button text="회원가입" width="100%" height="60px" onClick={handleButtonClick1}/>  
         </form>
         <Outlet/>
     </div>

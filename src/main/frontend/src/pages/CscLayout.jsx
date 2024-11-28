@@ -56,7 +56,6 @@ const CscLayout = () => {
         <CscMenuLink to="/csc/qna" text="Q&A" />
         <CscMenuLink to="/csc/consultation" text="방문 상담 신청" />
       </CscMenu>
-      <Outlet />
     </div>
   );
 };

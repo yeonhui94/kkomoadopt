@@ -22,7 +22,7 @@ const router = createBrowserRouter([
         { path: "/community", element: <Community gridArea="section"/>,
           children : [
             { path: "", element: <Announcement />},
-            { path: "resell", element: <Resell/>},
+            { path: "resell", element: <Resell gridArea="subsection"/>},
             { path: "", element: <Announcement gridArea="section"/>},
             { path: "", element: <Announcement gridArea="section"/>},
           ]

@@ -1,6 +1,7 @@
+
 import React from 'react';
 import SubMenuBar from '../../components/submenubar/SubMenuBar';
-import { Route, Routes } from 'react-router-dom';
+import { Outlet, Route, Routes } from 'react-router-dom';
 
 function Community() {
   const menuItems = [
@@ -13,16 +14,17 @@ function Community() {
 
   return (
     <div>
-
+        
       <SubMenuBar menuItems={menuItems} />
-      <Routes>
+      <Outlet/>
+      {/* <Routes>
         <Route path="/notice" element={<p>공지사항</p>} />
         <Route path="/find-child" element={<p>아이를 찾습니다.</p>} />
         <Route path="/adoption-review" element={<p>입양후기</p>} />
         <Route path="/trade" element={<p>사고팝니다.</p>} />
         <Route path="/report" element={<p>신고합니다.</p>} />
-
-      </Routes>
+        
+      </Routes> */}
 
 
     </div>
@@ -30,3 +32,5 @@ function Community() {
 };
 
 export default Community;
+
+

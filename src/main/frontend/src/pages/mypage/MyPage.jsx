@@ -14,12 +14,12 @@ function MyPage() {
   return (
     <>
     <div className={styles.mpWrapper}>
-    <Profile name={"조랭삼"} text1={"자기소개는 부끄렁 인삼이 최고"} btnName1={"프로필 변경"} btnName2={"로그아웃"}></Profile>
+    <Profile></Profile>
     <div className={styles.mpsmallWrapper}>
     <Router>
       <UserNavi /> {/* 네비게이션 바 추가 */}
       <Routes>
-        <Route path="/mypage/scrap" element={<Scrap/>} />
+        <Route path="/mypage/scrap" element={<Scrap />} />
         <Route path="/mypage/my-posts" element={<MyPost />} />
         <Route path="/mypage/my-comments" element={<MyComments />} />
         <Route path="/mypage/edit-profile" element={<EditProfile />} />

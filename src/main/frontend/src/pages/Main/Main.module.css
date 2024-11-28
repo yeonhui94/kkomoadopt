@@ -33,6 +33,30 @@
     display: grid;
     grid-template:
         'subsection subsection subsection' 1fr / 1fr 1fr 1fr;
-    height: 100vh;
+    
+}
+
+@media (max-width: 1024px) {
+    .sub-grid{
+        display: grid;
+        grid-template:
+        'subsection subsection subsection' 1fr / 1fr 1fr 1fr;
+    
+    }
+}
+
+@media (max-width: 760px) {
+    .sub-grid{
+        display: grid;
+        grid-template:
+        'subsection subsection subsection' 1fr / 1fr 1fr 1fr;
+
+    }
+}
+
+.content-grid {
+    display: grid;
+    grid-template:
+        'content content content' 1fr / 1fr 1fr 1fr;
 }
 

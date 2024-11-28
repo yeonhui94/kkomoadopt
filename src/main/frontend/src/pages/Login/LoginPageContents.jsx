@@ -110,7 +110,7 @@ function LoginPageContents({text, gridArea}) {
         {/* StyledALink들을 가로로 배치하는 부모 wrapper 추가 */}
         <StyledALinkWrapper>
           <StyledALink href="#"><p style={{fontSize:"15px"}}>ID/PW찾기</p></StyledALink>
-          <StyledALink href="#" onClick={handleClick}><p style={{fontSize:"15px", paddingLeft : "5px"}}>회원가입</p></StyledALink>
+          <StyledALink href="http://localhost:5173/join" onClick={handleClick}><p style={{fontSize:"15px", paddingLeft : "5px"}}>회원가입</p></StyledALink>
         </StyledALinkWrapper>
 
 

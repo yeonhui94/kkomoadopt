@@ -1,0 +1,132 @@
+/* MainHeader.module.css */
+.headerGroup {
+  padding: 50px 20px 0px 20px;
+  background-color: #fff;
+  
+}
+.header {
+  display: grid;
+  grid-template-columns: 2fr 4fr 1fr 1fr; 
+  align-items: center;
+  justify-items: center;
+  white-space: nowrap;
+  
+}
+
+.navbar {
+  padding: 0px 30px 0px 30px;
+}
+
+.menuList {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  /* grid-area: menulist; */
+  gap: 8vw;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: var(--main-font);
+}
+
+.menuItem {
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  white-space: nowrap;
+}
+
+.myPageicon {
+  padding: 20px;
+}
+
+.menuItem:hover {
+  color: #ff5733;
+}
+
+.menuItem::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #ff5733;
+  transition: width 0.3s;
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+}
+
+.menuItem:hover::after {
+  width: 100%;
+}
+
+.menuLink {
+  text-decoration: none;
+  color: black;
+  transition: color 0.3s;
+}
+
+.menuLink:hover {
+  color: #ff5733;
+}
+
+.icongrid{
+  /* grid-area: icon; */
+  grid-column : 3;
+  justify-self: end;
+  padding-right: 5px ;
+  /* width: 90px; */
+}
+
+
+@media(max-width : 1024px){
+  .header {
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 50px;  */
+    /* 간격 수정하세요 */
+    display: grid;
+    grid-template: 
+    "logo logo logo" 1fr
+    "list icon btn" 1fr / 1fr 1fr 1fr;
+  }
+    .logo{
+      grid-area: logo;
+    }
+    .icongrid{
+      grid-area: icon;
+    }
+    .btn{
+      grid-area: btn;
+    }
+    .navbar{
+      grid-area: list;
+    }
+}
+
+
+@media(max-width : 768px){
+  .header {
+    display: grid;
+    grid-template: 
+    "... ... logo ... icon btn ... ..." 1fr
+    "... ... list list list list ... ..." 1fr /20px  1fr 1fr 1fr 1fr 1fr 1fr 20px;
+  }
+    .logo{
+      grid-area: logo;
+    }
+    .icongrid{
+      grid-area: icon;
+    }
+    .btn{
+      grid-area: btn;
+    }
+    .navbar{
+      grid-area: list;
+      text-align: center;
+      justify-content: center;
+    }
+}

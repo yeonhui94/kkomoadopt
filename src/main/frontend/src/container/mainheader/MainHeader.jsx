@@ -1,23 +1,31 @@
 import React from 'react';
 import Logo from '../../components/logo/Logo';
-import Mypageicon2 from '../../components/header/MyPageIcon2';
+import Mypageicon2 from '../../components/header/Mypageicon2';
 import Button from '../../components/Button/Button';
 import HeaderList from '../../components/header/HeaderList';
-import styles from "../../components/header/HeaderMain.module.css";
+import styles from '../../components/header/MainHeader.module.css';
 import Divider from '../../components/Divider';
 
-function MainHeader() {
+const MainHeader = () => {
   return (
-    <div className="headerGroup" style={{gridArea: "header"}}>
+    <div className={styles.headerGroup}>
       <div className={styles.header}>
-        <Logo />
-        <HeaderList /> {/* 메뉴 네비게이션 */}
-        <Mypageicon2 className="myPageicon"/>
-        <Button text={"로그아웃"}/>
+        <div className={styles.logo}>
+          <Logo />
+        </div>
+        <HeaderList />
+        <div className={styles.icongrid}>
+          <Mypageicon2 />
+        </div>
+        <div className={styles.btn}>
+          <Button text="로그아웃" />
+        </div>
       </div>
-      <Divider width={"100%"} paddingbt={"5px"} backgroundColor={"var(--line-color)"}/>
+      <div className={styles.divider}>
+        <Divider width="100%" paddingbt="5px" backgroundColor="var(--line-color)" marTop={"0px"}/>
+      </div>
     </div>
   );
-}
+};
 
 export default MainHeader;

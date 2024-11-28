@@ -67,12 +67,11 @@ const Resell =({gridArea})=>{
                         </div>
                     </div>
 
-                <div className={styles.buttonContainer}>
+                <a className={styles.buttonContainer} href="http://localhost:5173/commu-resell/communitywt">
                     <Button text={"글쓰기"} />
-                </div>
+                </a>
 
             </div>
-            {/* <Footer></Footer> */}
         </div>
     )
 }

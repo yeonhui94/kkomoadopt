@@ -1,0 +1,59 @@
+.Box{
+     display: grid;
+     grid-template:
+        '... contents ...' 1fr / 1fr 607px 1fr;
+
+    margin-bottom: 80px;
+}
+
+.loginBox{
+  height: 426px; /* 컨텐츠에 맞게 높이를 자동으로 조정 */
+  border: 4px solid var(--line-color);
+  border-radius: 10px;
+  margin-top: 74px;
+  padding-top: 74px;
+  display: grid;
+  
+  align-items: center; /* 가운데 정렬 */
+  position: relative; /* 밑줄을 절대 위치로 배치하려면 parent 요소에 relative 설정 필요 */
+  padding-bottom: 24px;
+}
+
+.btn1 {
+    margin-bottom: 12px;
+}
+
+.btn2 {
+    margin-bottom: 12px; /* 각 버튼들 사이에 12px 간격 추가 */
+}
+
+.btn3 {
+    margin-bottom: 12px; /* 각 버튼들 사이에 12px 간격 추가 */
+}
+
+
+.lineBox {
+  display: flex;
+  align-items: center;
+  justify-content : center;
+  position: relative;
+  margin-bottom: 12px; /* 텍스트와 버튼 간의 간격 */
+}
+
+.line {
+    flex-grow: 1; /* 밑줄을 가능한 길게 확장 */
+    height: 2px; /* 밑줄 두께 */
+    background-color: var(--line-color); /* 밑줄 색상 */
+}
+
+.textSpan{
+  position: absolute;
+  background-color: white; /* 밑줄 위에 텍스트를 보이게 하기 위해 배경을 흰색으로 설정 */
+  padding: 0 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--title-black);
+  text-align: center; /* 텍스트 중앙 정렬 */
+  left: 50%; /* 텍스트를 중앙으로 배치 */
+  transform: translateX(-50%);
+}

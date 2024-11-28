@@ -11,12 +11,16 @@ import UserNavi from './components/MyPage/MypageNaviBar/User/UserNavi'
 import FAQ from './container/FAQ/FAQ';
 import CenterIntro from './pages/CenterIntro';
 import SubNaviBar from './components/MyPage/SubNavi/SubNaviBar';
-import Scrappg from './pages/mypage/Scrappg';
+import Scrappg from './pages/mypage/scrappg/Scrappg';
 import Mypost from './pages/mypage/MyPost';
 import MyComments from './pages/mypage/MyComments';
 import EditProfile from './pages/mypage/EdifProfile';
 import Csdetail from './pages/mypage/Csdetail';
 import MyPage from './pages/mypage/MyPage';
+import Scrap_all from './pages/mypage/scrappg/scrap_all';
+import Scrap_dog from './pages/mypage/scrappg/scrap_dog';
+import Scrap_cat from './pages/mypage/scrappg/scrap_cat';
+import Scrap_etc from './pages/mypage/scrappg/scrap_etc ';
 
 
 const router = createBrowserRouter([
@@ -44,7 +48,14 @@ const router = createBrowserRouter([
         { path: "/CenterIntro", element: <CenterIntro gridArea="section"/>},
         { path: "/mypage", element: <MyPage gridArea="section"/>,
           children : [
-            { path: "", element: <Scrappg gridArea="subsection" />},
+            { path: "", element: <Scrappg gridArea="subsection" />,
+              children : [
+                { path: "", element: <Scrap_all gridArea="content" />},
+                { path: "scrap-dog", element: <Scrap_dog gridArea="content" />},
+                { path: "scrap-cat", element: <Scrap_cat gridArea="content" />},
+                { path: "scrap-etc", element: <Scrap_etc gridArea="content" />},
+              ]
+            },
             { path: "mypost", element: <Mypost gridArea="subsection" />},
             { path: "mycomments", element: <MyComments gridArea="subsection" />},
             { path: "edit-profile", element: <EditProfile gridArea="subsection" />},

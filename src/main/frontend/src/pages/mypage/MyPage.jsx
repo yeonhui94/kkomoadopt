@@ -8,7 +8,7 @@ import Csdetail from '../../pages/mypage/Csdetail';
 import Profile from "../../components/MyPage/Profile/Profile";
 import styles from "./MyPage.module.css";
 import Footer from '../../container/Footer';
-import Scrappg from '../../pages/mypage/Scrappg';
+import Scrappg from './scrappg/Scrappg';
 
 function MyPage({gridArea}) {
   return (

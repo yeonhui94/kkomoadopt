@@ -4,7 +4,7 @@ import styles from "./MyPage.module.css";
 import SearchBar from "../../components/SearchBar";
 import Card2 from "../../components/Card2/Card2";
 
-const Scrappg =()=>{
+const Scrappg =({gridArea})=>{
 
     const tabs = [
         { label: "전체", link: './intro' }, // 탭 이름과 링크 설정
@@ -14,7 +14,8 @@ const Scrappg =()=>{
     ];
 
     return(
-       <div className={styles.mpcontainer}>
+       <div className={styles.mpcontainer} 
+        style={{gridArea : gridArea}}>
             <div className={styles.SearchBar}>
             <SearchBar width="300px"></SearchBar>
             </div>ss

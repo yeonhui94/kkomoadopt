@@ -19,8 +19,9 @@ const SubMenuBar = ({ menuItems }) => {
         </NavLink>
       ))}
     </div>
-    <Divider width={"100%"} height={"4px"} marTop={"1px"}/>
-
+    <div className={styles.divider}>
+    <Divider display={"block"} width={"100%"} height={"4px"} marTop={"0px"}/>
+    </div>
     </>
   );
 };

@@ -1,17 +1,16 @@
-// import styled from "styled-components";
+import styled from "styled-components";
 // import Header from "../container/header/Header";
 // import Footer from "../../container/Footer";
 import Divider from "../../../components/Divider";
-import styles from "../communitywt/CommunityWt.module.css";
+import styles from "../CommunityWt.module.css";
+import { Outlet } from "react-router-dom";
+import { useState } from "react";
 
-const CommunityWt = ({ text = "아이를 찾습니다" }) => {
+
+const Resell_CommunityWt = ({ text = "사고팝니다" , gridArea}) => {
   return (
-    <div className="commwrapper">
-      <Header />
-      <div className={styles.mainContainer}>
-        <h1>{text}</h1>
-        <Divider />
-
+    <div 
+    style={{gridArea : gridArea}}>
         {/* 등록 버튼 */}
         <div className={styles.submitButtonContainer}>
           <button className={styles.smallButton}>등록</button>
@@ -35,11 +34,9 @@ const CommunityWt = ({ text = "아이를 찾습니다" }) => {
         {/* 내용 입력 */}
         <div className={styles.textAreaContainer}>
           <h3>내용</h3>
-          <textarea className={styles.textArea} defaultValue={`\n동물 종류:\n\n잃어버린 날짜:\n잃어버린 장소:\n\n연락처:\n필수정보:\n알아야할 내용:\n\n사진첨부\n`} />
+          <textarea className={styles.textArea} defaultValue={`\n물품명:\n\n\n번호:\n\n\n판매하고 싶은 금액:\n구매하고 싶은 금액:\n\n상품 상세설명:\n\n\n사진첨부\n`} />
         </div>
-      </div>
-      <Footer />
     </div>
   );
 };
-export default CommunityWt;
+export default Resell_CommunityWt;

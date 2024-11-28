@@ -1,0 +1,63 @@
+.welcomeContainer{
+    display: grid;
+  grid-template:
+       '... logo1 ...' 200px
+       '... contents1 ...' 100px
+       '... contents2 ...' 10px
+       '... contents3 ...' 70px
+       '... contents4 ...' 30px
+       '... btn1 ...' 100px / 1fr 600px 1fr;
+  padding: 0px;
+  width : 100%;
+  height: 700px;
+  justify-content: center;
+  align-items: center
+}
+
+.a1 {
+    display: block;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    grid-area: logo1;
+ 
+}
+
+.hText1 {
+    text-align: center;
+    grid-area: contents1;
+}
+
+.p1 {
+    text-align: center;
+    grid-area: contents2;
+}
+
+.p2 {
+    text-align: center;
+    grid-area: contents3;
+}
+
+.p3 {
+    text-align: center;
+    grid-area: contents4;
+}
+
+.btn1 {
+    
+    text-align: center;
+    grid-area : btn1;
+}
+@media (max-width : 768px){
+    .welcomeContainer{
+        display: grid;
+        grid-template:
+           'logo1' 200px
+           'contents1' 200px
+           'contents2' 5px
+           'contents3' 60px
+           'contents4' 30px
+           'btn1' 1fr / 1fr;
+         
+    }
+} 

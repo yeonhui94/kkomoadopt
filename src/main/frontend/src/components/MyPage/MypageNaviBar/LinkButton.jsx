@@ -9,19 +9,39 @@ const StyledButton = styled.button`
   border: 3px solid var(--sub-color);
   font-weight: bold;
   font-family: var(--main-font);
-  font-size: 20px;
+  font-size: ${(props) => props.fontSize || "20px"};
 
   &:hover {
     background-color: var(--sub-color);
   }
+
+  @media (max-width: 1256px) {
+    font-size: 1rem;
+    padding: 12px 0px;
+  }
+
+  @media (max-width: 1056px) {
+    font-size: 0.7rem;
+  }
+
+  @media (max-width: 865px) {
+    font-size: 0.5rem;
+    padding: 12px 0px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+    padding: 12px 0px;
+  }
 `;
 
-function LinkButton({ text, selected, onClick, horizontalPadding }) {
+function LinkButton({ text, selected, onClick, horizontalPadding, fontSize }) {
   return (
     <StyledButton
       selected={selected}
       horizontalPadding={horizontalPadding}
       onClick={onClick}
+      fontSize={fontSize || "1rem"}
     >
       {text}
     </StyledButton>

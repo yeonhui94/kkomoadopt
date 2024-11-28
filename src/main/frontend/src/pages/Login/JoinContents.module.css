@@ -1,0 +1,28 @@
+.JoinContentsContainer{
+    display: grid;
+    grid-template:
+       '... title ...'100px
+       '... subTitle ...' 100px
+       '... contents1 ...' 1fr/ 1fr 607px 1fr;
+    margin-top : 50px;
+    padding: 20px;
+    width: 100%;
+    margin-bottom: 50px;
+}
+.title{
+    grid-area: title;
+}
+
+.subTitle{
+    grid-area: subTitle;
+}
+.form1 {
+    padding: 20px;
+    grid-area: contents1;
+}
+
+.div2{
+    display : flex;
+  border : 4px solid var(--line-color);
+  border-radius : 10px;
+}

@@ -7,22 +7,27 @@ import EditProfile from '../../pages/mypage/EdifProfile';
 import Csdetail from '../../pages/mypage/Csdetail';
 import Profile from "../../components/MyPage/Profile/Profile";
 import styles from "./MyPage.module.css";
-import Footer from '../../container/Footer';
 import Scrappg from './scrappg/Scrappg';
+import ScrapAll from './scrappg/ScrapAll';
 
-function MyPage({gridArea}, {name, test1 ,btnName, btnName2}) {
+function MyPage({ gridArea }) {
   return (
-    <div style={{gridArea : gridArea}} >
-    <div className={styles.mpWrapper}>
-    <Profile
-     name={"조랭삼"} text1={"자기소개는 부끄렁 인삼이 최고"} btnName1={"프로필 변경"} btnName2={"로그아웃"}></Profile>
-    <div className={styles.mpsmallWrapper} >
-    {/* <Router> */}
-      <UserNavi /> {/* 네비게이션 바 추가 */}
-    <Outlet/>
-    </div>  
-    </div>
-    {/* <Footer></Footer> */}
+    <div style={{ gridArea: gridArea }} >
+      <div className={styles.mpWrapper}>
+        <Profile name={"조인삼"} text1={"조인삼 기여워"} btnName1={"프로필 변경"} btnName2={"로그아웃"}></Profile>
+        <div className={styles.mpsmallWrapper}>
+          <Router>
+            <UserNavi /> {/* 네비게이션 바 추가 */}
+            <Routes>
+              <Route path="/mypage/scrap" element={<ScrapAll />} />
+              <Route path="/mypage/my-posts" element={<MyPost />} />
+              <Route path="/mypage/my-comments" element={<MyComments />} />
+              <Route path="/mypage/edit-profile" element={<EditProfile />} />
+              <Route path="/mypage/cs-detail" element={<Csdetail />} />
+            </Routes>
+          </Router>
+        </div>
+      </div>
     </div>
   );
 }

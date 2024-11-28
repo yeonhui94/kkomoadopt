@@ -1,11 +1,23 @@
 .Wrapper {
     height: 100vh;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
+    z-index: 0;
+    position: relative;
   }
-
-  
+  .zindexh1{
+    z-index: 1;
+    position: absolute;
+    top: 13%;
+    left: 53%;
+    color: var(--main-color);
+  }
+  .upcontent{
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+  }
   
   .boxWrap {
     overflow: hidden;
@@ -34,14 +46,15 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    padding: 20px;
+    padding: 30px;
   }
   .smallWrapper2{
     display: flex;
+    height: 70%;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 30px;
+    justify-content: flex-end;
+    gap: 30px
   }
 
   .smallWrapper3{
@@ -52,16 +65,42 @@
     gap: 10px;
   }
   
+  .section3TitleWrapper {
+    width: 100%;
+    text-align: center; /* 가운데 정렬 */
+    margin-bottom: 20px; /* 제목과 다음 요소 사이에 여백 */
+  }
+
+  .section3Title {
+    font-size: 36px; /* 큰 글자 크기 */
+    font-weight: bold; /* 굵은 글씨 */
+    color: var(--main-color); /* 원하는 색상으로 변경 */
+    margin: 0; /* 기본 margin 제거 */
+    padding: 0; /* 불필요한 padding 제거 */
+    text-transform: uppercase; /* 제목을 대문자로 */
+  }
+
   @media (max-width: 768px) {
-    /* 모든 SectionBox 숨기기 */
-    .Wrapper > div {
+    .Wrapper{
+      display: grid;
+      grid-template-columns: 1fr;
+      justify-items: center;
+      align-content: space-evenly;
+    }
+    .zindexh1{
       display: none;
     }
-    
-    /* 두 번째 SectionBox만 보이게 설정 */
-    .Wrapper > :nth-child(2) {
+
+    .Wrapper > :nth-child(1),
+    .Wrapper > :nth-child(3),
+    .thirdbox{
+      display: none;
+    }
+
+    .upcontent{
       display: block;
     }
+
   }
 
   @media (max-width: 1024px) {
@@ -77,8 +116,8 @@
   }
   .progressBarFill{
     height: 100%;
-    background-color: #F8755B;
-    border-radius: 2px;
+    background-color: var(--main-color);
+    border-radius: 5px;
     transition: width 0.5s ease-in-out;
   }
   .progressBar {
@@ -87,7 +126,7 @@
     width: 200px;
     height: 5px;
     background-color: #ddd;
-    border-radius: 2px;
+    border-radius: 5px;
   }
   .playPauseButton{
     color: var(--main-color);

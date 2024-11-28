@@ -15,6 +15,7 @@ const SubMenuBar = ({ menuItems }) => {
             isActive ? `${styles.menuItem} ${styles.active}` : styles.menuItem
           }
         >
+          
           {item.name}
         </NavLink>
       ))}

@@ -8,7 +8,7 @@ const StyledDiv = styled.div`
   padding: 0;
   display: flex;
   height: 70px;
-  align-items: stretch;
+  align-items: stretch;   
   justify-content: space-between;
   
 `;

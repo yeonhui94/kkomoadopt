@@ -9,7 +9,7 @@ const StyledImg = styled.img`
 
 const Mypageicon2 = () => {
   return (
-    <a href="https://rummikub-apps.com/">
+    <a href="http://localhost:5173/mypage">
       <StyledImg src={Mypageimg} alt="Mypage" />
     </a>
   );

@@ -10,16 +10,18 @@ const MainHeader = () => {
   return (
     <div className={styles.headerGroup}>
       <div className={styles.header}>
-        <div className={styles.logo}>
+        <a className={styles.logo}
+        href='http://localhost:5173'>
           <Logo />
-        </div>
+        </a>
         <HeaderList />
         <div className={styles.icongrid}>
           <Mypageicon2 />
         </div>
-        <div className={styles.btn}>
+        <a className={styles.btn}
+        href='http://localhost:5173/login'>
           <Button text="로그아웃" />
-        </div>
+        </a>
       </div>
       <div className={styles.divider}>
         <Divider width="100%" paddingbt="5px" backgroundColor="var(--line-color)" marTop={"0px"}/>

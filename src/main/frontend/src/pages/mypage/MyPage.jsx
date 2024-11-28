@@ -19,14 +19,6 @@ function MyPage({gridArea}, {name, test1 ,btnName, btnName2}) {
     <div className={styles.mpsmallWrapper} >
     {/* <Router> */}
       <UserNavi /> {/* 네비게이션 바 추가 */}
-     {/* <Routes>
-        <Route path="/mypage/scrap" element={<Scrappg />} />
-        <Route path="/mypage/my-posts" element={<MyPost />} />
-        <Route path="/mypage/my-comments" element={<MyComments />} />
-        <Route path="/mypage/edit-profile" element={<EditProfile />} />
-        <Route path="/mypage/cs-detail" element={<Csdetail />} />
-      </Routes>
-    </Router>  */}
     <Outlet/>
     </div>  
     </div>

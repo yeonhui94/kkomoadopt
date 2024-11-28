@@ -39,7 +39,6 @@ const CenterIntro = () => {
             <Screen6/>
         </div>
      </div>
-        <Footer className={`${centerintrosty.centint_footer}`}/>
     </div>
         
 

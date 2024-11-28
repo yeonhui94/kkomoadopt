@@ -9,6 +9,7 @@ import Resell from './pages/Resell';
 import { createBrowserRouter, Router, RouterProvider, Routes } from 'react-router-dom';
 import UserNavi from './components/MyPage/MypageNaviBar/User/UserNavi'
 import FAQ from './container/FAQ/FAQ';
+import CenterIntro from './pages/CenterIntro';
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,7 @@ const router = createBrowserRouter([
             { path: "", element: <FAQ gridArea="subsection"/>},
           ]
         },
+        { path: "/CenterIntro", element: <CenterIntro gridArea="section"/>},
       ]
   }
 ]);

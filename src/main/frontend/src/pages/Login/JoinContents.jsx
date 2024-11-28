@@ -2,13 +2,9 @@ import styled from 'styled-components';
 import Divider from '../../components/Divider';
 import InputBox from '../../components/InputBox';
 import Button from '../../components/Button/Button';
-import InputField from '../../components/InputField';
+import { Outlet } from 'react-router-dom';
+import styles from "../../pages/Login/JoinContents.module.css";
 
-const StyledDiv = styled.div`
-  margin-top : 50px;
-  padding: 20px;
-  width: 707px;
-`;
 
 const StyledForm1 = styled.form`
   display : flex;
@@ -31,10 +27,6 @@ const StyledDividerWrapper = styled.div`
     height: 2px;
     background-color: var(--line-color, #000); /* var(--line-color)를 사용할 수 있도록 설정 */
   }
-`;
-
-const StyledForm = styled.form`
-  padding: 20px;
 `;
 
 const StyledText = styled.p`
@@ -60,14 +52,17 @@ const CheckboxWrapper = styled.div`
 
 function JoinContents() {
   return (
-    <StyledDiv>
-      <Divider text="회원가입" />
-      <StyledDividerWrapper marTop="50px">
+    <div className={styles.JoinContentsContainer} style={{gridArea: "section"}}>
+      <div className={styles.title}>
+      <Divider text="회원가입"  />
+      </div>
+
+      <StyledDividerWrapper marTop="50px" className={styles.subTitle}>
         <Divider text="회원가입 정보" fontSize="20px" marBot="-4px" />
       </StyledDividerWrapper>
 
 
-      <StyledForm>
+      <form className={styles.form1}>
             <InputBox 
                 itype="text"
                 fontSize="20px" 
@@ -150,7 +145,7 @@ function JoinContents() {
                 
 
         <StyledText>개인정보 이용 약관 동의</StyledText>
-        <StyleDiv2>
+        <div className={styles.div2}>
             <p>개인정보보호법에 따라 네이버에 회원가입 신청하시는 분께 수집하는 개인정보의 항목, 개인정보의 수집 및 이용목적, 
                     개인정보의 보유 및 이용기간, 동의 거부권 및 동의 거부 시 불이익에 관한 사항을 안내 드리오니 자세히 읽은 후 동의하여 주시기 바랍니다.
 
@@ -160,7 +155,7 @@ function JoinContents() {
                     이용자가 메일, 캘린더, 카페, 블로그 등과 같이 개인화 혹은 회원제 서비스를 이용하기 위해 회원가입을 할 경우, 
                     네이버는 서비스 이용을 위해 필요한 최소한의 개인정보를 수집합니다.</p>
 
-        </StyleDiv2>
+        </div>
         
             <CheckboxWrapper>
               <label htmlFor="checkbox">약관에 동의 하십니까</label>
@@ -168,9 +163,9 @@ function JoinContents() {
             </CheckboxWrapper>
 
             <Button itype="submit" text="회원가입" width="100%" height="60px"/>  
-        </StyledForm>
-        
-    </StyledDiv>
+        </form>
+        <Outlet/>
+    </div>
   );
 }
 

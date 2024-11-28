@@ -1,7 +1,9 @@
-import styled from "styled-components";
-import Logo from "../../components/logo/Logo";
+import styled from "styled-components"
 import Button from "../../components/Button/Button";
 import logo from "../../assets/logo.svg";
+import styles from "../../pages/Login/JoinSecession.module.css";
+import { Outlet } from "react-router-dom";
+import Logo from "../../components/logo/Logo";
 
 // 텍스트 데이터 관리
 const texts = {
@@ -12,59 +14,50 @@ const texts = {
   btnName: "메인 페이지로 이동",
 };
 
-const StyledDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 0px;
-  margin : 0px;
-  justify-content: center;
-  align-items: center;
-`;
 
-const StyledLogo = styled.img`
-  margin-top : -150px;
-  width: 400px;  /* 원하는 너비로 설정 */
-  height: 400px;  /* 원하는 높이로 설정 */
+const StyledLogo = styled(Logo)`
+  grid-area : logo1;
 
 `;
 
 const StyledP1 = styled.p`
   font-size: 40px;
   font-weight: bold;
-  margin-top: -65px;
-  margin-bottom: 42px;
+  margin-top: -85px;
+  
   font-family: var(--main-font);
 `;
 
 const StyledP2 = styled.p`
-  font-size: 20px;
+  font-size: 19px;
   margin-bottom: 30px;
   white-space: normal;
   word-wrap: break-word;
   overflow-wrap: break-word;
   font-family: var(--main-font);
-
-  /* 반응형 글자 크기 조정 */
-  @media (max-width: 480px) {
-    font-size: 16px;
-  }
 `;
-
-const StyledButton = styled(Button)``;
+ 
+;
 
 function JoinSecession() {
   // 텍스트를 컴포넌트 내에서 관리
   return (
-    <StyledDiv>
-      <a href="./intro" >
-          <StyledLogo src={logo} alt="로고" />
+    <div className={styles.welcomeContainer} style={{gridArea: "section"}} >
+      
+      <div className={styles.a1}>
+      <a href="./intro" style={{height : "100px"}} >
+          <StyledLogo width="200px"/>
           </a>
-      <StyledP1>{texts.h1}</StyledP1>
-      <StyledP2>{texts.text1}</StyledP2>
-      <StyledP2>{texts.text2}</StyledP2>
-      <StyledP2>{texts.text3}</StyledP2>
-      <StyledButton text={texts.btnName} />
-    </StyledDiv>
+          </div>
+      <StyledP1 className={styles.hText1}>{texts.h1}</StyledP1>
+      <StyledP2 className={styles.p1}>{texts.text1}</StyledP2>
+      <StyledP2 className={styles.p2}>{texts.text2}</StyledP2>
+      <StyledP2 className={styles.p3}>{texts.text3}</StyledP2>
+      <div className={styles.btn1}>
+      <Button width="100%"text={texts.btnName} />
+      </div>
+      <Outlet />
+    </div>
   );
 }
 

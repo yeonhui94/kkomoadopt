@@ -29,7 +29,8 @@ function Divider({
   height,
   paddingbt,
   marTop,
-  textAlign
+  textAlign,
+  backgroundColor
 }) {
   return (
     <StyledDivider
@@ -43,6 +44,7 @@ function Divider({
       <Underline
         width={width}
         height={height}
+        backgroundColor={backgroundColor}
       />
     </StyledDivider>
   );

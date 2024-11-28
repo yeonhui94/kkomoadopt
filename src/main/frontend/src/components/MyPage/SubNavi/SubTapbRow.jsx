@@ -17,7 +17,7 @@ function SubTabRow({ items, selectedTab, onSelect }) {
         if (selectedTab !== index) setHoveredTab(null); // 마우스가 벗어날 때 hoveredTab 초기화
     };
 
-    return (
+    return (  
         <ul style={{ display: "flex", padding: 0 , outline: "none"}}>
             {items.map((item, index) => (
                 <SubTab

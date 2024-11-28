@@ -22,7 +22,7 @@ function MyPage({gridArea}, {name, test1 ,btnName, btnName2}) {
     <Outlet/>
     </div>  
     </div>
-
+    {/* <Footer></Footer> */}
     </div>
   );
 }

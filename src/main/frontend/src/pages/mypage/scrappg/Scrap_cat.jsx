@@ -1,21 +1,20 @@
+import React from "react";
 import Card2 from "../../../components/Card2/Card2";
-import img1 from "../../../assets/CardImage/1.jpg"
-import img2 from "../../../assets/CardImage/2.jpg"
-import img3 from "../../../assets/CardImage/3.jpg"
-import img4 from "../../../assets/CardImage/4.jpg"
+import img2 from "../../../assets/CardImage/5.jpg";
 import styles from "../MyPage.module.css";
 
-const Scrap_cat = ({gridArea} )=> {
+const Scrap_cat = () => {
+    const catItems = [
+        { img: img2, title: "고양이 아이템 1", description: "고양이" }
+    ];
 
     return (
-        <div className={styles.content}
-        style={{gridArea : gridArea}}>
-            <Card2 imageFile={img1}></Card2>
-            <Card2 imageFile={img2}></Card2>
-            <Card2 imageFile={img3}></Card2>
-            <Card2 imageFile={img4}></Card2>
+        <div>
+            {catItems.map((item, index) => (
+                <Card2 key={index} imageFile={item.img} title={item.title} description={item.description} />
+            ))}
         </div>
-    )
-}
+    );
+};
 
 export default Scrap_cat;

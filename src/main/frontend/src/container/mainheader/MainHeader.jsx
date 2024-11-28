@@ -24,7 +24,7 @@ const MainHeader = () => {
         </a>
       </div>
       <div className={styles.divider}>
-        <Divider width="100%" paddingbt="5px" backgroundColor="var(--line-color)" marTop={"0px"}/>
+        <Divider display={"block"} width="100%" backgroundColor="var(--line-color)" marTop={"0px"}/>
       </div>
     </div>
   );

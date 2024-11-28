@@ -47,9 +47,7 @@ const OrText = styled.span`
   transform: translateX(-50%); /* 텍스트의 가로 길이를 고려하여 정확한 중앙 배치 */
 `;
 
-const handleClick = () => {
-    window.location.href = '/accesstion'; // '/accesstion' 경로로 이동
-};
+
 
 function LoginPageContents({text, gridArea}) {
   const buttonWidth = "400px"; // 여기에 버튼 너비를 고정값 또는 동적으로 설정 (예시로 400px)
@@ -61,7 +59,7 @@ function LoginPageContents({text, gridArea}) {
         {/* StyledALink들을 가로로 배치하는 부모 wrapper 추가 */}
         <div className={styles.a1Box}>
           <a href="http://localhost:5173/IdPassword" className={styles.a1}><p style={{fontSize:"15px"}}>ID/PW찾기</p></a>
-          <a href="http://localhost:5173/join" onClick={handleClick} className={styles.a1}><p style={{fontSize:"15px", paddingLeft : "5px"}}>회원가입</p></a>
+          <a href="http://localhost:5173/join"  className={styles.a1}><p style={{fontSize:"15px", paddingLeft : "5px"}}>회원가입</p></a>
         </div>
 
 

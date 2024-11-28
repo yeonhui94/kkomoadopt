@@ -1,12 +1,12 @@
 /* MainHeader.module.css */
 .headerGroup {
-  padding: 50px 20px 0px 20px;
+  padding: 30px 10px 0px 20px;
   background-color: #fff;
   
 }
 .header {
   display: grid;
-  grid-template-columns: 2fr 4fr 1fr 1fr; 
+  grid-template-columns: 1fr 4fr 1fr 1fr; 
   align-items: center;
   justify-items: center;
   white-space: nowrap;
@@ -20,27 +20,24 @@
 .menuList {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  /* grid-area: menulist; */
-  gap: 8vw;
+  gap: 7vw;
   align-items: center;
   justify-content: center;
   list-style: none;
   margin: 0;
   padding: 0;
   font-family: var(--main-font);
+  justify-items: center;
 }
 
 .menuItem {
-  font-size: 24px;
-  font-weight: bold;
-  cursor: pointer;
+  font-size: 18px;
+  font-weight: 700;
+  /* cursor: pointer; */
   position: relative;
   white-space: nowrap;
 }
 
-.myPageicon {
-  padding: 20px;
-}
 
 .menuItem:hover {
   color: #ff5733;
@@ -50,7 +47,7 @@
   content: "";
   display: block;
   width: 0;
-  height: 2px;
+  height: 4px;
   background: #ff5733;
   transition: width 0.3s;
   position: absolute;
@@ -63,6 +60,7 @@
 }
 
 .menuLink {
+  font-size: 30px;
   text-decoration: none;
   color: black;
   transition: color 0.3s;
@@ -70,24 +68,24 @@
 
 .menuLink:hover {
   color: #ff5733;
+  
+}
+.btn{
+  grid-column :4;
+  justify-self: start;
+
 }
 
 .icongrid{
-  /* grid-area: icon; */
   grid-column : 3;
   justify-self: end;
   padding-right: 5px ;
-  /* width: 90px; */
+  width: 50px;
 }
 
 
 @media(max-width : 1024px){
   .header {
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 50px;  */
-    /* 간격 수정하세요 */
     display: grid;
     grid-template: 
     "logo logo logo" 1fr
@@ -105,6 +103,9 @@
     .navbar{
       grid-area: list;
     }
+    .menuList{
+      gap: 5vw;
+    }
 }
 
 
@@ -113,7 +114,7 @@
     display: grid;
     grid-template: 
     "... ... logo ... icon btn ... ..." 1fr
-    "... ... list list list list ... ..." 1fr /20px  1fr 1fr 1fr 1fr 1fr 1fr 20px;
+    "... ... list list list list ... ..." 1fr /20px 1fr 1fr 1fr 1fr 1fr 1fr 20px;
   }
     .logo{
       grid-area: logo;

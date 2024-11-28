@@ -2,6 +2,7 @@ import Button from "../../components/Button/Button";
 import styled from 'styled-components';
 import InputField from "../../components/InputField";
 import styles from "../Login/LoginPageContents.module.css";
+import { Outlet } from "react-router-dom";
 
 const StyledButton1 = styled(Button)`
   margin-bottom: 12px; /* 각 버튼들 사이에 12px 간격 추가 */
@@ -59,7 +60,7 @@ function LoginPageContents({text, gridArea}) {
       <div className={styles.LoginBox}>
         {/* StyledALink들을 가로로 배치하는 부모 wrapper 추가 */}
         <div className={styles.a1Box}>
-          <a href="#" className={styles.a1}><p style={{fontSize:"15px"}}>ID/PW찾기</p></a>
+          <a href="http://localhost:5173/IdPassword" className={styles.a1}><p style={{fontSize:"15px"}}>ID/PW찾기</p></a>
           <a href="http://localhost:5173/join" onClick={handleClick} className={styles.a1}><p style={{fontSize:"15px", paddingLeft : "5px"}}>회원가입</p></a>
         </div>
 
@@ -109,6 +110,7 @@ function LoginPageContents({text, gridArea}) {
           verticalPadding="14px"
         />
       </div>
+      <Outlet />
     </div>
   );
 }

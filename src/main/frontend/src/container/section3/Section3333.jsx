@@ -28,10 +28,10 @@ const Section3333 = () => {
   const images4 = allImages.slice(4, 10);
 
   // 박스 크기
-  const box1Width = "300px";
-  const box1Height = "300px";
-  const box2Width = "150px";
-  const box2Height = "400px";
+  const box1Width = "250px";
+  const box1Height = "250px";
+  const box2Width = "200px";
+  const box2Height = "450px";
 
   // 각 슬라이드 상태 관리
   const [currentSlide1, setCurrentSlide1] = useState(0);
@@ -111,7 +111,7 @@ const Section3333 = () => {
         boxHeight={box2Height}
         currentSlide={currentSlide1}
       />
-      <div>
+      <div className={styles.upcontent}>
         {/* 두 번째 SectionBox */}
         <SectionBox
           images={images2}
@@ -125,7 +125,6 @@ const Section3333 = () => {
           <Button text={"KKOMO센터 더보기"} />
         </div>
       </div>
-
       {/* Section3, currentSlide와 setCurrentSlide를 전달 */}
       <div
         onMouseEnter={() => setIsHovered(true)} // 마우스 올라가면 슬라이드 멈춤
@@ -136,12 +135,14 @@ const Section3333 = () => {
 
       <div className={styles.smallWrapper2}>
         {/* 세 번째 SectionBox */}
+        <div className={styles.thirdbox}>
         <SectionBox
           images={images3}
           boxWidth={box1Width}
           boxHeight={box1Height}
           currentSlide={currentSlide3}
         />
+        </div>
         <div className={styles.controls}>
           <Button onClick={goToPreviousSlide} className={styles.ControlButton} text={"◀"} />
           <Button onClick={goToNextSlide} className={styles.ControlButton} text={"▶"} />
@@ -163,13 +164,17 @@ const Section3333 = () => {
       </div>
 
       {/* 네 번째 SectionBox */}
+      <div className={styles.upcontent}>
       <SectionBox
         images={images4}
         boxWidth={box2Width}
         boxHeight={box2Height}
         currentSlide={currentSlide4}
       />
+      </div>
+      <div className={styles.zindexh1}><h1>입양 가능한 아이들</h1></div>
     </div>
+    
   );
 };
 

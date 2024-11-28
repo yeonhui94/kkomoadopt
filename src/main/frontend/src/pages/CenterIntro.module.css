@@ -3,7 +3,7 @@
     position: fixed;
     background-color: var(--main-color);
     border-radius: 90%;
-    opacity: 40%;
+    opacity: 20%;
     filter: blur(90px);  
 }
 .moving_circle1 {
@@ -170,6 +170,7 @@
     grid-column: 1/2;
     display: grid;
     position: fixed;
+    z-index: 1000;
     
 }
 
@@ -178,6 +179,7 @@
     position: fixed;
     grid-row: 5/6;
     grid-column: 1/2;
+    z-index: 1000;
 }
 
 
@@ -198,7 +200,7 @@
     gap: 20px;
     width: 100%;
     align-items: center;
-    z-index: 10;
+    z-index: 1000;
 }
 /* 
 .centint_screen1to3_item {
@@ -212,16 +214,19 @@
 .moving-circle1 { position: relative; width: 100px; height: 100px; background-color: var(--sub-color); /* 연한 빨간색 시작 */ border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); transition: background-color 1s, width 1s, height 1s}
 .centint_line {
     grid-area: cenintd;
+    z-index: 1000;
 }
 
 .centint_highlight {
     color : var(--main-color);
+    z-index: 1000;
 }
 
 .centint_blacktextshadow {
     /* text-shadow: 1px 1px 2px #232323; */
     font-weight: bolder;
     color: #444;
+    z-index: 1000;
 }
 
 /* .centint_graytextshadow {
@@ -233,6 +238,7 @@
     font-size: 48px; 
     font-family: var(--main-font); 
     font-weight: 700;
+    z-index: 1000;
 }
 
 .centint_medium_text {
@@ -241,6 +247,7 @@
     font-family: var(--main-font);
     font-weight: 700;
     width: 100%;
+    z-index: 1000;
 }
 
 .centint_medium_graytext {
@@ -249,6 +256,7 @@
     font-size: 23px;
     font-family: var(--main-font); 
     font-weight: 600;
+    z-index: 1000;
 }
 
 .centint_small_text {
@@ -258,12 +266,14 @@
     font-size: 30px;
     font-family: var(--main-font);
     font-weight: 700;
+    z-index: 1000;
 }
 
 .centint_screen1 {
     display: grid;
     grid-template-rows: 2fr 3fr 2fr;
     grid-template-columns: 40px 1fr 40px;
+    z-index: 1000;
 }
 
 .centint_screen3 {
@@ -276,30 +286,36 @@
 .centint_divider_sc3 {
     display: grid;
     grid-area: 3/2/4/3;
+    z-index: 1000;
 }
 
 
 .centint_sc1_text, .centint_sc3_text, .centint_sc5_text {
     text-align: center;
+    z-index: 1000;
  
 }
 
 .centint_sc3_text {
     grid-area: 2/2/3/3;
+    z-index: 1000;
 }
 
 .centint_sc1_text {
     grid-area: 2/2/3/3;
+    z-index: 1000;
 }
 
 .centint_sc5_text {
     grid-area: 2/2/3/3;
+    z-index: 1000;
 }
 
 
 
 .centint_screen2 {
     display: grid;
+    z-index: 1000;
     grid-row: 2 / 3;
     grid-column: 2 / 3;
     grid-template: 
@@ -311,6 +327,7 @@
 
 .centint_sc2_contents {
     grid-area: centintscr26;
+    z-index: 1000;
     display: grid;
     grid-template: 
     'centintimg1 ... sc2text1'1fr
@@ -325,12 +342,14 @@
 .centint_sr2_text1 {
     grid-area: sc2text1;
     text-align: start;
+    z-index: 1000;
     width: 100%;
 
 
 }
 .centint_sr2_text2 {
     grid-area: sc2text2;
+    z-index: 1000;
     text-align: start;
     /* 이 글씨체만 align : start가 적용되도록 설정 */
     align-self: start; 
@@ -347,7 +366,7 @@
     grid-template-columns: 1fr 600px 1fr 600px 1fr;
     width: 100%;
     position: sticky;
-    z-index: 10;
+    z-index: 1000;
  
 }
 
@@ -359,6 +378,7 @@
     grid-template-columns: 1fr ; 
     width: 100%;
     height: 700px;
+    z-index: 1000;
     /* align-self: end; */
   
 }
@@ -369,6 +389,8 @@
     align-self: center;
     justify-self: end;
     display: grid;
+    z-index: 1000;
+    width: 660px;
 
 }
 
@@ -379,6 +401,7 @@
     width: 100%;
     height: 600px;
     display: grid;
+    z-index: 1000;
 }
 
 
@@ -393,6 +416,7 @@
     grid-template-columns: 1fr ; 
     gap: 40px; 
     width: 700px;
+    z-index: 1000;
 
 }
 
@@ -403,7 +427,7 @@
     grid-template-rows: 700px 700px;
     grid-template-columns: 40px 1fr 40px;
     width: 100%;
-    z-index: 10;
+    z-index: 1000;
 
 }
 
@@ -415,6 +439,7 @@
      height: 100%;
      grid-template-rows: 2fr 3fr 2fr;
      grid-template-columns: 40px 3fr 40px;
+     z-index: 1000;
      
  }
 .centint_screen6 {
@@ -428,9 +453,11 @@
     '... sc6texts ... centintimg4 ...' 600px
     ' ... ... ... ... ...' 200px / 40px 1fr 200px 1fr 40px;
     width: 100%;
+    z-index: 1000;
 }
 .centint_sc6_title {
     grid-area: sc6title;
+    z-index: 1000;
     
 }
 .centint_sc6_texts {
@@ -445,6 +472,7 @@
     '... ...' / 50px 400px;
     justify-self: end;
     width: 450px;
+    z-index: 1000;
 }
 
 .centint_sc6_text1_ad {
@@ -454,6 +482,7 @@
         'sc6textad1'1fr
         '...'10px
         'sc6textad2' 1fr / 1fr;
+        z-index: 1000;
 }
 
 .centint_sc6_text2_num {
@@ -463,6 +492,7 @@
         'sc6textnum1'1fr
         '...'10px
         'sc6textnum2' 1fr / 1fr;
+        z-index: 1000;
 }
 
 .centint_sc6_text3_email {
@@ -472,33 +502,40 @@
         'sc6textemail1'1fr
         '...'10px
         'sc6textemail2' 1fr / 1fr;
+        z-index: 1000;
 }
 
 .centint_sc6_text1_ad1 {
     grid-area: sc6textad1;
+    z-index: 1000;
 }
 
 .centint_sc6_text1_ad2 {
     grid-area: sc6textad2;
     font-size: 20px;
+    z-index: 1000;
 }
 
 .centint_sc6_text2_num1 {
     grid-area: sc6textnum1;
+    z-index: 1000;
 }
 
 .centint_sc6_text2_num2 {
     grid-area: sc6textnum2;
     font-size: 20px;
+    z-index: 1000;
 }
 
 .centint_sc6_text3_email1 {
     grid-area: sc6textemail1;
+    z-index: 1000;
 }
 
 .centint_sc6_text3_email2 {
     grid-area: sc6textemail2;
     font-size: 20px;
+    z-index: 1000;
 }
 
 .centint_imgs {
@@ -510,12 +547,14 @@
     padding: 0;
     margin: 0;
     filter: blur(0.6px);
+    z-index: 1000;
 
 }
 .centint_img1 {
     background-position: center;
     grid-area: centintimg1;
     background-image: url(./centerintro/img/centerintroimg1.svg);
+    z-index: 1000;
 }
 
 .centint_img2 {
@@ -523,7 +562,7 @@
     background-image: url(./centerintro/img/centerintroimg2.svg);
     background-repeat: no-repeat;
     display: grid;
-
+    z-index: 1000;
     width: 550px;
     height: 600px;
 }
@@ -536,6 +575,7 @@
     width: 550px;
     height: 600px;
     background-image: url(./centerintro/img/centerintroimg3.svg);
+    z-index: 1000;
 
 }
 
@@ -544,5 +584,6 @@
     width: 550px;
     height: 600px;
     background-image: url(./centerintro/img/centerintroimg4.svg);
+    z-index: 1000;
 
 }

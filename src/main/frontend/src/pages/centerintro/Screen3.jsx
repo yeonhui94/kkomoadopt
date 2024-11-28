@@ -25,7 +25,7 @@ const Screen3 = () => {
   
             <p className={`${centerintrosty.centint_big_text} ${centerintrosty.centint_sc3_text}`}>
                     KKOMO 보호센터는<br/> <span className={centerintrosty.centint_highlight}>매년 1만 마리</span> 이상의 유기동물에게
-                    <br/>새로운 가족을 찾아주고 있습니다.
+                    <br/>새로운 가족을 찾아주고 있습니다
             </p>
                 
       

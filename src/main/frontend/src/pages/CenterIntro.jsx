@@ -2,7 +2,6 @@ import { inView, keyframes, motion, useAnimate, useAnimation, useInView } from "
 import centerintrosty from './CenterIntro.module.css';
 import styles from './CenterIntro.module.css';
 import Screen1 from "./centerintro/screen1";
-import PinkLine from "./centerintro/PinkLine";
 import { useEffect, useRef } from "react";
 // import Header from "../container/header/Header";
 import Divider from "../components/Divider";
@@ -21,9 +20,7 @@ const CenterIntro = () => {
     <div className={`${centerintrosty.centint_main}`}>
      <div className={`${centerintrosty.moving_circles} ${centerintrosty.moving_circle1}`}></div>
      <div className={`${centerintrosty.moving_circles} ${centerintrosty.moving_circle2}`}></div>       
-     <div className={`${centerintrosty.moving_circles} ${centerintrosty.moving_circle3}`}></div>
-     <div className={`${centerintrosty.moving_circles} ${centerintrosty.moving_circle4}`}></div> 
-     <div className={`${centerintrosty.moving_circles} ${centerintrosty.moving_circle5}`}></div>       
+    
             {/* 스크린 1~3 */}
         <div className={`${centerintrosty.centint_screen1to3}`}> 
             <Screen1/>

@@ -27,7 +27,7 @@ const Screen1 = () => {
 
            <p className={`${centerintrosty.centint_sc1_text}`}> 
             KKOMO 보호센터는 <br/>사지 않고 <span className={centerintrosty.centint_highlight}>입양</span>하는 
-            문화를 만듭니다.</p>
+            문화를 만듭니다</p>
 
             {/* <Divider
                 width="100%"

@@ -1,12 +1,12 @@
 /* MainHeader.module.css */
 .headerGroup {
-  padding: 50px 10px 0px 20px;
+  padding: 30px 10px 0px 20px;
   background-color: #fff;
   
 }
 .header {
   display: grid;
-  grid-template-columns: 2fr 4fr 2fr 1fr; 
+  grid-template-columns: 1fr 4fr 1fr 1fr; 
   align-items: center;
   justify-items: center;
   white-space: nowrap;
@@ -20,7 +20,7 @@
 .menuList {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 8vw;
+  gap: 7vw;
   align-items: center;
   justify-content: center;
   list-style: none;
@@ -81,10 +81,6 @@
   justify-self: end;
   padding-right: 5px ;
   width: 50px;
-}
-.divider {
-  display: block;
-  margin: 0px;
 }
 
 

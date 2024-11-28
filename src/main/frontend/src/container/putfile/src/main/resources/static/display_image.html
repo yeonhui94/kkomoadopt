@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>이미지 표시</title>
+</head>
+<body>
+<h1>이미지 표시</h1>
+<img id="displayedImage" alt="이미지" />
+
+<script>
+  // URL에서 'filename' 쿼리 파라미터를 추출하는 함수
+  function getFilenameFromURL() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('filename');
+  }
+
+  const filename = getFilenameFromURL();
+
+  if (filename) {
+      const imageElement = document.getElementById('displayedImage');
+      imageElement.src = '/images/' + filename;
+  } else {
+      alert('파일명이 지정되지 않았습니다.');
+  }
+</script>
+</body>
+</html>

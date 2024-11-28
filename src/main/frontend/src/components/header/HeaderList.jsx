@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom'; // Link 컴포넌트를 사용
 import styles from './MainHeader.module.css'; // MainHeader.module.css를 사용
 const menuItems = [
-  { name: '센터소개', path: '/center-intro' },
+  { name: '센터소개', path: 'http://localhost:5173/CenterIntro' },
   { name: '입양', path: '/adoption' },
-  { name: '커뮤니티', path: '/community' },
-  { name: '고객센터', path: '/customer-service' },
+  { name: '커뮤니티', path: 'http://localhost:5173/community' },
+  { name: '고객센터', path: 'http://localhost:5173/customerservice' },
 ];
 
 const HeaderList = () => {

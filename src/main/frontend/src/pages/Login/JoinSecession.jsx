@@ -2,7 +2,7 @@ import styled from "styled-components"
 import Button from "../../components/Button/Button";
 import logo from "../../assets/logo.svg";
 import styles from "../../pages/Login/JoinSecession.module.css";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Logo from "../../components/logo/Logo";
 
 // 텍스트 데이터 관리
@@ -41,6 +41,7 @@ const StyledP2 = styled.p`
 
 function JoinSecession() {
   // 텍스트를 컴포넌트 내에서 관리
+ 
   return (
     <div className={styles.welcomeContainer} style={{gridArea: "section"}} >
       

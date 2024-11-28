@@ -3,6 +3,11 @@ import SubNaviBar from "../../components/MyPage/SubNavi/SubNaviBar";
 import styles from "./MyPage.module.css";
 import SearchBar from "../../components/SearchBar";
 import Card2 from "../../components/Card2/Card2";
+import img1 from "../../assets/CardImage/1.jpg"
+import img2 from "../../assets/CardImage/2.jpg"
+import img3 from "../../assets/CardImage/3.jpg"
+import img4 from "../../assets/CardImage/4.jpg"
+import Pagenumber from "../../components/pagenumber/Pagenumber";
 
 const Scrappg =()=>{
 
@@ -14,19 +19,21 @@ const Scrappg =()=>{
     ];
 
     return(
-       <div className={styles.mpcontainer}>
-            <div className={styles.SearchBar}>
-            <SearchBar width="300px"></SearchBar>
-            </div>ss
-            <div className={styles.SubNaviBar}>
-            <SubNaviBar tabs={tabs}>  </SubNaviBar>
-            </div>
-            <div className={styles.content}>
-            <Card2></Card2>
-            <Card2></Card2>
-            <Card2></Card2>
-            </div>
-       </div>
+        <div className={styles.mpcontainer}>
+        <div className={styles.SearchBar}>
+        <SearchBar width="300px"></SearchBar>
+        </div>
+        <div className={styles.SubNaviBar}>
+        <SubNaviBar tabs={tabs}>  </SubNaviBar>
+        </div>
+        <div className={styles.content}>
+        <Card2 imageFile={img1}></Card2>
+        <Card2 imageFile={img2}></Card2>
+        <Card2 imageFile={img3}></Card2>
+        <Card2 imageFile={img4}></Card2>
+        </div>
+        <Pagenumber></Pagenumber>
+   </div>
     )
 }
 export default Scrappg;

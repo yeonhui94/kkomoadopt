@@ -1,35 +1,7 @@
 import Button from "../../components/Button/Button";
 import styled from 'styled-components';
 import InputField from "../../components/InputField";
-
-// Divider 스타일 설정
-const StyledLoginBox = styled.div`
-  height: 553px; /* 컨텐츠에 맞게 높이를 자동으로 조정 */
-  border: 4px solid var(--line-color);
-  border-radius: 10px;
-  margin-top: 34px;
-  padding-top: 36px;
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* 가운데 정렬 */
-  position: relative; /* 밑줄을 절대 위치로 배치하려면 parent 요소에 relative 설정 필요 */
-  padding-bottom: 24px; /* 박스 하단에 여백 추가 */
-`;
-
-const StyledForm = styled.form`
-  margin : 0;
-  padding : 0;
-
-`
-
-
-const StyledH1 = styled.h1`
-  margin-top : 40px;
-  color : var(--main-color);
-  font-size : 64px;
-  font-weight : bold;
-  text-align : center;
-`;
+import styles from "../Login/LoginPageContents.module.css";
 
 const StyledButton1 = styled(Button)`
   margin-bottom: 12px; /* 각 버튼들 사이에 12px 간격 추가 */
@@ -74,28 +46,6 @@ const OrText = styled.span`
   transform: translateX(-50%); /* 텍스트의 가로 길이를 고려하여 정확한 중앙 배치 */
 `;
 
-const StyledALinkWrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  width: 100%; /* 부모의 너비에 맞춰서 확장 */
-  margin-bottom: 20px; /* 링크들 사이 간격 추가 */
-  padding-right : 40px
-`;
-
-const StyledALink = styled.a`
-  color: #aaa; /* 검은색 계열 색상 (어두운 회색) */
-  
-  
-  p {
-    color: inherit; /* <p> 태그도 부모의 색상 상속 */
-    margin: 0; /* <p> 태그의 기본 여백 제거 */
-  }
-
-  &:hover {
-    color: #666; /* 마우스를 올렸을 때 색상을 검은색으로 변경 */
-  }
-`;
-
 const handleClick = () => {
     window.location.href = '/accesstion'; // '/accesstion' 경로로 이동
 };
@@ -104,17 +54,17 @@ function LoginPageContents({text, gridArea}) {
   const buttonWidth = "400px"; // 여기에 버튼 너비를 고정값 또는 동적으로 설정 (예시로 400px)
 
   return (
-    <div style={{width:"607px", height: "700px", gridArea: gridArea}}>
-      <StyledH1>{text}</StyledH1>
-      <StyledLoginBox>
+    <div className={styles.LoginContainer} style={{gridArea: gridArea}} >
+      <h1 className={styles.hText}>로그인</h1>
+      <div className={styles.LoginBox}>
         {/* StyledALink들을 가로로 배치하는 부모 wrapper 추가 */}
-        <StyledALinkWrapper>
-          <StyledALink href="#"><p style={{fontSize:"15px"}}>ID/PW찾기</p></StyledALink>
-          <StyledALink href="http://localhost:5173/join" onClick={handleClick}><p style={{fontSize:"15px", paddingLeft : "5px"}}>회원가입</p></StyledALink>
-        </StyledALinkWrapper>
+        <div className={styles.a1Box}>
+          <a href="#" className={styles.a1}><p style={{fontSize:"15px"}}>ID/PW찾기</p></a>
+          <a href="http://localhost:5173/join" onClick={handleClick} className={styles.a1}><p style={{fontSize:"15px", paddingLeft : "5px"}}>회원가입</p></a>
+        </div>
 
 
-        <StyledForm>
+        <form className={styles.form1}>
         <InputField type="text" placeholder="이메일" width="497px" height="35px" marginBottom="5px"/>
         <InputField type="password"placeholder="비밀번호" width="497px" height="35px"  marginBottom="20px" />
         <StyledButton1
@@ -128,7 +78,7 @@ function LoginPageContents({text, gridArea}) {
           verticalPadding="14px"
           marginBottom="25px"
         />
-        </StyledForm>
+        </form>
         {/* "또는" 텍스트와 밑줄의 너비를 버튼의 너비와 같게 설정 */}
         <OrTextWithLine width={buttonWidth}>
           <Line />
@@ -158,7 +108,7 @@ function LoginPageContents({text, gridArea}) {
           horizontalPadding="172px"
           verticalPadding="14px"
         />
-      </StyledLoginBox>
+      </div>
     </div>
   );
 }

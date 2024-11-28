@@ -1,4 +1,6 @@
+import Divider from "../../components/Divider";
 import IdPassword from "../../components/IdPassword";
+
 
 
 function IdPasswordContents(){

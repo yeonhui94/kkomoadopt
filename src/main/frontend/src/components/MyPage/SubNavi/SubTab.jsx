@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import styles from "../SubNavi/SubNaviBar.module.css"
 
-function SubTab({ label, isSelected, onClick, onMouseEnter, onMouseLeave, link }) {
+function SubTab({ label, isSelected, onClick, onMouseEnter, onMouseLeave, link, onTabClick }) {
 
     return (
         <li
@@ -10,10 +10,11 @@ function SubTab({ label, isSelected, onClick, onMouseEnter, onMouseLeave, link }
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
         >
-            <a  
+            <a
                 href={link}
                 style={{ textDecoration: "none", color: "inherit", fontSize: 18 }} // 링크 스타일 제거
                 onClick={onClick} // 선택 상태 업데이트
+                onTabClick={onTabClick}
             >
                 {label}
             </a>

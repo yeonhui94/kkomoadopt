@@ -29,11 +29,10 @@
     }
 }
 
-/* .sub-grid{
+.sub-grid{
     display: grid;
     grid-template:
-        'section section section' 250px
         'subsection subsection subsection' 1fr / 1fr 1fr 1fr;
     height: 100vh;
-} */
+}
 

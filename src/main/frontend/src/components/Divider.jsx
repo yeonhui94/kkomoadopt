@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 // Divider 스타일 설정
 const StyledDivider = styled.div`
-  display: inline-block;
+  display: ${(props) => props.display || "inline-block"};
   position: relative;
   font-size: ${(props) => props.fontSize || "32px"}; /* 텍스트 크기 */
   font-weight: bold;
@@ -23,6 +23,7 @@ const Underline = styled.div`
 `;
 
 function Divider({
+  display,
   text,
   fontSize,
   width,
@@ -34,6 +35,7 @@ function Divider({
 }) {
   return (
     <StyledDivider
+      display={display}
       fontSize={fontSize}
       width={width}
       paddingbt={paddingbt}

@@ -10,6 +10,7 @@ const StyledDiv = styled.div`
   height: 70px;
   align-items: stretch;
   justify-content: space-between;
+  
 `;
 
 // LinkButton을 styled-components로 감싼 스타일 정의
@@ -20,6 +21,7 @@ const StyledLinkButton = styled(Link)`
   align-items: center;
   text-decoration: none;
   height: 100%; // 부모 요소에 맞게 버튼 높이 설정
+  margin-inline : 0px;
 `;
 
 function UserNavi() {

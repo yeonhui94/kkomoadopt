@@ -5,7 +5,7 @@ import Button from '../../components/Button/Button';
 import HeaderList from '../../components/header/HeaderList';
 import styles from '../../components/header/MainHeader.module.css';
 import Divider from '../../components/Divider';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const MainHeader = () => {
   return (
     <div className={styles.headerGroup}>

@@ -1,6 +1,6 @@
 .subMenuBar {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* 자동으로 항목을 맞추고 최소 150px 크기 */
+  grid-template-columns:1fr 1fr 1fr 1fr 1fr; /* 자동으로 항목을 맞추고 최소 150px 크기 */
   /*     grid-template: 으로 수정 예정 */
   gap: 20px; /* 각 항목 사이에 간격을 둡니다 */
   background-color: #fff;
@@ -11,14 +11,16 @@
 .menuItem {
   color: #000;
   font-family: "Noto Sans KR", sans-serif;
-  font-size: 2vw; /* 기본적으로 뷰포트 너비에 비례하여 글자 크기 조정 */
+  font-size: 1.8vw; /* 기본적으로 뷰포트 너비에 비례하여 글자 크기 조정 */
   text-decoration: none;
   transition: color 0.3s ease;
   font-weight: 700;
   text-align: center; /* 텍스트 중앙 정렬 */
   white-space: nowrap; /* 줄바꿈 방지 */
 }
-
+.divider{
+  padding: 0px 20px;
+}
 .menuItem:hover {
   color: #F8755B;
 }
@@ -27,15 +29,16 @@
   color: #F8755B;
 }
 
-/* 반응형 설정 */
+
 @media (max-width: 1024px) {
   .menuItem {
-    font-size: 3vw; /* 화면이 1024px 이하일 때 글자 크기 줄이기 */
+    font-size: 2vw; 
   }
 }
 
 @media (max-width: 768px) {
+  
   .menuItem {
-    font-size: 4vw; /* 화면이 768px 이하일 때 글자 크기 더 줄이기 */
+    font-size: 2.2vw; 
   }
 }

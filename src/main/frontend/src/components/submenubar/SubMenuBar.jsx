@@ -15,12 +15,14 @@ const SubMenuBar = ({ menuItems }) => {
             isActive ? `${styles.menuItem} ${styles.active}` : styles.menuItem
           }
         >
+          
           {item.name}
         </NavLink>
       ))}
     </div>
-    <Divider width={"100%"} height={"4px"} marTop={"1px"}/>
-
+    <div className={styles.divider}>
+    <Divider display={"block"} width={"100%"} height={"4px"} marTop={"0px"}/>
+    </div>
     </>
   );
 };

@@ -1,7 +1,8 @@
 /* MainHeader.module.css */
 .headerGroup {
-  padding: 30px 10px 0px 20px;
+  padding: 30px 20px 0px 20px;
   background-color: #fff;
+  margin-bottom: 50px;
   
 }
 .header {
@@ -110,6 +111,9 @@
 
 
 @media(max-width : 768px){
+  .headerGroup{
+    margin-bottom: 20px;
+  }
   .header {
     display: grid;
     grid-template: 

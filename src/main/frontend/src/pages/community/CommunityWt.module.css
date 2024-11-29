@@ -98,3 +98,42 @@
     background-color: white; /* 배경색 */
   }
 }
+
+.subbar_post {
+  display: grid;
+  grid-template: 
+    'postnum title admin date views ' 1fr
+    '... ... ... ... ...' 10px / 1fr 7fr 1fr 1fr 1fr ;
+  height: 15px;
+  text-align: center;
+}
+
+.postnum {
+  grid-area: postnum;
+
+
+}
+
+.title {
+  grid-area: title;
+
+}
+
+.admin {
+  grid-area: admin;
+}
+
+.date {
+  grid-area: date;
+}
+
+.views {
+  grid-area: views;
+}
+
+.postsbox {
+    display: grid;
+    width: 100%;
+    height: 300px;
+
+}

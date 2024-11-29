@@ -4,13 +4,14 @@ import styled from "styled-components";
 import Divider from "../../../components/Divider";
 import styles from "../CommunityWt.module.css";
 import Uploadfile from "./Uploadfile";
+import { Form } from "react-router-dom";
 
 // 폼으로 묶어줘~~~~
 
 const Adopt_review_CommunityWt = ({gridArea}) => {
   return (
-    <div 
-    style={{gridArea : gridArea}}>
+    <Form 
+    style={{gridArea : gridArea}} className={styles.Container}>
         {/* 제목과 인풋박스를 묶은 부분 */}
         <div className={styles.inputContainer}>
           <h3>제목</h3>
@@ -33,7 +34,7 @@ const Adopt_review_CommunityWt = ({gridArea}) => {
         <div className={styles.submitButtonContainer}>
           <button className={styles.smallButton}>등록</button>
         </div>
-    </div>
+    </Form>
   );
 };
 export default Adopt_review_CommunityWt;

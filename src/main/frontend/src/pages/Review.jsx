@@ -36,7 +36,7 @@ import Divider from "../components/Divider";
 import SearchBar from "../components/SearchBar";
 import Dropdown from "../components/DropDown";
 import Button from "../components/Button/Button";
-import ParentComponent from "./ParentComponent";
+// import ParentComponent from "./ParentComponent";
 
 
 // 이미지 데이터를 미리 정의합니다.
@@ -80,10 +80,11 @@ const Review = () => {
             <Card1 key={index} images={slideData} />
           ))}
         </div>
-        <div className={styles.buttonContainer}>
+        <a className={styles.buttonContainer} href="http://localhost:5173/commu-adopt_review/communitywt">
           <Button text={"글쓰기"} />
+        </a>
         </div>
-      </div>
+      
       <Footer></Footer>
     </>
   );

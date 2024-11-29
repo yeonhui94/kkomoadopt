@@ -8,12 +8,20 @@ const menuItems = [
   { name: '고객센터', path: 'http://localhost:5173/customerservice' },
 ];
 
-const HeaderList = () => {
+const HeaderList = ({ onItemClick }) => {
+
+  const handleClick = (itemName) => {
+    if (onItemClick) {
+      onItemClick(itemName);
+    }
+  };
+
   return (
     <nav className={styles.navbar}>
       <ul className={styles.menuList}>
         {menuItems.map((item) => (
-          <li key={item.name} className={styles.menuItem}>
+          <li key={item.name} className={styles.menuItem}
+          onClick={() => handleClick(item.name)} >
             <Link to={item.path} className={styles.menuLink}>
               {item.name}
             </Link>

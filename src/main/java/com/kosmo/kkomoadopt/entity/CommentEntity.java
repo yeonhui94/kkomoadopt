@@ -3,7 +3,6 @@ package com.kosmo.kkomoadopt.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.w3c.dom.Text;
 
 import java.time.LocalDateTime;
 

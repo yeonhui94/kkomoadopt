@@ -21,7 +21,7 @@ const CenterIntro = () => {
      <div className={`${centerintrosty.moving_circles} ${centerintrosty.moving_circle1}`}></div>
      <div className={`${centerintrosty.moving_circles} ${centerintrosty.moving_circle2}`}></div>       
     
-            {/* 스크린 1~3 */}
+            {/* 스크린 1~3  왜 안돼!!*/}
         <div className={`${centerintrosty.centint_screen1to3}`}> 
             <Screen1/>
             <Screen2/>

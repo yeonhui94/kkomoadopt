@@ -1,9 +1,7 @@
 package com.kosmo.kkomoadopt.service;
 
 import com.kosmo.kkomoadopt.entity.CommunityPostEntity;
-import com.kosmo.kkomoadopt.entity.UserEntity;
 import com.kosmo.kkomoadopt.repository.CommunityPostRepository;
-import com.kosmo.kkomoadopt.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

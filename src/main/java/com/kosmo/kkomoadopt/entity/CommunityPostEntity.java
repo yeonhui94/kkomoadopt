@@ -4,6 +4,7 @@ import com.kosmo.kkomoadopt.dto.PostCategory;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.w3c.dom.Text;
 
 import java.time.LocalDateTime;
 
@@ -28,6 +29,7 @@ public class CommunityPostEntity {
     @Column(name = "post_title")
     private String postTitle;
 
+    @Lob
     @Column(name = "post_content")
     private String postContent;
 

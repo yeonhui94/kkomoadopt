@@ -3,6 +3,7 @@ package com.kosmo.kkomoadopt.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.w3c.dom.Text;
 
 import java.time.LocalDateTime;
 
@@ -17,6 +18,7 @@ public class CommentEntity {
     @Column(name = "comment_id", nullable = false, length = 36)
     private String commentId;
 
+    @Lob
     @Column(name = "comment_content")
     private String commentContent;
 

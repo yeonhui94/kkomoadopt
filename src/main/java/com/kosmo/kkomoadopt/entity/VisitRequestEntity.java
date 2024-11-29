@@ -34,6 +34,7 @@ public class VisitRequestEntity {
     @Column(name = "visit_purpose", length = 10)
     private VisitPurpose visitPurpose;
 
+    @Lob
     @Column(name = "visit_content")
     private String visitContent;
 

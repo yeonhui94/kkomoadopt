@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -24,9 +25,6 @@ public class AdoptionNoticeEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "notice_uid", nullable = false, length = 36)
     private String noticeUid;
-
-    @Column(name = "notice_id", updatable = false, nullable = false, unique = true)
-    private Integer noticeId;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "notice_category", nullable = false)
@@ -52,11 +50,12 @@ public class AdoptionNoticeEntity {
     private Integer uniqueNum;
 
     @Column(name = "notice_img_url")
-    private String noticeImgUrl;
+    private List<String> noticeImgUrl;
 
     @Column(name = "euthanasia_date")
     private LocalDate euthanasiaDate;
 
+    @Lob
     @Column(name = "notice_content")
     private String noticeContent;
 
@@ -78,7 +77,6 @@ public class AdoptionNoticeEntity {
     public String toString() {
         return "AdoptionNoticeEntity{" +
                 "noticeUid='" + noticeUid + '\'' +
-                ", noticeId=" + noticeId +
                 ", noticeCategory=" + noticeCategory +
                 ", noticeTitle='" + noticeTitle + '\'' +
                 ", noticeViewCount=" + noticeViewCount +

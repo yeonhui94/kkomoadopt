@@ -8,8 +8,10 @@ import com.kosmo.kkomoadopt.dto.Provider;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.w3c.dom.Text;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -44,19 +46,20 @@ public class UserEntity {
     private String password;
 
     @Column(name = "user_create", nullable = false, updatable = false)
-    private LocalDateTime userCreate;
+    private LocalDateTime userCreate = LocalDateTime.now(); // 기본값으로 현재 시간 설정
 
     @Column(name = "user_img_url")
     private String userImgUrl;
 
+    @Lob
     @Column(name = "profile_text", length = 200)
     private String profileText;
 
     @Column(name = "user_last_login", nullable = false)
-    private LocalDateTime userLastLogin;
+    private LocalDateTime userLastLogin = LocalDateTime.now();  // 기본값으로 현재 시간 설정
 
     @Column(name = "is_blacklisted", nullable = false)
-    private Boolean isBlacklisted = false;
+    private Boolean isBlacklisted = false; // 기본값은 false
 
     // 네이버, 카카오 로그인 ID
     @Column(name = "social_Id", unique = true, length = 50)
@@ -68,15 +71,15 @@ public class UserEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 10)
-    private Authority authority;
+    private Authority authority = Authority.USER;  // 기본값 설정
 
     @Convert(converter = BlacklistConverter.class)
     @Column(columnDefinition = "longtext")
-    private List<BlacklistDTO> blacklists;
+    private List<BlacklistDTO> blacklists = new ArrayList<>();  // 기본값 설정
 
     @Convert(converter = ScrapConverter.class)
     @Column(columnDefinition = "longtext")
-    private List<String> scraps;
+    private List<String> scraps = new ArrayList<>();  // 기본값 설정
 
     @Override
     public String toString() {
@@ -93,8 +96,8 @@ public class UserEntity {
                 ", userLastLogin=" + userLastLogin +
                 ", isBlacklisted=" + isBlacklisted +
                 ", socialId='" + socialId + '\'' +
-                ", provider='" + provider + '\'' +
-                ", role='" + role + '\'' +
+                ", provider=" + provider +
+                ", authority=" + authority +
                 ", blacklists=" + blacklists +
                 ", scraps=" + scraps +
                 '}';

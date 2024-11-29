@@ -4,6 +4,7 @@ import com.kosmo.kkomoadopt.dto.QnAState;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.w3c.dom.Text;
 
 import java.time.LocalDateTime;
 
@@ -33,9 +34,11 @@ public class QnAEntity {
     @Column(name = "qna_password", length = 6)
     private Integer qnaPassword;
 
+    @Lob
     @Column(name = "qna_content")
     private String qnaContent;
 
+    @Lob
     @Column(name = "qna_answer")
     private String qnaAnswer;
 

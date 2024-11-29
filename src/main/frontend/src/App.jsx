@@ -17,17 +17,16 @@ import MyComments from './pages/mypage/MyComments';
 import EditProfile from './pages/mypage/EdifProfile';
 import Csdetail from './pages/mypage/Csdetail';
 import MyPage from './pages/mypage/MyPage';
-import Scrap_all from './pages/mypage/scrappg/scrap_all';
-import Scrap_dog from './pages/mypage/scrappg/scrap_dog';
-import Scrap_cat from './pages/mypage/scrappg/scrap_cat';
+
+import Scrap_cat from './pages/mypage/scrappg/Scrap_cat';
 import Scrap_etc from './pages/mypage/scrappg/scrap_etc ';
 import CommunityWt from './pages/community/resell/Resell_CommunityWt';
 import CommunityWt_report from './pages/community/report/Report_CommunityWt';
 import IdPasswordContents from './pages/Login/IdPasswordContents';
 import Report_Community from './pages/community/report/Report_Community';
 import Report_CommunityWt from './pages/community/report/Report_CommunityWt';
-import Find_child_community from './pages/community/find_child/Find_child_community';
-import Find_child_CommunityWt from './pages/community/find_child/Find_child_CommunityWt';
+import Find_child_community from './pages/community/find_child/Missing_Community';
+import Find_child_CommunityWt from './pages/community/find_child/Missing_CommunityWt';
 import Resell_Community from './pages/community/resell/Resell_Community';
 import Adopt_review_Community from './pages/community/adopt_review/Adopt_review_Community';
 import Adopt_review_CommunityWt from './pages/community/adopt_review/Adopt_review_CommunityWt';
@@ -39,6 +38,11 @@ import Adoption from './pages/adoption/Adoption';
 import Dog from './pages/adoption/Dog';
 import Cat from './pages/adoption/Cat';
 import Etc from './pages/adoption/Etc';
+import ScrapAll from './pages/mypage/scrappg/ScrapAll';
+import DogPage from './pages/mypage/scrappg/DogPage';
+import Missing from "./pages/Missing";
+import Missing_community from './pages/community/find_child/Missing_Community';
+import Missing_CommunityWt from './pages/community/find_child/Missing_CommunityWt';
 
 
 const router = createBrowserRouter([
@@ -76,16 +80,16 @@ const router = createBrowserRouter([
             // 입양 후기
             { path: "adoption-review", element: <Review gridArea="section"/>},
             // 아이를 찾습니다
-            // { path: "find-child", element: <Announcement gridArea="section"/>},
+            { path: "find-child", element: <Missing gridArea="section"/>},
           ]
         },
-        // 커뮤니티 > 아이를 찾습니다 
-        { path: "commu-find_child", element: <Find_child_community gridArea="section"/>,
+        // 커뮤니티 > 아이를 찾습니다 (게시글 디테일 / 글쓰기화면)
+        { path: "commu-find_child", element: <Missing_community gridArea="section"/>,
           children :[
             // 아이를 찾습니다 게시글 
             //  { path: "", element: <CommunityWt_report gridArea="subsection"/>},
             // 아이를 찾습니다 글쓰기
-            { path: "communitywt", element: <Find_child_CommunityWt text='신고합니다' gridArea="subsection"/>}
+            { path: "communitywt", element: <Missing_CommunityWt text='신고합니다' gridArea="subsection"/>}
           ]
         },
          // 커뮤니티 > 입양 후기
@@ -148,30 +152,30 @@ const router = createBrowserRouter([
         // 센터 소개
         { path: "/CenterIntro", element: <CenterIntro gridArea="section"/>},
         // 마이페이지
-        { path: "/mypage", element: <MyPage gridArea="section"/>,
+        { path: "mypage", element: <MyPage gridArea="section"/>,
            // 마이페이지 > 스크랩, 내가 쓴 글, 나의 댓글, 회원정보 수정, 상담신청 내역
           children : [
             // 스크랩 > 전체, 강아지, 고양이, 기타동물
-            { path: "", element: <Scrappg gridArea="subsection" />,
-              children : [
+            { path: "", element: <ScrapAll gridArea="subsection" />},
+              // children : [
                 // 전체
-                { path: "", element: <Scrap_all gridArea="content" />},
+                // { path: "", element: <ScrapAll gridArea="content" />},
                 // 강아지
-                { path: "scrap-dog", element: <Scrap_dog gridArea="content" />},
+                // { path: "scrap-dog", element: <DogPage gridArea="content" />},
                 // 고양이
-                { path: "scrap-cat", element: <Scrap_cat gridArea="content" />},
+                // { path: "scrap-cat", element: <Scrap_cat gridArea="content" />},
                 // 기타동물
-                { path: "scrap-etc", element: <Scrap_etc gridArea="content" />},
-              ]
-            },
+                // { path: "scrap-etc", element: <Scrap_etc gridArea="content" />},/
+              // ]
+
             // 내가 쓴 글
-            { path: "mypost", element: <Mypost gridArea="subsection" />},
+            { path: "my-posts", element: <Mypost gridArea="subsection" />},
             // 나의 댓글
-            { path: "mycomments", element: <MyComments gridArea="subsection" />},
+            { path: "my-comments", element: <MyComments gridArea="subsection" />},
             // 회원정보 수정
             { path: "edit-profile", element: <EditProfile gridArea="subsection" />},
             // 상담신청 내역
-            { path: "csdatail", element: <Csdetail gridArea="subsection" />},
+            { path: "cs-detail", element: <Csdetail gridArea="subsection" />},
           ]
         },
       ]

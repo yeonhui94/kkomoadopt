@@ -17,8 +17,11 @@ public class VisitRequestEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "request_id", nullable = false, length = 36)
-    private String requestId;
+    @Column(name = "request_uid", nullable = false, length = 36)
+    private String requestUid;
+
+    @Column(name = "request_id", nullable = false)
+    private Integer requestId;
 
     @Column(name = "phone_num", length = 20)
     private String phoneNum;

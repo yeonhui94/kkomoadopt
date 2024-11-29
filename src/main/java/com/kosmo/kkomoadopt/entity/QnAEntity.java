@@ -29,7 +29,7 @@ public class QnAEntity {
     private LocalDateTime qnaCreatedAt;
 
     @Column(name = "qna_view_count")
-    private Integer qnaViewCount;
+    private Integer qnaViewCount = 0; // 초기값
 
     @Column(name = "qna_password", length = 6)
     private Integer qnaPassword;

@@ -6,7 +6,7 @@ import styles from "../CommunityWt.module.css";
 import { Form, Outlet } from "react-router-dom";
 import Uploadfile from "../adopt_review/Uploadfile";
 
-const Find_child_CommunityWt = ({ gridArea}) => {
+const Missing_CommunityWt = ({ gridArea}) => {
   return (
     <Form 
     style={{gridArea : gridArea}} className={styles.Container}>
@@ -35,4 +35,4 @@ const Find_child_CommunityWt = ({ gridArea}) => {
     </Form>
   );
 };
-export default Find_child_CommunityWt;
+export default Missing_CommunityWt;

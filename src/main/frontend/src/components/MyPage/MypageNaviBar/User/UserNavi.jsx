@@ -28,7 +28,7 @@ function UserNavi() {
   const [selectedButton, setSelectedButton] = useState(null);
 
   const buttonData = [
-    { text: "스크랩", to: "/mypage/scrap" },
+    { text: "스크랩", to: "/mypage" },
     { text: "내가 쓴 글", to: "/mypage/my-posts" },
     { text: "나의 댓글", to: "/mypage/my-comments" },
     { text: "회원정보 수정", to: "/mypage/edit-profile" },

@@ -5,7 +5,7 @@ import Divider from "../../../components/Divider";
 import styles from "../CommunityWt.module.css";
 import { Outlet } from "react-router-dom";
 
-const Find_child_community = ({ text = "아이를 찾습니다"  , gridArea}) => {
+const Missing_community = ({ text = "아이를 찾습니다"  , gridArea}) => {
   return (
     <div className="commwrapper"
     style={{gridArea : gridArea}}>
@@ -17,4 +17,4 @@ const Find_child_community = ({ text = "아이를 찾습니다"  , gridArea}) =>
     </div>
   );
 };
-export default Find_child_community;
+export default Missing_community;

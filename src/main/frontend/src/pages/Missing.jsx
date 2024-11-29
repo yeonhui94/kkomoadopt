@@ -19,7 +19,7 @@ import Footer from "../container/Footer";
 import Button from "../components/Button/Button";
 
 
-const Missing =()=>{
+const Missing =({gridArea})=>{
 
     const options = ["전체보기","최신 순", "오래된 순", "조회 수 높은 순","조회 수 낮은 순"];
 
@@ -42,7 +42,7 @@ const Missing =()=>{
 
 
     return(
-        <>
+        <div style={{gridArea : gridArea}}>
             <div className={styles.rwWrapper}>
                 <div className={styles.rwsubcontainer}>
                     <div className={styles.rwsubcontainer2}>
@@ -73,7 +73,7 @@ const Missing =()=>{
 
             </div>
             <Footer></Footer>
-        </>
+        </div>
     )
 }
 export default Missing;

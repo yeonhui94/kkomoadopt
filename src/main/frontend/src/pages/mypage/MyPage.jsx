@@ -10,7 +10,7 @@ import styles from "./MyPage.module.css";
 import Footer from '../../container/Footer';
 import Scrappg from './scrappg/Scrappg';
 
-function MyPage({gridArea}, {name, test1 ,btnName, btnName2}) {
+function MyPage({gridArea}) {
   return (
     <div style={{gridArea : gridArea}} >
     <div className={styles.mpWrapper}>

@@ -3,7 +3,11 @@ import Card2 from "../../../components/Card2/Card2";  // Card2 컴포넌트 임�
 import img1 from "../../../assets/CardImage/1.jpg";   // 이미지 임포트
 import img3 from "../../../assets/CardImage/3.jpg";
 import img4 from "../../../assets/CardImage/4.jpg";
-import imgc1 from "../../../assets/CardImage/c1.png"
+import img2 from "../../../assets/CardImage/2.jpg";
+import imgc1 from "../../../assets/CardImage/c1.png";
+import imgc2 from "../../../assets/CardImage/c2.jpg";
+import imgm1 from "../../../assets/CardImage/m1.jpg";
+import imgm2 from "../../../assets/CardImage/m2.jpg";
 import SubNaviBar from "../../../components/MyPage/SubNavi/SubNaviBar";  // SubNaviBar 임포트
 import styles from "../MyPage.module.css";  // 스타일시트 임포트
 import SearchBar from "../../../components/SearchBar";
@@ -17,12 +21,12 @@ const ScrapAll = ({ gridArea }) => {
   const allItems = [
     { img: img1, title: "3세 / 믹스견 / 성격나쁨", description: "강아지" },
     { img: imgc1, title: "3개월 추정", description: "고양이" },
-    { img: img3, title: "미어캣 / 사나움", description: "기타동물" },
+    { img: imgm1, title: "미어캣 / 사나움", description: "기타동물" },
     { img: img4, title: "3개월 추정 / 온순함", description: "강아지" },
-    { img: img4, title: "3개월 추정 / 온순함", description: "강아지" },
-    { img: img1, title: "3세 / 믹스견 / 성격나쁨", description: "강아지" },
-    { img: img3, title: "미어캣 / 사나움", description: "기타동물" },
-    { img: imgc1, title: "3개월 추정", description: "고양이" },
+    { img: img3, title: "3개월 추정 / 온순함", description: "강아지" },
+    { img: img2, title: "3세 / 믹스견 / 성격나쁨", description: "강아지" },
+    { img: imgm2, title: "2세 /야생소 / 사나움", description: "기타동물" },
+    { img: imgc2, title: "3개월 추정", description: "고양이" },
     // 추가 아이템들...
   ];
 

@@ -28,7 +28,8 @@
 
   .rwdivider {
     grid-area: divider;
-    display: flex;
+    display: grid;
+    width: 100%;
   }
   
 

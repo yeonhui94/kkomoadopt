@@ -2,7 +2,7 @@ import styled from "styled-components";
 // import Header from "../container/header/Header";
 // import Footer from "../../container/Footer";
 import Divider from "../../../components/Divider";
-import styles from "../CommunityWt.module.css";
+import wtstyles from "../CommunityWt.module.css";
 import Uploadfile from "./Uploadfile";
 import { Form } from "react-router-dom";
 
@@ -11,28 +11,28 @@ import { Form } from "react-router-dom";
 const Adopt_review_CommunityWt = ({gridArea}) => {
   return (
     <Form 
-    style={{gridArea : gridArea}} className={styles.Container}>
+    style={{gridArea : gridArea}} className={wtstyles.Container}>
         {/* 제목과 인풋박스를 묶은 부분 */}
-        <div className={styles.inputContainer}>
+        <div className={wtstyles.inputContainer}>
           <h3>제목</h3>
-          <input type="text" className={styles.input} />
+          <input type="text" className={wtstyles.input} />
         </div>
 
         {/* 이미지와 파일첨부 버튼 */}
-        <div className={styles.inputContainer}>
+        <div className={wtstyles.inputContainer}>
           <h3>이미지 (필수)</h3>
           <Uploadfile/>
         </div>
 
         {/* 내용 입력 */}
-        <div className={styles.textAreaContainer}>
+        <div className={wtstyles.textAreaContainer}>
           <h3>내용</h3>
-          <textarea className={styles.textArea} defaultValue={``} />
+          <textarea className={wtstyles.textArea} defaultValue={``} />
         </div>
 
         {/* 등록 버튼 */}
-        <div className={styles.submitButtonContainer}>
-          <button className={styles.smallButton}>등록</button>
+        <div className={wtstyles.submitButtonContainer}>
+          <button className={wtstyles.smallButton}>등록</button>
         </div>
     </Form>
   );

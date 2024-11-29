@@ -35,33 +35,35 @@ const Report = ({gridArea}) => {
             </div>
           </div>
 
+          <div>
           <div className={styles.rwdivider} >
             <Divider width={"100%"} backgroundColor={"var(--line-color)"} />
           </div>
-          <div className={comstyle.subbar_post}>
-          <p className={comstyle.postnum}>번호</p>
-          <p className={comstyle.title}>제목</p>
-          <p className={comstyle.admin}>작성자</p>
-          <p className={comstyle.date}>작성일</p>
-          <p className= {comstyle.views}>조회수</p>
-          </div>
-          <Divider className={comstyle.lin} width={"100%"} backgroundColor={"var(--line-color)"} />
-          {/* <Report_CommunityWt addPost={addPost} /> */}
-            {posts.length > 0 ? (
-            <ul>
-            {posts.map((post, index) => (
-              <li key={index}>
-                <h3>{post.title}</h3>
-                <p>{post.content}</p>
-                {post.files && post.files.length > 0 && (
-                  <p>첨부파일: {post.files.map(file => file.name).join(", ")}</p>
-                )}
-              </li>
-            ))}
-            </ul>
-            ) : (
-            <p>등록된 게시물이 없습니다.</p>
-            )}
+            <div className={comstyle.subbar_post}>
+            <p className={comstyle.postnum}>번호</p>
+            <p className={comstyle.title}>제목</p>
+            <p className={comstyle.admin}>작성자</p>
+            <p className={comstyle.date}>작성일</p>
+            <p className= {comstyle.views}>조회수</p>
+            </div>
+            <Divider className={comstyle.lin} width={"100%"} backgroundColor={"var(--line-color)"} />
+            {/* <Report_CommunityWt addPost={addPost} /> */}
+              {posts.length > 0 ? (
+              <ul>
+              {posts.map((post, index) => (
+                <li key={index}>
+                  <h3>{post.title}</h3>
+                  <p>{post.content}</p>
+                  {post.files && post.files.length > 0 && (
+                    <p>첨부파일: {post.files.map(file => file.name).join(", ")}</p>
+                  )}
+                </li>
+              ))}
+              </ul>
+              ) : (
+              <p>등록된 게시물이 없습니다.</p>
+              )}
+            </div>
         </div>
     )
 

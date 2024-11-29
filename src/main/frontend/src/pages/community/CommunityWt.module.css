@@ -99,6 +99,21 @@
   }
 }
 
+.posts_container {
+  display: grid;
+  grid-template: 
+    '... ... ...' 1fr 
+    '... postbox ...' 1fr
+    '... ... ...' 1fr / 50px 1fr 50px;
+}
+
+.postsbox {
+  display: grid;
+  width: 100%;
+  height: 300px;
+
+}
+
 .subbar_post {
   display: grid;
   grid-template: 
@@ -131,9 +146,5 @@
   grid-area: views;
 }
 
-.postsbox {
-    display: grid;
-    width: 100%;
-    height: 300px;
 
-}
+

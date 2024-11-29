@@ -84,8 +84,6 @@ const Review = () => {
           <Button text={"글쓰기"} />
         </a>
         </div>
-      
-      <Footer></Footer>
     </>
   );
 };

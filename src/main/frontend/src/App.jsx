@@ -11,15 +11,11 @@ import UserNavi from './components/MyPage/MypageNaviBar/User/UserNavi'
 import FAQ from './container/FAQ/FAQ';
 import CenterIntro from './pages/CenterIntro';
 import SubNaviBar from './components/MyPage/SubNavi/SubNaviBar';
-import Scrappg from './pages/mypage/scrappg/Scrappg';
 import Mypost from './pages/mypage/MyPost';
 import MyComments from './pages/mypage/MyComments';
 import EditProfile from './pages/mypage/EdifProfile';
 import Csdetail from './pages/mypage/Csdetail';
 import MyPage from './pages/mypage/MyPage';
-
-// import Scrap_cat from './pages/mypage/scrappg/Scrap_cat';
-// import Scrap_etc from './pages/mypage/scrappg/scrap_etc ';
 import CommunityWt from './pages/community/resell/Resell_CommunityWt';
 import CommunityWt_report from './pages/community/report/Report_CommunityWt';
 import IdPasswordContents from './pages/Login/IdPasswordContents';
@@ -38,7 +34,7 @@ import Adoption from './pages/adoption/Adoption';
 import Dog from './pages/adoption/Dog';
 import Cat from './pages/adoption/Cat';
 import Etc from './pages/adoption/Etc';
-import ScrapAll from './pages/mypage/scrappg/ScrapAll';
+import Scrappage from './pages/mypage/Scrappage';
 // import DogPage from './pages/mypage/scrappg/DogPage';
 import Missing from "./pages/Missing";
 import Missing_community from './pages/community/find_child/Missing_Community';
@@ -125,10 +121,6 @@ const router = createBrowserRouter([
           children : [
             // FAQ
             { path: "", element: <FAQ  gridArea="subsection"/>},
-            // QNA
-            // { path: "qna", element: <FAQ  gridArea="subsection"/>},
-            // 방문상담신청
-            // { path: "apply_consult", element: <FAQ  gridArea="subsection"/>},
           ]
         },
         // 고객센터 > QNA
@@ -156,18 +148,7 @@ const router = createBrowserRouter([
            // 마이페이지 > 스크랩, 내가 쓴 글, 나의 댓글, 회원정보 수정, 상담신청 내역
           children : [
             // 스크랩 > 전체, 강아지, 고양이, 기타동물
-            { path: "", element: <ScrapAll gridArea="subsection" />},
-              // children : [
-                // 전체
-                // { path: "", element: <ScrapAll gridArea="content" />},
-                // 강아지
-                // { path: "scrap-dog", element: <DogPage gridArea="content" />},
-                // 고양이
-                // { path: "scrap-cat", element: <Scrap_cat gridArea="content" />},
-                // 기타동물
-                // { path: "scrap-etc", element: <Scrap_etc gridArea="content" />},/
-              // ]
-
+            { path: "", element: <Scrappage gridArea="subsection" />},
             // 내가 쓴 글
             { path: "my-posts", element: <Mypost gridArea="subsection" />},
             // 나의 댓글

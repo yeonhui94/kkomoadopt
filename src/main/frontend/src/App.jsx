@@ -34,11 +34,10 @@ import Adoption from './pages/adoption/Adoption';
 import Dog from './pages/adoption/Dog';
 import Cat from './pages/adoption/Cat';
 import Etc from './pages/adoption/Etc';
-import Scrappage from './pages/mypage/Scrappage';
-// import DogPage from './pages/mypage/scrappg/DogPage';
 import Missing from "./pages/Missing";
 import Missing_community from './pages/community/find_child/Missing_Community';
 import Missing_CommunityWt from './pages/community/find_child/Missing_CommunityWt';
+import Scrappage from './pages/mypage/Scrappage';
 
 
 const router = createBrowserRouter([

@@ -18,7 +18,7 @@ function Map() {
           center: new window.kakao.maps.LatLng(37.47682182093529, 126.8792406611434), // 지도 초기 위치
           level: 3, // 지도 줌 레벨
         };
-        const map = new window.kakao.maps.Map(mapContainer, mapOptions); // 지도 생성
+        const map = new window.kakao.maps.Map(mapContainer, mapOptions); // 지도 생성 ㅍ
 
         const markerPosition = new window.kakao.maps.LatLng(37.47682182093529, 126.8792406611434); // 마커 위치
         const marker = new window.kakao.maps.Marker({

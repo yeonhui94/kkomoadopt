@@ -3,7 +3,7 @@ import centerintrosty from '../CenterIntro.module.css';
 
 
 const Screen4 = () => {
-
+// ㄴㄹㄴㅇㄹ
     return (
         <div className={centerintrosty.centint_sc4_screen}>
         {/* 4-1 */}

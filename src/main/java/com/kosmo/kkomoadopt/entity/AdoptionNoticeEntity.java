@@ -34,7 +34,7 @@ public class AdoptionNoticeEntity {
     private String noticeTitle;
 
     @Column(name = "notice_view_count")
-    private Integer noticeViewCount;
+    private Integer noticeViewCount = 0; // 기본값 설정
 
     @Column(name = "animal_type")
     private String animalType;

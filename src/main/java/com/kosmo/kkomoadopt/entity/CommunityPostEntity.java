@@ -52,6 +52,9 @@ public class CommunityPostEntity {
     @Column(name = "community_author", nullable = false)
     private String communityAuthor;
 
+    @Column(name = "post_view_count", nullable = false)
+    private Integer postViewCount = 0;
+
     @Override
     public String toString() {
         return "CommunityPostEntity{" +

@@ -20,16 +20,18 @@ const ScrapContainer = styled.div`
 `;
 
 const Card2 = ({ imageFile, text1, text2, isScraped, onScrapToggle }) => {
-  return (
-    <CardBox>
-      <Img imageFile={imageFile} />
-      <TextBox text={text1 || "Text"} />
-      <TextBox text={text2 || "Text"} />
-      <ScrapContainer>
-        <Scrap isScraped={isScraped} onToggle={onScrapToggle} />
-      </ScrapContainer>
-    </CardBox>
-  );
+    return (
+        <CardBox>
+            <Img imageFile={imageFile} />
+            <TextBox text={text1 || "Text"} />
+            <TextBox text={text2 || "Text"} />
+            {onScrapToggle && ( // onScrapToggle
+                <ScrapContainer>
+                    <Scrap isScraped={isScraped} onToggle={onScrapToggle} />
+                </ScrapContainer>
+            )}
+        </CardBox>
+    );
 };
 
 export default Card2;

@@ -20,6 +20,10 @@
     position: relative;
   }
   
+  .endcontainer{
+    padding: 20px;
+  }
+  
  
   .rwmaincontainer > * {
     width: 100%;

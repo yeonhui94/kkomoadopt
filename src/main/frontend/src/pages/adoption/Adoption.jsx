@@ -52,6 +52,7 @@ const Adoption = ({ gridArea }) => {
   const filteredItems = selectedCategory === "전체"
     ? allItems
     : allItems.filter(item => item.description === selectedCategory);
+    //서브네비바 추가해서 변경 필요
 
   // 페이지당 아이템 수
   const itemsPerPage = 12;

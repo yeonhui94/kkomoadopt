@@ -82,10 +82,11 @@ const Adoption = ({ gridArea }) => {
 
   return (
     <div style={{ gridArea: gridArea }}>
+      <SubMenuBar menuItems={menuItems} onTabClick={handleTabClick} />
       <div className={styles.rwWrapper}>
         <div className={styles.rwsubcontainer}>
           {/* SubMenuBar에서 버튼 클릭 시 카테고리별로 필터링 */}
-          <SubMenuBar menuItems={menuItems} onTabClick={handleTabClick} />
+
           <div className={styles.rwsubcontainer2}>
             <Dropdown options={["전체보기", "최신 순", "오래된 순", "조회 수 높은 순", "조회 수 낮은 순"]} />
             <SearchBar placeholder={"품종 검색"} width="300px" />

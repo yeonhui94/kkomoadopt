@@ -9,7 +9,7 @@ function SubTab({ label, isSelected, onClick, link }) {
         >
             <a
                 href={link}
-                style={{ textDecoration: "none", color: "inherit", fontSize: 18 }} // 링크 스타일 제거
+                style={{ textDecoration: "none", color: "inherit", fontSize: "1rem",fontWeight:"normal" }} // 링크 스타일 제거
             >
                 {label}
             </a>

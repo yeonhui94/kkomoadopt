@@ -5,7 +5,7 @@ const StyledDivider = styled.div`
   display: ${(props) => props.display || "inline-block"};
   position: relative;
   font-size: ${(props) => props.fontSize || "32px"}; /* 텍스트 크기 */
-  font-weight: bold;
+  font-weight: ${(props) => props.fontweight || "bold"};
   font-family: var(--main-font);
   padding-bottom: ${(props) => props.paddingbt || "5px"};
   width: ${(props) => props.width || "auto"}; /* width가 전달되도록 설정 */
@@ -31,7 +31,8 @@ function Divider({
   paddingbt,
   marTop,
   textAlign,
-  backgroundColor
+  backgroundColor,
+  fontweight
 }) {
   return (
     <StyledDivider
@@ -41,6 +42,7 @@ function Divider({
       paddingbt={paddingbt}
       marTop={marTop}
       textAlign={textAlign}
+      fontweight={fontweight}
     >
       {text && text}
       <Underline

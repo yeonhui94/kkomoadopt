@@ -7,7 +7,6 @@ const StyledButton = styled.button`
   background-color: ${(props) =>
     props.selected ? "var(--sub-color)" : "white"};
   border: 3px solid var(--sub-color);
-  font-weight: bold;
   font-family: var(--main-font);
   font-size: ${(props) => props.fontSize || "20px"};
 

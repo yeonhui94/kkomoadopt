@@ -1,13 +1,8 @@
-
 import React from 'react';
 import SubMenuBar from '../../components/submenubar/SubMenuBar';
-import { Outlet, Route, Routes } from 'react-router-dom';
-// import Dropdown from '../../components/DropDown';
-// import SearchBar from '../../components/SearchBar';
-// import Divider from '../../components/Divider';
+import { Outlet } from 'react-router-dom';
 
-
-function Community({gridArea}) {
+function Community({ gridArea }) {
   const menuItems = [
     { name: '공지사항', path: '/notice' },
     { name: '아이를 찾습니다', path: 'http://localhost:5173/community/find-child' },
@@ -17,13 +12,11 @@ function Community({gridArea}) {
   ];
 
   return (
-    <div style={{gridArea : gridArea}}>
+    <div style={{ gridArea: gridArea }}>
       <SubMenuBar menuItems={menuItems} />
-      <Outlet/>
+      <Outlet />
     </div>
   );
-};
+}
 
 export default Community;
-
-

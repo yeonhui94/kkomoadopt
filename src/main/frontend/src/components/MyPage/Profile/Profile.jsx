@@ -1,11 +1,10 @@
 import Button from "../../Button/Button";
 import Logo from "../../logo/Logo";
-
 import styles from "./Profile.module.css"
 
 
 
-function Profile({name, text1, btnName1, btnName2, hori1, hori2}){
+function Profile({name, text1, btnName1, btnName2, hori1, hori2, btnLink1,}){
     return(
         <div className={styles['profile-container']}>
             <div className={styles['profile-contents']}>
@@ -19,7 +18,11 @@ function Profile({name, text1, btnName1, btnName2, hori1, hori2}){
                 </div>
                 </div>
                 <div className={styles['profile-btns']}>
-                    <Button text={btnName1} horizontalPadding={hori1}/>
+                <Button
+                        text={btnName1}
+                        horizontalPadding={hori1}
+                        to={btnLink1} // Pass the link prop
+                    />
                     <Button text={btnName2} horizontalPadding={hori2}/>
                 </div>
             </div>

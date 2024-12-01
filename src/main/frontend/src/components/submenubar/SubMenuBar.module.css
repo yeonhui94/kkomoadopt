@@ -1,44 +1,50 @@
+.submenuwrap {
+  margin: 50px 100px;
+  border-radius: 20px;
+  background: #FFF;
+  box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.15);
+}
+
 .subMenuBar {
   display: grid;
-  grid-template-columns:1fr 1fr 1fr 1fr 1fr; /* 자동으로 항목을 맞추고 최소 150px 크기 */
-  /*     grid-template: 으로 수정 예정 */
-  gap: 20px; /* 각 항목 사이에 간격을 둡니다 */
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   background-color: #fff;
-  padding: 0px 0; /* 위, 아래 여백 */
   width: 100%;
+  border-radius: 20px;
 }
 
 .menuItem {
-  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #444444;
+  padding: 15px;
   font-family: "Noto Sans KR", sans-serif;
-  font-size: 1.8vw; /* 기본적으로 뷰포트 너비에 비례하여 글자 크기 조정 */
+  font-size: 1rem;
+  font-weight: 500;
   text-decoration: none;
-  transition: color 0.3s ease;
-  font-weight: 700;
-  text-align: center; /* 텍스트 중앙 정렬 */
-  white-space: nowrap; /* 줄바꿈 방지 */
+  transition: color 0.3s ease, background-color 0.3s ease;
+  text-align: center;
+  white-space: nowrap;
+  border-radius: 20px;
+  margin: 0px;
 }
-.divider{
-  padding: 0px 20px;
-}
+
 .menuItem:hover {
-  color: #F8755B;
+  color: #000; /* 텍스트 색상 */
+  background-color: #fdf8e8; /* 마우스 오버시 배경색 */
 }
 
-.active {
-  color: #F8755B;
+.subMenuBar .menuItem.active {
+  color: #000; /* 클릭된 메뉴의 텍스트 색상 */
+  background-color: #fdf8e8; /* 클릭된 메뉴의 배경색 */
+  border-radius: 10px; /* 선택된 메뉴의 둥근 테두리 */
 }
 
-
-@media (max-width: 1024px) {
-  .menuItem {
-    font-size: 2vw; 
-  }
-}
-
+/* 모바일 화면 크기에 맞춘 레이아웃 조정 */
 @media (max-width: 768px) {
-  
-  .menuItem {
-    font-size: 2.2vw; 
+  .submenuwrap {
+    min-width: 550px;
   }
 }

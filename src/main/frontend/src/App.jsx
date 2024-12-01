@@ -4,7 +4,7 @@ import AccesstionPageContents from './pages/Login/AccessionPageContents';
 import LoginPageContents from './pages/Login/LoginPageContents'
 import Customer_service from './pages/customer_service/Customer_service'
 import Community from './pages/community/Community';
-import Announcement from './pages/Announcement';
+// import Announcement from './pages/Announcement';
 import Resell from './pages/Resell';
 import { createBrowserRouter, Router, RouterProvider, Routes } from 'react-router-dom';
 import UserNavi from './components/MyPage/MypageNaviBar/User/UserNavi'
@@ -31,13 +31,12 @@ import Review from './pages/Review';
 import Apply_consult from './pages/customer_service/apply_consult/Apply_consult';
 import Qna from './pages/customer_service/qna/Qna';
 import Adoption from './pages/adoption/Adoption';
-import Dog from './pages/adoption/Dog';
-import Cat from './pages/adoption/Cat';
-import Etc from './pages/adoption/Etc';
 import Missing from "./pages/Missing";
 import Missing_community from './pages/community/find_child/Missing_Community';
 import Missing_CommunityWt from './pages/community/find_child/Missing_CommunityWt';
 import Scrappage from './pages/mypage/Scrappage';
+import ChangeProfile from './pages/mypage/ChangeProfile';
+
 
 
 const router = createBrowserRouter([
@@ -52,22 +51,13 @@ const router = createBrowserRouter([
         //회원가입
         { path: "/join", element: <AccesstionPageContents gridArea="section"/>},
         //입양
-        // { path: "adopt", element: <Adoption gridArea="section"/>,
-        //   children : [
-        //      // 강아지
-        //      { path: "", element: <Dog gridArea="subsection"/>},
-        //      // 고양이
-        //      { path: "cat", element: <Cat gridArea="subsection"/>},
-        //      // 기타동물
-        //      { path: "etc", element: <Etc gridArea="subsection"/>},
-        //   ]
-        // },
+        { path: "adoption", element: <Adoption gridArea="section"/>},
         //커뮤니티
         { path: "community", element: <Community gridArea="section"/>,
           // 커뮤니티 > 공지사항, 아이를 찾습니다, 입양 후기, 사고팝니다, 신고합니다
           children : [
             // 공지사항
-            { path: "", element: <Announcement gridArea="subsection"/>},
+            // { path: "", element: <Announcement gridArea="subsection"/>},
             // 사고팝니다
             { path: "resell", element: <Resell gridArea="subsection"/>},
             // 신고합니다
@@ -144,7 +134,7 @@ const router = createBrowserRouter([
         { path: "/CenterIntro", element: <CenterIntro gridArea="section"/>},
         // 마이페이지
         { path: "mypage", element: <MyPage gridArea="section"/>,
-           // 마이페이지 > 스크랩, 내가 쓴 글, 나의 댓글, 회원정보 수정, 상담신청 내역
+           // 마이페이지 > 스크랩, 내가 쓴 글, 나의 댓글, 회원정보 수정, 상담신청 내역 , 프로필 변경, 로그아웃
           children : [
             // 스크랩 > 전체, 강아지, 고양이, 기타동물
             { path: "", element: <Scrappage gridArea="subsection" />},
@@ -156,7 +146,10 @@ const router = createBrowserRouter([
             { path: "edit-profile", element: <EditProfile gridArea="subsection" />},
             // 상담신청 내역
             { path: "cs-detail", element: <Csdetail gridArea="subsection" />},
-          ]
+            //프로필 변경
+            { path : "change-profile", element: <ChangeProfile gridArea="subsection"/>},
+          ],
+          errorElement: <p>Sorry, this page doesn't exist!</p>, // 404 오류 처리
         },
       ]
   }

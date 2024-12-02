@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from "react"; 
 import SubNaviBar from "../../components/MyPage/SubNavi/SubNaviBar";
 import styles from "./MyPage.module.css";
 import SearchBar from "../../components/SearchBar";

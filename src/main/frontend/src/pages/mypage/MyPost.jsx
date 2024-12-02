@@ -103,7 +103,7 @@ const Mypost = ({ gridArea }) => {
         <Pagenumber
           totalPages={totalPages}
           currentPage={currentPage}
-          handlePageClick={handlePageClick}
+          handlePageClick={handlePageClick} 
         />
       </div>
     </div>

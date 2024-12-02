@@ -15,7 +15,7 @@ function Dropdown({ options = [], defaultText = "선택해주세요", maxVisible
     setIsOpen(false);
     onChange?.(option); // 부모로 전달
   };
-
+  console.log(options);
   return (
     <div className={styles.dropdown}>
       <div className={styles.dropdownButton} onClick={handleToggle}>

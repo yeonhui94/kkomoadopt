@@ -62,10 +62,21 @@
     display: flex;
     justify-content: flex-end;
     margin: 50px 0;
+    width: auto;
   }
   
   
+  .btnContainer{
+    display: flex
+;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
 
+  .pgncontainer{
+    flex-grow: 1;
+  }
   
   /* 1024px 이하: 3*3 그리드 */
   @media (max-width: 1024px) {

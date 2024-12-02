@@ -29,7 +29,14 @@ const Uploadfile = ({ maxFiles = 4 }) => {
 
   const handleRemoveFile = (index) => {
     // 파일 삭제 처리
-    setSelectedFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
+     // selectedFiles 배열에서 해당 파일을 삭제합니다.
+     setSelectedFiles((prevFiles) => {
+      const updatedFiles = prevFiles.filter((_, i) => i !== index);
+      return updatedFiles;
+    });
+    
+
+    
   };
 
 
@@ -39,11 +46,24 @@ const Uploadfile = ({ maxFiles = 4 }) => {
         className={styles.input}
         type="file"
         ref={fileInputRef}
+        diss
         multiple
         onChange={handleFileChange}
-      />   
+        style={{display : 'none'}}
+      /> 
+      <Button
+        text={"파일첨부"}
+        bg1color={"#d1d1d1"}
+        color={"#444"}
+        onClick={() => fileInputRef.current.click()}
+      />
+       {selectedFiles.length > 0 ? (
+      <div style={{color : "var(--main-color)" , fontWeight: "600" , fontSize : "12px"}}> * {selectedFiles.length} 개 파일이 첨부되었습니다.</div>  )
+      : (<div>  </div>)}
         {selectedFiles.length > 0 && (
+
           <div className={styles.input}>
+            
           <ul>
             {selectedFiles.map((file, index) => (
               <li key={index}>

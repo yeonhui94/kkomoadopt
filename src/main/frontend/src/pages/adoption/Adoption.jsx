@@ -28,30 +28,38 @@ const Adoption = ({ gridArea }) => {
   const [selectedCategory, setSelectedCategory] = useState("강아지");
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOption, setSortOption] = useState("전체보기");
+  const [searchQuery, setSearchQuery] = useState('');  // 검색어 상태 추가
 
+
+
+  const options = ["전체보기","최신 순", "오래된 순", "조회 수 높은 순","조회 수 낮은 순"];
 
   // 카드 데이터 관리: 각 카드 데이터에 isScraped 포함
   const [allPosts, setAllPosts] = useState([
-    { id: 1, img: img1, title: "3세 / 포메라니안 / 성격나쁨", category: "강아지", isScraped: false, date: new Date(2024,12,10), viewcount: 150},
-    { id: 2, img: imgc1, title: "3개월 추정/ 포메라니안", category: "고양이", isScraped: false, date: new Date(2024,10,11), viewcount: 50 },
-    { id: 3, img: imgm1, title: "미어캣 / 사나움", category: "기타동물", isScraped: false, date: new Date(2024,5,1), viewcount: 10 },
-    { id: 4, img: img4, title: "3개월 추정 / 진돗개 / 온순함", category: "강아지", isScraped: false, date: new Date(2024,10,30), viewcount: 0 },
-    { id: 5, img: img3, title: "3개월 추정 / 온순함", category: "강아지", isScraped: false, date: new Date(2024,11,11), viewcount: 15 },
-    { id: 6, img: img2, title: "3세 / 믹스견 / 성격나쁨", category: "강아지", isScraped: false, date: new Date(2024,9,10), viewcount: 12 },
-    { id: 7, img: imgm2, title: "2세 / 야생소 / 사나움", category: "기타동물", isScraped: false, date: new Date(2024,9,29), viewcount: 26 },
-    { id: 8, img: imgc2, title: "3개월 추정", category: "고양이", isScraped: false, date: new Date(2024,2,2), viewcount: 2 },
-    { id: 9, img: img5, title: "3세 / 푸들 / 온순함", category: "강아지", isScraped: false, date: new Date(2024,12,12), viewcount: 202 },
-    { id: 10, img: img6, title: "4세 / 말티즈 / 외향적", category: "강아지", isScraped: false, date: new Date(2024,8,10), viewcount: 456 },
-    { id: 11, img: img7, title: "3세 / 진돗개 / 호기심많음", category: "강아지", isScraped: false, date: new Date(2024,10,10), viewcount: 123 },
-    { id: 12, img: img8, title: "3개월 추정 / 말티즈 / 온순함", category: "강아지", isScraped: false, date: new Date(2024,12,1), viewcount: 165 },
-    { id: 13, img: img9, title: "2세 / 믹스견 / 온순함", category: "강아지", isScraped: false, date: new Date(2024,11,18), viewcount: 155 },
-    { id: 14, img: img10, title: "1세 / 슈나우져 / 온순함", category: "강아지", isScraped: false, date: new Date(2024,10,18), viewcount: 125 },
-    { id: 15, img: img11, title: "1세 / 비숑 / 온순함", category: "강아지", isScraped: false, date: new Date(2024,11,10), viewcount: 86 },
-    { id: 16, img: img12, title: "4세 / 포메라니안 / 느긋함", category: "강아지", isScraped: false, date: new Date(2024,12,2), viewcount: 152 },
+    { id: 1, img: img1, title: "3세 / 포메라니안 / 성격나쁨", category: "강아지", isScraped: false, breed : "포메라니안", date: new Date(2024,12,10), viewcount: 150},
+    { id: 2, img: imgc1, title: "3개월 추정/ 포메라니안", category: "고양이", isScraped: false, breed : "먼치킨", date: new Date(2024,10,11), viewcount: 50 },
+    { id: 3, img: imgm1, title: "미어캣 / 사나움", category: "기타동물", isScraped: false, breed : "미어캣", date: new Date(2024,5,1), viewcount: 10 },
+    { id: 4, img: img4, title: "3개월 추정 / 진돗개 / 온순함", category: "강아지", isScraped: false, breed : "진돗개", date: new Date(2024,10,30), viewcount: 0 },
+    { id: 5, img: img3, title: "3개월 추정 / 온순함", category: "강아지", isScraped: false, breed : "포메라니안", date: new Date(2024,11,11), viewcount: 15 },
+    { id: 6, img: img2, title: "3세 / 믹스견 / 성격나쁨", category: "강아지", isScraped: false, breed : "믹스견", date: new Date(2024,9,10), viewcount: 12 },
+    { id: 7, img: imgm2, title: "2세 / 야생소 / 사나움", category: "기타동물", isScraped: false, breed : "포메라니안", date: new Date(2024,9,29), viewcount: 26 },
+    { id: 8, img: imgc2, title: "3개월 추정", category: "고양이", isScraped: false, breed : "페르시안", date: new Date(2024,2,2), viewcount: 2 },
+    { id: 9, img: img5, title: "3세 / 푸들 / 온순함", category: "강아지", isScraped: false, breed : "푸들", date: new Date(2024,12,12), viewcount: 202 },
+    { id: 10, img: img6, title: "4세 / 말티즈 / 외향적", category: "강아지", isScraped: false, breed : "말티즈", date: new Date(2024,8,10), viewcount: 456 },
+    { id: 11, img: img7, title: "3세 / 진돗개 / 호기심많음", category: "강아지", isScraped: false, breed : "진돗개", date: new Date(2024,10,10), viewcount: 123 },
+    { id: 12, img: img8, title: "3개월 추정 / 말티즈 / 온순함", category: "강아지", isScraped: false, breed : "포메라니안", date: new Date(2024,12,1), viewcount: 165 },
+    { id: 13, img: img9, title: "2세 / 믹스견 / 온순함", category: "강아지", isScraped: false, breed : "믹스견", date: new Date(2024,11,18), viewcount: 155 },
+    { id: 14, img: img10, title: "1세 / 슈나우져 / 온순함", category: "강아지", isScraped: false, breed : "슈나우져", date: new Date(2024,10,18), viewcount: 125 },
+    { id: 15, img: img11, title: "1세 / 비숑 / 온순함", category: "강아지", isScraped: false, breed : "비숑", date: new Date(2024,11,10), viewcount: 86 },
+    { id: 16, img: img12, title: "4세 / 포메라니안 / 느긋함", category: "강아지", isScraped: false, breed : "포메라니안", date: new Date(2024,12,2) },
   ]);
 
   // 선택된 카테고리에 따라 필터링된 아이템
-  const filteredItems = allPosts.filter(item => item.category === selectedCategory);
+  const filteredItems = allPosts.filter(item => 
+    item.category === selectedCategory &&
+    (item.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+     item.breed.toLowerCase().includes(searchQuery.toLowerCase()))  // description도 필터링
+  );
 
 
   // 페이지당 아이템 수
@@ -113,12 +121,18 @@ const Adoption = ({ gridArea }) => {
 
 
 
+  const handleSearch = (query) => {
+    setSearchQuery(query);  // 검색어를 상태에 저장
+  };
+
+
   const handleSortChange = (option) => {
     setSortOption(option);
     setCurrentPage(1); // 정렬 변경 시 페이지를 첫 번째로 리셋
     console.log("정렬 옵션이 설정된 상태:", option); // 디버깅 추가
   };
-
+  
+  
 
 
 
@@ -129,11 +143,14 @@ const Adoption = ({ gridArea }) => {
         <div className={styles.rwsubcontainer}>
           <div className={styles.rwsubcontainer2}>
             <Dropdown 
-              options={["전체보기", "최신 순", "오래된 순", "조회 수 높은 순", "조회 수 낮은 순"]} 
+              options={options} 
               defaultText="전체보기"
               onChange={handleSortChange}
             />
-            <SearchBar placeholder={"품종 검색"} width="300px" />
+            <SearchBar 
+              placeholder={"품종 검색"} 
+              onSearch={handleSearch} 
+              width="300px" />
           </div>
         </div>
         <div className={styles.rwmaincontainer}>

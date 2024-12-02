@@ -53,7 +53,7 @@ const Uploadfile = ({ maxFiles = 4 }) => {
       /> 
       <Button
         text={"파일첨부"}
-        bg1color={"#bbb"}
+        bg1color={"#d1d1d1"}
         color={"#444"}
         onClick={() => fileInputRef.current.click()}
       />

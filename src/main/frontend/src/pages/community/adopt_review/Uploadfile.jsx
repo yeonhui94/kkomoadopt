@@ -1,5 +1,7 @@
 import React, { useState, useRef } from 'react';
 import styles from "../../../pages/community/CommunityWt.module.css";
+import Button from '../../../components/Button/Button';
+import LinkButton from '../../../components/MyPage/MypageNaviBar/LinkButton';
 
 const Uploadfile = ({ maxFiles = 4 }) => {
   const [selectedFiles, setSelectedFiles] = useState([]); // 선택된 파일들을 저장
@@ -24,6 +26,13 @@ const Uploadfile = ({ maxFiles = 4 }) => {
     fileInputRef.current.click();
   };
 
+
+  const handleRemoveFile = (index) => {
+    // 파일 삭제 처리
+    setSelectedFiles((prevFiles) => prevFiles.filter((_, i) => i !== index));
+  };
+
+
   return (
     <div className={styles.fileInputContainer}>
       <input
@@ -32,18 +41,26 @@ const Uploadfile = ({ maxFiles = 4 }) => {
         ref={fileInputRef}
         multiple
         onChange={handleFileChange}
-      />
-      <div className={styles.input}>
+      />   
         {selectedFiles.length > 0 && (
+          <div className={styles.input}>
           <ul>
             {selectedFiles.map((file, index) => (
               <li key={index}>
-                {file.name} ({(file.size / 1024).toFixed(2)} KB)
+                {file.name} ({(file.size / 1024).toFixed(2)} KB) 
+               <Button
+               bg1color={"white"}
+               text={"X"}
+               color={"#444"}
+               hovercolor={"var(--main-color)"}
+               fontWeight={"600"}
+               onClick={() => handleRemoveFile(index)}
+               />
               </li>
             ))}
           </ul>
+          </div>
         )}
-      </div>
     </div>
   );
 };

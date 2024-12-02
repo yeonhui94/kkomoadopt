@@ -7,7 +7,7 @@ import { Form, Outlet } from "react-router-dom";
 import { useState } from "react";
 import Uploadfile from "../adopt_review/Uploadfile";
 import Button from "../../../components/Button/Button";
-
+import wtstyles from "../CommunityWt.module.css";
 
 const Resell_CommunityWt = ({ text = "사고팝니다" , gridArea}) => {
   return (

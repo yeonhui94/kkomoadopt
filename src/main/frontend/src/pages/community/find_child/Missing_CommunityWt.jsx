@@ -6,7 +6,7 @@ import styles from "../CommunityWt.module.css";
 import { Form, Outlet } from "react-router-dom";
 import Uploadfile from "../adopt_review/Uploadfile";
 import Button from "../../../components/Button/Button";
-
+import wtstyles from "../CommunityWt.module.css";
 
 const Missing_CommunityWt = ({ gridArea}) => {
   return (

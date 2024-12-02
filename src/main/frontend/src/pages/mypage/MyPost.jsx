@@ -8,6 +8,7 @@ import styles from "./MyPage.module.css";
 const Mypost = ({ gridArea }) => {
   const [selectedCategory, setSelectedCategory] = useState("전체");
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태
+  const [searchQuery, setSearchQuery] = useState('');
 
   const allPosts = [
     { id: 1, category: "아이를 찾습니다", title: "광진구에서 실종", content: "아이에 대한 정보", date: "2024-11-28", viewCount: 150 },
@@ -22,22 +23,24 @@ const Mypost = ({ gridArea }) => {
     { id: 10, category: "입양후기", title: "사지말고 입양하세요", content: "입양 후기 내용", date: "2024-11-19", viewCount: 140 },
   ];
 
-  // 선택된 카테고리에 따라 필터링된 아이템
-  const filteredItems = selectedCategory === "전체"
-    ? allPosts
-    : allPosts.filter(item => item.category === selectedCategory);
+    // 검색 필터링된 데이터
+    const filteredData = allPosts.filter(post => 
+      (selectedCategory === "전체" || post.category === selectedCategory) && 
+      (post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+        post.content.toLowerCase().includes(searchQuery.toLowerCase()))
+    );
 
   // 페이지당 보여지는 글 수
   const postsPerPage = 8;
 
-  // 현재 페이지에 해당하는 게시글만 추출
-  const currentPosts = filteredItems.slice(
-    (currentPage - 1) * postsPerPage,
-    currentPage * postsPerPage
+    // 현재 페이지에 맞는 카드 데이터 계산
+    const currentPosts = filteredData.slice(
+      (currentPage - 1) * postsPerPage,
+      currentPage * postsPerPage
   );
 
-  // 총 페이지 수 계산
-  const totalPages = Math.ceil(filteredItems.length / postsPerPage);
+    // 전체 페이지 수 계산
+    const totalPages = Math.ceil(filteredData.length / postsPerPage);
 
   // 서브 네비게이션 탭 (카테고리 선택)
   const tabs = [
@@ -58,11 +61,19 @@ const Mypost = ({ gridArea }) => {
     setCurrentPage(pageNumber);
   };
 
+    // 검색어 변경 처리 함수
+    const handleSearch = (query) => {
+      setSearchQuery(query);  // 검색어를 상태에 저장
+  };
+
   return (
     <div style={{ gridArea: gridArea }}>
       <div className={styles.mpcontainer}>
         <div className={styles.SearchBar}>
-          <SearchBar width="300px" />
+          <SearchBar 
+            placeholder={"글 내용 & 글 제목"} 
+            width="300px"               
+            onSearch={handleSearch} />
         </div>
 
         <div className={styles.SubNaviBar}>
@@ -92,7 +103,7 @@ const Mypost = ({ gridArea }) => {
         <Pagenumber
           totalPages={totalPages}
           currentPage={currentPage}
-          handlePageClick={handlePageClick}
+          handlePageClick={handlePageClick} 
         />
       </div>
     </div>

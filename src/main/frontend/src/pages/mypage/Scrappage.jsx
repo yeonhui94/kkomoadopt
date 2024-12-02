@@ -17,30 +17,32 @@ const Scrappage = ({ gridArea }) => {
   const [selectedCategory, setSelectedCategory] = useState("전체");
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태
   const [scrapedItems, setScrapedItems] = useState([]); // 스크랩된 아이템들
+  const [searchQuery, setSearchQuery] = useState('');
 
   // 각 카테고리 아이템
-  const allItems = [
-    { id: 1, img: img1, title: "3세 / 믹스견 / 성격나쁨", description: "강아지" },
-    { id: 2, img: imgc1, title: "3개월 추정", description: "고양이" },
-    { id: 3, img: imgm1, title: "미어캣 / 사나움", description: "기타동물" },
-    { id: 4, img: img4, title: "3개월 추정 / 온순함", description: "강아지" },
-    { id: 5, img: img3, title: "3개월 추정 / 온순함", description: "강아지" },
-    { id: 6, img: img2, title: "3세 / 믹스견 / 성격나쁨", description: "강아지" },
-    { id: 7, img: imgm2, title: "2세 /야생소 / 사나움", description: "기타동물" },
-    { id: 8, img: imgc2, title: "3개월 추정", description: "고양이" },
+  const allPosts = [
+    { id: 1, img: img1, title: "3세 / 포메라니안 / 성격나쁨", category: "강아지", isScraped: false, breed : "포메라니안", date: new Date(2024,12,10), viewcount: 150},
+    { id: 2, img: imgc1, title: "3개월 추정/ 포메라니안", category: "고양이", isScraped: false, breed : "먼치킨", date: new Date(2024,10,11), viewcount: 50 },
+    { id: 3, img: imgm1, title: "미어캣 / 사나움", category: "기타동물", isScraped: false, breed : "미어캣", date: new Date(2024,5,1), viewcount: 10 },
+    { id: 4, img: img4, title: "3개월 추정 / 진돗개 / 온순함", category: "강아지", isScraped: false, breed : "진돗개", date: new Date(2024,10,30), viewcount: 0 },
+    { id: 5, img: img3, title: "3개월 추정 / 온순함", category: "강아지", isScraped: false, breed : "포메라니안", date: new Date(2024,11,11), viewcount: 15 },
+    { id: 6, img: img2, title: "3세 / 믹스견 / 성격나쁨", category: "강아지", isScraped: false, breed : "믹스견", date: new Date(2024,9,10), viewcount: 12 },
+    { id: 7, img: imgm2, title: "2세 / 야생소 / 사나움", category: "기타동물", isScraped: false, breed : "포메라니안", date: new Date(2024,9,29), viewcount: 26 },
+    { id: 8, img: imgc2, title: "3개월 추정", category: "고양이", isScraped: false, breed : "페르시안", date: new Date(2024,2,2), viewcount: 2 },
     // 추가 아이템들...
   ];
 
-  // 선택된 카테고리에 따라 필터링된 아이템
-  const filteredItems = selectedCategory === "전체"
-    ? allItems
-    : allItems.filter(item => item.description === selectedCategory);
+  const filteredItems = allPosts.filter(item => 
+    (selectedCategory === "전체" || item.category === selectedCategory) &&
+    (item.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+     item.breed.toLowerCase().includes(searchQuery.toLowerCase()))  // description도 필터링
+  );
 
   // 페이지당 아이템 수 (4개로 제한)
   const itemsPerPage = 4;
 
   // 현재 페이지에 해당하는 아이템만 추출
-  const currentItems = filteredItems.slice(
+  const currentPosts = filteredItems.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
@@ -52,10 +54,8 @@ const Scrappage = ({ gridArea }) => {
   const toggleScrap = (id) => {
     setScrapedItems(prevScrapedItems => {
       if (prevScrapedItems.includes(id)) {
-        // 이미 스크랩된 아이템이라면 제거
         return prevScrapedItems.filter(itemId => itemId !== id);
       } else {
-        // 스크랩되지 않은 아이템이라면 추가
         return [...prevScrapedItems, id];
       }
     });
@@ -70,42 +70,46 @@ const Scrappage = ({ gridArea }) => {
   ];
 
   const handleTabClick = (category) => {
-    setSelectedCategory(category);  // 클릭한 카테고리로 상태 업데이트
+    setSelectedCategory(category);
     setCurrentPage(1);  // 카테고리 변경 시 페이지 1로 리셋
   };
 
   const handlePageClick = (pageNumber) => {
-    setCurrentPage(pageNumber);  // 페이지 번호 클릭 시 해당 페이지로 변경
+    setCurrentPage(pageNumber);
+  };
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
   };
 
   return (
     <div style={{ gridArea: gridArea }}>
       <div className={styles.mpcontainer}>
-        {/* 검색바 */}
         <div className={styles.SearchBar}>
-          <SearchBar width="300px" />
+          <SearchBar 
+            placeholder={"품종 검색"} 
+            onSearch={handleSearch} 
+            width="300px" 
+          />
         </div>
 
-        {/* 서브 네비게이션 바 */}
         <div className={styles.SubNaviBar}>
           <SubNaviBar tabs={tabs} onTabClick={handleTabClick} />
         </div>
 
-        {/* 필터링된 아이템들만 렌더링 */}
         <div className={styles.content}>
-          {currentItems.map((item) => (
+          {currentPosts.map((item) => (
             <Card2 
               key={item.id} 
               imageFile={item.img} 
               text1={item.title} 
               description={item.description} 
-              isScraped={scrapedItems.includes(item.id)} // 스크랩 여부
-              onScrapToggle={() => toggleScrap(item.id)} // 스크랩 토글
+              isScraped={scrapedItems.includes(item.id)}
+              onScrapToggle={() => toggleScrap(item.id)} 
             />
           ))}
         </div>
 
-        {/* 페이지네이션 컴포넌트 */}
         <Pagenumber 
           totalPages={totalPages} 
           currentPage={currentPage} 

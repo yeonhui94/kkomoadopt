@@ -9,6 +9,10 @@ import Pagenumber from "../../../components/pagenumber/Pagenumber";
 
 const Report = ({ gridArea }) => {
 
+  const [sortOption, setSortOption] = useState("전체보기");
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 15;
+
   const posts = [
     { title: "새 게시물 제목", admin: "관리자", date: new Date("2024-11-25"), views: 5, files: 2 },
     { title: "새 게시물 제목 2", admin: "관리자", date: new Date("2024-10-25"), views: 4, files: 2 },
@@ -69,10 +73,7 @@ const Report = ({ gridArea }) => {
   const addPost = (newPost) => {
     setPosts([newPost, ...posts]); // 새로운 게시물을 맨 앞에 추가
   };
-
-  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
-  const postsPerPage = 15; // 페이지당 게시물 수
-
+  
   // 전체 페이지 수 계산
   const totalPages = Math.ceil(posts.length / postsPerPage);
 
@@ -88,10 +89,27 @@ const Report = ({ gridArea }) => {
 
 
 
+  const handleSort = (option) => {
+    setSortOption(option);
+
+    const sortedPosts = [...posts];
+    if (option === "최신 순") {
+      sortedPosts.sort((a, b) => b.date - a.date);
+    } else if (option === "오래된 순") {
+      sortedPosts.sort((a, b) => a.date - b.date);
+    } else if (option === "조회 수 높은 순") {
+      sortedPosts.sort((a, b) => b.views - a.views);
+    } else if (option === "조회 수 낮은 순") {
+      sortedPosts.sort((a, b) => a.views - b.views);
+    }
+    setPosts(sortedPosts);
+  };
+
+
   return (
     <div style={{ gridArea }} className={comstyle.posts_container}>
       <div className={`${styles.rwsubcontainer2} ${comstyle.inputdrop}`}>
-        <Dropdown options={options} onChange={(option) => handleSort(option)} />
+        <Dropdown options={options} onChange={handleSort} />
         <SearchBar placeholder={"글 내용 & 글 제목"} width="300px" />
       </div>
       <div className={comstyle.lin}>

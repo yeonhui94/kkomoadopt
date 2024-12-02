@@ -104,16 +104,32 @@
   grid-template: 
     '... inputdrop ...' 1fr
     '... ... ...' 10px
-
     '... ... ...' 8px
     '... subbar ...' 30px
-    '... postsbox ...' 10fr
-    '... ... ...' 10px/ 50px 1fr 50px;
+    '... postsbox ...' 750px
+    '... ... ...' 50px
+    '... button ...' 10px
+    '... ... ...' 50px/ 50px 1fr 50px;
     text-align: center;
 }
 
 .inputdrop {
   grid-area: inputdrop;
+}
+
+.buttondiv {
+  display: grid;
+  grid-area: button;
+  grid-template: 
+    '...pagenum ...  ... btn ' 30px /1fr 10fr 1fr 1fr 1fr ;
+  align-items: end;
+}
+.report_btn {
+  grid-area: btn;
+}
+
+.pagenum {
+  grid-area: pagenum;
 }
 
 .lin {

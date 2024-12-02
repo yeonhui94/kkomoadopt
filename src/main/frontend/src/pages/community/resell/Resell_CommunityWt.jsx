@@ -6,6 +6,7 @@ import styles from "../CommunityWt.module.css";
 import { Form, Outlet } from "react-router-dom";
 import { useState } from "react";
 import Uploadfile from "../adopt_review/Uploadfile";
+import Button from "../../../components/Button/Button";
 
 
 const Resell_CommunityWt = ({ text = "사고팝니다" , gridArea}) => {
@@ -31,9 +32,9 @@ const Resell_CommunityWt = ({ text = "사고팝니다" , gridArea}) => {
         </div>
 
          {/* 등록 버튼 */}
-         <div className={styles.submitButtonContainer}>
-          <button className={styles.smallButton}>등록</button>
-        </div>
+         <a className={wtstyles.submitButtonContainer}>
+          <Button className={wtstyles.smallButton} text={"등록"} width={"100px"} fontSize={"20px"}/>
+        </a>
     </Form>
   );
 };

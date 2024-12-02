@@ -57,7 +57,9 @@ const Uploadfile = ({ maxFiles = 4 }) => {
         color={"#444"}
         onClick={() => fileInputRef.current.click()}
       />
-      <div style={{color : "var(--main-color)" , fontWeight: "600" , fontSize : "12px"}}> * {selectedFiles.length} 개 파일이 첨부되었습니다.</div>
+       {selectedFiles.length > 0 ? (
+      <div style={{color : "var(--main-color)" , fontWeight: "600" , fontSize : "12px"}}> * {selectedFiles.length} 개 파일이 첨부되었습니다.</div>  )
+      : (<div>  </div>)}
         {selectedFiles.length > 0 && (
 
           <div className={styles.input}>

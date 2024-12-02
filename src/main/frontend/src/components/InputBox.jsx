@@ -28,10 +28,11 @@ const StyledInput = styled.input`
   padding: 8px;
   border: 3px solid #ccc;
   border-radius: 10px;
+  placeholder : ${({ placeholder }) => placeholder || ""};
 `;
 
 // InputBox 컴포넌트
-function InputBox({ text, itype, value, width, height, onChange, 
+function InputBox({ text, itype, value, width, height, onChange, placeholder,
                     backgroundColor,fontSize,marginBottom, paddingRight,marginRight}) {
   return (
     <StyledDiv 
@@ -48,6 +49,7 @@ function InputBox({ text, itype, value, width, height, onChange,
         width={width}   // width 프롭 전달
         height={height} // height 프롭 전달
         marginRight={marginRight}
+        placeholder={placeholder}
       />
     </StyledDiv>
   );

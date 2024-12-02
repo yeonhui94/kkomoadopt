@@ -21,8 +21,29 @@
     grid-area: contents1;
 }
 
+.form2{
+    display : grid;
+    grid-template :
+  'inp1 btn1' 100px
+  'text text' 1fr/ 490px 100px;
+}
+
+.from3{
+    display : grid;
+    grid-template :
+    'inp2 btn2' 100px
+    'text2 text2' 1fr/ 490px 100px;
+}
 .div2{
     display : flex;
   border : 4px solid var(--line-color);
   border-radius : 10px;
+}
+
+.checkboxWrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    padding: 10px;
 }

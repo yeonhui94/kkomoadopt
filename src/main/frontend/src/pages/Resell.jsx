@@ -17,11 +17,13 @@ import img12 from "../assets/Resell/12.jpg"
 import Card2 from "../components/Card2/Card2";
 // import Footer from "../container/Footer";
 import Button from "../components/Button/Button";
+import Pagenumber from "../components/pagenumber/Pagenumber";
+import { useState } from "react";
 
 
-const Resell =({gridArea})=>{
+const Resell = ({ gridArea }) => {
 
-    const options = ["전체보기","최신 순", "오래된 순", "조회 수 높은 순","조회 수 낮은 순"];
+    const options = ["전체보기", "최신 순", "오래된 순", "조회 수 높은 순", "조회 수 낮은 순"];
 
 
     const cardData = [
@@ -37,12 +39,28 @@ const Resell =({gridArea})=>{
         { imageFile: img10, text1: "소형견 옷 땡처리", text2: "옷 개당 2천원에 드릴게요 연락주세요 소형견입니다" },
         { imageFile: img11, text1: "방석 팔아요", text2: "방석 많이 안사용했어요 연락주세요" },
         { imageFile: img12, text1: "이동가방 팔아요", text2: "이동가방 판매합니다 연락주세요" }
-      ];
+    ];
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const postsPerPage = 12; // 한 페이지에 표시할 카드 수
+
+    // 전체 페이지 수 계산
+    const totalPages = Math.ceil(cardData.length / postsPerPage);
+
+    // 현재 페이지에 맞는 카드 데이터 계산
+    const currentPosts = cardData.slice(
+        (currentPage - 1) * postsPerPage,
+        currentPage * postsPerPage
+    );
+
+    // 페이지 클릭 처리 함수
+    const handlePageClick = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
 
 
-
-    return(
-        <div style={{gridArea : gridArea}}>
+    return (
+        <div style={{ gridArea: gridArea }}>
             <div className={styles.rwWrapper}>
                 <div className={styles.rwsubcontainer}>
                     <div className={styles.rwsubcontainer2}>
@@ -50,26 +68,35 @@ const Resell =({gridArea})=>{
                         <SearchBar placeholder={"글 내용 & 글 제목"} width="300px"></SearchBar>
                     </div>
                 </div>
-                    <div>
+                <div>
 
-                        <div className={styles.rwmaincontainer}>
-                            <div className={styles.rwdivider} >
-                                <Divider width={"100%"} backgroundColor={"var(--line-color)"} />
-                            </div>
-                            {cardData.map((card, index) => (
-                                <Card2
-                                    key={index}  // key prop을 고유하게 설정
-                                    imageFile={card.imageFile}
-                                    text1={card.text1}
-                                    text2={card.text2}
-                                />
-                            ))}
+                    <div className={styles.rwmaincontainer}>
+                        <div className={styles.rwdivider} >
+                            <Divider width={"100%"} backgroundColor={"var(--line-color)"} />
                         </div>
+                        {cardData.map((card, index) => (
+                            <Card2
+                                key={index}  // key prop을 고유하게 설정
+                                imageFile={card.imageFile}
+                                text1={card.text1}
+                                text2={card.text2}
+                            />
+                        ))}
                     </div>
+                </div>
 
-                <a className={styles.buttonContainer} href="http://localhost:5173/commu-resell/communitywt">
-                    <Button text={"글쓰기"} />
-                </a>
+                <div className={styles.btnContainer}>
+                    <div className={styles.pgncontainer}>
+                        <Pagenumber
+                            totalPages={totalPages}
+                            currentPage={currentPage}
+                            handlePageClick={handlePageClick}
+                        />
+                    </div>
+                    <div className={styles.buttonContainer}>
+                        <Button text={"글쓰기"} />
+                    </div>
+                </div>
 
             </div>
         </div>

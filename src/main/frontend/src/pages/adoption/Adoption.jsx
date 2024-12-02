@@ -29,7 +29,7 @@ const Adoption = ({ gridArea }) => {
   const [currentPage, setCurrentPage] = useState(1);
 
   // 카드 데이터 관리: 각 카드 데이터에 isScraped 포함
-  const allPosts = [
+  const [allPosts, setAllPosts] = useState([
     { id: 1, img: img1, title: "3세 / 포메라니안 / 성격나쁨", category: "강아지", isScraped: false },
     { id: 2, img: imgc1, title: "3개월 추정/ 포메라니안", category: "고양이", isScraped: false },
     { id: 3, img: imgm1, title: "미어캣 / 사나움", category: "기타동물", isScraped: false },
@@ -46,7 +46,7 @@ const Adoption = ({ gridArea }) => {
     { id: 14, img: img10, title: "1세 / 슈나우져 / 온순함", category: "강아지", isScraped: false },
     { id: 15, img: img11, title: "1세 / 비숑 / 온순함", category: "강아지", isScraped: false },
     { id: 16, img: img12, title: "4세 / 포메라니안 / 느긋함", category: "강아지", isScraped: false },
-  ];
+  ]);
 
   // 선택된 카테고리에 따라 필터링된 아이템
   const filteredItems = allPosts.filter(item => item.category === selectedCategory);
@@ -80,13 +80,26 @@ const Adoption = ({ gridArea }) => {
     setCurrentPage(pageNumber);
   };
 
+  // 스크랩 상태를 토글하는 함수
+  const toggleScrap = (id) => {
+    setAllPosts(prevPosts => {
+      const updatedPosts = prevPosts.map(post =>
+        post.id === id ? { ...post, isScraped: !post.isScraped } : post
+      );
+      
+      // ✅ 스크랩된 아이템 콘솔에 출력
+      const scrapedItems = updatedPosts.filter(post => post.isScraped);
+      console.log("스크랩된 아이템:", scrapedItems);
+  
+      return updatedPosts;
+    });
+  };
+
   return (
     <div style={{ gridArea: gridArea }}>
       <SubMenuBar menuItems={menuItems} onTabClick={handleTabClick} />
       <div className={styles.rwWrapper}>
         <div className={styles.rwsubcontainer}>
-          {/* SubMenuBar에서 버튼 클릭 시 카테고리별로 필터링 */}
-
           <div className={styles.rwsubcontainer2}>
             <Dropdown options={["전체보기", "최신 순", "오래된 순", "조회 수 높은 순", "조회 수 낮은 순"]} />
             <SearchBar placeholder={"품종 검색"} width="300px" />
@@ -108,7 +121,6 @@ const Adoption = ({ gridArea }) => {
           ))}
         </div>
         <div className={styles.endcontainer}>
-          {/* 페이지네이션 컴포넌트 */}
           <Pagenumber
             totalPages={totalPages}
             currentPage={currentPage}

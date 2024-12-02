@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './SearchBar.module.css';
 
-function SearchBar({ placeholder = "검색어를 입력해주세요.", width = "100%" }) {
+function SearchBar({ placeholder = "검색어를 입력해주세요.", width = "100%", onSearch }) {
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleInputChange = (event) => {
@@ -10,6 +10,7 @@ function SearchBar({ placeholder = "검색어를 입력해주세요.", width = "
 
   const handleSearch = () => {
     console.log('검색어:', searchQuery);
+    onSearch(searchQuery);  // 검색어를 부모 컴포넌트로 전달
   };
 
   return (

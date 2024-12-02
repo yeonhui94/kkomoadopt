@@ -39,12 +39,21 @@ const Missing = ({ gridArea }) => {
 
     const [currentPage, setCurrentPage] = useState(1);
     const [sortedData, setSortedData] = useState(cardData);
+    const [searchQuery, setSearchQuery] = useState('');  // 검색어 상태 추가
+
     const postsPerPage = 12; // 한 페이지에 표시할 카드 수
 
-    const totalPages = Math.ceil(sortedData.length / postsPerPage);
+    // 검색 필터링된 데이터
+    const filteredData = sortedData.filter(card =>
+        card.text1.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        card.text2.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
-    // 현재 페이지에 맞는 카드 데이터 계산
-    const currentPosts = sortedData.slice(
+    // 페이지 계산을 filteredData로 처리
+    const totalPages = Math.ceil(filteredData.length / postsPerPage);
+
+    // 현재 페이지에 맞는 카드 데이터 계산 (filteredData 사용)
+    const currentPosts = filteredData.slice(
         (currentPage - 1) * postsPerPage,
         currentPage * postsPerPage
     );
@@ -56,7 +65,7 @@ const Missing = ({ gridArea }) => {
 
     // 드롭다운에서 선택된 옵션에 맞게 데이터를 처리하는 함수
     const handleSortChange = (option) => {
-        let sortedCards = [...cardData];
+        let sortedCards = [...filteredData];
         switch (option) {
             case "최신 순":
                 sortedCards.sort((a, b) => b.date - a.date);
@@ -71,11 +80,16 @@ const Missing = ({ gridArea }) => {
                 sortedCards.sort((a, b) => a.viewcount - b.viewcount);
                 break;
             default:
-                sortedCards = cardData;
+                sortedCards = filteredData;
                 break;
         }
         setSortedData(sortedCards);
         setCurrentPage(1); // 페이지를 첫 번째로 초기화
+    };
+
+    // 검색어 변경 처리 함수
+    const handleSearch = (query) => {
+        setSearchQuery(query);  // 검색어를 상태에 저장
     };
 
     return (
@@ -88,7 +102,10 @@ const Missing = ({ gridArea }) => {
                             defaultText="전체보기"
                             onChange={handleSortChange}
                         />
-                        <SearchBar placeholder={"글 내용 & 글 제목"} width="300px"></SearchBar>
+                        <SearchBar 
+                            placeholder={"글 내용 & 글 제목"} 
+                            width="300px"               
+                            onSearch={handleSearch} />
                     </div>
                 </div>
                 <div>

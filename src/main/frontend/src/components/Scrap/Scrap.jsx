@@ -1,7 +1,8 @@
 import React from 'react';
 import './Scrap.css';
-import ScrapBefore from '../../assets/ScrapImg/ScrapBefore.png';
-import ScrapAfter from '../../assets/ScrapImg/ScrapAfter.png';
+import ScrapBefore from '../../assets/ScrapImg/ScrapBefore.svg';
+import ScrapAfter from '../../assets/ScrapImg/ScrapAfter.svg';
+
 
 function Scrap({ isScraped, onToggle }) {
   return (

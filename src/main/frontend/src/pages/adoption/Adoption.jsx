@@ -29,6 +29,7 @@ const Adoption = ({ gridArea }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOption, setSortOption] = useState("전체보기");
 
+  const options = ["전체보기","최신 순", "오래된 순", "조회 수 높은 순","조회 수 낮은 순"];
 
   // 카드 데이터 관리: 각 카드 데이터에 isScraped 포함
   const [allPosts, setAllPosts] = useState([
@@ -47,7 +48,7 @@ const Adoption = ({ gridArea }) => {
     { id: 13, img: img9, title: "2세 / 믹스견 / 온순함", category: "강아지", isScraped: false, date: new Date(2024,11,18), viewcount: 155 },
     { id: 14, img: img10, title: "1세 / 슈나우져 / 온순함", category: "강아지", isScraped: false, date: new Date(2024,10,18), viewcount: 125 },
     { id: 15, img: img11, title: "1세 / 비숑 / 온순함", category: "강아지", isScraped: false, date: new Date(2024,11,10), viewcount: 86 },
-    { id: 16, img: img12, title: "4세 / 포메라니안 / 느긋함", category: "강아지", isScraped: false, date: new Date(2024,12,2), viewcount: 152 },
+    { id: 16, img: img12, title: "4세 / 포메라니안 / 느긋함", category: "강아지", isScraped: false, date: new Date(2024,12,2) },
   ]);
 
   // 선택된 카테고리에 따라 필터링된 아이템
@@ -129,7 +130,7 @@ const Adoption = ({ gridArea }) => {
         <div className={styles.rwsubcontainer}>
           <div className={styles.rwsubcontainer2}>
             <Dropdown 
-              options={["전체보기", "최신 순", "오래된 순", "조회 수 높은 순", "조회 수 낮은 순"]} 
+              options={options} 
               defaultText="전체보기"
               onChange={handleSortChange}
             />

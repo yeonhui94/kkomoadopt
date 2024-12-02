@@ -15,5 +15,5 @@ const ChangeProfile=()=>{
             <Button></Button>
         </div>
     )
-}
+};
 export default ChangeProfile;

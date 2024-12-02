@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Logo from '../../components/logo/Logo';
-import Mypageicon2 from '../../components/header/MyPageIcon2';
+import Mypageicon2 from '../../components/header/Mypageicon2';
 import Button from '../../components/Button/Button';
 import HeaderList from '../../components/header/HeaderList';
 import styles from '../../components/header/MainHeader.module.css';
@@ -14,6 +14,7 @@ const MainHeader = () => {
   const handleItemClick = (itemName) => {
     setClickedItem(itemName);
   };
+
 
   return (
     <div className={styles.headerGroup}>
@@ -32,12 +33,14 @@ const MainHeader = () => {
       <div
         className={styles.divider}
       >
+
           <Divider
             display={"block"}
             width="100%"
             backgroundColor="var(--line-color)"
             marTop={"0px"}
           />
+
       </div>
     </div>
   );

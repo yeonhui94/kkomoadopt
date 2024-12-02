@@ -6,6 +6,7 @@ import wtstyles from "../CommunityWt.module.css";
 import { Form, useOutletContext } from "react-router-dom";
 import Uploadfile from "../adopt_review/Uploadfile";
 import { useState } from "react";
+import Button from "../../../components/Button/Button";
 
 const Report_CommunityWt = ({ gridArea}) => {
 
@@ -64,9 +65,9 @@ const Report_CommunityWt = ({ gridArea}) => {
         </div>
 
         {/* 등록 버튼 */}
-        <div className={wtstyles.submitButtonContainer}>
-          <button className={wtstyles.smallButton} type="submit">등록</button>
-        </div>
+        <a className={wtstyles.submitButtonContainer}>
+          <Button className={wtstyles.smallButton} text={"등록"} width={"100px"} fontSize={"20px"}/>
+        </a>
     </Form>
   );
 };

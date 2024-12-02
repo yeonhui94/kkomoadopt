@@ -5,6 +5,8 @@ import Divider from "../../../components/Divider";
 import styles from "../CommunityWt.module.css";
 import { Form, Outlet } from "react-router-dom";
 import Uploadfile from "../adopt_review/Uploadfile";
+import Button from "../../../components/Button/Button";
+
 
 const Missing_CommunityWt = ({ gridArea}) => {
   return (
@@ -29,9 +31,9 @@ const Missing_CommunityWt = ({ gridArea}) => {
         </div>
 
         {/* 등록 버튼 */}
-        <div className={styles.submitButtonContainer}>
-          <button className={styles.smallButton}>등록</button>
-        </div>
+        <a className={wtstyles.submitButtonContainer}>
+          <Button className={wtstyles.smallButton} text={"등록"} width={"100px"} fontSize={"20px"}/>
+        </a>
     </Form>
   );
 };

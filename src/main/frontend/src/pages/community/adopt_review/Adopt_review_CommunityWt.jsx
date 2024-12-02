@@ -5,6 +5,7 @@ import Divider from "../../../components/Divider";
 import wtstyles from "../CommunityWt.module.css";
 import Uploadfile from "./Uploadfile";
 import { Form } from "react-router-dom";
+import Button from "../../../components/Button/Button";
 
 // 폼으로 묶어줘~~~~
 
@@ -31,9 +32,9 @@ const Adopt_review_CommunityWt = ({gridArea}) => {
         </div>
 
         {/* 등록 버튼 */}
-        <div className={wtstyles.submitButtonContainer}>
-          <button className={wtstyles.smallButton}>등록</button>
-        </div>
+        <a className={wtstyles.submitButtonContainer}>
+          <Button className={wtstyles.smallButton} text={"등록"} width={"100px"} fontSize={"20px"}/>
+        </a>
     </Form>
   );
 };

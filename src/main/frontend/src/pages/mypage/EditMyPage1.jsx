@@ -1,9 +1,9 @@
 import Divider from '../../components/Divider';
 import InputBox from '../../components/InputBox';
 import Button from '../../components/Button/Button';
-import styles from '../../pages/mypage/EditMyPage.module.css';
+import styles from '../../pages/mypage/EditMyPage1.module.css';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 function EditMyPage1({ gridArea }) {
 
@@ -12,6 +12,9 @@ function EditMyPage1({ gridArea }) {
     const correctPassword = 'asdf1234'; // 일치하는 비밀번호 지정
 
     const navigate = useNavigate();
+
+  
+    
 
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
@@ -23,7 +26,7 @@ function EditMyPage1({ gridArea }) {
             setError('비밀번호가 일치하지 않습니다.');
         } else {
             setError('');
-            navigate('/edit-profile2');
+            navigate('/mypage/edit-profile2');
         }
     };
 
@@ -61,8 +64,10 @@ function EditMyPage1({ gridArea }) {
                     marginTop="43px"
                     horizontalPadding="12px"
                     type="submit"  // 버튼 클릭 시 폼 제출
+                    onClick={handleSubmit}
                 />
             </form>
+            <Outlet />
         </div>
     );
 }

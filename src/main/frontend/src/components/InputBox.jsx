@@ -16,8 +16,7 @@ const StyledDiv = styled.div`
 
 // StyledLabel은 라벨 스타일을 담당합니다.
 const StyledLabel = styled.label`
-  font-size: ${({ fontSize }) => fontSize || "16px"};
-  font-weight: bold;
+  font-size: ${({ fontSize }) => fontSize || "1rem"};
   padding-bottom: 8px;
 `;
 

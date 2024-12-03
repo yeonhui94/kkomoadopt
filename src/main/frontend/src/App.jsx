@@ -35,9 +35,12 @@ import Missing from "./pages/Missing";
 import Missing_community from './pages/community/find_child/Missing_Community';
 import Missing_CommunityWt from './pages/community/find_child/Missing_CommunityWt';
 import Scrappage from './pages/mypage/Scrappage';
+import Report from './pages/community/report/Report.jsx';
 import ChangeProfile from './pages/mypage/ChangeProfile';
-
-
+import JoinContents from './pages/Login/JoinContents.jsx';
+import JoinSecession from './pages/Login/JoinSecession.jsx'
+import Report_Post from './pages/community/report/Report_Post.jsx';
+import Announcement from './pages/community/announce/Announcement.jsx';
 
 const router = createBrowserRouter([
   {
@@ -50,6 +53,10 @@ const router = createBrowserRouter([
         { path: "/login", element: <LoginPageContents gridArea="section"/>},
         //회원가입
         { path: "/join", element: <AccesstionPageContents gridArea="section"/>},
+        // 회원가입 페이지
+        { path: "/createId", element: <JoinContents gridArea="section"/>},
+        // 회원가입 완료
+        { path: "/welcome", element: <JoinSecession gridArea="section"/>},
         //입양
         { path: "adoption", element: <Adoption gridArea="section"/>},
         //커뮤니티
@@ -57,11 +64,11 @@ const router = createBrowserRouter([
           // 커뮤니티 > 공지사항, 아이를 찾습니다, 입양 후기, 사고팝니다, 신고합니다
           children : [
             // 공지사항
-            // { path: "", element: <Announcement gridArea="subsection"/>},
+            { path: "", element: <Announcement gridArea="subsection"/>},
             // 사고팝니다
             { path: "resell", element: <Resell gridArea="subsection"/>},
             // 신고합니다
-            // { path: "report", element: <Announcement gridArea="section"/>},
+            { path: "report", element: <Report gridArea="section"/>},
             // 입양 후기
             { path: "adoption-review", element: <Review gridArea="section"/>},
             // 아이를 찾습니다
@@ -99,7 +106,7 @@ const router = createBrowserRouter([
          { path: "commu-report", element: <Report_Community gridArea="section"/>,
           children :[
             // 신고합니다 게시글 
-            //  { path: "", element: < gridArea="subsection"/>},
+             { path: "", element: <Report_Post gridArea="subsection"/>},
             // 신고합니다 글쓰기
             { path: "communitywt", element: <Report_CommunityWt text='신고합니다' gridArea="subsection"/>}
           ]
@@ -134,7 +141,7 @@ const router = createBrowserRouter([
         { path: "/CenterIntro", element: <CenterIntro gridArea="section"/>},
         // 마이페이지
         { path: "mypage", element: <MyPage gridArea="section"/>,
-           // 마이페이지 > 스크랩, 내가 쓴 글, 나의 댓글, 회원정보 수정, 상담신청 내역 , 프로필 변경, 로그아웃
+           // 마이페이지 > 스크랩, 내가 쓴 글, 나의 댓글, 회원정보 수정, 상담신청 내역
           children : [
             // 스크랩 > 전체, 강아지, 고양이, 기타동물
             { path: "", element: <Scrappage gridArea="subsection" />},
@@ -146,10 +153,8 @@ const router = createBrowserRouter([
             { path: "edit-profile", element: <EditProfile gridArea="subsection" />},
             // 상담신청 내역
             { path: "cs-detail", element: <Csdetail gridArea="subsection" />},
-            //프로필 변경
             { path : "change-profile", element: <ChangeProfile gridArea="subsection"/>},
-          ],
-          errorElement: <p>Sorry, this page doesn't exist!</p>, // 404 오류 처리
+          ]
         },
       ]
   }

@@ -106,7 +106,7 @@
     '... ... ...' 10px
     '... ... ...' 8px
     '... subbar ...' 30px
-    '... postsbox ...' 750px
+    '... postsbox ...' 10fr
     '... ... ...' 50px
     '... button ...' 10px
     '... ... ...' 50px/ 50px 1fr 50px;
@@ -187,11 +187,12 @@
 .post {
   display: grid;
   grid-template: 
-    'postnumli titleli adminli dateli viewsli' 50px/ 1fr 10fr 1fr 1fr 1fr ;
+    'postnumli titleli adminli dateli viewsli' 75px/ 1fr 10fr 1fr 1fr 1fr ;
   text-align: center;
   align-items: center;
   border-bottom: 1px solid #e9e9e9;
   color: #444;
+  height: 75px;
   /* border-top: 1px solid #e9e9e9; */
   }
 

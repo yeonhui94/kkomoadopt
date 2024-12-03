@@ -11,7 +11,7 @@ const Announcement = ({ gridArea }) => {
 
   const [sortOption, setSortOption] = useState("전체보기");
   const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 15;
+  const postsPerPage = 10;
 
   const posts = [
     { title: "새 게시물 제목", admin: "관리자", date: new Date("2024-11-25"), views: 5, files: 2 },

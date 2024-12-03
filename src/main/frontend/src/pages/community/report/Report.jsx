@@ -11,13 +11,13 @@ const Report = ({ gridArea }) => {
 
   const [sortOption, setSortOption] = useState("전체보기");
   const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 15;
+  const postsPerPage = 10;
 
   const posts = [
     { title: "새 게시물 제목", admin: "짱구는", date: new Date("2024-11-25"), views: 5, files: 2 },
     { title: "새 게시물 제목 2", admin: "집갈래", date: new Date("2024-10-25"), views: 4, files: 2 },
     { title: "새 게시물 제목 3", admin: "고소연하게", date: new Date("2024-09-25"), views: 10, files: 2 },
-    { title: "새 게시물 제목 4", admin: "123", date: new Date("2024-08-25"), views: 50, files: 2 },
+    { title: "새 게시물 제목 4", admin: "규환옵테트꼴등", date: new Date("2024-08-25"), views: 50, files: 2 },
     { title: "새 게시물 제목 5", admin: "레일라", date: new Date("2024-07-25"), views: 0, files: 2 },
     { title: "새 게시물 제목 6", admin: "닝ㄴ잉", date: new Date("2024-06-25"), views: 7, files: 2 },
     { title: "새 게시물 제목 7", admin: "문상", date: new Date("2024-05-25"), views: 23, files: 2 },
@@ -31,10 +31,10 @@ const Report = ({ gridArea }) => {
     { title: "새 게시물 제목 15", admin: "졸령", date: new Date("2023-09-20"), views: 12, files: 2 },
     { title: "새 게시물 제목 16", admin: "피고냉", date: new Date("2023-08-18"), views: 9, files: 2 },
     { title: "새 게시물 제목 17", admin: "도토리행성주민", date: new Date("2023-07-11"), views: 3, files: 2 },
-    { title: "새 게시물 제목 18", admin: "고요한폭풍", date: new Date("2023-06-22"), views: 18, files: 2 },
+    { title: "새 게시물 제목 18", admin: "혜린온귀여웡", date: new Date("2023-06-22"), views: 18, files: 2 },
     { title: "새 게시물 제목 19", admin: "호유동", date: new Date("2023-05-15"), views: 20, files: 2 },
     { title: "새 게시물 제목 20", admin: "햄스퉈", date: new Date("2023-04-05"), views: 13, files: 2 },
-    { title: "새 게시물 제목 21", admin: "헤이맨", date: new Date("2023-03-02"), views: 30, files: 2 },
+    { title: "새 게시물 제목 21", admin: "수현꼬신다", date: new Date("2023-03-02"), views: 30, files: 2 },
     { title: "새 게시물 제목 22", admin: "집에가고시퍼", date: new Date("2023-02-18"), views: 8, files: 2 },
     { title: "새 게시물 제목 23", admin: "소고기", date: new Date("2023-01-12"), views: 6, files: 2 },
     { title: "새 게시물 제목 24", admin: "gpt바보", date: new Date("2022-12-05"), views: 17, files: 2 },
@@ -63,6 +63,7 @@ const Report = ({ gridArea }) => {
   const handlePageClick = (page) => {
     setCurrentPage(page); // 클릭한 페이지로 이동
   };
+
 
 
 

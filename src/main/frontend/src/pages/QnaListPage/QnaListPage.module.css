@@ -1,0 +1,32 @@
+.qnaPageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+  position: relative;
+}
+
+.sectionContainer {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  align-items: center;
+  gap: 20px;
+}
+
+.filterSelect {
+  outline: none;
+  border: none;
+  align-self: start;
+}
+
+.bottomContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.hidden {
+  opacity: 0;
+}

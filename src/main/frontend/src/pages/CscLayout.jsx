@@ -1,12 +1,7 @@
-import { CscMenu, CscMenuLink } from "../components/CscMenu";
-import { Outlet, useMatch } from "react-router-dom";
-import Divider from "../components/Divider";
 import { useEffect, useState } from "react";
+import SubMenuBar from "./../components/submenubar/SubMenuBar";
 
 const CscLayout = () => {
-  const isResultQnaPage = useMatch("/csc/qna/result/:id");
-  const isWriteQnaPage = useMatch("/csc/qna/write");
-
   const [inquiries, setInquiries] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -31,31 +26,18 @@ const CscLayout = () => {
 
   if (loading) {
     return <p>로딩 중...</p>;
-  }
+  };
 
-  // if (isResultQnaPage || isWriteQnaPage) {
-  //   return (
-  //     <>
-  //       <CscMenu>
-  //         <Divider
-  //           text={"Q&A"}
-  //           paddingbt={"16px"}
-  //           width={"100%"}
-  //           textAlign={"left"}
-  //         />
-  //       </CscMenu>
-  //       <Outlet />
-  //     </>
-  //   );
-  // }
+
+  const menuItems = [
+    { name: "FAQ", path: "/customerservice" },
+    { name: "Q&A", path: "/customer_qna" },
+    { name: "방문상담신청", path: "/customer_apply_consult" },
+  ];
 
   return (
-    <div style={{gridArea : "subheader"}}>
-      <CscMenu>
-        <CscMenuLink to="/csc/faq" text="FAQ" />
-        <CscMenuLink to="/csc/qna" text="Q&A" />
-        <CscMenuLink to="/csc/consultation" text="방문 상담 신청" />
-      </CscMenu>
+    <div style={{ gridArea: "subheader" }}>
+      <SubMenuBar menuItems={menuItems} />
     </div>
   );
 };

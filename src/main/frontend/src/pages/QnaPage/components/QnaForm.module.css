@@ -1,0 +1,50 @@
+.gridFormContainer {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+
+  gap: 16px;
+
+  padding-top: 16px;
+}
+
+.gridFormContainer > * {
+  border: none;
+  outline: none;
+  padding: 16px;
+  justify-content: center;
+  align-items: center;
+
+  background-color: gainsboro;
+}
+
+.gridResponseContainer {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+
+  gap: 16px;
+
+  padding-top: 16px;
+}
+
+.gridResponseContainer > * {
+  border: none;
+  outline: none;
+  padding: 16px;
+  justify-content: center;
+  align-items: center;
+
+  background-color: gainsboro;
+}
+
+textArea {
+  resize: none;
+}
+
+.buttonContainer {
+  display: flex;
+  width: 100%;
+  justify-content: end;
+  padding: 16px;
+}

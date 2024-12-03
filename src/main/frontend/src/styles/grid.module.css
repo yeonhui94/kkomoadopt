@@ -1,0 +1,59 @@
+.spanCol1 {
+  display: grid;
+  grid-column: span 1;
+}
+
+.spanCol2 {
+  display: grid;
+  grid-column: span 2;
+}
+
+.spanCol3 {
+  display: grid;
+  grid-column: span 3;
+}
+
+.spanCol4 {
+  display: grid;
+  grid-column: span 4;
+}
+
+.spanCol5 {
+  display: grid;
+  grid-column: span 5;
+}
+
+.spanRow2 {
+  display: grid;
+  grid-row: span 2;
+}
+
+.spanRow3 {
+  display: grid;
+  grid-row: span 3;
+}
+
+.spanRow4 {
+  display: grid;
+  grid-row: span 4;
+}
+
+.spanRow5 {
+  display: grid;
+  grid-row: span 5;
+}
+
+.spanRow6 {
+  display: grid;
+  grid-row: span 6;
+}
+
+.spanRow7 {
+  display: grid;
+  grid-row: span 7;
+}
+
+.spanRow1 {
+  display: grid;
+  grid-row: span 1;
+}

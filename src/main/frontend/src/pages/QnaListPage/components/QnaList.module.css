@@ -1,0 +1,26 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 4px;
+}
+
+.mainContainerItem {
+  width: 100%;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  display: grid;
+  grid-template-columns: 100px 1fr 150px 200px 100px;
+  border-bottom: 2px solid #e0e0e0;
+  align-items: center;
+  justify-items: center;
+  padding: 8px;
+}
+
+.link {
+  color: black;
+  text-decoration: none;
+  font-weight: normal;
+}

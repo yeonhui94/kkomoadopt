@@ -1,19 +1,15 @@
 import styled from "styled-components";
-// import Header from "../container/header/Header";
-// import Footer from "../../container/Footer";
 import Divider from "../../../components/Divider";
 import styles from "../../community/CommunityWt.module.css";
 import { Outlet } from "react-router-dom";
+import CscLayout from './../../CscLayout';
 
-const Qna = ({ text = "QnA"  , gridArea}) => {
+const Qna = ({ gridArea}) => {
   return (
-    <div className="commwrapper"
-    style={{gridArea : gridArea}}>
-      <div className={styles.mainContainer}>
-        <h1>{text}</h1>
+    <div style={{gridArea : gridArea}}>
+      <CscLayout />
         <Divider />
         <Outlet/>
-      </div>
     </div>
   );
 };

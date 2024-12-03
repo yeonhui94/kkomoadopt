@@ -1,49 +1,8 @@
-import styled from 'styled-components';
 import Divider from '../../components/Divider';
 import InputBox from '../../components/InputBox';
 import Button from '../../components/Button/Button';
+import styles from '../../pages/mypage/EditMyPage.module.css';
 import { useState } from 'react';
-
-const StyledDiv1 = styled.div`
-    display : grid;
-    grid-template :
-    'title1 ... ...'80px
-    'title2 title2 title2' 80px
-    'input1 ... ...' 1fr/1fr 1fr 1fr;
-    margin-left : 20px;
-`;
-
-const StyledDividerWrapper = styled.div`
-  position: relative;
-  margin-top: ${({ marTop }) => marTop || '0px'};
-  &::after {
-    content: '';
-    position: absolute; 
-    width: 98%;
-    height: 2px;
-    background-color: var(--line-color, #000); /* var(--line-color)를 사용할 수 있도록 설정 */
-  }
-`;
-
-const StyledForm1 = styled.form`
-    margin-top : 10px;
-    display : grid;
-    grid-template :
-    'input1 btn1'100px
-    'text text' 1fr/ 400px 100px;
-`;
-
-const StyledP1 = styled.p`
-    font-size : 20px;
-`;
-
-const ErrorMessage = styled.p`
-    color: red;
-    font-size: 15px;
-    margin-top: 3px;
-    margin-left : 15px;
-    grid-area : text;
-`;
 
 function EditMyPage1({ gridArea }) {
 
@@ -67,16 +26,16 @@ function EditMyPage1({ gridArea }) {
     };
 
     return (
-        <StyledDiv1 style={{ gridArea: gridArea }}>
+        <div className={styles.EditMyPageDiv1} style={{ gridArea: gridArea }}>
             <div style={{ gridArea: "title1" }}>
                 <Divider text="본인확인" fontweight="midium" marTop="20px" />
             </div>
 
-            <StyledDividerWrapper marTop="20px" style={{ gridArea: "title2" }}>
-                <StyledP1>본인확인을 위해 비밀번호를 입력해주세요.</StyledP1>
-            </StyledDividerWrapper>
+            <div className={styles.SecondDividerWrapper} style={{ gridArea: "title2" }}>
+                <p style={{fontSize : "20px"}}>본인확인을 위해 비밀번호를 입력해주세요.</p>
+            </div>
 
-            <StyledForm1 onSubmit={handleSubmit} style={{ gridArea: "input1" }}>
+            <form className={styles.input1Form} onSubmit={handleSubmit} style={{ gridArea: "input1" }}>
                 <InputBox
                     style={{ gridArea: "input1" }}
                     itype="password"
@@ -89,7 +48,7 @@ function EditMyPage1({ gridArea }) {
                     value={password}
                     onChange={handlePasswordChange}
                 />
-                {error && <ErrorMessage>{error}</ErrorMessage>}  {/* 오류 메시지 표시 */}
+                {error && <p className={styles.ErrorMessage}>{error}</p>}  {/* 오류 메시지 표시 */}
                 <Button
                     style={{ gridArea: "btn1" }}
                     text="확인"
@@ -101,8 +60,8 @@ function EditMyPage1({ gridArea }) {
                     horizontalPadding="12px"
                     type="submit"  // 버튼 클릭 시 폼 제출
                 />
-            </StyledForm1>
-        </StyledDiv1>
+            </form>
+        </div>
     );
 }
 

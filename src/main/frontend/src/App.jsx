@@ -47,6 +47,7 @@ import EditMyPage1 from './pages/mypage/EditMyPage1';
 
 import Report_Post from './pages/community/report/Report_Post.jsx';
 import Announcement from './pages/community/announce/Announcement.jsx';
+import EditMyPage2 from './pages/mypage/EditMyPage2.jsx';
 
 const router = createBrowserRouter([
   {
@@ -157,7 +158,8 @@ const router = createBrowserRouter([
             // 나의 댓글
             { path: "my-comments", element: <MyComments gridArea="subsection" />},
             // 회원정보 수정
-            { path: "edit-profile", element: <EditMyPage1 gridArea="subsection" />},
+            { path: "edit-profile1", element: <EditMyPage1 gridArea="subsection" />},
+            { path: "edit-profile2", element: <EditMyPage2 gridArea="subsection" />},
             // 상담신청 내역
             { path: "cs-detail", element: <Csdetail gridArea="subsection" />},
             { path : "change-profile", element: <ChangeProfile gridArea="subsection"/>},

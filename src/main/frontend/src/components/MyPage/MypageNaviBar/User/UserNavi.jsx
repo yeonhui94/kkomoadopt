@@ -31,7 +31,7 @@ function UserNavi() {
     { text: "스크랩", to: "/mypage" },
     { text: "내가 쓴 글", to: "/mypage/my-posts" },
     { text: "나의 댓글", to: "/mypage/my-comments" },
-    { text: "회원정보 수정", to: "/mypage/edit-profile" },
+    { text: "회원정보 수정", to: "/mypage/edit-profile1" },
     { text: "상담신청 내역", to: "/mypage/cs-detail" },
   ];
 

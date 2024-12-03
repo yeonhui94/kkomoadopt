@@ -16,7 +16,7 @@ import Img10 from "../../assets/CardImage/10.jpg";
 // 카드 컨테이너 스타일
 const CardContainer = styled.div`
   display: flex;
-  gap: 66px;
+  gap: 60px;
   padding: 20px;
   overflow-x: auto;
   scroll-behavior: smooth;
@@ -25,6 +25,8 @@ const CardContainer = styled.div`
     display: none;  // 스크롤바 숨김
   }
   scrollbar-width: none;  // Firefox에서 스크롤바 숨김
+  max-width: 1920px;
+
 `;
 
 // 카드 스타일
@@ -47,13 +49,13 @@ const cardData = [
   { imageFile: Img10 },
 ];
 
-const Section5 = () => {
+function Section5 () {
   const cardContainerRef = useRef(null); // CardContainer 참조
   const [scrollDirection, setScrollDirection] = useState("forward");
   const [isHovered, setIsHovered] = useState(false); // 마우스 호버 상태 추적
 
   useEffect(() => {
-    const scrollAmount = 322;
+    const scrollAmount = 320;
     const interval = setInterval(() => {
       if (!isHovered) { // 마우스가 호버되지 않은 경우에만 스크롤
         const container = cardContainerRef.current;
@@ -83,6 +85,16 @@ const Section5 = () => {
       onMouseEnter={() => setIsHovered(true)} // 마우스 호버 시작
       onMouseLeave={() => setIsHovered(false)} // 마우스 호버 종료
     >
+      {cardData.map((data, index) => (
+        <CardWrapper key={index}>
+          <Card2 imageFile={data.imageFile} />
+        </CardWrapper>
+      ))}
+      {cardData.map((data, index) => (
+        <CardWrapper key={index}>
+          <Card2 imageFile={data.imageFile} />
+        </CardWrapper>
+      ))}
       {cardData.map((data, index) => (
         <CardWrapper key={index}>
           <Card2 imageFile={data.imageFile} />

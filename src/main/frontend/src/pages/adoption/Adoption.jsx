@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SearchBar from "../../components/SearchBar";
 import SubMenuBar from "../../components/submenubar/SubMenuBar";
 import Card2 from "../../components/Card2/Card2";
@@ -22,7 +22,6 @@ import imgm2 from "../../assets/CardImage/m2.jpg";
 import styles from "../Review.module.css";
 import Dropdown from "../../components/DropDown";
 import Divider from "../../components/Divider";
-import Button from "../../components/Button/Button";
 
 const Adoption = ({ gridArea }) => {
   const [selectedCategory, setSelectedCategory] = useState("강아지");
@@ -58,7 +57,7 @@ const Adoption = ({ gridArea }) => {
   const filteredItems = allPosts.filter(item => 
     item.category === selectedCategory &&
     (item.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-     item.breed.toLowerCase().includes(searchQuery.toLowerCase()))  // description도 필터링
+     item.breed.toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
 
@@ -119,26 +118,28 @@ const Adoption = ({ gridArea }) => {
     });
   };
 
-
-
   const handleSearch = (query) => {
     setSearchQuery(query);  // 검색어를 상태에 저장
   };
-
 
   const handleSortChange = (option) => {
     setSortOption(option);
     setCurrentPage(1); // 정렬 변경 시 페이지를 첫 번째로 리셋
     console.log("정렬 옵션이 설정된 상태:", option); // 디버깅 추가
   };
-  
-  
 
-
+  // 첫 번째 카테고리가 항상 선택되어 있도록 유지
+  useEffect(() => {
+    setSelectedCategory("강아지"); // 초기 렌더링 시 '강아지' 카테고리가 활성화되도록 설정
+  }, []);
 
   return (
     <div style={{ gridArea: gridArea }}>
-      <SubMenuBar menuItems={menuItems} onTabClick={handleTabClick} />
+      <SubMenuBar 
+        menuItems={menuItems} 
+        selectedButton={selectedCategory} 
+        onTabClick={handleTabClick} 
+      />
       <div className={styles.rwWrapper}>
         <div className={styles.rwsubcontainer}>
           <div className={styles.rwsubcontainer2}>
@@ -150,7 +151,8 @@ const Adoption = ({ gridArea }) => {
             <SearchBar 
               placeholder={"품종 검색"} 
               onSearch={handleSearch} 
-              width="300px" />
+              width="300px" 
+            />
           </div>
         </div>
         <div className={styles.rwmaincontainer}>
@@ -164,7 +166,7 @@ const Adoption = ({ gridArea }) => {
               text1={item.title}
               text2={item.description}
               isScraped={item.isScraped}
-              onScrapToggle={() => toggleScrap(item.id)} // 스크랩 상태 토글
+              onScrapToggle={() => toggleScrap(item.id)} 
             />
           ))}
         </div>

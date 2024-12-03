@@ -2,7 +2,6 @@
 .headerGroup {
   padding: 0px 20px;
   background-color: #fff;
-  margin-bottom: 50px;
   
 }
 .header {
@@ -59,7 +58,7 @@
 }
 
 .menuLink {
-  font-size: 25px;
+  font-size: 1.3rem;
   font-weight: 500;
   text-decoration: none;
   color: black;
@@ -87,50 +86,74 @@
 @media(max-width : 1024px){
   .header {
     display: grid;
-    grid-template: 
-    "logo logo logo" 1fr
-    "list icon btn" 1fr / 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr 2fr; 
+
   }
     .logo{
-      grid-area: logo;
+      /* grid-area: logo; */
     }
     .icongrid{
-      grid-area: icon;
+      /* display: none; */
+      /* grid-area: icon; */
     }
     .btn{
-      grid-area: btn;
+      /* display: none; */
+      /* grid-area: btn; */
     }
     .navbar{
-      grid-area: list;
+      /* display: none; */
+      /* grid-area: list; */
+      padding: 0px;
     }
     .menuList{
-      gap: 5vw;
+      gap: 4vw;
+    }
+    .menuLink {
+      font-size: 1.2rem;
+      font-weight: 500;
+      text-decoration: none;
+      color: black;
+      transition: color 0.3s;
     }
 }
 
 
 @media(max-width : 768px){
   .headerGroup{
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
   }
   .header {
     display: grid;
-    grid-template: 
-    "... ... logo ... icon btn ... ..." 1fr
-    "... ... list list list list ... ..." 1fr /20px 1fr 1fr 1fr 1fr 1fr 1fr 20px;
+    grid-template-columns: 2fr 3fr 3fr 2fr; 
+
   }
     .logo{
-      grid-area: logo;
+      /* grid-area: logo; */
     }
     .icongrid{
-      grid-area: icon;
+      /* grid-area: icon; */
     }
     .btn{
-      grid-area: btn;
+      /* grid-area: btn; */
+      padding: 0px;
     }
     .navbar{
-      grid-area: list;
-      text-align: center;
-      justify-content: center;
+      /* grid-area: list; */
+      /* text-align: center; */
+      /* justify-content: center; */
+      padding: 0px;
+    }
+    .menuList{
+      gap: 2vw;
+    }
+    .menuLink {
+      font-size: 1.2rem;
+      font-weight: 500;
+      text-decoration: none;
+      color: black;
+      transition: color 0.3s;
+    }
+    .divider{
+      min-width: 700px;
     }
 }

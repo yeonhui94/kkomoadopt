@@ -5,6 +5,7 @@ import Button from '../../components/Button/Button';
 import HeaderList from '../../components/header/HeaderList';
 import styles from '../../components/header/MainHeader.module.css';
 import Divider from '../../components/Divider';
+import MenuButton from '../../components/header/MenuButton';
 
 const MainHeader = () => {
 
@@ -14,6 +15,7 @@ const MainHeader = () => {
   const handleItemClick = (itemName) => {
     setClickedItem(itemName);
   };
+
 
 
   return (
@@ -29,7 +31,7 @@ const MainHeader = () => {
         <a className={styles.btn} href="http://localhost:5173/login">
           <Button text="로그아웃" />
         </a>
-      </div>
+      </div> 
       <div
         className={styles.divider}
       >

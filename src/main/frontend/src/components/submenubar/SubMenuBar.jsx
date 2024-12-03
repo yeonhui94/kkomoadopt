@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import styles from './SubMenuBar.module.css';
 
 const SubMenuBar = ({ menuItems, onTabClick, isFilterEnabled }) => {
-  const [selectedButton, setSelectedButton] = useState(null);
+  const [selectedButton, setSelectedButton] = useState(menuItems[0]?.path || menuItems[0]?.category);
+
 
   // 메뉴 클릭 시 선택된 버튼을 상태로 설정하고 onTabClick 호출
   const handleButtonClick = (item) => {

@@ -1,0 +1,15 @@
+.chfWrapper{
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.chfsmWrapper1,.chfsmWrapper2,.chfsmWrapper3{
+    padding: 10px;
+}
+.divider {
+    margin-bottom: 20px;
+}

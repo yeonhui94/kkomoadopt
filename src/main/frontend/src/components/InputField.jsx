@@ -11,7 +11,7 @@ const StyledInput = styled.input`
   margin-left: ${(props) => props.marginLeft || '0'}; /* margin-left 추가 */
   border-radius:  ${props => props.borderRadi ? props.borderRadi : '10px' };
   border: 2px solid ${props => props.bg1color ? props.bg1color : '#ccc' }; 
-  font-size: 16px;
+  font-size: 1rem;;
   palce-holder: ${props => props.placeholder ? props.placeholder : 'none'};
 
 
@@ -21,7 +21,7 @@ const StyledInput = styled.input`
   }
 `;
 
-const InputField = ({width,height, type, placeholder, value, onChange ,marginTop ,marginBottom, borderRadi, marginLeft}) => {
+const InputField = ({width,height, type, placeholder, value, onChange ,marginTop ,marginBottom, borderRadi, marginLeft,maxLength}) => {
   return (
     <div>
       <StyledInput
@@ -35,6 +35,7 @@ const InputField = ({width,height, type, placeholder, value, onChange ,marginTop
         marginLeft={marginLeft}
         height={height}
         borderRadi={borderRadi}
+        maxLength={maxLength}
       />
     </div>
   );

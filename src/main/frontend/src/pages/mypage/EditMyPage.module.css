@@ -23,7 +23,7 @@
     margin-top : 10px;
     display : grid;
     grid-template :
-    'input1 btn1'100px
+    'input2 btn1'100px
     'text text' 1fr/ 400px 100px;
 }
 

@@ -29,6 +29,13 @@ const StyledInput = styled.input`
   border: 3px solid #ccc;
   border-radius: 10px;
   placeholder : ${({ placeholder }) => placeholder || ""};
+
+  
+    &:focus {
+    border-color: #444444; /* 포커스 시 테두리 색상 */
+    outline: none;
+  }
+
 `;
 
 // InputBox 컴포넌트

@@ -16,7 +16,7 @@ const StyledInput = styled.input`
 
 
   &:focus {
-    border-color: var(--main-color); /* 포커스 시 테두리 색상 */
+    border-color: #444444; /* 포커스 시 테두리 색상 */
     outline: none;
   }
 `;

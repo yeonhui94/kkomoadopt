@@ -3,12 +3,15 @@ import InputBox from '../../components/InputBox';
 import Button from '../../components/Button/Button';
 import styles from '../../pages/mypage/EditMyPage.module.css';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function EditMyPage1({ gridArea }) {
 
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const correctPassword = 'asdf1234'; // 일치하는 비밀번호 지정
+
+    const navigate = useNavigate();
 
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
@@ -20,8 +23,7 @@ function EditMyPage1({ gridArea }) {
             setError('비밀번호가 일치하지 않습니다.');
         } else {
             setError('');
-            // 비밀번호가 일치하면 폼 제출 (API 호출 등)
-            console.log('비밀번호가 일치하여 폼이 제출되었습니다.');
+            navigate('/edit-profile2');
         }
     };
 
@@ -37,7 +39,7 @@ function EditMyPage1({ gridArea }) {
 
             <form className={styles.input1Form} onSubmit={handleSubmit} style={{ gridArea: "input1" }}>
                 <InputBox
-                    style={{ gridArea: "input1" }}
+                    style={{ gridArea: "input2" }}
                     itype="password"
                     fontSize="20px"
                     text="비밀번호"

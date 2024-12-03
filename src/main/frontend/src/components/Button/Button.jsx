@@ -17,7 +17,7 @@ const StyledButton = styled.button`
     margin-left : ${props => props.marginLeft ? props.marginLeft : '0px'};
     margin-right : ${props => props.marginRight ? props.marginRight : '0px'};
     text-decoration: none; /* 링크 스타일 제거 때문에 필요합니당 */
-
+white-space: nowrap;
     &:hover {
         color: ${props => props.hovercolor ? props.hovercolor : 'white'};/* 호버 시 텍스트는 항상 흰색 */
         background-color: ${props => props.bg1color || "var(--main-color)"}; /* 배경색 */

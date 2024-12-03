@@ -39,11 +39,12 @@ const Uploadfile = ({ maxFiles = 4, showImagePreview = true, onChange }) => {
         text={"파일첨부"}
         bg1color={"#d1d1d1"}
         color={"#444"}
+        width={"100%"}
         onClick={() => fileInputRef.current.click()}
       />
       
       {selectedFiles.length > 0 && (
-        <div style={{ color: "var(--main-color)", fontWeight: "600", fontSize: "12px" }}>
+        <div style={{ color: "var(--main-color)", fontWeight: "600", fontSize: "0.7rem",whiteSpace : "nowrap" }}>
           * {selectedFiles.length} 개 파일이 첨부되었습니다.
         </div>
       )}
@@ -54,11 +55,11 @@ const Uploadfile = ({ maxFiles = 4, showImagePreview = true, onChange }) => {
             {selectedFiles.map((file, index) => (
               <li key={index}>
                 {file.type.startsWith('image/') && showImagePreview ? (
-                  <div>
+                  <div style={{display : "flex"}}>
                     <img
                       src={URL.createObjectURL(file)}
                       alt={file.name}
-                      style={{ width: '100px', height: '100px', objectFit: 'cover', marginRight: '10px' }}
+                      style={{ width: '100px', height: '100px', objectFit: 'cover',margin:"10px"}}
                     />
                     <Button
                       bg1color={"white"}
@@ -67,6 +68,8 @@ const Uploadfile = ({ maxFiles = 4, showImagePreview = true, onChange }) => {
                       hovercolor={"var(--main-color)"}
                       fontWeight={"600"}
                       onClick={() => handleRemoveFile(index)}
+                      verticalPadding={"none"}
+                      horizontalPadding={"none"}
                     />
                   </div>
                 ) : (

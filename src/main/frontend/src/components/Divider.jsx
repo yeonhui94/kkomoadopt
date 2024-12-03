@@ -11,6 +11,7 @@ const StyledDivider = styled.div`
   width: ${(props) => props.width || "auto"}; /* width가 전달되도록 설정 */
   margin-top: ${(props) => props.marTop || "none"};
   text-align: ${(props) => props.textAlign || "left"};
+  white-space : nowrap;
 `;
 
 const Underline = styled.div`

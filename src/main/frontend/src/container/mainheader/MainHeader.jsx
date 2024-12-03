@@ -5,7 +5,6 @@ import Button from '../../components/Button/Button';
 import HeaderList from '../../components/header/HeaderList';
 import styles from '../../components/header/MainHeader.module.css';
 import Divider from '../../components/Divider';
-import MenuButton from '../../components/header/MenuButton';
 
 const MainHeader = () => {
 

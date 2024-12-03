@@ -37,8 +37,14 @@ import Missing_CommunityWt from './pages/community/find_child/Missing_CommunityW
 import Scrappage from './pages/mypage/Scrappage';
 import Report from './pages/community/report/Report.jsx';
 import ChangeProfile from './pages/mypage/ChangeProfile';
-import JoinContents from './pages/Login/JoinContents.jsx';
-import JoinSecession from './pages/Login/JoinSecession.jsx'
+import JoinContents from './pages/Login/JoinContents';
+import JoinSecession from './pages/Login/JoinSecession';
+import Modal from './components/Modal/Modal';
+import ModalEx from './components/Modal/ModalEx';
+import IdPassword from './components/IdPassword';
+import EditMyPage1 from './pages/mypage/EditMyPage1';
+
+
 import Report_Post from './pages/community/report/Report_Post.jsx';
 import Announcement from './pages/community/announce/Announcement.jsx';
 
@@ -131,6 +137,7 @@ const router = createBrowserRouter([
         // 고객센터 > 방문상담신청
         { path: "customer_apply_consult", element: <Apply_consult gridArea="section"/>,
           children :[
+
             // 방문상담신청 게시글
             //  { path: "", element: < gridArea="subsection"/>},
             // 방문상담신청 글쓰기
@@ -150,7 +157,7 @@ const router = createBrowserRouter([
             // 나의 댓글
             { path: "my-comments", element: <MyComments gridArea="subsection" />},
             // 회원정보 수정
-            { path: "edit-profile", element: <EditProfile gridArea="subsection" />},
+            { path: "edit-profile", element: <EditMyPage1 gridArea="subsection" />},
             // 상담신청 내역
             { path: "cs-detail", element: <Csdetail gridArea="subsection" />},
             { path : "change-profile", element: <ChangeProfile gridArea="subsection"/>},
@@ -164,6 +171,9 @@ function App() {
   return (
     <div>
       <RouterProvider router={router} />
+      {/* <EditMyPage1 /> */}
+      {/* <IdPassword /> */}
+      {/* <ModalEx /> */}
       {/* <ParentComponent/> */}
       {/* <UserNavi /> 네비게이션 바 추가 */}
       {/* <Routes>

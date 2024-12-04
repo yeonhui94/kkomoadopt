@@ -8,7 +8,6 @@ import "slick-carousel/slick/slick-theme.css";
 import postimg1 from '../community/img/postimg1.svg';
 import postimg2 from '../../assets/img2/2.jpg';
 import styled from 'styled-components';
-import Slideimgs from '../community/report/Slideimgs';
 import PostSlickSlide from '../community/report/PostSlickSlide';
 import { filterProps } from 'framer-motion';
 

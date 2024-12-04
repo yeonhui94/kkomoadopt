@@ -6,7 +6,7 @@
         'tmi' 70px 
         'contentbox' 10fr
         'comments'2fr / 1fr; */
-    height: 2000px;
+    height: 2800px;
     width: 100%;
     margin: 0 auto;
 }
@@ -79,7 +79,7 @@
 
 .post_content {
     width: 100%;
-    height: 1400px;
+    height: 750px;
     display: flex;
     flex-direction: column;
     gap: 100px;
@@ -94,12 +94,13 @@
 .post_content1 {
     display: flex;
     width: 100%;
-    height: 600px;
+    height: 100%;
     flex-direction: row;
     justify-content: flex-start;
     margin-top: 30px;
-    gap: 150px;
+    gap: 100px;
     padding: 0, 50px;
+    background-color: transparent;
     
 }
 
@@ -116,10 +117,11 @@
 } */
 
 .post_postimgs {
-    width: 100%;
+    width: 500px;
     display: flex;
     flex-direction: row;
     margin-left: 30px;
+    margin-top: 30px;
     /* position: relative; */
     /* margin: 30px 30px; */
     /* grid-area: postimgs; */
@@ -205,7 +207,7 @@
 
 .post_petif {
     width: 100%;
-    height: 600px;
+    height: 800px;
     /* display: grid;
     grid-area: petif;
     grid-template: 
@@ -219,7 +221,7 @@
     background-color: #eee;
     /* background-color: #fff7ef; */
     /* background-color: #FFFBEF; */
-    padding: 40px 40px;
+    padding: 20px 45px;
     border-radius: 20px;
     border: 1px solid #999;
     color: #444;
@@ -283,13 +285,74 @@
     height: 10px;
     padding-top: 85px;
     padding-left: 20px;
+    padding-bottom: 85px;
     /* grid-area: p5; */
 
 }
 
 .post_comments {
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    
     /* display: grid; */
     /* grid-area: comments; */
 }
+
+.post_commentbar {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    table-layout: fixed;
+    border-bottom: 2px solid var(--main-color);
+    color: #444;
+}
+
+.post_commentbar_cell1 {
+    width: 10%;
+}
+
+.post_commentbar_cell2 {
+    width: 70%;
+}
+
+.post_commentbar_cell3 {
+    width: 20%;
+}
+
+.post_commentbox {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid black;
+
+}
+
+.post_commentbox_header {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    table-layout: fixed;
+    width: 100%;
+    
+
+}
+
+.post_commentbox_header1 {
+    width: 10%;
+}
+
+.post_commentbox_header2 {
+    width: 70%;
+}
+
+.post_commentbox_header3 {
+    width: 20%;
+}
+
+
+
+
 

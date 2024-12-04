@@ -8,7 +8,7 @@ const Report_Community = ({ text = "신고합니다"  , gridArea}) => {
     <div className="commwrapper"
     style={{gridArea : gridArea}}>
       <div className={wtstyles.mainContainer}>
-        <h1>{text}</h1>
+        <h1 style={{textAlign :"center"}}>{text}</h1>
         <Divider />
         <Outlet/>
       </div>

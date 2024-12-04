@@ -1,39 +1,45 @@
-import Divider from '../../../components/Divider';
-import { Form } from 'react-router-dom';
+import Divider from '../../components/Divider';
+import { createBrowserRouter, Form, Route, Router, Routes, useParams } from 'react-router-dom';
 import React, { Component } from "react";
 // import Slider from "react-slick";
-import postst from '../Commu_post.module.css'
+import postst from '../community/Commu_post.module.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import postimg1 from '../img/postimg1.svg';
-import postimg2 from '../../../assets/img2/2.jpg';
+import postimg1 from '../community/img/postimg1.svg';
+import postimg2 from '../../assets/img2/2.jpg';
 import styled from 'styled-components';
-import Slideimgs from './Slideimgs';
-
+import Slideimgs from '../community/report/Slideimgs';
+import PostSlickSlide from '../community/report/PostSlickSlide';
+import { filterProps } from 'framer-motion';
 
 const Adoption_Post = () => {
+    
 
-    // const slideimg = {
-    //     dots: false,
-    //     infinite: true,
-    //     speed: 500,
-    //     slidesToShow: 1,
-    //     slidesToScroll: 1,
-    //     accessibility: true,
-        
-    //   };
+     // useParams를 이용해 URL 파라미터를 가져옵니다
+
+
+     // mockData에서 boardId에 해당하는 게시판 데이터를 가져옵니다
+    //  const board = mockData[boardId];
+     // 게시판 데이터에서 postId에 해당하는 게시글 데이터를 가져옵니다
+    //  const post = allPosts.find((post) => post.id === parseInt(postId, 10));
+ 
+     // 게시판 또는 게시글 데이터가 없을 경우, 에러 메시지 출력
+    //  if (!post) {
+    //      return <p>게시글을 찾을 수 없습니다.</p>;
+    //  }
+     
 
     return (
         <div className={postst.post_container}>
             <div className={postst.post_title}>
-                <h3>&nbsp;체리콕</h3>
+                <h3>&nbsp; 강아지 입양</h3>
             </div>
 
             <div className={postst.post_tmi}>
                 <div className={postst.post_tmi1}>
-                    <p className={postst.post_nick}>&nbsp;&nbsp;닉네임&nbsp;:&nbsp; 테트장인덴버</p>
-                    <p className={postst.post_postnum}> 글번호 &nbsp;:&nbsp; 25</p>
-                    <p className={postst.post_date}>작성일&nbsp;:&nbsp; 2024-11-20 </p>
+                    <p className={postst.post_nick}>&nbsp;&nbsp;닉네임&nbsp;:&nbsp; 관리자</p>
+                    <p className={postst.post_postnum}> 글번호 &nbsp;:&nbsp; 123</p>
+                    <p className={postst.post_date}>작성일&nbsp;:&nbsp; 2024-12-04 </p>
                 </div>
                 <p className={postst.post_view}>조회수 : 123</p>
             </div>
@@ -42,7 +48,8 @@ const Adoption_Post = () => {
                 <div className={postst.post_content1}>
 
                     {/* 이미지 */}
-                    <img src={postimg1} className={postst.post_postimgs}/>
+                    {/* <img src={postimg1} className={postst.post_postimgs}/> */}
+                    <PostSlickSlide className={postst.post_postimgs}/> 
                     {/* <Slideimgs/> */}
 
                     {/* 테이블 4개 */}

@@ -46,7 +46,7 @@
 }
 
 .post_nick {
-    width: 130px;
+    width: 200px;
     /* grid-area: nick; */
     height: 30px;
     border-right: 1px solid var(--line-color);
@@ -79,10 +79,10 @@
 
 .post_content {
     width: 100%;
-    height: 500px;
+    height: 1400px;
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 100px;
     /* grid-area: contentbox;
     grid-template: 
         'postimgs ... pettmi'1fr
@@ -108,18 +108,18 @@
     height: 1000px;
 } */
 
-.slick-slider {
+/* .slick-slider {
     width: 1200px;
     height: 1000px;
-    margin: 0 auto; /* 중앙 정렬 */
+    margin: 0 auto; 
 
-}
+} */
 
 .post_postimgs {
     width: 100%;
     display: flex;
     flex-direction: row;
-    margin-left: 60px;
+    margin-left: 30px;
     /* position: relative; */
     /* margin: 30px 30px; */
     /* grid-area: postimgs; */
@@ -179,24 +179,33 @@
 .post_table {
     width: 100%;
     height: 100px;
-    border-top: 1px solid #666;
-    border-bottom: 1px solid #666;
+    border: 1px solid #ededed;
+    /* border-top: 1px solid #ededed;
+    border-bottom: 1px solid #ededed; */
+    color: #444;
     
 }
 
 .post_tb {
     width: 100%;
-    border-bottom: 1px solid #666;
+    border-bottom: 1px solid #ededed;
 }
 
 .post_td1 {
     width: 100%;
     font-size: 1.3rem;
+    background-color: #fafafa;
+    padding-left: 20px;
     
+}
+
+.post_td2 {
+    padding-left: 20px;
 }
 
 .post_petif {
     width: 100%;
+    height: 600px;
     /* display: grid;
     grid-area: petif;
     grid-template: 
@@ -206,38 +215,74 @@
     'p3' 1fr
     'p4' 1fr
     'p5' 1fr
-    '...'10px ;
-    background-color: #e5e5e5;
-    align-items: center; */
+    '...'10px ;*/
+    background-color: #eee;
+    /* background-color: #fff7ef; */
+    /* background-color: #FFFBEF; */
+    padding: 40px 40px;
+    border-radius: 20px;
+    border: 1px solid #999;
+    color: #444;
+    font-size: 1.4rem;
+    list-style: disc;
 
 }
 
 .post_petif_p1 {
+    list-style: inherit; 
     width: 100%;
+    height: 10px;
+    padding-top: 50px;
+    padding-left: 20px;
     /* grid-area: p1; */
 
 }
 
+.post_petif_p1::marker , .post_petif_p2::marker , .post_petif_p3::marker , 
+.post_petif_p4::marker, .post_petif_p5::marker
+{
+    font-size: 0.8rem;
+    /* color: var(--main-color); */
+    /* content: "▶"; */
+}
+
+
 .post_petif_p2 {
+    list-style: inherit; 
     width: 100%;
+    height: 10px;
+    padding-top: 85px;
+    padding-left: 20px;
     /* grid-area: p2; */
 
 }
 
 .post_petif_p3 {
+    list-style: inherit; 
     width: 100%;
+    height: 10px;
+    padding-top: 85px;
+    padding-left: 20px;
     /* grid-area: p3; */
 
 }
 
 .post_petif_p4 {
+    list-style: inherit; 
     width: 100%;
+    height: 10px;
+    padding-top: 85px;
+    padding-left: 20px;
     /* grid-area: p4; */
 
 }
 
 .post_petif_p5 {
+    list-style: inherit; 
     width: 100%;
+    height: 10px;
+    padding-top: 85px;
+    padding-left: 20px;
     /* grid-area: p5; */
 
 }

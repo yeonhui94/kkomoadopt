@@ -14,6 +14,31 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+CREATE TABLE `adoption_notice` (
+	`notice_uid` VARCHAR(36) NOT NULL COLLATE 'utf8mb3_general_ci',
+	`adopt_status` ENUM('ADOPTABLE','NOTADOPT','RESERVATION') NOT NULL COLLATE 'utf8mb3_general_ci',
+	`adoption_author` VARCHAR(255) NOT NULL COLLATE 'utf8mb3_general_ci',
+	`animal_type` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`announcement_num` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`euthanasia_date` DATE NULL DEFAULT NULL,
+	`impossible_reason` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`notice_category` ENUM('CAT','DOG','OTHERS') NOT NULL COLLATE 'utf8mb3_general_ci',
+	`notice_content` TEXT NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`notice_created_at` DATETIME(6) NOT NULL,
+	`notice_img_url` TEXT NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`notice_title` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`notice_updated_at` DATETIME(6) NOT NULL,
+	`notice_view_count` INT(11) NULL DEFAULT NULL,
+	`unique_num` BIGINT(20) NULL DEFAULT NULL,
+	PRIMARY KEY (`notice_uid`) USING BTREE,
+	INDEX `idx_adoption_notice_announcement_num` (`announcement_num`) USING BTREE,
+	INDEX `idx_adoption_notice_animal_type` (`animal_type`) USING BTREE
+)
+COLLATE='utf8mb3_general_ci'
+ENGINE=InnoDB
+;
+
+
 -- 테이블 데이터 kkomoadopt.adoption_notice:~82 rows (대략적) 내보내기
 INSERT IGNORE INTO `adoption_notice` (`notice_uid`, `adopt_status`, `adoption_author`, `animal_type`, `announcement_num`, `euthanasia_date`, `impossible_reason`, `notice_category`, `notice_content`, `notice_created_at`, `notice_img_url`, `notice_title`, `notice_updated_at`, `notice_view_count`, `unique_num`) VALUES
 	('010cc24d-b025-4f18-83d3-e743c30ec782', 'ADOPTABLE', '관리자', '믹스견', '2024-36784', '2025-05-15', 'NULL', 'DOG', '◉품종: 믹스견\n◉털색: 검정색\n◉체중: 1kg\n◉나이: 4개월\n◉발견장소: 인천 연수구\n◉특징: 활발하고 사람을 좋아하는 성격, 활동적인 가정에 적합', '2024-12-03 14:30:00.000000', '["5dd42790-4581-4892-ae49-316d17459310.jpg","185a74cf-d8cf-41eb-b45f-9de9f339baee.jpg","661d4553-4b02-4978-8199-fad356fa57fe.jpg","af730270-71ef-4031-86ef-efb51ac95d80.jpg"]', '4개월/믹스견/활발한 성격', '2024-12-03 14:45:00.000000', 250, 441560202401393),

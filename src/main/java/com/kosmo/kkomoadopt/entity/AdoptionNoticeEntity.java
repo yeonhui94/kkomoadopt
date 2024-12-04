@@ -1,5 +1,6 @@
 package com.kosmo.kkomoadopt.entity;
 
+import com.kosmo.kkomoadopt.converter.UrlConverter;
 import com.kosmo.kkomoadopt.dto.AdoptStatus;
 import com.kosmo.kkomoadopt.dto.NoticeCategory;
 import jakarta.persistence.*;
@@ -47,16 +48,17 @@ public class AdoptionNoticeEntity {
     private String announcementNum;
 
     @Column(name = "unique_num", length = 15)
-    private Integer uniqueNum;
+    private Long uniqueNum;
 
-    @Column(name = "notice_img_url")
+    @Convert(converter = UrlConverter.class)
+    @Column(name = "notice_img_url", columnDefinition = "text")
     private List<String> noticeImgUrl;
 
     @Column(name = "euthanasia_date")
     private LocalDate euthanasiaDate;
 
     @Lob
-    @Column(name = "notice_content")
+    @Column(name = "notice_content", columnDefinition = "text")
     private String noticeContent;
 
     @Column(name = "notice_created_at", updatable = false, nullable = false)
@@ -84,7 +86,7 @@ public class AdoptionNoticeEntity {
                 ", adoptStatus=" + adoptStatus +
                 ", announcementNum='" + announcementNum + '\'' +
                 ", uniqueNum=" + uniqueNum +
-                ", noticeImgUrl='" + noticeImgUrl + '\'' +
+                ", noticeImgUrl=" + noticeImgUrl +
                 ", euthanasiaDate=" + euthanasiaDate +
                 ", noticeContent='" + noticeContent + '\'' +
                 ", noticeCreatedAt=" + noticeCreatedAt +

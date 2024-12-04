@@ -8,7 +8,6 @@ import com.kosmo.kkomoadopt.dto.Provider;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.w3c.dom.Text;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -30,7 +29,7 @@ public class UserEntity {
     private String userId;  // Primary Key (PK)
 
     // 일반 회원 가입
-    @Column(nullable = false, unique = true, updatable = false)
+    @Column(updatable = false)
     private String email;
 
     @Column
@@ -39,7 +38,7 @@ public class UserEntity {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(length = 20, unique = true)
+    @Column(length = 20)
     private String nickname;
 
     @Column(nullable = false, length = 16)
@@ -52,7 +51,7 @@ public class UserEntity {
     private String userImgUrl;
 
     @Lob
-    @Column(name = "profile_text", length = 200)
+    @Column(name = "profile_text", length = 200, columnDefinition = "text")
     private String profileText;
 
     @Column(name = "user_last_login", nullable = false)
@@ -62,7 +61,7 @@ public class UserEntity {
     private Boolean isBlacklisted = false; // 기본값은 false
 
     // 네이버, 카카오 로그인 ID
-    @Column(name = "social_Id", unique = true, length = 50)
+    @Column(name = "social_Id", length = 50)
     private String socialId;
 
     @Enumerated(EnumType.STRING)
@@ -74,12 +73,12 @@ public class UserEntity {
     private Authority authority = Authority.USER;  // 기본값 설정
 
     @Convert(converter = BlacklistConverter.class)
-    @Column(columnDefinition = "longtext")
+    @Column(columnDefinition = "text")
     private List<BlacklistDTO> blacklists = new ArrayList<>();  // 기본값 설정
 
     @Convert(converter = ScrapConverter.class)
     @Column(columnDefinition = "longtext")
-    private List<String> scraps = new ArrayList<>();  // 기본값 설정
+    private List<String> scraps;
 
     @Override
     public String toString() {

@@ -1,45 +1,72 @@
 package com.kosmo.kkomoadopt.controller;
 
 import com.kosmo.kkomoadopt.dto.Authority;
+import com.kosmo.kkomoadopt.dto.RegisterUserDTO;
 import com.kosmo.kkomoadopt.entity.UserEntity;
+import com.kosmo.kkomoadopt.repository.UserRepository;
 import com.kosmo.kkomoadopt.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
 
     private final UserService userService;
+    private final UserRepository userRepository;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UserRepository userRepository) {
         this.userService = userService;
+        this.userRepository = userRepository;
     }
 
-    // User 등록 API
-    @PostMapping("/signin")
-    public ResponseEntity<UserEntity> createUser(@RequestBody UserEntity userEntity) {
-        // 프론트에서 name, phoneNumber, nickname, password를 입력받고,
-        // 나머지 필드는 기본값을 사용하여 사용자 생성
-        userEntity.setUserCreate(LocalDateTime.now()); // 기본값으로 생성일시 설정
-        userEntity.setUserLastLogin(LocalDateTime.now()); // 기본값으로 마지막 로그인 시간 설정
-        userEntity.setIsBlacklisted(false); // 기본값 false
-        userEntity.setAuthority(Authority.USER); // 기본값으로 USER 권한 설정
+    // 이메일 중복 체크 API
+    @GetMapping("/check/email")
+    public ResponseEntity<String> checkEmail(@RequestParam String email) {
+        boolean emailExists = userRepository.existsByEmail(email);
+        if (emailExists) {
+            return ResponseEntity.badRequest().body("이미 존재하는 이메일입니다.");
+        }
+        return ResponseEntity.ok("사용 가능한 이메일입니다.");
+    }
 
-        UserEntity savedUser = userService.saveUser(userEntity);  // 서비스 호출하여 저장
-        return new ResponseEntity<>(savedUser, HttpStatus.CREATED); // 저장된 사용자 반환
+    // 닉네임 중복 체크 API
+    @GetMapping("/check/nickname")
+    public ResponseEntity<String> checkNickname(@RequestParam String nickname) {
+        boolean nicknameExists = userRepository.existsByNickname(nickname);
+        if (nicknameExists) {
+            return ResponseEntity.badRequest().body("이미 존재하는 닉네임입니다.");
+        }
+        return ResponseEntity.ok("사용 가능한 닉네임입니다.");
+    }
+
+    // 회원가입 처리 API
+    @PostMapping("/register")
+    public ResponseEntity<String> registerUser(@RequestBody @Valid RegisterUserDTO registerUserDTO) {
+        boolean isRegistered = userService.registerUser(registerUserDTO);
+
+        if (!isRegistered) {
+            return ResponseEntity.badRequest().body("이메일 또는 닉네임이 이미 존재합니다.");
+        }
+
+        // 가입 성공
+        return ResponseEntity.ok("회원가입 성공");
     }
 
     // Dummy-Users 등록
     @PostMapping("/dummy_users")
     public ResponseEntity<List<UserEntity>> createUsers(@RequestBody List<UserEntity> userEntities) {
-        List<UserEntity> savedUsers = userService.saveUsers(userEntities);  // 서비스 호출하여 저장
-        return new ResponseEntity<>(savedUsers, HttpStatus.CREATED); // 저장된 사용자 목록 반환
+        List<UserEntity> savedUsers = userService.saveUsers(userEntities);
+        return new ResponseEntity<>(savedUsers, HttpStatus.CREATED);
     }
 }

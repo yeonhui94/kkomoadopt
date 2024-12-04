@@ -18,7 +18,7 @@ public class CommentEntity {
     private String commentId;
 
     @Lob
-    @Column(name = "comment_content")
+    @Column(name = "comment_content", columnDefinition = "text")
     private String commentContent;
 
     @Column(name = "comment_created_at", nullable = false, updatable = false)
@@ -30,9 +30,9 @@ public class CommentEntity {
     @Column(name = "is_deleted", nullable = false)
     private Boolean isDeleted = false; // 댓글 삭제 여부를 나타내는 필드
 
-    // communitypost의 post uid
-    @Column(name = "post_uid", nullable = false)
-    private String postUid;
+    // communitypost의 post id
+    @Column(name = "post_id", nullable = false)
+    private String postId;
 
     // comment 작성자 nickname
     @Column(name = "comment_author", nullable = false)
@@ -46,7 +46,7 @@ public class CommentEntity {
                 ", commentCreatedAt=" + commentCreatedAt +
                 ", commentUpdatedAt=" + commentUpdatedAt +
                 ", isDeleted=" + isDeleted +
-                ", postUid='" + postUid + '\'' +
+                ", postUid='" + postId + '\'' +
                 ", commentAuthor='" + commentAuthor + '\'' +
                 '}';
     }

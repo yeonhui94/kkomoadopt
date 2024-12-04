@@ -1,5 +1,7 @@
 package com.kosmo.kkomoadopt.entity;
 
+import com.kosmo.kkomoadopt.converter.ScrapConverter;
+import com.kosmo.kkomoadopt.converter.UrlConverter;
 import com.kosmo.kkomoadopt.dto.PostCategory;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -7,6 +9,8 @@ import lombok.Setter;
 import org.w3c.dom.Text;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -19,7 +23,7 @@ public class CommunityPostEntity {
     @Column(name = "post_uid", nullable = false, length = 36)
     private String postUid;
 
-    @Column(name = "post_id")
+    @Column(name = "post_id", unique = true)
     private Integer postId;
 
     @Enumerated(EnumType.STRING)
@@ -30,7 +34,7 @@ public class CommunityPostEntity {
     private String postTitle;
 
     @Lob
-    @Column(name = "post_content")
+    @Column(name = "post_content", columnDefinition = "text")
     private String postContent;
 
     @Column(name = "post_created_at", nullable = false, updatable = false)
@@ -39,13 +43,14 @@ public class CommunityPostEntity {
     @Column(name = "post_updated_at", nullable = false)
     private LocalDateTime postUpdatedAt;
 
-    @Column(name = "post_img_url")
-    private String postImgUrl;
+    @Convert(converter = UrlConverter.class)
+    @Column(name = "post_img_url", columnDefinition = "text")
+    private List<String> postImgUr;
 
     @Column(name = "is_deleted", nullable = false)
     private Boolean isDeleted;
 
-    @Column(name = "delete_reason", length = 10)
+    @Column(name = "delete_reason")
     private String deleteReason;
 
     // community 작성자 nickname
@@ -60,15 +65,16 @@ public class CommunityPostEntity {
         return "CommunityPostEntity{" +
                 "postUid='" + postUid + '\'' +
                 ", postId=" + postId +
-                ", postCategory='" + postCategory + '\'' +
+                ", postCategory=" + postCategory +
                 ", postTitle='" + postTitle + '\'' +
                 ", postContent='" + postContent + '\'' +
                 ", postCreatedAt=" + postCreatedAt +
                 ", postUpdatedAt=" + postUpdatedAt +
-                ", postImgUrl='" + postImgUrl + '\'' +
+                ", postImgUr=" + postImgUr +
                 ", isDeleted=" + isDeleted +
                 ", deleteReason='" + deleteReason + '\'' +
                 ", communityAuthor='" + communityAuthor + '\'' +
+                ", postViewCount=" + postViewCount +
                 '}';
     }
 }

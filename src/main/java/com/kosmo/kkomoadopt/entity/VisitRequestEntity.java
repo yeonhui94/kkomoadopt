@@ -20,7 +20,7 @@ public class VisitRequestEntity {
     @Column(name = "request_uid", nullable = false, length = 36)
     private String requestUid;
 
-    @Column(name = "request_id", nullable = false)
+    @Column(name = "request_id", nullable = false, unique = true)
     private Integer requestId;
 
     @Column(name = "phone_num", length = 20)
@@ -38,7 +38,7 @@ public class VisitRequestEntity {
     private VisitPurpose visitPurpose;
 
     @Lob
-    @Column(name = "visit_content")
+    @Column(name = "visit_content", columnDefinition = "text")
     private String visitContent;
 
     @Column(name = "visit_created_at", nullable = false, updatable = false)

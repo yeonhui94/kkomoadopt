@@ -1,5 +1,6 @@
 package com.kosmo.kkomoadopt.entity;
 
+import com.kosmo.kkomoadopt.converter.UrlConverter;
 import com.kosmo.kkomoadopt.dto.QnAState;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -7,6 +8,7 @@ import lombok.Setter;
 import org.w3c.dom.Text;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -19,7 +21,7 @@ public class QnAEntity {
     @Column(name = "qna_uid", nullable = false, length = 36)
     private String qnaUid;
 
-    @Column(name = "qna_id", nullable = false)
+    @Column(name = "qna_id", nullable = false, unique = true)
     private Integer qnaId;
 
     @Column(name = "qna_title")
@@ -35,12 +37,20 @@ public class QnAEntity {
     private Integer qnaPassword;
 
     @Lob
-    @Column(name = "qna_content")
+    @Column(name = "qna_content", columnDefinition = "text")
     private String qnaContent;
 
+    @Convert(converter = UrlConverter.class)
+    @Column(name = "qna_request_file", columnDefinition = "text")
+    private List<String> qnaRequestFile;
+
     @Lob
-    @Column(name = "qna_answer")
+    @Column(name = "qna_answer", columnDefinition = "text")
     private String qnaAnswer;
+
+    @Convert(converter = UrlConverter.class)
+    @Column(name = "qna_answer_file", columnDefinition = "text")
+    private List<String> qnaAnswerFile;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "qna_state", length = 10)
@@ -51,7 +61,7 @@ public class QnAEntity {
     private String qnaAuthor;
 
     // qna 답변자 nickname
-    @Column(name = "answer_author", nullable = false)
+    @Column(name = "answer_author")
     private String answerAuthor;
 
     @Override
@@ -64,9 +74,12 @@ public class QnAEntity {
                 ", qnaViewCount=" + qnaViewCount +
                 ", qnaPassword=" + qnaPassword +
                 ", qnaContent='" + qnaContent + '\'' +
+                ", qnaRequestFile=" + qnaRequestFile +
                 ", qnaAnswer='" + qnaAnswer + '\'' +
-                ", qnaState='" + qnaState + '\'' +
+                ", qnaAnswerFile=" + qnaAnswerFile +
+                ", qnaState=" + qnaState +
                 ", qnaAuthor='" + qnaAuthor + '\'' +
+                ", answerAuthor='" + answerAuthor + '\'' +
                 '}';
     }
 }

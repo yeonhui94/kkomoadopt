@@ -1,7 +1,6 @@
 package com.kosmo.kkomoadopt.controller;
 
 import com.kosmo.kkomoadopt.entity.CommunityPostEntity;
-import com.kosmo.kkomoadopt.entity.UserEntity;
 import com.kosmo.kkomoadopt.service.CommunityPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,7 +26,7 @@ public class CommunityPostController {
     // Dummy-Posts 등록
     @PostMapping("/dummy_posts")
     public ResponseEntity<List<CommunityPostEntity>> createPosts(@RequestBody List<CommunityPostEntity> communityPostEntities) {
-        List<CommunityPostEntity> savedPosts = communityPostService.savePosts(communityPostEntities);  // 서비스 호출하여 저장
-        return new ResponseEntity<>(savedPosts, HttpStatus.CREATED); // 저장된 게시글 목록 반환
+        List<CommunityPostEntity> savedPosts = communityPostService.savePosts(communityPostEntities);
+        return new ResponseEntity<>(savedPosts, HttpStatus.CREATED);
     }
 }

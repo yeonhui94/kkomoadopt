@@ -12,7 +12,6 @@
   margin-top: 74px;
   padding-top: 74px;
   display: grid;
-  
   align-items: center; /* 가운데 정렬 */
   position: relative; /* 밑줄을 절대 위치로 배치하려면 parent 요소에 relative 설정 필요 */
   padding-bottom: 24px;

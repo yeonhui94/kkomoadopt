@@ -4,22 +4,6 @@ import InputField from "../../components/InputField";
 import styles from "../Login/LoginPageContents.module.css";
 import { Outlet } from "react-router-dom";
 
-const StyledButton1 = styled(Button)`
-  margin-bottom: 12px; /* 각 버튼들 사이에 12px 간격 추가 */
-`;
-
-const StyledButton2 = styled(Button)`
-  margin-bottom: 12px; /* 각 버튼들 사이에 12px 간격 추가 */
-  &:hover {
-    color: black; /* 호버 시 텍스트 색상은 black으로 설정 */
-    background-color: ${props => props.bg1color || "var(--main-color)"};
-  }
-`;
-
-const StyledButton3 = styled(Button)`
-  margin-bottom: 12px; /* 각 버튼들 사이에 12px 간격 추가 */
-`;
-
 // "또는" 텍스트와 수평 밑줄을 배치하는 스타일
 const OrTextWithLine = styled.div`
   display: flex;
@@ -63,7 +47,7 @@ function LoginPageContents({text, gridArea}) {
         <form className={styles.form1}>
         <InputField type="text" placeholder="이메일" width="497px" height="35px" marginBottom="5px"/>
         <InputField type="password"placeholder="비밀번호" width="497px" height="35px"  marginBottom="20px" />
-        <StyledButton1
+        <Button
           type="submit"
           text="로그인"
           color="var(--title-black)"
@@ -81,7 +65,7 @@ function LoginPageContents({text, gridArea}) {
           <OrText>또는</OrText>
         </OrTextWithLine>
 
-        <StyledButton2
+        <Button
           text="네이버로 로그인"
           color="var(--title-white)"
           bg1color="#03C75A"
@@ -90,11 +74,11 @@ function LoginPageContents({text, gridArea}) {
           fontSize="24px"
           horizontalPadding="172px"
           verticalPadding="14px"
-          marginBottom="24px"
-          marginTop="24px"
+          marginBottom="20px"
+          marginTop="20px"
         />
 
-        <StyledButton3
+        <Button
           text="카카오톡 로그인"
           color="var(--title-black)"
           bg1color="#F5DE00"

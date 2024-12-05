@@ -31,7 +31,7 @@ public class UserController {
 
     // 이메일 중복 체크 API
     @GetMapping("/check/email")
-    public ResponseEntity<String> checkEmail(@RequestParam String email) {
+    public ResponseEntity<String> checkEmail(@RequestParam("email") String email) {
         boolean emailExists = userRepository.existsByEmail(email);
         if (emailExists) {
             return ResponseEntity.badRequest().body("이미 존재하는 이메일입니다.");
@@ -41,7 +41,7 @@ public class UserController {
 
     // 닉네임 중복 체크 API
     @GetMapping("/check/nickname")
-    public ResponseEntity<String> checkNickname(@RequestParam String nickname) {
+    public ResponseEntity<String> checkNickname(@RequestParam("nickname") String nickname) {
         boolean nicknameExists = userRepository.existsByNickname(nickname);
         if (nicknameExists) {
             return ResponseEntity.badRequest().body("이미 존재하는 닉네임입니다.");

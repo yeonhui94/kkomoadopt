@@ -65,8 +65,6 @@ function IdPassword({modalTxt, height, paddingbt, width, border, text1, text2, t
 
         <ButtonContainer>
           <Button text="확인" />
-
-
         </ButtonContainer>
       </StyledForm>
 

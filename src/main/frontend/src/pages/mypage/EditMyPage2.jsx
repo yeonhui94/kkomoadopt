@@ -5,6 +5,7 @@ import InputBox from '../../components/InputBox';
 import styles from '../../pages/mypage/EditMyPage2.module.css';
 import { nicknamePattern, pwPattern } from "../../utils/regExp"; // 유효성 검사 패턴 가져오기
 import { Outlet, useNavigate } from 'react-router-dom';
+import Modal from '../../components/Modal/Modal';
 
 function EditMyPage2({ gridArea }) {
 
@@ -39,9 +40,7 @@ function EditMyPage2({ gridArea }) {
         }
     };
 
-
     const correctPassword = 'asdf1234';  // 실제 비밀번호
-
 
     // 비밀번호 입력 변경 처리 함수
     const handlePassword = (e) => {
@@ -98,6 +97,24 @@ function EditMyPage2({ gridArea }) {
         // 모든 유효성 검사를 통과했을 때만 수정 처리
         alert('수정 되었습니다.');
         navigate('/mypage'); // "/mypage"로 이동
+    };
+
+
+    const [isInfoModalOpen, setIsInfoModalOpen] = useState(false); // 아이디 정보 모달
+
+    const openInfoModal = () => setIsInfoModalOpen(true); // 정보 모달 열기
+    const closeInfoModal = () => setIsInfoModalOpen(false); // 정보 모달 닫기
+  
+    const handleBtn1 = (e) => {
+      e.preventDefault(); // 폼 제출로 인한 새로 고침을 방지
+      openInfoModal(); // 모달 열기
+    };
+
+    const handleConfirmClick = () => {
+        // /secession 페이지로 이동
+        navigate('/secession');
+        // 모달 닫기
+        closeInfoModal();
     };
 
     return (
@@ -206,8 +223,18 @@ function EditMyPage2({ gridArea }) {
             <div className={styles.SecondDividerWrapper2}>
                         <p style={{ fontSize: "1.2rem"}}>회원 탈퇴</p>
                     </div>
-                    <Button color="#444444" bg1color="#444444"text="회원 탈퇴" width="100%" marginLeft="10px" marginTop="60px" marginBottom="20px"/>
+                    <Button color="#444444" bg1color="#444444" text="회원 탈퇴"
+                            width="100%" arginLeft="10px" marginTop="60px" marginBottom="20px"
+                            onClick={handleBtn1}/>
                     </div>
+
+                    <Modal
+                        isOpen={isInfoModalOpen}
+                        closeModal={closeInfoModal} // 여기에서 "확인" 버튼 클릭 시 모달 닫힘
+                        modalText="탈퇴 하시겠습니까?"
+                        confirmText={"확인"} // 확인 버튼만
+                        cancelText={"취소"} // 취소 버튼은 없음
+                        onConfirm={handleConfirmClick}/>
             <Outlet />
         </div>
     );

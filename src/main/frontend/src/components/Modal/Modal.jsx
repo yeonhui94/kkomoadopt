@@ -13,7 +13,7 @@ const Modal = ({
     children,
     modalText,
     zIndex=1050,
-    inPut})=>{
+    inPut}) => {
 
         const handleOverlayClick = (e) =>{
             if(e.target === e.currentTarget){
@@ -40,11 +40,11 @@ const Modal = ({
                     {inPut}
                     {children}
                     <div className="button-container">
-                    {confirmText && (
-                      <Button text={cancelText} onClick={closeModal}></Button>
-                    )}
                     {cancelText &&(
                       <Button text={confirmText} onClick={onConfirm}></Button>
+                    )}
+                    {confirmText &&(
+                      <Button text={cancelText} onClick={closeModal}></Button>
                     )}
                     </div>
                     </motion.div>

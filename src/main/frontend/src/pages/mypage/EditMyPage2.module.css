@@ -2,11 +2,11 @@
     margin-left : 20px;
 }
 
-
 .SecondDividerWrapper1{
     margin-top: 20px;
     position: relative;
 }
+
 .SecondDividerWrapper1::after{
     content: '';
     position: absolute;
@@ -19,6 +19,7 @@
     margin-top: 20px;
     position: relative;
 }
+
 .SecondDividerWrapper2::after{
     content: '';
     position: absolute;
@@ -26,6 +27,7 @@
     height: 2px;
     background-color: var(--line-color, #000);
 }
+
 .input1Form{
     grid-area: contents1;
     margin-top : 10px;
@@ -34,6 +36,7 @@
     'input2 btn1'100px
     'text text' 1fr/ 400px 120px;                                      
 }
+
 .input2{
     grid-area: contents3;  /* input2를 contents3에 배치 */
 }

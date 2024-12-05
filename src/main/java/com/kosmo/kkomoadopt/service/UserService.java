@@ -1,12 +1,16 @@
 package com.kosmo.kkomoadopt.service;
 
+import com.kosmo.kkomoadopt.dto.LoginRequestDTO;
+import com.kosmo.kkomoadopt.dto.Provider;
 import com.kosmo.kkomoadopt.dto.RegisterUserDTO;
 import com.kosmo.kkomoadopt.entity.UserEntity;
 import com.kosmo.kkomoadopt.repository.UserRepository;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.ArrayList;
 
 @Service
 public class UserService {
@@ -41,22 +45,44 @@ public class UserService {
             return false; // 이메일 또는 닉네임 중복
         }
 
-        // UserEntity 객체를 생성하고, 저장
         // 회원 가입 로직 작성
         UserEntity userEntity = new UserEntity();
         userEntity.setEmail(registerUserDTO.email());
         userEntity.setName(registerUserDTO.name());
         userEntity.setPhoneNumber(registerUserDTO.phoneNumber());
         userEntity.setNickname(registerUserDTO.nickname());
-        userEntity.setPassword(registerUserDTO.password());  // 비밀번호 암호화 필요
+        userEntity.setPassword(registerUserDTO.password());
+
+        // 회원가입시 나머지 항목 기본값 설정
+        userEntity.setProvider(Provider.NORMAL); // provider 기본값 설정
+        userEntity.setScraps(new ArrayList<>()); // scraps 빈 배열 설정
 
         userRepository.save(userEntity);
         return true; // 성공적으로 가입 완료
     }
 
-    // dummy-Users 저장 메서드
-    public List<UserEntity> saveUsers(List<UserEntity> userEntities) {
-        return userRepository.saveAll(userEntities);
+    // 로그인 처리
+    public boolean loginUser(LoginRequestDTO loginRequestDTO, HttpServletRequest request) {
+        // 사용자가 입력한 이메일을 기반으로 사용자 조회
+        UserEntity user = userRepository.findByEmail(loginRequestDTO.email()).orElse(null);
+
+        if (user != null && loginRequestDTO.password().equals(user.getPassword())) {
+            // 로그인 성공: 세션에 사용자 정보 저장
+            HttpSession session = request.getSession();
+            session.setAttribute("userId", user.getUserId());
+            session.setAttribute("email", user.getEmail());
+            session.setAttribute("nickname", user.getNickname());
+            return true;
+        }
+
+        return false; // 사용자가 없거나 비밀번호가 일치하지 않으면 실패
     }
+
+
+
+//    // dummy-Users 저장 메서드
+//    public List<UserEntity> saveUsers(List<UserEntity> userEntities) {
+//        return userRepository.saveAll(userEntities);
+//    }
 
 }

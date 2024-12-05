@@ -48,7 +48,7 @@ public class UserEntity {
     private LocalDateTime userCreate = LocalDateTime.now(); // 기본값으로 현재 시간 설정
 
     @Column(name = "user_img_url")
-    private String userImgUrl;
+    private String userImgUrl = "5123e3f8-12c3-42d3-9fad-5cbc808e0793.jpg";
 
     @Lob
     @Column(name = "profile_text", length = 200, columnDefinition = "text")

@@ -133,7 +133,8 @@ function EditMyPage2({ gridArea }) {
                         <InputBox style={{ gridArea: "input2" }}
                             itype="text" fontSize="20px"
                             text="닉네임" backgroundColor="white"
-                            height="95px" width="350px"
+                            height="105px" width="350px"
+                            border="none" borderBottom="none"
                             marginBottom="40px"
                             value={nickname}
                             onChange={handleNicknameChange}/>
@@ -141,17 +142,18 @@ function EditMyPage2({ gridArea }) {
                         <Button style={{ gridArea: "btn1" }}
                             text="중복확인" height="44px"
                             width="100px" fontSize="15px"
-                            marginTop="43px" horizontalPadding="12px"
+                            marginTop="51px" horizontalPadding="12px"
+                            marginLeft="-25px"
                             onClick={handleDuplicateCheck} // 버튼 클릭 시 유효성 검사 실행
                             type="button" // type="button"을 설정하여 submit 동작을 방지
                         />
 
                         {/* 유효성 검사 메시지 표시 */}
                         {nicknameError && (
-                            <p style={{ position: "absolute", gridArea: "text", color: 'red', fontSize: '10px', marginLeft: "20px", marginTop: "90px" }}>{nicknameError}</p> // 오류 메시지
+                            <p style={{ position: "absolute", gridArea: "text", color: 'red', fontSize: '10px', marginLeft: "20px", marginTop: "100px" }}>{nicknameError}</p> // 오류 메시지
                         )}
                         {nicknameValid && (
-                            <p style={{ position: "absolute", gridArea: "text", color: 'green', fontSize: '10px', marginLeft: "20px", marginTop: "90px" }}>사용이 가능한 닉네임 입니다.</p> // 유효한 닉네임 메시지
+                            <p style={{ position: "absolute", gridArea: "text", color: 'green', fontSize: '10px', marginLeft: "20px", marginTop: "100px" }}>사용이 가능한 닉네임 입니다.</p> // 유효한 닉네임 메시지
                         )}
                     </form>
 
@@ -159,8 +161,9 @@ function EditMyPage2({ gridArea }) {
                     <div className={styles.input2}>
                         <InputBox style={{ marginTop: "20px", gridArea: "contents3" }}
                             itype="tel" text="휴대폰 번호"
-                            backgroundColor="white" height="95px"
-                            width="350px" marginBottom="40px"/>
+                            backgroundColor="white" height="97px"
+                            width="350px" marginBottom="40px"
+                            border="none" borderBottom="none"/>
                     </div>
 
                     <div className={styles.SecondDividerWrapper2}>
@@ -171,8 +174,9 @@ function EditMyPage2({ gridArea }) {
                         <div>
                             <InputBox
                                 itype="password" text="현재 비밀번호"
-                                backgroundColor="white" height="95px"
+                                backgroundColor="white" height="97px"
                                 width="350px" marginBottom="20px"
+                                border="none" borderBottom="none"
                                 value={password1}
                                 onChange={handlePassword}/>
 
@@ -186,8 +190,9 @@ function EditMyPage2({ gridArea }) {
                         </div>
                         <InputBox
                             itype="password" text="변경 비밀번호"
-                            backgroundColor="white" height="95px"
+                            backgroundColor="white" height="97px"
                             width="350px" marginBottom="20px"
+                            border="none" borderBottom="none"
                             value={password}
                             onChange={handlePasswordChange} />
 
@@ -199,8 +204,9 @@ function EditMyPage2({ gridArea }) {
 
                         <InputBox
                             itype="password" text="변경 비밀번호 확인"
-                            backgroundColor="white" height="95px"
+                            backgroundColor="white" height="97px"
                             width="350px" marginBottom="40px"
+                            border="none" borderBottom="none"
                             value={confirmPassword}
                             onChange={handleConfirmPasswordChange} />
                         {/* 비밀번호 일치 여부에 따른 메시지 표시 */}

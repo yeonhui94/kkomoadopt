@@ -38,7 +38,8 @@
 }
 
 .input2{
-    grid-area: contents3;  /* input2를 contents3에 배치 */
+    grid-area: contents3;
+    margin-top: 20px;  /* input2를 contents3에 배치 */
 }
 
 .input3{

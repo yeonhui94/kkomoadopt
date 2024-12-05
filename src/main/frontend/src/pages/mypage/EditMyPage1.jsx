@@ -44,8 +44,8 @@ function EditMyPage1({ gridArea }) {
                     fontSize="20px"
                     text="비밀번호"
                     backgroundColor="white"
-                    height="95px"
-                    width="97%"
+                    height="105px" width="97%"
+                    border="none" borderBottom="none"
                     marginBottom="40px"
                     value={password}
                     onChange={handlePasswordChange}
@@ -57,8 +57,8 @@ function EditMyPage1({ gridArea }) {
                     height="44px"
                     width="100px"
                     fontSize="15px"
-                    marginLeft="2px"
-                    marginTop="43px"
+                    marginLeft="10px"
+                    marginTop="52px"
                     horizontalPadding="12px"
                     type="submit"  // 버튼 클릭 시 폼 제출
                     onClick={handleSubmit}

@@ -31,7 +31,7 @@ const ValidationMessage = styled.p`
   font-size: 15px;
   position: absolute;
   margin-left: 18px;
-  margin-top : 90px;
+  margin-top : 100px;
 `;
 
 function JoinContents() {
@@ -150,8 +150,8 @@ function JoinContents() {
                 fontSize="20px" 
                 text="이름" 
                 backgroundColor="white" 
-                height="95px" 
-                width="92%"
+                height="105px" width="85%"
+                border="none" borderBottom="none"
                 marginBottom="40px"/>
 
             <InputBox 
@@ -159,8 +159,8 @@ function JoinContents() {
                 fontSize="20px" 
                 text="휴대전화 번호" 
                 backgroundColor="white" 
-                height="95px" 
-                width="92%"
+                height="105px" width="85%"
+                border="none" borderBottom="none"
                 marginBottom="40px"/>
                 
         <form className={styles.form2}>
@@ -169,8 +169,8 @@ function JoinContents() {
                 fontSize="20px" 
                 text="이메일" 
                 backgroundColor="white" 
-                height="95px" 
-                width="98%"
+                height="105px" width="98%"
+                border="none" borderBottom="none"
                 onChange={handleEmailChange}
                 marginBottom="40px"
                 placeholder="ex) example@naver.com"/>
@@ -179,8 +179,8 @@ function JoinContents() {
                 height="44px"
                 width="100px" 
                 fontSize="15px" 
-                marginLeft="2px"
-                marginTop="43px" 
+                marginLeft="10px"
+                marginTop="52px" 
                 horizontalPadding="12px"
                 onClick={handleButtonClick}/><br />
                 {validationMessage1 && (
@@ -196,8 +196,8 @@ function JoinContents() {
                 fontSize="20px" 
                 text="닉네임" 
                 backgroundColor="white" 
-                height="95px" 
-                width="98%"
+                height="105px" width="98%"
+                border="none" borderBottom="none"
                 marginBottom="40px"
                 onChange={handleNciknameChange}/>
             <Button 
@@ -205,8 +205,8 @@ function JoinContents() {
                 height="44px"
                 width="100px" 
                 fontSize="15px"
-                marginLeft="2px" 
-                marginTop="43px" 
+                marginLeft="10px" 
+                marginTop="52px" 
                 horizontalPadding="12px"
                 onClick={handleButton1Click}/><br />
                 {validationMessage1 && (
@@ -222,23 +222,23 @@ function JoinContents() {
                 fontSize="20px" 
                 text="비밀번호" 
                 backgroundColor="white" 
-                height="95px" 
-                width="92%"
+                height="105px" width="85%"
+                border="none" borderBottom="none"
                 marginBottom="40px"
                 value={password}
                 onChange={handlePasswordChange}/>
 
                 {/* 비밀번호 유효성 검사 에러 메시지 */}
       {passwordError && <p style={{color: "red", fontSize: "16px",
-                                   position: "absolute", marginTop : "-35px", marginLeft:"18px" }}>{passwordError}</p>}
+                                   position: "absolute", marginTop : "-45px", marginLeft:"18px" }}>{passwordError}</p>}
                 
         <InputBox 
                 itype="password"
                 fontSize="20px" 
                 text="비밀번호 확인" 
                 backgroundColor="white" 
-                height="95px" 
-                width="92%"
+                height="105px" width="85%"
+                border="none" borderBottom="none"
                 marginBottom="40px"
                 value={confirmPassword}
                 onChange={handleConfirmPasswordChange}/>
@@ -250,7 +250,7 @@ function JoinContents() {
             color: passwordMatch ? "green" : "red",
             fontSize: "16px",
             position: "absolute",
-            marginTop : "-35px",
+            marginTop : "-45px",
             marginLeft:"20px"
           }}
         >

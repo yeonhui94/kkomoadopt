@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/adopt")
+@RequestMapping("/api/adopt")
 public class AdoptionNoticeController {
 
     private final AdoptionNoticeService adoptionNoticeService;

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/qna")
+@RequestMapping("/api/qna")
 public class QnAController {
 
     private final QnAService qnAService;

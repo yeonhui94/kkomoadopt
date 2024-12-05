@@ -1,6 +1,7 @@
 package com.kosmo.kkomoadopt.controller;
 
 import com.kosmo.kkomoadopt.dto.LoginRequestDTO;
+import com.kosmo.kkomoadopt.dto.LoginResponseDTO;
 import com.kosmo.kkomoadopt.dto.RegisterUserDTO;
 import com.kosmo.kkomoadopt.entity.UserEntity;
 import com.kosmo.kkomoadopt.repository.UserRepository;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class UserController {
 
     private final UserService userService;
@@ -63,14 +64,18 @@ public class UserController {
 
     // 로그인 처리 API
     @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestBody LoginRequestDTO loginRequestDTO, HttpServletRequest request) {
+    public ResponseEntity<LoginResponseDTO> loginUser(@RequestBody LoginRequestDTO loginRequestDTO, HttpServletRequest request) {
         boolean isAuthenticated = userService.loginUser(loginRequestDTO, request);
 
         if (isAuthenticated) {
-            return ResponseEntity.ok("로그인 성공");
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("이메일 또는 비밀번호가 잘못되었습니다.");
+            UserEntity user = userRepository.findByEmail(loginRequestDTO.email()).orElse(null);
+            if (user != null){
+                // 응답을 생성할 때 유효성 검사를 진행할 수 있습니다.
+                LoginResponseDTO responseDTO = new LoginResponseDTO(user.getUserId(), user.getEmail(), user.getNickname());
+                return ResponseEntity.ok(responseDTO);
+            }
         }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
     }
 
     // 로그아웃 처리 API

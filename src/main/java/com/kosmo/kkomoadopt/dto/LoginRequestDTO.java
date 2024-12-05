@@ -2,6 +2,7 @@ package com.kosmo.kkomoadopt.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public record LoginRequestDTO(
         @Email(message = "올바른 이메일 주소를 입력해주세요.")

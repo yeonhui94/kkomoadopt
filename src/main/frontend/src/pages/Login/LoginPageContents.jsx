@@ -3,6 +3,7 @@ import Button from "../../components/Button/Button";
 import InputField from "../../components/InputField";
 import styles from "../Login/LoginPageContents.module.css";
 import { Outlet, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function LoginPageContents({gridArea }) {
 
@@ -54,8 +55,8 @@ function LoginPageContents({gridArea }) {
         </div>
 
         <form className={styles.form1} onSubmit={handleLogin}>
-          <InputField type="text" placeholder="이메일" width="497px" height="35px" marginBottom="5px" />
-          <InputField type="password" placeholder="비밀번호" width="497px" height="35px" marginBottom="20px" />
+          <InputField type="text" placeholder="이메일" width="497px" height="35px" marginBottom="5px" onChange={(e) => setEmail(e.target.value)}/>
+          <InputField type="password" placeholder="비밀번호" width="497px" height="35px" marginBottom="20px" onChange={(e) => setPassword(e.target.value)} />
           <Button
             type="submit"
             text="로그인"

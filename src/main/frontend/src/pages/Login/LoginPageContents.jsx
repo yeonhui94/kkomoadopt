@@ -3,8 +3,6 @@ import InputField from "../../components/InputField";
 import styles from "../Login/LoginPageContents.module.css";
 import { Outlet } from "react-router-dom";
 
-
-
 function LoginPageContents({gridArea }) {
 
   return (

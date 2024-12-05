@@ -31,7 +31,6 @@
     height: 8px;
     margin-left: 4px;
     margin-bottom: -2px;
-    
 }
 
 a {
@@ -44,25 +43,20 @@ a {
     text-decoration: none;
     caret-color: transparent;
     margin-inline: 2px; 
-
 }
 
 a:hover {
     color: var(--main-color);
-
 }
 
 a:active {
     color: var(--main-color);
-
-
 }
 
 a.active {
     color: var(--main-color); /* 클릭된 링크에 고정되는 색 */
     outline: none;
     cursor: pointer;
- 
 }
 
 

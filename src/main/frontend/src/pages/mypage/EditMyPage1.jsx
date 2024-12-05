@@ -13,9 +13,6 @@ function EditMyPage1({ gridArea }) {
 
     const navigate = useNavigate();
 
-  
-    
-
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
     };

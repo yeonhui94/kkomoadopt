@@ -36,9 +36,6 @@ const CategoryWrapper = styled.div`
 }
 `;
 
-
-
-
 const Category = ({ selectedCategory, setSelectedCategory }) => {
   const categories = ['전체', '계정 및 회원관리', '입양', '봉사', '후원', '블랙리스트','카테고리'];
 

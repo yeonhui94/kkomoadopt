@@ -38,7 +38,6 @@ const StyledInput = styled.input`
     border-color: #444444; /* 포커스 시 테두리 색상 */
     outline: none;
   }
-
 `;
 
 // InputBox 컴포넌트

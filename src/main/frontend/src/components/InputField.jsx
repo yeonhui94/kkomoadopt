@@ -14,7 +14,6 @@ const StyledInput = styled.input`
   font-size: 1rem;;
   palce-holder: ${props => props.placeholder ? props.placeholder : 'none'};
 
-
   &:focus {
     border-color: #444444; /* 포커스 시 테두리 색상 */
     outline: none;

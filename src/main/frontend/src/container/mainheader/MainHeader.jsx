@@ -15,8 +15,6 @@ const MainHeader = () => {
     setClickedItem(itemName);
   };
 
-
-
   return (
     <div className={styles.headerGroup}>
       <div className={styles.header}>

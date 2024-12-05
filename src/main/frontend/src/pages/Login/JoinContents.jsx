@@ -232,7 +232,6 @@ function JoinContents() {
       {passwordError && <p style={{color: "red", fontSize: "16px",
                                    position: "absolute", marginTop : "-35px", marginLeft:"18px" }}>{passwordError}</p>}
                 
-                
         <InputBox 
                 itype="password"
                 fontSize="20px" 

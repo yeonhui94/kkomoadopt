@@ -47,8 +47,6 @@ const OrText = styled.span`
   transform: translateX(-50%); /* 텍스트의 가로 길이를 고려하여 정확한 중앙 배치 */
 `;
 
-
-
 function LoginPageContents({text, gridArea}) {
   const buttonWidth = "400px"; // 여기에 버튼 너비를 고정값 또는 동적으로 설정 (예시로 400px)
 
@@ -61,7 +59,6 @@ function LoginPageContents({text, gridArea}) {
           <a href="http://localhost:5173/IdPassword" className={styles.a1}><p style={{fontSize:"15px"}}>ID/PW찾기</p></a>
           <a href="http://localhost:5173/join"  className={styles.a1}><p style={{fontSize:"15px", paddingLeft : "5px"}}>회원가입</p></a>
         </div>
-
 
         <form className={styles.form1}>
         <InputField type="text" placeholder="이메일" width="497px" height="35px" marginBottom="5px"/>

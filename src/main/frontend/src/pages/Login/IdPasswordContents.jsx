@@ -3,7 +3,6 @@ import Divider from "../../components/Divider";
 import IdPassword from "../../components/IdPassword";
 import styles from "../../pages/Login/IdPasswordContents.module.css";
 
-
 function IdPasswordContents(){
     return(
         <div className={styles.IdPasswordContainer} style={{gridArea: "section"}}>

@@ -2,7 +2,6 @@
      display: grid;
      grid-template:
         '... contents ...' 1fr / 1fr 607px 1fr;
-
     margin-bottom: 80px;
 }
 
@@ -30,7 +29,6 @@
 .btn3 {
     margin-bottom: 12px; /* 각 버튼들 사이에 12px 간격 추가 */
 }
-
 
 .lineBox {
   display: flex;

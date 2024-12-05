@@ -1,10 +1,7 @@
 import { Outlet, useNavigate } from "react-router-dom";
-
-
 import styles from '../../pages/Login/AccessionPageContents.module.css';
 import Button from "../../components/Button/Button";
 import Divider from "../../components/Divider";
-
 
 function AccesstionPageContents() {
 
@@ -74,7 +71,6 @@ function AccesstionPageContents() {
       </div>
       <Outlet />
     </div>
-    
   );
 }
 

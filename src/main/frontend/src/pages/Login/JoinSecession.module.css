@@ -15,20 +15,34 @@
   margin-top: 70px;
 }
 
+.logo1{
+    grid-area : logo1;
+}
+
 .a1 {
     display: block;
     text-align: center;
     margin: 0;
     padding: 0;
     grid-area: logo1;
- 
 }
 
 .hText1 {
     text-align: center;
     grid-area: contents1;
+    font-size: 40px;
+    margin-top: -85px;
+    font-family: var(--main-font);
 }
 
+p{
+    font-size: 19px;
+    margin-bottom: 30px;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    font-family: var(--main-font);
+}
 .p1 {
     text-align: center;
     grid-area: contents2;
@@ -45,10 +59,10 @@
 }
 
 .btn1 {
-    
     text-align: center;
     grid-area : btn1;
 }
+
 @media (max-width : 768px){
     .welcomeContainer{
         display: grid;
@@ -59,6 +73,5 @@
            'contents3' 60px
            'contents4' 30px
            'btn1' 1fr / 1fr;
-         
     }
 } 

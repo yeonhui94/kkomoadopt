@@ -24,6 +24,7 @@ import Dropdown from "../../components/DropDown";
 import Divider from "../../components/Divider";
 
 const Adoption = ({ gridArea }) => {
+  
   const [selectedCategory, setSelectedCategory] = useState("강아지");
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOption, setSortOption] = useState("전체보기");
@@ -133,6 +134,8 @@ const Adoption = ({ gridArea }) => {
     setSelectedCategory("강아지"); // 초기 렌더링 시 '강아지' 카테고리가 활성화되도록 설정
   }, []);
 
+
+  
   return (
     <div style={{ gridArea: gridArea }}>
       <SubMenuBar 

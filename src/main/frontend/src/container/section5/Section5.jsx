@@ -95,6 +95,13 @@ function Section5() {
         <CardWrapper key={index}>
           <Card2 imageFile={data.imageFile} />
         </CardWrapper>
+
+      ))}
+      {cardData.map((data, index) => (
+        <CardWrapper key={index}>
+          <Card2 imageFile={data.imageFile} />
+        </CardWrapper>
+
       ))}
     </CardContainer>
   );

@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import Card2 from "../../components/Card2/Card2";
-
 import Img1 from "../../assets/CardImage/1.jpg";
 import Img2 from "../../assets/CardImage/2.jpg";
 import Img3 from "../../assets/CardImage/3.jpg";
@@ -20,12 +19,16 @@ const CardContainer = styled.div`
   padding: 20px;
   overflow-x: auto;
   scroll-behavior: smooth;
-
   &::-webkit-scrollbar {
     display: none;  // 스크롤바 숨김
   }
   scrollbar-width: none;  // Firefox에서 스크롤바 숨김
   max-width: 1920px;
+
+  @media (max-width: 1024px) {
+    max-width: 960px;
+  }
+
 
 `;
 
@@ -34,6 +37,9 @@ const CardWrapper = styled.div`
   width: 260px;
   height: 427px;
   flex-shrink: 0;
+
+
+   }
 `;
 
 const cardData = [
@@ -49,7 +55,7 @@ const cardData = [
   { imageFile: Img10 },
 ];
 
-function Section5 () {
+function Section5() {
   const cardContainerRef = useRef(null); // CardContainer 참조
   const [scrollDirection, setScrollDirection] = useState("forward");
   const [isHovered, setIsHovered] = useState(false); // 마우스 호버 상태 추적
@@ -90,18 +96,8 @@ function Section5 () {
           <Card2 imageFile={data.imageFile} />
         </CardWrapper>
       ))}
-      {cardData.map((data, index) => (
-        <CardWrapper key={index}>
-          <Card2 imageFile={data.imageFile} />
-        </CardWrapper>
-      ))}
-      {cardData.map((data, index) => (
-        <CardWrapper key={index}>
-          <Card2 imageFile={data.imageFile} />
-        </CardWrapper>
-      ))}
     </CardContainer>
   );
-};
+}
 
 export default Section5;

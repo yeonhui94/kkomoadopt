@@ -19,7 +19,7 @@ const StyledDiv = styled.div`
 const StyledLabel = styled.label`
   font-size: ${({ fontSize }) => fontSize || "1rem"};
   padding: ${({ padding3 }) => padding3 || '8px'};
-  padding-bottom: 8px;
+  padding-bottom: ${({ paddingBottom3 }) => paddingBottom3 || '8px'};;
   color : ${({ color }) => color || '#444444'};
   background-color: ${({ backgroundColor1 }) => backgroundColor1 || 'none'};
 `;
@@ -41,7 +41,7 @@ const StyledInput = styled.input`
 `;
 
 // InputBox 컴포넌트
-function InputBox({ text,padding2,backgroundColor1,color,padding3,border,padding, itype, value, width, height, onChange, placeholder,radius,width1,
+function InputBox({ text,padding2,backgroundColor1,color,padding3, paddingBottom3, border,padding, itype, value, width, height, onChange, placeholder,radius,width1,
                     backgroundColor,border1,fixedText,fontSize,marginBottom, paddingRight,marginRight}) {
   return (
     <StyledDiv 
@@ -53,7 +53,7 @@ function InputBox({ text,padding2,backgroundColor1,color,padding3,border,padding
         padding2={padding2}
         marginBottom={marginBottom} 
         paddingRight={paddingRight}>
-      <StyledLabel fontSize={fontSize} color={color}padding3={padding3} backgroundColor1={backgroundColor1}>{text}</StyledLabel>
+      <StyledLabel fontSize={fontSize} color={color}padding3={padding3} paddingBottom3={paddingBottom3} backgroundColor1={backgroundColor1}>{text}</StyledLabel>
       {fixedText && <StyledFixedText>{fixedText}</StyledFixedText>}
       <StyledInput 
         type={itype || "text"} 

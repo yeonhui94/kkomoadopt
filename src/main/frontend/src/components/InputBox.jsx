@@ -7,6 +7,7 @@ const StyledDiv = styled.div`
   background-color: ${({ backgroundColor }) => backgroundColor || 'var(--line-color)'}; // background-color를 프롭스로 받아오기
   border-radius: ${({ radius }) => radius || '10px'};
   border : ${({ border }) => border || '3px solid #ccc'};
+  border-bottom : ${({ borderBottom }) => borderBottom || '3px solid #ccc'};
   padding: ${({ padding2 }) => padding2 || '8px'};
   padding-right: ${({ paddingRight }) => paddingRight || "auto" };
   width: ${({ width }) => width || "100%"};  // 길이를 프롭스로 설정
@@ -41,7 +42,7 @@ const StyledInput = styled.input`
 `;
 
 // InputBox 컴포넌트
-function InputBox({ text,padding2,backgroundColor1,color,padding3, paddingBottom3, border,padding, itype, value, width, height, onChange, placeholder,radius,width1,
+function InputBox({ text,padding2,backgroundColor1,color,padding3, paddingBottom3, border, borderBottom ,padding, itype, value, width, height, onChange, placeholder,radius,width1,
                     backgroundColor,border1,fixedText,fontSize,marginBottom, paddingRight,marginRight}) {
   return (
     <StyledDiv 
@@ -50,6 +51,7 @@ function InputBox({ text,padding2,backgroundColor1,color,padding3, paddingBottom
         backgroundColor={backgroundColor} 
         radius={radius}
         border={border} 
+        borderBottom={borderBottom}
         padding2={padding2}
         marginBottom={marginBottom} 
         paddingRight={paddingRight}>

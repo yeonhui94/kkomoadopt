@@ -16,8 +16,14 @@
     width: 100%;
     height: 50px;
     align-self: center;
-    
+    color: var(--title-black);
 
+}
+/*  */
+p {
+    margin-bottom: 0;
+    font-size: 1.0rem;
+    color: #444;
 }
 
 .post_tmi {
@@ -326,7 +332,6 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    border: 1px solid black;
 
 }
 
@@ -334,8 +339,12 @@
     display: flex;
     flex-direction: row;
     text-align: center;
-    table-layout: fixed;
     width: 100%;
+    height: 40px;
+    color: #444;
+    background-color: #fbfbfb;
+    align-items: center;
+    border-bottom: 1px solid var(--line-color);;
     
 
 }
@@ -351,6 +360,131 @@
 .post_commentbox_header3 {
     width: 20%;
 }
+
+.comment_list_item {
+    display: flex;
+    flex-direction: row;
+    padding: 8px;
+    background-color: #ffffff;
+    border-bottom: 1px solid var(--line-color);
+    margin-bottom: 0px;
+    width: 100%;
+
+
+  }
+  
+.comment_list_item :nth-child(1) {
+    margin: 0;
+    width: 10%;
+}
+
+.comment_list_item :nth-child(2) {
+    margin: 0;
+    width: 80%;
+}
+
+.comment_list_item :nth-child(3) {
+    margin: 0;
+    width: 10%;
+}
+  
+.comment_list_item strong {
+    font-weight: bold;
+}
+
+/* .post_comment {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    table-layout: fixed;
+    width: 100%;
+    height: 40px;
+    color: #444;
+    background-color: #ffffff;
+    align-items: center;
+    border-bottom: 1px solid #eeeeee;
+    
+
+} */
+
+.post_comment_nick {
+    width: 10%;
+}
+
+.post_comment_inf {
+    width: 70%;
+}
+
+.post_comment_date {
+    width: 20%;
+}
+
+.post_commentinput {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--line-color);
+    margin-top: 10px;
+}
+
+.post_commentinput_head {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+}
+
+.post_commentinput_headblank1 {
+    display: flex;
+    width: 1%;
+}
+
+.post_commentinput_headblank2 {
+    display: flex;
+    width: 1%;
+}
+
+.post_commentinput_headtext {
+    display: flex;
+    width: 98%;
+    height: 50px;
+    align-items: center;
+    border-bottom: 1px solid var(--mainpage-dark);
+    font-weight: 600;
+}
+
+.post_commentinput_body {
+    display: flex;
+    width: 80%;
+    height: 100px;
+    border: 1px solid var(--line-color);
+    border-radius: 0px;
+    padding-left: 12px;
+    padding-right: 0px;
+    background-color: var(--line-color);
+    outline: none;
+    font-size: 1rem;
+
+}
+
+.post_commentinput_body:focus {
+    border-color: transparent;
+    outline: none;
+}
+
+.post_commentinput_buttons {
+    display: flex;
+    flex-direction: row-reverse;
+
+    
+}
+
+.post_commentinput_button1 {
+    display: flex;
+    color:var(--line-color);
+}
+
+
+
 
 
 

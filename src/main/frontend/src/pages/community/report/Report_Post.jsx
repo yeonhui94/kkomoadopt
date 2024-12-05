@@ -51,11 +51,6 @@ const Report_Post = () => {
                 <PostSlickSlide className={postst.post_postimgs}/> 
          
                 </div>
-
-
-                <ul className={postst.post_petif}>
-                  
-                </ul>
                 <Comment/>
             </article>
         </div>

@@ -17,11 +17,11 @@ const Report = ({ gridArea }) => {
     { title: "새 게시물 제목", admin: "짱구는", date: new Date("2024-11-25"), views: 5, files: 2 },
     { title: "새 게시물 제목 2", admin: "집갈래", date: new Date("2024-10-25"), views: 4, files: 2 },
     { title: "새 게시물 제목 3", admin: "고소연하게", date: new Date("2024-09-25"), views: 10, files: 2 },
-    { title: "새 게시물 제목 4", admin: "규환옵테트꼴등", date: new Date("2024-08-25"), views: 50, files: 2 },
-    { title: "새 게시물 제목 5", admin: "레일라", date: new Date("2024-07-25"), views: 0, files: 2 },
+    { title: "새 게시물 제목 4", admin: "규카츠온", date: new Date("2024-08-25"), views: 50, files: 2 },
+    { title: "새 게시물 제목 5", admin: "레일라온", date: new Date("2024-07-25"), views: 0, files: 2 },
     { title: "새 게시물 제목 6", admin: "닝ㄴ잉", date: new Date("2024-06-25"), views: 7, files: 2 },
-    { title: "새 게시물 제목 7", admin: "문상", date: new Date("2024-05-25"), views: 23, files: 2 },
-    { title: "새 게시물 제목 8", admin: "재헌재헌재헌재헌재헌", date: new Date("2024-04-25"), views: 15, files: 2 },
+    { title: "새 게시물 제목 7", admin: "문상만원", date: new Date("2024-05-25"), views: 23, files: 2 },
+    { title: "새 게시물 제목 8", admin: "재헌*5", date: new Date("2024-04-25"), views: 15, files: 2 },
     { title: "새 게시물 제목 9", admin: "작은지", date: new Date("2024-03-25"), views: 4, files: 2 },
     { title: "새 게시물 제목 10", admin: "큰은지", date: new Date("2024-02-25"), views: 1, files: 2 },
     { title: "새 게시물 제목 11", admin: "연금술사", date: new Date("2024-01-15"), views: 14, files: 2 },
@@ -34,13 +34,21 @@ const Report = ({ gridArea }) => {
     { title: "새 게시물 제목 18", admin: "혜린온귀여웡", date: new Date("2023-06-22"), views: 18, files: 2 },
     { title: "새 게시물 제목 19", admin: "호유동", date: new Date("2023-05-15"), views: 20, files: 2 },
     { title: "새 게시물 제목 20", admin: "햄스퉈", date: new Date("2023-04-05"), views: 13, files: 2 },
-    { title: "새 게시물 제목 21", admin: "수현꼬신다", date: new Date("2023-03-02"), views: 30, files: 2 },
+    { title: "새 게시물 제목 21", admin: "수혀나뮤직큐", date: new Date("2023-03-02"), views: 30, files: 2 },
     { title: "새 게시물 제목 22", admin: "집에가고시퍼", date: new Date("2023-02-18"), views: 8, files: 2 },
     { title: "새 게시물 제목 23", admin: "소고기", date: new Date("2023-01-12"), views: 6, files: 2 },
     { title: "새 게시물 제목 24", admin: "gpt바보", date: new Date("2022-12-05"), views: 17, files: 2 },
     { title: "새 게시물 제목 25", admin: "안드로이드몽상가", date: new Date("2022-11-21"), views: 27, files: 2 },
     { title: "새 게시물 제목 26", admin: "개굴", date: new Date("2022-10-15"), views: 19, files: 2 },
     { title: "새 게시물 제목 27", admin: "캬핳", date: new Date("2022-09-10"), views: 2, files: 2 },
+
+  ]
+
+  const report_comments = [
+    { nickname: "gdsgd", info: "짱구는", date: new Date("2024-11-25"), views: 5, files: 2 },
+    { nickname: "집갈거야집집집", admin: "집갈래", date: new Date("2024-10-25"), views: 4, files: 2 },
+    { nickname: "2323133", admin: "고소연하게", date: new Date("2024-09-25"), views: 10, files: 2 },
+    { nickname: "ㄴㅇㄹ", admin: "규카츠온", date: new Date("2024-08-25"), views: 50, files: 2 },
 
   ]
 

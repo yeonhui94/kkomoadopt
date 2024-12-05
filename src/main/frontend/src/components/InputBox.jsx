@@ -33,7 +33,7 @@ const StyledInput = styled.input`
   border: ${({ border1 }) => border1 || '3px solid #ccc'};
   border-radius:  ${({ radius }) => radius || '10px'};
   placeholder : ${({ placeholder }) => placeholder || ""};
-
+  background-color: ${({ backgroundColor2 }) => backgroundColor2 || 'none'};
   
     &:focus {
     border-color: #444444; /* 포커스 시 테두리 색상 */
@@ -42,7 +42,7 @@ const StyledInput = styled.input`
 `;
 
 // InputBox 컴포넌트
-function InputBox({ text,padding2,backgroundColor1,color,padding3, paddingBottom3, border, borderBottom ,padding, itype, value, width, height, onChange, placeholder,radius,width1,
+function InputBox({ text,padding2,backgroundColor1, backgroundColor2, color,padding3, paddingBottom3, border, borderBottom ,padding, itype, value, width, height, onChange, placeholder,radius,width1,
                     backgroundColor,border1,fixedText,fontSize,marginBottom, paddingRight,marginRight}) {
   return (
     <StyledDiv 
@@ -68,6 +68,7 @@ function InputBox({ text,padding2,backgroundColor1,color,padding3, paddingBottom
         height={height} // height 프롭 전달
         marginRight={marginRight}
         placeholder={placeholder}
+        backgroundColor2={backgroundColor2}
       />
     </StyledDiv>
   );

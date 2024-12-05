@@ -1,20 +1,19 @@
 .LoginContainer {
     display: grid;
     grid-template:
-       '... contents1 ...' 1fr
+       '... contents1 ...' 150px
        '... contents2 ...' 1fr / 1fr 607px 1fr;
     width: 100%;
     height: 700px;
-    margin-bottom: 80px;
+    margin-bottom: 60px;
     margin-top: 20px;
 }
 
 .LoginBox{
     grid-area: contents2;
-    height: 570px; /* 컨텐츠에 맞게 높이를 자동으로 조정 */
+    height: 400px; /* 컨텐츠에 맞게 높이를 자동으로 조정 */
     border: 4px solid var(--line-color);
     border-radius: 10px;
-    margin-top: 34px;
     padding-top: 36px;
     display: flex;
     flex-direction: column;
@@ -25,7 +24,7 @@
 
 .hText{
     grid-area: contents1;
-    margin-top : 10px;
+    margin-top : 30px;
     color : var(--main-color);
     font-size : 64px;
     font-weight : bold;
@@ -51,11 +50,6 @@
 
 .a1:hover {
     color : #666;
-}
-
-p{
-        color: inherit; /* <p> 태그도 부모의 색상 상속 */
-        margin: 0; /* <p> 태그의 기본 여백 제거 */
 }
 
 

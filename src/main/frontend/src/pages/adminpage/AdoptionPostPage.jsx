@@ -6,6 +6,7 @@ import Button from "../../components/Button/Button";
 import CheckBox from "../../components/CheckBox";  // CheckBox 임포트
 import SubNaviBar from "../../components/MyPage/SubNavi/SubNaviBar";
 import Modal from "../../components/Modal/Modal";
+import { Link } from "react-router-dom";
 
 function AdoptionPostPage({ gridArea }) {
     const [selectedCategory, setSelectedCategory] = useState("전체");
@@ -88,7 +89,7 @@ function AdoptionPostPage({ gridArea }) {
     };
 
     const handleBtn2 = () => {
-        navigate('/adoption');
+        navigate('/adoption/adoption-newpost');
 
     };
 
@@ -154,10 +155,10 @@ function AdoptionPostPage({ gridArea }) {
                         <Button
                             onClick={handleBtn1}
                             text={"수정"} />
+                            <Link to="/adoption-newpost">
                         <Button text={"글쓰기"} 
-                            onClick={handleBtn2}
-                        
                         />
+                           </Link>
                     </div>
                 </div>
             </div>

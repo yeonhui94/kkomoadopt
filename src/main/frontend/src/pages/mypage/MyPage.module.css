@@ -116,6 +116,40 @@
 }
 
 
+/* 테이블 헤더 스타일 */
+th {
+  padding: 10px;
+  /* background-color: #f4f4f4; */
+  border-bottom: 1px solid #ddd;
+  font-weight: bold;
+}
+
+/* 테이블 본문 셀 스타일 */
+td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+/* 테이블 행 hover 효과 */
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+.pgnum{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.adminbtn{
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
 
   
   /* 768px 이하의 작은 화면에서 */

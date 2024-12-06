@@ -1,6 +1,6 @@
 import Divider from '../../components/Divider';
 import { createBrowserRouter, Form, Route, Router, Routes, useParams } from 'react-router-dom';
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 // import Slider from "react-slick";
 import postst from '../community/Commu_post.module.css';
 import "slick-carousel/slick/slick.css";
@@ -11,44 +11,55 @@ import styled from 'styled-components';
 import PostSlickSlide from '../community/report/PostSlickSlide';
 import { filterProps } from 'framer-motion';
 
-const Adoption_Post = () => {
+
+const Adoption_Post = ({allPosts, image}) => {
     
+    // 파라미터로 받은 id로 게시글 찾기
+    const { id } = useParams();
+    // console.log(typeof allPosts);
 
-     // useParams를 이용해 URL 파라미터를 가져옵니다
+    console.log( typeof parseInt(id));
+     // allPosts가 존재하는지 확인
+    if (!allPosts || !Array.isArray(allPosts)) {
+        return <p>게시글 데이터가 없습니다.</p>;
+    }
+    // id가 숫자가 아닌 경우에 대한 처리
+    const idNumber = parseInt(id , 10);
 
+    // const post = allPosts.find(item => item.id === idNumber);
+    const post = allPosts.find((item) => item.id === idNumber);
+    // const post = allPosts.find(item => item.id === parseInt(id, 10));
+    console.log(allPosts.map(item => typeof item.id));
+    
+    if (!post) {
+        return <p>해당 게시글을 찾을 수 없습니다.</p>;
 
-     // mockData에서 boardId에 해당하는 게시판 데이터를 가져옵니다
-    //  const board = mockData[boardId];
-     // 게시판 데이터에서 postId에 해당하는 게시글 데이터를 가져옵니다
-    //  const post = allPosts.find((post) => post.id === parseInt(postId, 10));
- 
-     // 게시판 또는 게시글 데이터가 없을 경우, 에러 메시지 출력
-    //  if (!post) {
-    //      return <p>게시글을 찾을 수 없습니다.</p>;
-    //  }
-     
+    }
 
+// { img: img1, 
+// isScraped: false, , date: new Date(2024, 12, 10), viewcount: 150 },
     return (
-        <div className={postst.post_container}>
+        <div className={postst.post_container} allPosts={allPosts}>
             <div className={postst.post_title}>
-                <h3>&nbsp; 강아지 입양</h3>
+                <h3>&nbsp; {post.title}</h3>
             </div>
-
+        
             <div className={postst.post_tmi}>
                 <div className={postst.post_tmi1}>
                     <p className={postst.post_nick}>&nbsp;&nbsp;닉네임&nbsp;:&nbsp; 관리자</p>
-                    <p className={postst.post_postnum}> 글번호 &nbsp;:&nbsp; 123</p>
-                    <p className={postst.post_date}>작성일&nbsp;:&nbsp; 2024-12-04 </p>
+                    <p className={postst.post_postnum}> 글번호 &nbsp;:&nbsp; {id}</p>
+                    <p className={postst.post_date}>작성일&nbsp;:&nbsp;{post.date.toLocaleDateString("ko-KR")} </p>
                 </div>
-                <p className={postst.post_view}>조회수 : 123</p>
+                <p className={postst.post_view}>조회수 :  {post.viewcount || 0}</p>
             </div>
 
             <article className={postst.post_content}>
                 <div className={postst.post_content1}>
-
+                <div> {post.img}</div>
                     {/* 이미지 */}
                     {/* <img src={postimg1} className={postst.post_postimgs}/> */}
-                    <PostSlickSlide className={postst.post_postimgs}/> 
+                    {/* <PostSlickSlide className={postst.post_postimgs} 
+                    images={Array.isArray(post.img) ? post.img : [post.img]} />  */}
                     {/* <Slideimgs/> */}
 
                     {/* 테이블 4개 */}
@@ -58,7 +69,7 @@ const Adoption_Post = () => {
                                 <td className={`${postst.post_td1}`}>카테고리</td>
                             </tr>
                             <tr>
-                                <td className={`${postst.post_td2}`}>강아지</td>
+                                <td className={`${postst.post_td2}`}>{post.category}</td>
                             </tr>
                         </table>
                         <table className={`${postst.post_table} ${postst.post_tb}`}>
@@ -66,7 +77,7 @@ const Adoption_Post = () => {
                                 <td className={`${postst.post_td1}`}>품종</td>
                             </tr>
                             <tr>
-                                <td className={`${postst.post_td2}`}>믹스견</td>
+                                <td className={`${postst.post_td2}`}>{post.breed}</td>
                             </tr>
                         </table>
                         <table className={`${postst.post_table} ${postst.post_tb}`}>

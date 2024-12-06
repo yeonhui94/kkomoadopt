@@ -44,13 +44,6 @@ const Report = ({ gridArea }) => {
 
   ]
 
-  const report_comments = [
-    { nickname: "gdsgd", info: "짱구는", date: new Date("2024-11-25"), views: 5, files: 2 },
-    { nickname: "집갈거야집집집", admin: "집갈래", date: new Date("2024-10-25"), views: 4, files: 2 },
-    { nickname: "2323133", admin: "고소연하게", date: new Date("2024-09-25"), views: 10, files: 2 },
-    { nickname: "ㄴㅇㄹ", admin: "규카츠온", date: new Date("2024-08-25"), views: 50, files: 2 },
-
-  ]
 
   const options = ["전체보기", "최신 순", "오래된 순", "조회 수 높은 순", "조회 수 낮은 순"];
 

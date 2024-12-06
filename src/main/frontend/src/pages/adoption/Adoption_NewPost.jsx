@@ -6,6 +6,7 @@ import styles from "./AdoptNewPost.module.css";
 import Button from "../../components/Button/Button";
 import Modal from "../../components/Modal/Modal";
 import { Outlet, useNavigate } from "react-router-dom";
+import comustyles from "../community/CommunityWt.module.css";
 
 const Adoption_NewPost = ({gridArea}) => {
     const [fileData, setFileData] = useState([]);
@@ -71,7 +72,10 @@ const Adoption_NewPost = ({gridArea}) => {
     ];
 
     return (
-        <div style={{ gridArea }}>
+        <div style={{ gridArea }} className="commwrapper">
+            <div className={styles.mainContainer}>
+                <h1 style={{textAlign : "center"}}>{text}</h1>
+                <Divider />
             <div className={styles.postheader}>
                 <Divider text={"입양"} width={"100%"} textAlign={"center"} paddingbt={"10px"} fontSize={"1.5rem"} />
 
@@ -128,7 +132,6 @@ const Adoption_NewPost = ({gridArea}) => {
                 cancelText="취소"
                 onConfirm={handleConfirm} //입양페이지로 이동
             />
-            <Outlet/>
         </div>
     );
 }

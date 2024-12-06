@@ -321,11 +321,11 @@ p {
 }
 
 .post_commentbar_cell2 {
-    width: 70%;
+    width: 80%;
 }
 
 .post_commentbar_cell3 {
-    width: 20%;
+    width: 10%;
 }
 
 .post_commentbox {
@@ -354,17 +354,17 @@ p {
 }
 
 .post_commentbox_header2 {
-    width: 70%;
+    width: 80%;
 }
 
 .post_commentbox_header3 {
-    width: 20%;
+    width: 10%;
 }
 
 .comment_list_item {
     display: flex;
-    flex-direction: row;
-    padding: 8px;
+    flex-direction: column;
+    padding-bottom: 10px;
     background-color: #ffffff;
     border-bottom: 1px solid var(--line-color);
     margin-bottom: 0px;
@@ -375,21 +375,46 @@ p {
   
 .comment_list_item :nth-child(1) {
     margin: 0;
-    width: 10%;
+
 }
 
 .comment_list_item :nth-child(2) {
     margin: 0;
-    width: 80%;
+
 }
 
-.comment_list_item :nth-child(3) {
-    margin: 0;
-    width: 10%;
+.comment_list_item_text {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    padding-bottom: 10px;
 }
-  
-.comment_list_item strong {
-    font-weight: bold;
+
+.comment_list_item_text1 {
+    width: 10%;
+    text-align: center;
+}
+
+.comment_list_item_text2 {
+    width: 80%;
+    text-align: center;
+}
+
+.comment_list_item_text3 {
+    width: 10%;
+    
+}
+
+
+.comment_list_item_buttons {
+    display: flex;
+    width: 100%;
+    flex-direction: row-reverse;
+    gap: 10px;
+    padding-right: 10px;
 }
 
 /* .post_comment {

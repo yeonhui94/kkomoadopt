@@ -56,6 +56,10 @@ import Secession from "./pages/Login/Secession.jsx";
 import { useEffect, useState } from "react";
 import AdoptionPostPage from "./pages/adminpage/AdoptionPostPage.jsx"
 import Adoption_Post from "./pages/adoption/Adoption_Post.jsx";
+import UserMgmt from "./pages/adminpage/UserMgmt.jsx";
+import UserReservation from "./pages/adminpage/UserReservation.jsx";
+import PostsMgmt from "./pages/adminpage/PostsMgmt.jsx";
+import BlackList from "./pages/adminpage/BlackList.jsx";
 
 
 
@@ -249,11 +253,15 @@ function App() {
           path: "/mypage/admin",
           element: <MyPage gridArea="section" userType={userType} />,
           children:
-            // 유저용 마이페이지 자식 라우트
+            // 어드민용 마이페이지 자식 라우트
             [
               { path: "", element: <AdoptionPostPage gridArea="subsection" /> },
               { path: "edit-profile1", element: <EditMyPage1 gridArea="subsection" /> },
               { path: "edit-profile2", element: <EditMyPage2 gridArea="subsection" /> },
+              { path: "user-management", element: <UserMgmt gridArea="subsection" /> },
+              { path: "post-management", element: <PostsMgmt gridArea="subsection" /> },
+              { path: "reservarionlist", element: <UserReservation gridArea="subsection" /> },
+              { path: "blacklist", element: <BlackList gridArea="subsection" /> },
             ]
         },
 

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import LinkButton from "../LinkButton";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 // 부모 div 스타일
 const StyledDiv = styled.div`
@@ -13,47 +14,52 @@ const StyledDiv = styled.div`
 `;
 
 // LinkButton을 styled-components로 감싼 스타일 정의
-const StyledLinkButton = styled(LinkButton)`
-  flex: 1;           
-  height: 100%;      
-  width : 100%
-  display: flex;     
+const StyledLinkButton = styled(Link)`
+  flex: 1;
+  display: flex;
   justify-content: center;
-  align-items: center;    
-  min-width: 0;           
-
+  align-items: center;
+  text-decoration: none;
+  height: 100%; // 부모 요소에 맞게 버튼 높이 설정
+  margin-inline : 0px;
 
 `;
 
 
 function AdminNavi() {
-    const [selectedButton, setSelectedButton] = useState(null);
-    
-    const buttonData = [
-      { text: "동물 글 관리" },
-      { text: "사용자 관리" },
-      { text: "글 관리" },
-      { text: "상담예약" },
-      { text: "블랙리스트" },
-    ];
-  
-    const handleButtonClick = (buttonText) => {
-      // 버튼 클릭 시 선택된 버튼을 상태로 업데이트
-      setSelectedButton(buttonText === selectedButton ? null : buttonText);
-    };
-  
-    return (
-      <StyledDiv>
-        {buttonData.map((button) => (
-          <StyledLinkButton
-            key={button.text} // 각 버튼에 고유한 키를 추가
+  const [selectedButton, setSelectedButton] = useState(null);
+
+  const buttonData = [
+    { text: "동물 글 관리", to: "/mypage/admin" },
+    { text: "사용자 관리", to: "/mypage/admin/user-management" },
+    { text: "글 관리", to:"/mypage/admin/post-management"},
+    { text: "상담예약", to:"/mypage/admin/reservarionlist" },
+    { text: "블랙리스트", to: "/mypage/admin/blacklist"},
+  ];
+
+  // const handleButtonClick = (buttonText) => {
+  //   // 버튼 클릭 시 선택된 버튼을 상태로 업데이트
+  //   setSelectedButton(buttonText === selectedButton ? null : buttonText);
+  // };
+
+  return (
+    <StyledDiv>
+      {buttonData.map((button) => (
+        <StyledLinkButton
+          key={button.text} // 각 버튼에 고유한 키를 추가
+          text={button.text}
+          to={button.to}
+          onClick={() => setSelectedButton(button.text)}
+        >
+
+          <LinkButton
             text={button.text}
             selected={selectedButton === button.text}
-            onClick={() => handleButtonClick(button.text)}
           />
-        ))}
-      </StyledDiv>
-    );
-  }
-  
-  export default AdminNavi;
+        </StyledLinkButton>
+      ))}
+    </StyledDiv>
+  );
+}
+
+export default AdminNavi;

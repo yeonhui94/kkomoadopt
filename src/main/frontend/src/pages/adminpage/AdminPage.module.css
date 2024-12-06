@@ -1,4 +1,5 @@
 /* 기본 레이아웃 (큰 화면에서)
+// MyPage에서 그대로 들고온거라서 수정 필요함
    Profile은 왼쪽, mpsmallWrapper는 오른쪽에 배치 */
    .mpWrapper {
     display: grid;

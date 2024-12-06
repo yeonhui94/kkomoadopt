@@ -28,7 +28,7 @@ const StyledLinkButton = styled(LinkButton)`
 
 function AdminNavi() {
     const [selectedButton, setSelectedButton] = useState(null);
-  
+    
     const buttonData = [
       { text: "동물 글 관리" },
       { text: "사용자 관리" },

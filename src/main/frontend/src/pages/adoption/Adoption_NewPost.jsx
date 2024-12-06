@@ -54,7 +54,7 @@ const Adoption_NewPost = ({gridArea}) => {
 
     // InputBox 설정 정보 배열
     const inputFields = [
-        { text: "제목", placeholder: "예시 : 3세 / 믹스견 / 소심함", border1: "1px solid #ededed", border: "none" },
+        { text: "제목", placeholder: "예시 : 3세 / 믹스견 / 소심함", border1: "1px solid var(--mainpage-dark)", border: "none" },
         { text: "카테고리", placeholder: "강아지, 고양이, 기타동물 중 입력해주세요.", backgroundColor1: "var(--sub-color)" },
         { text: "품종", placeholder: "예시 : 믹스견", backgroundColor1: "var(--sub-color)" },
         { text: "공고 번호", placeholder: "예시 : 2025-05-10T09:00:00", backgroundColor1: "var(--sub-color)" },

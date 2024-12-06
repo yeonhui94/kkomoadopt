@@ -5,10 +5,14 @@ import Uploadfile from "../community/adopt_review/Uploadfile";
 import styles from "./AdoptNewPost.module.css";
 import Button from "../../components/Button/Button";
 import Modal from "../../components/Modal/Modal";
+import { Outlet, useNavigate } from "react-router-dom";
 
 const Adoption_NewPost = ({gridArea}) => {
     const [fileData, setFileData] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);  // 모달 열기 상태
+
+
+    const navigate = useNavigate();
 
     // 파일 정보가 변경될 때마다 실행되는 함수
     const handleFileChange = (files) => {
@@ -41,9 +45,11 @@ const Adoption_NewPost = ({gridArea}) => {
     };
 
     // 모달에서 확인 버튼 클릭 시 페이지 이동
-    const handleConfirm = () => {
+    const handleConfirm = (e) => {
+        e.preventDefault(); // 기본 폼 제출 방지
+        navigate("/adoption");  // '입양' 페이지로 이동
         closeModal();
-        window.location.href = "/adoption";  // '입양' 페이지로 이동
+
     };
 
     // InputBox 설정 정보 배열
@@ -67,7 +73,7 @@ const Adoption_NewPost = ({gridArea}) => {
     return (
         <div style={{ gridArea }}>
             <div className={styles.postheader}>
-                <Divider text={"입양"} width={"100%"} textAlign={"center"} fontSize={"1.5rem"} />
+                <Divider text={"입양"} width={"100%"} textAlign={"center"} paddingbt={"10px"} fontSize={"1.5rem"} />
 
                 {/* InputBox 컴포넌트를 map을 사용해 반복 렌더링 */}
                 {inputFields.map((field, index) => (
@@ -122,6 +128,7 @@ const Adoption_NewPost = ({gridArea}) => {
                 cancelText="취소"
                 onConfirm={handleConfirm} //입양페이지로 이동
             />
+            <Outlet/>
         </div>
     );
 }

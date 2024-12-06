@@ -94,7 +94,7 @@ function App() {
           path: "/adoption", element: <Adoption gridArea="section" />,
           children: [
             //글쓰기
-            // { path: "adoption-newpost", element: <Adoption_NewPost gridArea="subsection" /> }
+            // { path: "new-post", element: <Adoption_NewPost gridArea="subsection" /> }
             // 입양 디테일 글
             // {path:"/post/:id",  element : <Adoption_Post  gridArea="subsection"/>}
           ]
@@ -260,11 +260,11 @@ function App() {
               { path: "edit-profile2", element: <EditMyPage2 gridArea="subsection" /> },
               { path: "user-management", element: <UserMgmt gridArea="subsection" /> },
               { path: "post-management", element: <PostsMgmt gridArea="subsection" /> },
-              { path: "reservarionlist", element: <UserReservation gridArea="subsection" /> },
+              { path: "re", element: <UserReservation gridArea="subsection" /> },
               { path: "blacklist", element: <BlackList gridArea="subsection" /> },
             ]
         },
-
+        { path: "adoption-newpost", element: <Adoption_NewPost gridArea="subsection" /> }
         // 어드민용 마이페이지 자식 라우트
         //  [
         //   { path: "/mypage", element: <AdoptionPostPage gridArea="subsection" /> },

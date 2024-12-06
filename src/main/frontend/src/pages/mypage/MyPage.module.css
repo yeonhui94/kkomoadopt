@@ -150,6 +150,10 @@ tr:hover {
     justify-content: flex-end;
 }
 
+.blacklisted {
+  color: #ff0000; /* 붉은색 텍스트 */
+}
+
 
   
   /* 768px 이하의 작은 화면에서 */

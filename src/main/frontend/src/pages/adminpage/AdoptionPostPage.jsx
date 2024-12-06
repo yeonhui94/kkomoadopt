@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "../mypage/MyPage.module.css";
 import SearchBar from "../../components/SearchBar";
 import Pagenumber from "../../components/pagenumber/Pagenumber";
@@ -6,7 +6,6 @@ import Button from "../../components/Button/Button";
 import CheckBox from "../../components/CheckBox";  // CheckBox 임포트
 import SubNaviBar from "../../components/MyPage/SubNavi/SubNaviBar";
 import Modal from "../../components/Modal/Modal";
-import { Link, useLocation } from "react-router-dom";
 
 function AdoptionPostPage({ gridArea }) {
     const [selectedCategory, setSelectedCategory] = useState("전체");
@@ -15,16 +14,6 @@ function AdoptionPostPage({ gridArea }) {
     const [checkedItems, setCheckedItems] = useState({});  // 체크박스 상태를 관리
     const [status, setStatus] = useState(""); // 입양 상태
     const [reason, setReason] = useState(""); // 사유
-
-
-    const location = useLocation(); // 현재 위치를 추적
-
-    useEffect(() => {
-        if (location.pathname === '/adoption/new') { // 특정 페이지 경로에만 적용
-            window.scrollTo(0, 0);
-        }
-    }, [location]);
-
 
     const allPosts = [
         { id: 1, category: "강아지", title: "3세/믹스견/성격 나쁨", date: "2024-11-28", status: "입양불가", reason: "입양완료" },
@@ -99,7 +88,7 @@ function AdoptionPostPage({ gridArea }) {
     };
 
     const handleBtn2 = () => {
-        navigate('/adoption/adoption-newpost');
+        navigate('/adoption');
 
     };
 
@@ -165,10 +154,10 @@ function AdoptionPostPage({ gridArea }) {
                         <Button
                             onClick={handleBtn1}
                             text={"수정"} />
-                            <Link to="/adoption-newpost">
                         <Button text={"글쓰기"} 
+                            onClick={handleBtn2}
+                        
                         />
-                           </Link>
                     </div>
                 </div>
             </div>

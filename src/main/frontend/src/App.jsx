@@ -50,190 +50,232 @@ import QnaResultPage from "./pages/QnaPage/QnaResultPage";
 import ConcertationPage from "./pages/ConcertationPage/ConcertationPage";
 import EditMyPage1 from "./pages/mypage/EditMyPage1.jsx";
 import EditMyPage2 from "./pages/mypage/EditMyPage2.jsx";
+import Adoption_NewPost from "./pages/adoption/Adoption_NewPost.jsx";
+import Section3333 from "./container/section3/Section3333.jsx"
+import Secession from "./pages/Login/Secession.jsx";
+import { useEffect, useState } from "react";
+import AdoptionPostPage from "./pages/adminpage/AdoptionPostPage.jsx"
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Main />,
-    children: [
-      { path: "", element: <Intro /> },
-      // 아이디, 비밀번호 찾기
-      {
-        path: "/IdPassword",
-        element: <IdPasswordContents gridArea="section" />,
-      },
-      //로그인
-      { path: "/login", element: <LoginPageContents gridArea="section" /> },
-      //회원가입
-      { path: "/join", element: <AccesstionPageContents gridArea="section" /> },
-      // 회원가입 페이지
-      { path: "/createId", element: <JoinContents gridArea="section" /> },
-      // 회원가입 완료
-      { path: "/welcome", element: <JoinSecession gridArea="section" /> },
-      //입양
-      { path: "adoption", element: <Adoption gridArea="section" /> },
-      //커뮤니티
-      {
-        path: "community",
-        element: <Community gridArea="section" />,
-        // 커뮤니티 > 공지사항, 아이를 찾습니다, 입양 후기, 사고팝니다, 신고합니다
-        children: [
-          // 공지사항
-          { path: "", element: <Announcement gridArea="subsection"/>},
-          // 사고팝니다
-          { path: "resell", element: <Resell gridArea="subsection" /> },
-          // 신고합니다
-          { path: "report", element: <Report gridArea="section" /> },
-          // 입양 후기
-          { path: "adoption-review", element: <Review gridArea="section" /> },
-          // 아이를 찾습니다
-          { path: "find-child", element: <Missing gridArea="section" /> },
-        ],
-      },
-      // 커뮤니티 > 아이를 찾습니다 (게시글 디테일 / 글쓰기화면)
-      {
-        path: "commu-find_child",
-        element: <Missing_community gridArea="section" />,
-        children: [
-          // 아이를 찾습니다 게시글
-          //  { path: "", element: <CommunityWt_report gridArea="subsection"/>},
-          // 아이를 찾습니다 글쓰기
-          {
-            path: "communitywt",
-            element: (
-              <Missing_CommunityWt text="신고합니다" gridArea="subsection" />
-            ),
-          },
-        ],
-      },
-      // 커뮤니티 > 입양 후기
-      {
-        path: "commu-adopt_review",
-        element: <Adopt_review_Community gridArea="section" />,
-        children: [
-          // 입양 후기 게시글
-          //  { path: "", element: <CommunityWt_report gridArea="subsection"/>},
-          // 입양 후기 글쓰기
-          {
-            path: "communitywt",
-            element: (
-              <Adopt_review_CommunityWt
-                text="신고합니다"
-                gridArea="subsection"
-              />
-            ),
-          },
-        ],
-      },
-      // 커뮤니티 > 사고팝니다
-      {
-        path: "commu-resell",
-        element: <Resell_Community gridArea="section" />,
-        children: [
-          // 사고팝니다 게시글
-          //  { path: "", element: <CommunityWt_report gridArea="subsection"/>},
-          // 사고팝니다 글쓰기
-          {
-            path: "communitywt",
-            element: (
-              <Resell_CommunityWt text="신고합니다" gridArea="subsection" />
-            ),
-          },
-        ],
-      },
-      // 커뮤니티 > 신고합니다
-      {
-        path: "commu-report",
-        element: <Report_Community gridArea="section" />,
-        children: [
-          // 신고합니다 게시글
-          //  { path: "", element: < gridArea="subsection"/>},
-          // 신고합니다 글쓰기
-          {
-            path: "communitywt",
-            element: (
-              <Report_CommunityWt text="신고합니다" gridArea="subsection" />
-            ),
-          },
-        ],
-      },
-      // 고객센터
-      {
-        path: "customerservice",
-        element: <Customer_service gridArea="section" />,
-        // 고객센터 > FAQ , Q&A, 방문상담신청
-        children: [
-          // FAQ
-          { path: "", element: <FAQ gridArea="subsection" /> },
-        ],
-      },
-      // 고객센터 > QNA
-      {
-        path: "customer_qna",
-        element: <Qna gridArea="section" />,
-        children: [
-          // QNA 게시글 리스트
-          { path: "", element: <QnaListPage /> },
-          // QNA 게시글
-          {
-            path: "result/:id",
-            element: <QnaResultPage gridArea="subsection" />,
-          },
-          // QNA 글쓰기
-          {
-            path: "communtywt",
-            element: <QnaWritePage text="신고합니다" gridArea="subsection" />,
-          },
-        ],
-      },
-      // 고객센터 > 방문상담신청
-      {
-        path: "customer_apply_consult",
-        element: <Apply_consult gridArea="section" />,
-        children: [
-          // 방문상담신청 게시글
-          //  { path: "", element: < gridArea="subsection"/>},
-          // 방문상담신청 글쓰기
-          {
-            path: "",
-            element: (
-              // <Report_CommunityWt text="신고합니다" gridArea="subsection" />
-              <ConcertationPage />
-            ),
-          },
-        ],
-      },
-      // 센터 소개
-      { path: "/CenterIntro", element: <CenterIntro gridArea="section" /> },
-      // 마이페이지
-      {
-        path: "mypage",
-        element: <MyPage gridArea="section" />,
-        // 마이페이지 > 스크랩, 내가 쓴 글, 나의 댓글, 회원정보 수정, 상담신청 내역
-        children : [
-          // 스크랩 > 전체, 강아지, 고양이, 기타동물
-          { path: "", element: <Scrappage gridArea="subsection" />},
-          // 내가 쓴 글
-          { path: "my-posts", element: <Mypost gridArea="subsection" />},
-          // 나의 댓글
-          { path: "my-comments", element: <MyComments gridArea="subsection" />},
-          // 회원정보 수정
-          { path: "edit-profile1", element: <EditMyPage1 gridArea="subsection" />},
-          { path: "edit-profile2", element: <EditMyPage2 gridArea="subsection" />},
-          // 상담신청 내역
-          { path: "cs-detail", element: <Csdetail gridArea="subsection" />},
-          //프로필 변경
-          { path : "change-profile", element: <ChangeProfile gridArea="subsection"/>},
-        ],
-      },
-    ],
-  },
-]);
+
+
+
 
 function App() {
+  const userType = "user";
+  const router = createBrowserRouter([
+
+    {
+      path: "/",
+      element: <Main />,
+      children: [
+        { path: "", element: <Intro /> },
+        // 아이디, 비밀번호 찾기
+        {
+          path: "/IdPassword",
+          element: <IdPasswordContents gridArea="section" />,
+        },
+        //로그인
+        { path: "/login", element: <LoginPageContents gridArea="section" /> },
+        //회원가입
+        { path: "/join", element: <AccesstionPageContents gridArea="section" /> },
+        // 회원가입 페이지
+        { path: "/createId", element: <JoinContents gridArea="section" /> },
+        // 회원가입 완료
+        // 회원탈퇴 완료
+        { path: "/secession", element: <Secession gridArea="section" /> },
+        { path: "/welcome", element: <JoinSecession gridArea="section" /> },
+        //입양
+        {
+          path: "/adoption", element: <Adoption gridArea="section" />,
+          children: [
+            //글쓰기
+            { path: "adoption-newpost", element: <Adoption_NewPost gridArea="subsection" /> }
+          ]
+
+        },
+        //커뮤니티
+        {
+          path: "community",
+          element: <Community gridArea="section" />,
+          // 커뮤니티 > 공지사항, 아이를 찾습니다, 입양 후기, 사고팝니다, 신고합니다
+          children: [
+            // 공지사항
+            { path: "", element: <Announcement gridArea="subsection" /> },
+            // 사고팝니다
+            { path: "resell", element: <Resell gridArea="subsection" /> },
+            // 신고합니다
+            { path: "report", element: <Report gridArea="section" /> },
+            // 입양 후기
+            { path: "adoption-review", element: <Review gridArea="section" /> },
+            // 아이를 찾습니다
+            { path: "find-child", element: <Missing gridArea="section" /> },
+          ],
+        },
+        // 커뮤니티 > 아이를 찾습니다 (게시글 디테일 / 글쓰기화면)
+        {
+          path: "commu-find_child",
+          element: <Missing_community gridArea="section" />,
+          children: [
+            // 아이를 찾습니다 게시글
+            //  { path: "", element: <CommunityWt_report gridArea="subsection"/>},
+            // 아이를 찾습니다 글쓰기
+            {
+              path: "communitywt",
+              element: (
+                <Missing_CommunityWt text="신고합니다" gridArea="subsection" />
+              ),
+            },
+          ],
+        },
+        // 커뮤니티 > 입양 후기
+        {
+          path: "commu-adopt_review",
+          element: <Adopt_review_Community gridArea="section" />,
+          children: [
+            // 입양 후기 게시글
+            //  { path: "", element: <CommunityWt_report gridArea="subsection"/>},
+            // 입양 후기 글쓰기
+            {
+              path: "communitywt",
+              element: (
+                <Adopt_review_CommunityWt
+                  text="신고합니다"
+                  gridArea="subsection"
+                />
+              ),
+            },
+          ],
+        },
+        // 커뮤니티 > 사고팝니다
+        {
+          path: "commu-resell",
+          element: <Resell_Community gridArea="section" />,
+          children: [
+            // 사고팝니다 게시글
+            //  { path: "", element: <CommunityWt_report gridArea="subsection"/>},
+            // 사고팝니다 글쓰기
+            {
+              path: "communitywt",
+              element: (
+                <Resell_CommunityWt text="신고합니다" gridArea="subsection" />
+              ),
+            },
+          ],
+        },
+        // 커뮤니티 > 신고합니다
+        {
+          path: "commu-report",
+          element: <Report_Community gridArea="section" />,
+          children: [
+            // 신고합니다 게시글
+            //  { path: "", element: < gridArea="subsection"/>},
+            // 신고합니다 글쓰기
+            {
+              path: "communitywt",
+              element: (
+                <Report_CommunityWt text="신고합니다" gridArea="subsection" />
+              ),
+            },
+          ],
+        },
+        // 고객센터
+        {
+          path: "customerservice",
+          element: <Customer_service gridArea="section" />,
+          // 고객센터 > FAQ , Q&A, 방문상담신청
+          children: [
+            // FAQ
+            { path: "", element: <FAQ gridArea="subsection" /> },
+          ],
+        },
+        // 고객센터 > QNA
+        {
+          path: "customer_qna",
+          element: <Qna gridArea="section" />,
+          children: [
+            // QNA 게시글 리스트
+            { path: "", element: <QnaListPage /> },
+            // QNA 게시글
+            {
+              path: "result/:id",
+              element: <QnaResultPage gridArea="subsection" />,
+            },
+            // QNA 글쓰기
+            {
+              path: "communtywt",
+              element: <QnaWritePage text="신고합니다" gridArea="subsection" />,
+            },
+          ],
+        },
+        // 고객센터 > 방문상담신청
+        {
+          path: "customer_apply_consult",
+          element: <Apply_consult gridArea="section" />,
+          children: [
+            // 방문상담신청 게시글
+            //  { path: "", element: < gridArea="subsection"/>},
+            // 방문상담신청 글쓰기
+            {
+              path: "",
+              element: (
+                // <Report_CommunityWt text="신고합니다" gridArea="subsection" />
+                <ConcertationPage />
+              ),
+            },
+          ],
+        },
+        // 센터 소개
+        { path: "/CenterIntro", element: <CenterIntro gridArea="section" /> },
+        // 마이페이지
+        {
+          path: "/mypage/user",
+          element: <MyPage gridArea="section" userType={userType} />,
+          children:
+            // 유저용 마이페이지 자식 라우트
+            [
+              { path: "", element: <Scrappage gridArea="subsection" /> },
+              { path: "my-posts", element: <Mypost gridArea="subsection" /> },
+              { path: "my-comments", element: <MyComments gridArea="subsection" /> },
+              { path: "edit-profile1", element: <EditMyPage1 gridArea="subsection" /> },
+              { path: "edit-profile2", element: <EditMyPage2 gridArea="subsection" /> },
+              { path: "cs-detail", element: <Csdetail gridArea="subsection" /> },
+              { path: "change-profile", element: <ChangeProfile gridArea="subsection" /> },
+            ]
+        },
+        {
+          path: "/mypage/admin",
+          element: <MyPage gridArea="section" userType={userType} />,
+          children:
+            // 유저용 마이페이지 자식 라우트
+            [
+              { path: "", element: <AdoptionPostPage gridArea="subsection" /> },
+            ]
+        },
+
+        // 어드민용 마이페이지 자식 라우트
+        //  [
+        //   { path: "/mypage", element: <AdoptionPostPage gridArea="subsection" /> },
+        //   // 추가적인 어드민 라우트 예시
+        //   // { path: "manage-users", element: <div>유저 관리</div> },
+        //   // { path: "settings", element: <div>어드민 설정</div> },
+        // ],
+        // ].filter(Boolean), // userType에 맞는 라우트만 표시
+      ]
+    }
+  ])
+
+
+
+
+
+
   return (
     <div>
       <RouterProvider router={router} />
+      {/* <AdoptionPostPage></AdoptionPostPage> */}
+      {/* <Section3333></Section3333> */}
+      {/* <Adoption_NewPost></Adoption_NewPost> */}
+
       {/* <ParentComponent/> */}
       {/* <UserNavi /> 네비게이션 바 추가 */}
       {/* <Routes>

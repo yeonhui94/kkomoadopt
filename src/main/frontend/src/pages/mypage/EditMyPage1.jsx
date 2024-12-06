@@ -23,7 +23,7 @@ function EditMyPage1({ gridArea }) {
             setError('비밀번호가 일치하지 않습니다.');
         } else {
             setError('');
-            navigate('/mypage/edit-profile2');
+            navigate('/mypage/user/edit-profile2');
         }
     };
 

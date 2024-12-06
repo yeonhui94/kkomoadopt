@@ -4,10 +4,15 @@ import Divider from '../../components/Divider';
 import InputBox from '../../components/InputBox';
 import styles from '../../pages/mypage/EditMyPage2.module.css';
 import { nicknamePattern, pwPattern } from "../../utils/regExp"; // 유효성 검사 패턴 가져오기
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import Modal from '../../components/Modal/Modal';
 
 function EditMyPage2({ gridArea }) {
+
+    const location = useLocation(); // 현재 경로를 가져옴
+    const isAdminPage = location.pathname.includes('admin'); // 경로가 /mypage/admin으로 포함되어 있는지 확인
+//관리자, 유저 나눠서 랜더링
+    
 
     const navigate = useNavigate();
     // 닉네임 상태와 유효성 검사 상태
@@ -225,22 +230,26 @@ function EditMyPage2({ gridArea }) {
                     <Button text="수정" width="100%" marginLeft="10px" marginBottom="40px" onClick={handleSubmit} />
                 </div>
             </form>
-            <div>
-            <div className={styles.SecondDividerWrapper2}>
-                        <p style={{ fontSize: "1.2rem"}}>회원 탈퇴</p>
-                    </div>
-                    <Button color="#444444" bg1color="#444444" text="회원 탈퇴"
-                            width="100%" arginLeft="10px" marginTop="60px" marginBottom="20px"
-                            onClick={handleBtn1}/>
-                    </div>
 
-                    <Modal
-                        isOpen={isInfoModalOpen}
-                        closeModal={closeInfoModal} // 여기에서 "확인" 버튼 클릭 시 모달 닫힘
-                        modalText="탈퇴 하시겠습니까?"
-                        confirmText={"확인"} // 확인 버튼만
-                        cancelText={"취소"} // 취소 버튼은 없음
-                        onConfirm={handleConfirmClick}/>
+            {!isAdminPage && (
+                <div>
+                <div className={styles.SecondDividerWrapper2}>
+                    <p style={{ fontSize: "1.2rem"}}>회원 탈퇴</p>
+                </div>
+                <Button color="#444444" bg1color="#444444" text="회원 탈퇴"
+                        width="100%" arginLeft="10px" marginTop="60px" marginBottom="20px"
+                        onClick={handleBtn1}/>
+                </div>
+            )}
+            {!isAdminPage && (
+                <Modal
+                    isOpen={isInfoModalOpen}
+                    closeModal={closeInfoModal} // 여기에서 "확인" 버튼 클릭 시 모달 닫힘
+                    modalText="탈퇴 하시겠습니까?"
+                    confirmText={"확인"} // 확인 버튼만
+                    cancelText={"취소"} // 취소 버튼은 없음
+                    onConfirm={handleConfirmClick}/>
+            )}
             <Outlet />
         </div>
     );

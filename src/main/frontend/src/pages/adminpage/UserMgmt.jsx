@@ -64,10 +64,10 @@ function UserMgmt({ gridArea }) {
             // 체크된 사용자들 추출
             const selectedUsersList = Object.keys(newCheckedItems).filter(key => newCheckedItems[key]);
             setSelectedUsers(selectedUsersList); // 선택된 사용자 목록 업데이트
+            console.log("선택된 사용자들:", selectedUsersList); // 선택된 사용자 콘솔 출력
             return newCheckedItems;
         });
     };
-
 
     // 블랙리스트 추가 또는 탈퇴 버튼 클릭 시 모달 열기
     const handleSubmit = () => {
@@ -87,11 +87,9 @@ function UserMgmt({ gridArea }) {
         setIsModalOpen(false);  // 모달 닫기
     };
 
-
     const handleDropdownChange = (e) => {   //모달 드롭다운
         setSelectedOption(e.target.value);
     };
-
 
     return (
         <div style={{ gridArea: gridArea }}>

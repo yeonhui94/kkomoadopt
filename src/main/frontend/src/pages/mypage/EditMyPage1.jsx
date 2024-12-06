@@ -3,9 +3,13 @@ import InputBox from '../../components/InputBox';
 import Button from '../../components/Button/Button';
 import styles from '../../pages/mypage/EditMyPage1.module.css';
 import { useState } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 function EditMyPage1({ gridArea }) {
+
+    const location = useLocation(); // 현재 경로를 가져옴
+
+
 
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -23,7 +27,11 @@ function EditMyPage1({ gridArea }) {
             setError('비밀번호가 일치하지 않습니다.');
         } else {
             setError('');
-            navigate('/mypage/user/edit-profile2');
+            if (location.pathname.includes('admin')) {
+                navigate('/mypage/admin/edit-profile2'); // 관리자 경로로 이동
+            } else {
+                navigate('/mypage/user/edit-profile2'); // 사용자 경로로 이동
+            }
         }
     };
 

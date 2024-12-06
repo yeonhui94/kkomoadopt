@@ -125,7 +125,7 @@ function EditMyPage2({ gridArea }) {
     return (
         <div style={{ gridArea: gridArea }}>
             <div style={{ gridArea: "title1" }}>
-                <Divider text="회원정보수정" fontweight="midium" marTop="20px" />
+                <Divider text={isAdminPage ? "관리자정보 수정" : "회원정보 수정"} fontweight="midium" marTop="20px" />
             </div>
             <form>
                 <div className={styles.EditMyPageDiv2}>

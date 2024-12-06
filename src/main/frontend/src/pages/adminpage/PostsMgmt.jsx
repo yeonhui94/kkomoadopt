@@ -10,6 +10,8 @@ function PostsMgmt({ gridArea }) {
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태
   const [selectedCategory, setSelectedCategory] = useState("글");  // 초기값을 "전체"로 설정
   const [searchQuery, setSearchQuery] = useState('');
+  const [checkedItems, setCheckedItems] = useState({});  // 체크박스 상태를 관리
+  const [selectAll, setSelectAll] = useState(false);
 
   const allPosts = [
     
@@ -48,6 +50,11 @@ function PostsMgmt({ gridArea }) {
   // 전체 페이지 수 계산
   const totalPages = Math.ceil(filteredData.length / postsPerPage);
 
+  // 검색어 변경 처리 함수
+  const handleSearch = (query) => {
+    setSearchQuery(query);  // 검색어를 상태에 저장
+    setCurrentPage(1); // 검색 시 첫 페이지로 돌아가게 설정
+  };
 
   // 서브 네비게이션 탭 (카테고리 선택)
   const tabs = [
@@ -57,24 +64,45 @@ function PostsMgmt({ gridArea }) {
     { label: "삭제된 댓글", category: "삭제된 댓글" },
   ];
 
-  
-  const handleTabClick = (category) => {
-    console.log('Selected Category:', category);
-    setSelectedCategory(category);  // 클릭한 카테고리로 상태 업데이트
+
+  const handleTabClick = (category1) => {
+    console.log('Selected Category:', category1);
+    setSelectedCategory(category1);  // 클릭한 카테고리로 상태 업데이트
     setCurrentPage(1);  // 카테고리 변경 시 페이지 1로 리셋
   };
 
-  
+
   // 페이지네이션 처리
   const handlePageClick = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-    // 검색어 변경 처리 함수
-    const handleSearch = (query) => {
-      setSearchQuery(query);  // 검색어를 상태에 저장
+  // 전체 선택/해제 처리 함수
+  const handleSelectAll = () => {
+    setSelectAll(!selectAll);  // 전체 선택 상태 반전
+    if (!selectAll) {
+      // 전체 선택 상태일 때, 모든 항목을 체크
+      const newCheckedItems = {};
+      currentPosts.forEach(post => {
+        newCheckedItems[post.id] = true;
+      });
+      setCheckedItems(newCheckedItems);
+    } else {
+      // 전체 해제 상태일 때, 모든 항목을 해제
+      setCheckedItems({});
+    }
   };
 
+  // 체크박스 상태 변경 처리
+  const handleCheckBoxChange = (id) => {
+    setCheckedItems((prevState) => ({
+      ...prevState,
+      [id]: !prevState[id]
+    }));
+  };
+
+
+  
   return (
     <div style={{ gridArea: gridArea }}>
       <div className={styles.mpcontainer}>
@@ -95,13 +123,13 @@ function PostsMgmt({ gridArea }) {
             <thead>
               <tr>
                 <th><CheckBox
-                  // checked={selectAll} 
-                  // onChange={handleSelectAll} 
+                  checked={selectAll} 
+                  onChange={handleSelectAll} 
                 /></th>
                 <th><select name="category" id="category" 
                             style={{border : "none", fontSize : "15px", fontWeight: "bold"}}
                             onChange={(e) => handleTabClick(e.target.value)}>
-                    <option value="전체">전체</option>
+                    <option value="카테고리">카테고리</option>
                     <option value="아이를 찾습니다">아이를 찾습니다</option>
                     <option value="신고합니다">신고합니다</option>
                     <option value="입양후기">입양후기</option>
@@ -122,11 +150,11 @@ function PostsMgmt({ gridArea }) {
                   <tr key={post.id}>
                     <td>
                       <CheckBox
-                        // checked={!!checkedItems[post.id]}
-                        // onChange={() => handleCheckBoxChange(post.id)}
+                        checked={!!checkedItems[post.id]}
+                        onChange={() => handleCheckBoxChange(post.id)}
                       />
                     </td>
-                    <td>{post.category}</td>
+                    <td>{post.category1}</td>
                     <td>{post.id}</td>
                     <td>{post.title}</td>
                     <td>{post.nickname}</td>
@@ -136,7 +164,7 @@ function PostsMgmt({ gridArea }) {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="5">검색된 데이터가 없습니다.</td>
+                  <td colSpan="7">검색된 데이터가 없습니다.</td>
                 </tr>
               )}
             </tbody>

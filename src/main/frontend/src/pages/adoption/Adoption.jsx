@@ -22,6 +22,7 @@ import imgm2 from "../../assets/CardImage/m2.jpg";
 import styles from "../Review.module.css";
 import Dropdown from "../../components/DropDown";
 import Divider from "../../components/Divider";
+import { Link } from "react-router-dom";
 
 const Adoption = ({ gridArea }) => {
   
@@ -163,6 +164,7 @@ const Adoption = ({ gridArea }) => {
             <Divider width={"100%"} backgroundColor={"var(--line-color)"} />
           </div>
           {currentPosts.map((item) => (
+            <Link to={`/post/${item.id}`} key={item.id}>
             <Card2
               key={item.id}
               imageFile={item.img}
@@ -171,6 +173,7 @@ const Adoption = ({ gridArea }) => {
               isScraped={item.isScraped}
               onScrapToggle={() => toggleScrap(item.id)} 
             />
+            </Link>
           ))}
         </div>
         <div className={styles.endcontainer}>

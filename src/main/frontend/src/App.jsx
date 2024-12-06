@@ -55,6 +55,7 @@ import Section3333 from "./container/section3/Section3333.jsx"
 import Secession from "./pages/Login/Secession.jsx";
 import { useEffect, useState } from "react";
 import AdoptionPostPage from "./pages/adminpage/AdoptionPostPage.jsx"
+import Adoption_Post from "./pages/adoption/Adoption_Post.jsx";
 
 
 
@@ -89,7 +90,9 @@ function App() {
           path: "/adoption", element: <Adoption gridArea="section" />,
           children: [
             //글쓰기
-            { path: "adoption-newpost", element: <Adoption_NewPost gridArea="subsection" /> }
+            // { path: "adoption-newpost", element: <Adoption_NewPost gridArea="subsection" /> }
+            // 입양 디테일 글
+            // {path:"/post/:id",  element : <Adoption_Post  gridArea="subsection"/>}
           ]
 
         },
@@ -249,6 +252,8 @@ function App() {
             // 유저용 마이페이지 자식 라우트
             [
               { path: "", element: <AdoptionPostPage gridArea="subsection" /> },
+              { path: "edit-profile1", element: <EditMyPage1 gridArea="subsection" /> },
+              { path: "edit-profile2", element: <EditMyPage2 gridArea="subsection" /> },
             ]
         },
 

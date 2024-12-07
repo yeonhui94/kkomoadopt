@@ -56,9 +56,7 @@ const ArrowButton = styled.button`
   }
 `;
 
-function PostSlickSlide() {
-  const [images, setImages] = useState([img1, img2, img3, img4]);
-
+function PostSlickSlide({img}) {
   const settings = {
     dots: true,
     infinite: true,
@@ -75,8 +73,8 @@ function PostSlickSlide() {
 
   return (
     <SliderContainer>
-      <StyledSlider {...settings}>
-        {images.map((image, index) => (
+      <StyledSlider>
+        {img.map((image, index) => (
           <SlideWrapper key={index}>
             <SlideImage src={image} alt={`Slide ${index + 1}`} />
           </SlideWrapper>

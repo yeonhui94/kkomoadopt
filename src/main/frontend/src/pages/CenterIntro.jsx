@@ -1,7 +1,7 @@
 import { inView, keyframes, motion, useAnimate, useAnimation, useInView } from "framer-motion";
 import centerintrosty from './CenterIntro.module.css';
 import styles from './CenterIntro.module.css';
-import Screen1 from "./centerintro/screen1";
+import Screen1 from "./centerintro/Screen1";
 import { useEffect, useRef } from "react";
 // import Header from "../container/header/Header";
 import Divider from "../components/Divider";
@@ -10,6 +10,7 @@ import Screen3 from "./centerintro/Screen3";
 import Screen5 from "./centerintro/Screen5";
 import Screen6 from "./centerintro/Screen6";
 import Screen4 from "./centerintro/Screen4";
+import TopButton from "../components/Button/TopButton";
 
 const CenterIntro = () => {
 
@@ -35,6 +36,7 @@ const CenterIntro = () => {
             <Screen5/>
             <Screen6/>
         </div>
+    <TopButton/>
      </div>
     </div>
         

@@ -22,6 +22,7 @@ COLLATE='utf8mb3_general_ci'
 ENGINE=InnoDB
 ;
 
+
 CREATE TABLE IF NOT EXISTS `adoption_notice` (
 	`notice_uid` VARCHAR(36) NOT NULL COLLATE 'utf8mb3_general_ci',
 	`adopt_status` ENUM('ADOPTABLE','NOTADOPT','RESERVATION') NOT NULL COLLATE 'utf8mb3_general_ci',
@@ -40,81 +41,100 @@ CREATE TABLE IF NOT EXISTS `adoption_notice` (
 	`unique_num` BIGINT(20) NULL DEFAULT NULL,
 	PRIMARY KEY (`notice_uid`) USING BTREE,
 	INDEX `idx_adoption_notice_announcement_num` (`announcement_num`) USING BTREE,
-	INDEX `idx_adoption_notice_animal_type` (`animal_type`) USING BTREE
+	INDEX `idx_adoption_notice_animal_type` (`animal_type`) USING BTREE,
+	INDEX `fk_adoption_notice_author` (`adoption_author`) USING BTREE,
+	CONSTRAINT `fk_adoption_notice_author` FOREIGN KEY (`adoption_author`) REFERENCES `user` (`nickname`) ON UPDATE CASCADE ON DELETE CASCADE
 )
 COLLATE='utf8mb3_general_ci'
 ENGINE=InnoDB
 ;
 
+
 CREATE TABLE IF NOT EXISTS `comment` (
 	`comment_id` VARCHAR(36) NOT NULL COLLATE 'utf8mb3_general_ci',
-	`comment_author` VARCHAR(255) NOT NULL COLLATE 'utf8mb3_general_ci',
 	`comment_content` TEXT NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
 	`comment_created_at` DATETIME(6) NOT NULL,
 	`comment_updated_at` DATETIME(6) NOT NULL,
 	`is_deleted` BIT(1) NOT NULL,
-	`post_id` VARCHAR(255) NOT NULL COLLATE 'utf8mb3_general_ci',
-	PRIMARY KEY (`comment_id`) USING BTREE
+	`user_id` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`post_uid` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	PRIMARY KEY (`comment_id`) USING BTREE,
+	INDEX `fk_post_uid` (`post_uid`) USING BTREE,
+	INDEX `fk_user_id` (`user_id`) USING BTREE,
+	CONSTRAINT `fk_post_uid` FOREIGN KEY (`post_uid`) REFERENCES `community_post` (`post_uid`) ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE ON DELETE CASCADE
 )
 COLLATE='utf8mb3_general_ci'
 ENGINE=InnoDB
 ;
 
+
 CREATE TABLE IF NOT EXISTS `community_post` (
 	`post_uid` VARCHAR(36) NOT NULL COLLATE 'utf8mb3_general_ci',
-	`community_author` VARCHAR(255) NOT NULL COLLATE 'utf8mb3_general_ci',
-	`delete_reason` VARCHAR(10) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`delete_reason` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
 	`is_deleted` BIT(1) NOT NULL,
 	`post_category` ENUM('ADOPTREVIEW','BUYANDSELL','FINDCHILD','REPORT') NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
 	`post_content` TEXT NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
 	`post_created_at` DATETIME(6) NOT NULL,
-	`post_id` INT(11) NULL DEFAULT NULL AUTO_INCREMENT,
+	`post_id` INT(11) NULL DEFAULT NULL,
 	`post_img_url` TEXT NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
 	`post_title` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
 	`post_updated_at` DATETIME(6) NOT NULL,
 	`post_view_count` INT(11) NOT NULL,
+	`user_id` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
 	PRIMARY KEY (`post_uid`) USING BTREE,
-	UNIQUE (`post_id`)
+	UNIQUE INDEX `UK5djt4w7q6wk68ryo6xb716dp0` (`post_id`) USING BTREE,
+	INDEX `fk_postuser_id` (`user_id`) USING BTREE,
+	CONSTRAINT `fk_postuser_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE ON DELETE CASCADE
 )
 COLLATE='utf8mb3_general_ci'
 ENGINE=InnoDB
 ;
+
 
 CREATE TABLE IF NOT EXISTS `qna` (
 	`qna_uid` VARCHAR(36) NOT NULL COLLATE 'utf8mb3_general_ci',
 	`answer_author` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
 	`qna_answer` TEXT NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
 	`qna_answer_file` TEXT NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`qna_author` VARCHAR(255) NOT NULL COLLATE 'utf8mb3_general_ci',
 	`qna_content` TEXT NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
 	`qna_created_at` DATETIME(6) NOT NULL,
-	`qna_id` INT(11) NOT NULL AUTO_INCREMENT,
+	`qna_id` INT(11) NOT NULL,
 	`qna_password` INT(11) NULL DEFAULT NULL,
 	`qna_request_file` TEXT NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
 	`qna_state` ENUM('ANSCOMPLETE','ANSWAIT') NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
 	`qna_title` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
 	`qna_view_count` INT(11) NULL DEFAULT NULL,
+	`user_id` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
 	PRIMARY KEY (`qna_uid`) USING BTREE,
-	UNIQUE (`qna_id`)
+	UNIQUE INDEX `UKfip1fmygipgc2icse6kviw0y5` (`qna_id`) USING BTREE,
+	INDEX `fk_qna_user_id` (`user_id`) USING BTREE,
+	INDEX `fk_qna_answer_author` (`answer_author`) USING BTREE,
+	CONSTRAINT `fk_qna_answer_author` FOREIGN KEY (`answer_author`) REFERENCES `user` (`nickname`) ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT `fk_qna_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE ON DELETE CASCADE
 )
 COLLATE='utf8mb3_general_ci'
 ENGINE=InnoDB
 ;
 
-CREATE TABLE IF NOT EXISTS `visit_request_entity` (
+
+CREATE TABLE IF NOT EXISTS `visit_request` (
 	`request_uid` VARCHAR(36) NOT NULL COLLATE 'utf8mb3_general_ci',
 	`phone_num` VARCHAR(20) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`request_id` INT(11) NOT NULL AUTO_INCREMENT,
+	`request_id` INT(11) NOT NULL,
 	`visit_content` TEXT NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
 	`visit_created_at` DATETIME(6) NOT NULL,
 	`visit_date` DATE NULL DEFAULT NULL,
 	`visit_purpose` ENUM('ADOPT','DONATE','OTHER','SERVICE','VISIT') NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`visit_request_author` VARCHAR(255) NOT NULL COLLATE 'utf8mb3_general_ci',
 	`visit_time` ENUM('TIME1','TIME2','TIME3','TIME4','TIME5','TIME6') NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`user_id` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
 	PRIMARY KEY (`request_uid`) USING BTREE,
-	UNIQUE (`request_id`)
+	UNIQUE INDEX `UKi1lbm0qkbj6bsk39jnn7cc524` (`request_id`) USING BTREE,
+	INDEX `fk_visit_request_uesr_id` (`user_id`) USING BTREE,
+	CONSTRAINT `fk_visit_request_uesr_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON UPDATE RESTRICT ON DELETE RESTRICT
 )
 COLLATE='utf8mb3_general_ci'
 ENGINE=InnoDB
 ;
+
 

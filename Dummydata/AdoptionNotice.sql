@@ -32,11 +32,14 @@ CREATE TABLE `adoption_notice` (
 	`unique_num` BIGINT(20) NULL DEFAULT NULL,
 	PRIMARY KEY (`notice_uid`) USING BTREE,
 	INDEX `idx_adoption_notice_announcement_num` (`announcement_num`) USING BTREE,
-	INDEX `idx_adoption_notice_animal_type` (`animal_type`) USING BTREE
+	INDEX `idx_adoption_notice_animal_type` (`animal_type`) USING BTREE,
+	INDEX `fk_adoption_notice_author` (`adoption_author`) USING BTREE,
+	CONSTRAINT `fk_adoption_notice_author` FOREIGN KEY (`adoption_author`) REFERENCES `user` (`nickname`) ON UPDATE CASCADE ON DELETE CASCADE
 )
 COLLATE='utf8mb3_general_ci'
 ENGINE=InnoDB
 ;
+
 
 
 -- 테이블 데이터 kkomoadopt.adoption_notice:~82 rows (대략적) 내보내기

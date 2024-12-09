@@ -23,24 +23,24 @@ const Mypost = ({ gridArea }) => {
     { id: 10, category: "입양후기", title: "사지말고 입양하세요", content: "입양 후기 내용", date: "2024-11-19", viewCount: 140 },
   ];
 
-    // 검색 필터링된 데이터
-    const filteredData = allPosts.filter(post => 
-      (selectedCategory === "전체" || post.category === selectedCategory) && 
-      (post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-        post.content.toLowerCase().includes(searchQuery.toLowerCase()))
-    );
+  // 검색 필터링된 데이터
+  const filteredData = allPosts.filter(post => 
+    (selectedCategory === "전체" || post.category === selectedCategory) && 
+    (post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+      post.content.toLowerCase().includes(searchQuery.toLowerCase()))
+  );
 
   // 페이지당 보여지는 글 수
   const postsPerPage = 8;
 
-    // 현재 페이지에 맞는 카드 데이터 계산
-    const currentPosts = filteredData.slice(
-      (currentPage - 1) * postsPerPage,
-      currentPage * postsPerPage
+  // 현재 페이지에 맞는 카드 데이터 계산
+  const currentPosts = filteredData.slice(
+    (currentPage - 1) * postsPerPage,
+    currentPage * postsPerPage
   );
 
-    // 전체 페이지 수 계산
-    const totalPages = Math.ceil(filteredData.length / postsPerPage);
+  // 전체 페이지 수 계산
+  const totalPages = Math.ceil(filteredData.length / postsPerPage);
 
   // 서브 네비게이션 탭 (카테고리 선택)
   const tabs = [
@@ -48,7 +48,7 @@ const Mypost = ({ gridArea }) => {
     { label: "아이를 찾습니다", category: "아이를 찾습니다" },
     { label: "입양후기", category: "입양후기" },
     { label: "사고팝니다", category: "사고팝니다" },
-    { label: "신고합니다", category: "신고합니다" }, // categoryk 오류 수정
+    { label: "신고합니다", category: "신고합니다" },
   ];
 
   const handleTabClick = (category) => {
@@ -61,9 +61,9 @@ const Mypost = ({ gridArea }) => {
     setCurrentPage(pageNumber);
   };
 
-    // 검색어 변경 처리 함수
-    const handleSearch = (query) => {
-      setSearchQuery(query);  // 검색어를 상태에 저장
+  // 검색어 변경 처리 함수
+  const handleSearch = (query) => {
+    setSearchQuery(query);  // 검색어를 상태에 저장
   };
 
   return (
@@ -81,22 +81,27 @@ const Mypost = ({ gridArea }) => {
         </div>
 
         <div className={styles.content2}>
-          <div className={styles.tableHeader}>
-            <span className={styles.tableColumn}>글번호</span>
-            <span className={styles.tableColumn}>제목</span>
-            <span className={styles.tableColumn}>작성일</span>
-            <span className={styles.tableColumn}>조회수</span>
-          </div>
-
-          {/* 필터링된 게시글을 페이지별로 표시 */}
-          {currentPosts.map(post => (
-            <div key={post.id} className={styles.postItem}>
-              <span className={styles.tableColumn}>{post.id}</span>
-              <span className={styles.tableColumn}>{post.title}</span>
-              <span className={styles.tableColumn}>{post.date}</span>
-              <span className={styles.tableColumn}>{post.viewCount}</span>
-            </div>
-          ))}
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                <th>글번호</th>
+                <th>제목</th>
+                <th>작성일</th>
+                <th>조회수</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* 필터링된 게시글을 페이지별로 표시 */}
+              {currentPosts.map(post => (
+                <tr key={post.id}>
+                  <td>{post.id}</td>
+                  <td>{post.title}</td>
+                  <td>{post.date}</td>
+                  <td>{post.viewCount}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
 
         {/* 페이지네이션 컴포넌트 */}

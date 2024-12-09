@@ -24,6 +24,7 @@ import { formatDate } from "../../utils/formattedDate";
 import { useParams } from "react-router-dom";
 import {fetchNoticeByUid} from "../../stores/AdoptionNoticeStore/service";
 // import service from "../../stores/AdoptionNoticeStore/service";
+
 const Adopt_postpage = ({ text = "입양", gridArea }) => {
 const [allPosts, setAllPosts] = useState([
     { id: 1, img: [img1, imgc1, imgm1], title: "3세 / 포메라니안 / 성격나쁨", category: "강아지", isScraped: false, breed: "포메라니안", date: new Date(2024, 12, 10), viewcount: 150 },
@@ -46,7 +47,7 @@ const [allPosts, setAllPosts] = useState([
 
     // // 파라미터로 받은 id로 게시글 찾기
     const { id } = useParams();
-    // console.log(typeof allPosts);
+    // console.log(typeof alqlPosts);
 
     console.log( typeof parseInt(id));
      // allPosts가 존재하는지 확인
@@ -91,9 +92,9 @@ const [allPosts, setAllPosts] = useState([
     // }, [id]);
 
       // noticedetail이 아직 로드되지 않았을 때를 대비한 조건부 렌더링
-      if (!post) {
-        return <div>Loading...</div>; // 데이터를 로딩 중일 때
-      }
+      // if (!post) {
+      //   return <div>Loading...</div>; // 데이터를 로딩 중일 때
+      // }
 
 
 
@@ -104,7 +105,7 @@ const [allPosts, setAllPosts] = useState([
       <div className={styles.mainContainer}>
         <h1 style={{ textAlign: "center" }}>{text}</h1>
         <Divider />
-          <Adoption_Post noticedetail={noticedetail} />
+          <Adoption_Post post={post} />
       </div>
     </div>
   );

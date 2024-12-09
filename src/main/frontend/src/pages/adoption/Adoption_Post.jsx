@@ -10,17 +10,19 @@ import postimg2 from '../../assets/img2/2.jpg';
 import styled from 'styled-components';
 import PostSlickSlide from '../community/report/PostSlickSlide';
 import { filterProps } from 'framer-motion';
-import { formatDate } from "../../utils/formattedDate";
+// import { formatDate } from "../../utils/formattedDate";
 
 
-const Adoption_Post = ({ noticedetail }) => {
+const Adoption_Post = ({ post, noticedetail }) => {
 
         
+    //{ id: 1, img: [img1, imgc1, imgm1], title: "3세 / 포메라니안 / 성격나쁨",
+    // category: "강아지", isScraped: false, breed: "포메라니안", date: new Date(2024, 12, 10), viewcount: 150 },
         return (
 
         <div className={postst.post_container}>
             <div className={postst.post_title}>
-                <h3>&nbsp; {noticedetail.noticeTitle}</h3>
+                <h3>&nbsp; {post.title}</h3>
             </div>
         
             <div className={postst.post_tmi}>
@@ -29,10 +31,10 @@ const Adoption_Post = ({ noticedetail }) => {
                     <p className={postst.post_postnum}> 글번호 &nbsp;:&nbsp; {noticedetail.noticeViewCount}</p>
                     <p className={postst.post_date}>작성일&nbsp;:&nbsp;{noticedetail.noticeUpdatedAt} </p> */}
                     <p className={postst.post_nick}>&nbsp;&nbsp;닉네임&nbsp;:&nbsp; 관리자</p>
-                    <p className={postst.post_postnum}> 글번호 &nbsp;:&nbsp; {noticedetail.noticeViewCount}</p>
-                    <p className={postst.post_date}>작성일&nbsp;:&nbsp;{noticedetail.noticeUpdatedAt} </p>
+                    <p className={postst.post_postnum}> 글번호 &nbsp;:&nbsp; {post.id}</p>
+                    <p className={postst.post_date}>작성일&nbsp;:&nbsp;{post.date.toLocaleDateString("ko-KR")}</p>
                 </div>
-                <p className={postst.post_view}>조회수 :  {noticedetail.noticeViewCount || 0}</p>
+                <p className={postst.post_view}>조회수 :  {post.viewcount || 0}</p>
             </div>
 
             <article className={postst.post_content}>
@@ -40,8 +42,8 @@ const Adoption_Post = ({ noticedetail }) => {
 
                     {/* 이미지 */}
                     {/* <img src={postimg1} className={postst.post_postimgs}/> */}
-                    {/* <PostSlickSlide className={postst.post_postimgs} 
-                    img={noticedetail.noticeImgUrl} />  */}
+                   <PostSlickSlide className={postst.post_postimgs}
+                    img={post.img} /> 
                     {/* images={Array.isArray(post.img) ? post.img : [post.img]}  */}
                     {/* <Slideimgs/>
 
@@ -52,7 +54,8 @@ const Adoption_Post = ({ noticedetail }) => {
                                 <td className={`${postst.post_td1}`}>카테고리</td>
                             </tr>
                             <tr>
-                                <td className={`${postst.post_td2}`}>{noticedetail.noticeCategory}</td>
+                                {/* <td className={`${postst.post_td2}`}>{noticedetail.noticeCategory}</td> */}
+                                <td className={`${postst.post_td2}`}>{post.category}</td>
                             </tr>
                         </table>
                         <table className={`${postst.post_table} ${postst.post_tb}`}>
@@ -60,7 +63,8 @@ const Adoption_Post = ({ noticedetail }) => {
                                 <td className={`${postst.post_td1}`}>품종</td>
                             </tr>
                             <tr>
-                                <td className={`${postst.post_td2}`}>{noticedetail.animalType}</td>
+                                {/* <td className={`${postst.post_td2}`}>{noticedetail.animalType}</td> */}
+                                <td className={`${postst.post_td2}`}>{post.breed}</td>
                             </tr>
                         </table>
                         <table className={`${postst.post_table} ${postst.post_tb}`}>
@@ -68,7 +72,8 @@ const Adoption_Post = ({ noticedetail }) => {
                                 <td className={`${postst.post_td1}`}>공고번호</td>
                             </tr>
                             <tr>
-                                <td className={`${postst.post_td2}`}>{noticedetail.announcementNum}</td>
+                                {/* <td className={`${postst.post_td2}`}>{noticedetail.announcementNum}</td> */}
+                                <td className={`${postst.post_td2}`}>{post.id}</td>
                             </tr>
                         </table>
                         <table className={`${postst.post_table} ${postst.post_tb}`}>
@@ -76,7 +81,8 @@ const Adoption_Post = ({ noticedetail }) => {
                                 <td className={`${postst.post_td1}`}>공고마감날짜</td>
                             </tr>
                             <tr>
-                                <td className={`${postst.post_td2}`}>{noticedetail.euthanasiaDate}</td>
+                                {/* <td className={`${postst.post_td2}`}>{noticedetail.euthanasiaDate}</td> */}
+                                <td className={`${postst.post_td2}`}>{post.date.toLocaleDateString("ko-KR")}</td>
                             </tr>
                         </table>
                     </div>

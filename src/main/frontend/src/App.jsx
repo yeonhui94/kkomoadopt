@@ -60,6 +60,7 @@ import UserReservation from "./pages/adminpage/UserReservation.jsx";
 import PostsMgmt from "./pages/adminpage/PostsMgmt.jsx";
 import BlackList from "./pages/adminpage/BlackList.jsx";
 import MainPage from './pages/Main/MainPage';
+import Adopt_postpage from "./pages/adoption/Adopt_postpage.jsx";
 
 
 
@@ -90,16 +91,10 @@ function App() {
         { path: "/secession", element: <Secession gridArea="section" /> },
         { path: "/welcome", element: <JoinSecession gridArea="section" /> },
         //입양
-        {
-          path: "/adoption", element: <Adoption gridArea="section" />,
-          children: [
-            //글쓰기
-            // { path: "new-post", element: <Adoption_NewPost gridArea="subsection" /> }
-            // 입양 디테일 글
-            // {path:"/post/:id",  element : <Adoption_Post  gridArea="subsection"/>}
-          ]
-
-        },
+        {path: "/adoption", element: <Adoption gridArea="section" />},
+        {path: "/adopt-wt", element: <Adoption_NewPost gridArea="section" />},
+        //입양 게시글 디테일
+        {path: "/adoption/post/:id", element: <Adopt_postpage gridArea="section" />},
         //커뮤니티
         {
           path: "community",
@@ -262,9 +257,14 @@ function App() {
               { path: "post-management", element: <PostsMgmt gridArea="subsection" /> },
               { path: "reservationlist", element: <UserReservation gridArea="subsection" /> },
               { path: "blacklist", element: <BlackList gridArea="subsection" /> },
+              {
+                path: "customer_qna/result/:id", 
+                element: <QnaResultPage gridArea="subsection" /> 
+              }
             ]
         },
-        { path: "adoption-newpost", element: <Adoption_NewPost gridArea="subsection" /> }
+        { path: "adoption-newpost", element: <Adoption_NewPost gridArea="subsection" /> },
+        // { path: "admin/customer_qnaresult/:id", element: <QnaResultPage gridArea="subsection" /> },
         // 어드민용 마이페이지 자식 라우트
         //  [
         //   { path: "/mypage", element: <AdoptionPostPage gridArea="subsection" /> },

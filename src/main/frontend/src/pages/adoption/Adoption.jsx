@@ -164,7 +164,7 @@ const Adoption = ({ gridArea }) => {
             <Divider width={"100%"} backgroundColor={"var(--line-color)"} />
           </div>
           {currentPosts.map((item) => (
-            <Link to={`/post/${item.id}`} key={item.id}>
+            <Link to={`/adoption/post/${item.id}`} key={item.id}>
             <Card2
               key={item.id}
               imageFile={item.img}

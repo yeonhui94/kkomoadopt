@@ -187,6 +187,7 @@ const Adoption_NewPost = ({gridArea}) => {
             />
             <Outlet/>
         </div>
+    </div>                    
     );
 }
 

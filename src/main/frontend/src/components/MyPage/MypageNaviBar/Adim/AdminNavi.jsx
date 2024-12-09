@@ -33,7 +33,7 @@ function AdminNavi() {
     { text: "동물 글 관리", to: "/mypage/admin" },
     { text: "사용자 관리", to: "/mypage/admin/user-management" },
     { text: "글 관리", to:"/mypage/admin/post-management"},
-    { text: "상담예약", to:"/mypage/admin/reservarionlist" },
+    { text: "상담예약", to:"/mypage/admin/reservationlist" },
     { text: "블랙리스트", to: "/mypage/admin/blacklist"},
   ];
 

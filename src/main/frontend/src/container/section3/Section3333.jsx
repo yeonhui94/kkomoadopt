@@ -1,25 +1,26 @@
 import React, { useEffect, useState } from "react";
 import SectionBox from "./SectionBox";
 import Section3 from './Section3'; 
-import img1 from "../../assets/img2/1.jpg";
-import img2 from "../../assets/img2/2.jpg";
-import img3 from "../../assets/img2/3.jpg";
-import img4 from "../../assets/img2/4.jpg";
-import img5 from "../../assets/img2/5.jpg";
-import img6 from "../../assets/img2/6.jpg";
-import img7 from "../../assets/img2/7.jpg";
-import img8 from "../../assets/img2/8.jpg";
-import img9 from "../../assets/img2/9.jpg";
-import img10 from "../../assets/img2/10.jpg";
-import img11 from "../../assets/img2/11.jpg";
-import img12 from "../../assets/img2/12.jpg";
+import img3_1 from "../../assets/img2/1.jpg";
+import img3_2 from "../../assets/img2/2.jpg";
+import img3_3 from "../../assets/img2/3.jpg";
+import img3_4 from "../../assets/img2/4.jpg";
+import img3_5 from "../../assets/img2/5.jpg";
+import img3_6 from "../../assets/img2/6.jpg";
+import img3_7 from "../../assets/img2/7.jpg";
+import img3_8 from "../../assets/img2/8.jpg";
+import img3_9 from "../../assets/img2/9.jpg";
+import img3_10 from "../../assets/img2/10.jpg";
+import img3_11 from "../../assets/img2/11.jpg";
+import img3_12 from "../../assets/img2/12.jpg";
 import styles from "./Section3333.module.css";
 import Logo from "../../components/logo/Logo";
 import Button from "../../components/Button/Button";
+import { Link } from "react-router-dom";
 
 const Section3333 = () => {
   // 모든 이미지를 한 번에 불러옴
-  const allImages = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12];
+  const allImages = [img3_1, img3_2, img3_3, img3_4, img3_5, img3_6, img3_7, img3_8, img3_9, img3_10, img3_11, img3_12];
 
   // 각 박스에 필요한 이미지 배열 분리
   const images1 = allImages.slice(0, 6);
@@ -28,10 +29,10 @@ const Section3333 = () => {
   const images4 = allImages.slice(4, 10);
 
   // 박스 크기
-  const box1Width = "250px";
-  const box1Height = "250px";
-  const box2Width = "200px";
-  const box2Height = "450px";
+  const box1Width = "300px";
+  const box1Height = "300px";
+  const box2Width = "150px";
+  const box2Height = "400px";
 
   // 각 슬라이드 상태 관리
   const [currentSlide1, setCurrentSlide1] = useState(0);
@@ -111,7 +112,7 @@ const Section3333 = () => {
         boxHeight={box2Height}
         currentSlide={currentSlide1}
       />
-      <div className={styles.upcontent}>
+      <div>
         {/* 두 번째 SectionBox */}
         <SectionBox
           images={images2}
@@ -121,10 +122,15 @@ const Section3333 = () => {
         />
         <div className={styles.smallWrapper}>
           <Logo width="200px" />
-          <Button text={"입양목록 바로가기"} bg1color={"white"} hovercolor={"var(--main-color)"} />
-          <Button text={"KKOMO센터 더보기"} />
+          <Link to="/adoption">
+            <Button text={"입양목록 바로가기"} bg1color={"white"} hovercolor={"var(--main-color)"} />
+          </Link>
+          <Link to='/centerIntro'>
+            <Button text={"KKOMO센터 더보기"} />
+          </Link>
         </div>
       </div>
+
       {/* Section3, currentSlide와 setCurrentSlide를 전달 */}
       <div
         onMouseEnter={() => setIsHovered(true)} // 마우스 올라가면 슬라이드 멈춤
@@ -135,14 +141,12 @@ const Section3333 = () => {
 
       <div className={styles.smallWrapper2}>
         {/* 세 번째 SectionBox */}
-        <div className={styles.thirdbox}>
         <SectionBox
           images={images3}
           boxWidth={box1Width}
           boxHeight={box1Height}
           currentSlide={currentSlide3}
         />
-        </div>
         <div className={styles.controls}>
           <Button onClick={goToPreviousSlide} className={styles.ControlButton} text={"◀"} />
           <Button onClick={goToNextSlide} className={styles.ControlButton} text={"▶"} />
@@ -164,17 +168,14 @@ const Section3333 = () => {
       </div>
 
       {/* 네 번째 SectionBox */}
-      <div className={styles.upcontent}>
       <SectionBox
         images={images4}
         boxWidth={box2Width}
         boxHeight={box2Height}
         currentSlide={currentSlide4}
       />
-      </div>
-      <div className={styles.zindexh1}><h1>입양 가능한 아이들</h1></div>
+      <h1>입양 가능한 아이들</h1>
     </div>
-    
   );
 };
 

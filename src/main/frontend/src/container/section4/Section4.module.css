@@ -1,94 +1,102 @@
 .section4 {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    /* background: linear-gradient(135deg, rgba(248, 117, 91, 0.8), rgba(255, 230, 230, 0.849));  */
-  }
-  
-  .section4::before,
-  .section4::after {
-    content: '';
-    position: absolute;
-    width: 95%;
-    height: 3px;
-    background-color: #f8755b;
-  }
-  
-  .section4::before {
-    top: 5%;
-  }
-  
-  .section4::after {
-    bottom: 8%;
-  }
-  
-  .container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .titles {
-    position: absolute; 
-    top: 10%;
-    left: 50%;
-    transform: translateX(-50%); 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 95%;
-    z-index: 10; 
-  }
-  
-  
-  .titles h1 {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .sliderWrapper {
-    position: relative;
-    top: 0px;
-    width: 95%;
-    height: 100%; 
-  }
-  
-  
-  .SlickSlide {
-    transform: translate(-50%, -50%); 
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    border-radius: 20px;
-}
-
-.centerWrap{
   width: 100%;
-  height: 100%;
-  position: absolute;
-  bottom: 50px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
 }
 
-.centerbg {
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.titles {
   position: absolute;
-  top: 0%;
+  top: 8%;
   left: 50%;
-  transform: translate(50%, -50%);
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  z-index: 10;
 }
 
-  
-span{
+.titles h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.sliderWrapper {
+  display: flex;
+  position: relative;
+  top: 0px;
+  width: 95%;
+  height: 100%;
+}
+
+.SlickSlide {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  border-radius: 20px;
+}
+
+.centerWrap {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+span {
   display: flex;
   width: 100%;
   height: 100%;
 }
+
+/* 엣지 브라우저에서만 적용될 스타일 */
+.edgeSlider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  left: 20px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+/* 모바일 반응형 스타일 */
+/* @media (max-width: 768px) {
+  .section4 {
+    width: 100%;
+    height: auto; 
+    top: 100px; 
+    padding: 20px 0; 
+  }
+
+  .titles {
+    top: 80px;
+    font-size: 1.5rem;
+  }
+
+  .sliderWrapper {
+    width: 100%;
+    height: auto;
+  }
+
+  .SlickSlide {
+    width: 100%;
+    height: auto;
+  }
+
+  .centerWrap {
+    width: 100%;
+    height: 100%; 
+  }
+} */

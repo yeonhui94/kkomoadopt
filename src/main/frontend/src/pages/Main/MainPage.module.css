@@ -1,0 +1,138 @@
+/* MainPage.module.css */
+
+/* 전체 페이지에 적용되는 스타일 */
+.mainContainer {
+    display: flex;
+    flex-direction: column; /* 세로로 쌓이게 */
+    height: 100vh; /* 화면 전체 크기 */
+    width: 100%;
+    overflow: hidden; /* 스크롤을 숨기고, 애니메이션 효과로만 스크롤 처리 */
+    box-sizing: border-box;
+  }
+  
+  .sections {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* 각 섹션을 화면 크기에 맞게 */
+    overflow: hidden; /* 섹션 내에서 스크롤을 막음 */
+  }
+  
+  .section1, .section2, .section3, .section4, .section5 {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    height: 100vh; /* 각 섹션이 화면 전체를 차지하게 */
+    width: 100%; /* 100% 너비 */
+    position: relative; /* 애니메이션을 위한 위치 설정 */
+  }
+  .section2{
+    top: 100px;
+  }
+  .section3{
+    top: 100px;
+  }
+  /* .section1, .section2, .section3, .section4, .section5 {
+    padding: 0; 
+    margin: 0; 
+  } */
+  
+  .section1 > *, .section2 > *, .section3 > *, .section4 > *, .section5 > * {
+    /* 각 섹션 내의 콘텐츠가 중앙에 오도록 스타일 */
+    /* max-width: 1200px; */
+    width: 100%;
+    /* text-align: center; */
+  }
+  .section4{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    text-align: center;
+    position: relative;
+    top: 100px;
+  }
+  .footerWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    bottom: 0;  /* 화면의 하단에 딱 붙이기 */
+    width: 100%;  /* 화면 전체 너비 */
+    /* height: 50%; */
+    /* bottom: -100px; */
+  }
+  .fixedButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba( 0,0,0,0.5);
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    z-index: 100000000;
+  }
+  
+  .fixedButton:hover {
+    background-color: var(--main-color);
+  }
+  /* .section5{
+    display: flex;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    bottom: 0;
+  } */
+  /* .s5 {
+    height: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  } */
+
+  /* styles.css 또는 MainPage.module.css 파일에 추가 */
+/* 
+.footerWrapper {
+  display: none; 
+}
+
+.footerVisible {
+  display: block;
+  transition: opacity 0.5s ease;
+} */
+/* .footerWrapper {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.footerVisible {
+  opacity: 1;
+} */
+
+@media (max-width: 768px) {
+  .section4{
+    margin: 0;
+    padding: 0;
+  }
+  .footerWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* position: relative; */
+    width: 100%; 
+    height: 50%;
+    bottom: 0px;  
+  }
+  .fter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* position: relative; */
+    width: 100%; 
+    bottom: 0px;  
+  }
+}

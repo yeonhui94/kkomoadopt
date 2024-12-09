@@ -60,6 +60,7 @@ import UserMgmt from "./pages/adminpage/UserMgmt.jsx";
 import UserReservation from "./pages/adminpage/UserReservation.jsx";
 import PostsMgmt from "./pages/adminpage/PostsMgmt.jsx";
 import BlackList from "./pages/adminpage/BlackList.jsx";
+import MainPage from './pages/Main/MainPage';
 
 
 
@@ -73,7 +74,7 @@ function App() {
       path: "/",
       element: <Main />,
       children: [
-        { path: "", element: <Intro /> },
+        {   path: "", element: <MainPage/> },
         // 아이디, 비밀번호 찾기
         {
           path: "/IdPassword",

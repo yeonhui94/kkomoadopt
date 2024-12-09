@@ -1,110 +1,111 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import Card2 from "../../components/Card2/Card2";
-import Img1 from "../../assets/CardImage/1.jpg";
-import Img2 from "../../assets/CardImage/2.jpg";
-import Img3 from "../../assets/CardImage/3.jpg";
-import Img4 from "../../assets/CardImage/4.jpg";
-import Img5 from "../../assets/CardImage/5.jpg";
-import Img6 from "../../assets/CardImage/6.jpg";
-import Img7 from "../../assets/CardImage/7.jpg";
-import Img8 from "../../assets/CardImage/8.jpg";
-import Img9 from "../../assets/CardImage/9.jpg";
-import Img10 from "../../assets/CardImage/10.jpg";
 
-// 카드 컨테이너 스타일
-const CardContainer = styled.div`
-  display: flex;
-  gap: 60px;
-  padding: 20px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  &::-webkit-scrollbar {
-    display: none;  // 스크롤바 숨김
+import Img5_1 from "../../assets/CardImage/1.jpg";
+import Img5_2 from "../../assets/CardImage/2.jpg";
+import Img5_3 from "../../assets/CardImage/3.jpg";
+import Img5_4 from "../../assets/CardImage/4.jpg";
+import Img5_5 from "../../assets/CardImage/5.jpg";
+import Img5_6 from "../../assets/CardImage/6.jpg";
+import Img5_7 from "../../assets/CardImage/7.jpg";
+import Img5_8 from "../../assets/CardImage/8.jpg";
+import Img5_9 from "../../assets/CardImage/9.jpg";
+import Img5_10 from "../../assets/CardImage/10.jpg";
+
+import St5Card2 from "../../components/Card2/St5Card2";
+
+const H1tag = styled.h1`
+  position: relative;
+  bottom: 80px;
+  text-align: center;
+  overflow-y: hidden;
+  @media  (max-width:768px){
+    bottom:150px
   }
-  scrollbar-width: none;  // Firefox에서 스크롤바 숨김
-  max-width: 1920px;
-
-  @media (max-width: 1024px) {
-    max-width: 960px;
-  }
-
-
 `;
 
-// 카드 스타일
+const Scroller = styled.div`
+  max-width: 95%;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+`;
+
+const AnimationContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: scroll 10s linear infinite alternate;
+  transform-origin: center center;
+
+  &:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes scroll {
+    from {
+      transform: translateX(0%);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    justify-content: space-around;
+  }
+`;
+
 const CardWrapper = styled.div`
-  width: 260px;
-  height: 427px;
-  flex-shrink: 0;
+  padding: 0 50px;
 
+  & > div img {
+    transition: transform 0.3s ease-in-out;
+  }
 
-   }
+  & > div:hover img {
+    transform: scale(1.1);
+  }
+
+  @media (max-width: 768px) {
+    padding: 5px 20px;
+
+    & > div  {
+      width: 100%; /* 카드 크기 비율로 설정 */
+      height: 80%; /* 카드 높이를 자동으로 조정 */
+    }
+  }
 `;
 
 const cardData = [
-  { imageFile: Img1 },
-  { imageFile: Img2 },
-  { imageFile: Img3 },
-  { imageFile: Img4 },
-  { imageFile: Img5 },
-  { imageFile: Img6 },
-  { imageFile: Img7 },
-  { imageFile: Img8 },
-  { imageFile: Img9 },
-  { imageFile: Img10 },
+  { imageFile: Img5_1 },
+  { imageFile: Img5_2 },
+  { imageFile: Img5_3 },
+  { imageFile: Img5_4 },
+  { imageFile: Img5_5 },
+  { imageFile: Img5_6 },
+  { imageFile: Img5_7 },
+  { imageFile: Img5_8 },
+  { imageFile: Img5_9 },
+  { imageFile: Img5_10 },
 ];
 
-function Section5() {
-  const cardContainerRef = useRef(null); // CardContainer 참조
-  const [scrollDirection, setScrollDirection] = useState("forward");
-  const [isHovered, setIsHovered] = useState(false); // 마우스 호버 상태 추적
-
-  useEffect(() => {
-    const scrollAmount = 320;
-    const interval = setInterval(() => {
-      if (!isHovered) { // 마우스가 호버되지 않은 경우에만 스크롤
-        const container = cardContainerRef.current;
-        const maxScrollLeft = container.scrollWidth - container.clientWidth;
-        const currentScrollLeft = container.scrollLeft;
-
-        if (scrollDirection === "forward") {
-          container.scrollLeft += scrollAmount;
-          if (currentScrollLeft + scrollAmount >= maxScrollLeft) {
-            setScrollDirection("backward");
-          }
-        } else {
-          container.scrollLeft -= scrollAmount;
-          if (currentScrollLeft - scrollAmount <= 0) {
-            setScrollDirection("forward");
-          }
-        }
-      }
-    }, 2000);
-
-    return () => clearInterval(interval);
-  }, [scrollDirection, isHovered]); // isHovered 상태에 따라 재실행
-
+const SectionScroller = () => {
   return (
-    <CardContainer
-      ref={cardContainerRef}
-      onMouseEnter={() => setIsHovered(true)} // 마우스 호버 시작
-      onMouseLeave={() => setIsHovered(false)} // 마우스 호버 종료
-    >
-      {cardData.map((data, index) => (
-        <CardWrapper key={index}>
-          <Card2 imageFile={data.imageFile} />
-        </CardWrapper>
-
-      ))}
-      {cardData.map((data, index) => (
-        <CardWrapper key={index}>
-          <Card2 imageFile={data.imageFile} />
-        </CardWrapper>
-
-      ))}
-    </CardContainer>
+    <div>
+      <H1tag>실종된 아이를 찾습니다.</H1tag>
+      <Scroller>
+        <AnimationContainer>
+          {cardData.map((data, index) => (
+            <CardWrapper key={index}>
+              <St5Card2 imageFile={data.imageFile}/>
+            </CardWrapper>
+          ))}
+        </AnimationContainer>
+      </Scroller>
+    </div>
   );
-}
+};
 
-export default Section5;
+export default SectionScroller;

@@ -31,7 +31,7 @@ import img28 from "../assets/img2/28.jpg";
 import img29 from "../assets/img2/29.jpg";
 import img30 from "../assets/img2/30.jpg";
 import styles from "./Review.module.css";
-import Footer from "../container/Footer";
+import Footer from "../container/footer/Footer";
 import Divider from "../components/Divider";
 import SearchBar from "../components/SearchBar";
 import Dropdown from "../components/DropDown";

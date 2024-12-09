@@ -9,7 +9,7 @@ const StyledImg = styled.img`
 
 const Mypageicon2 = () => {
   return (
-    <Link to="/mypage">
+    <Link to="/mypage/user">
       <StyledImg src={Mypageimg} alt="Mypage" />
     </Link>
   );

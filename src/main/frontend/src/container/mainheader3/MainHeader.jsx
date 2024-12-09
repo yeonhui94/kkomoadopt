@@ -37,7 +37,7 @@ const MainHeader = ({ isScrolled, currentSection, hamburgerm }) => {
         <div className={styles.menuFooter1}>
           <Mypageicon2 style={{ display: 'flex' }} />
           <Link className={styles.btn} to="/login">
-            <Button text="로그아웃" padding="12px 20px" />
+            <Button text= "로그인" padding="12px 20px" />
           </Link>
         </div>
 

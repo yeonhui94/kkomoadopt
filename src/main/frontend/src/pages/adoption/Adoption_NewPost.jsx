@@ -6,52 +6,106 @@ import styles from "./AdoptNewPost.module.css";
 import Button from "../../components/Button/Button";
 import Modal from "../../components/Modal/Modal";
 import { Outlet, useNavigate } from "react-router-dom";
-import comustyles from "../community/CommunityWt.module.css";
+import axios from "axios";
 
 const Adoption_NewPost = ({gridArea}) => {
     const [fileData, setFileData] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);  // 모달 열기 상태
 
 
+    const [formData, setFormData] = useState({
+        title: "",
+        category: "",
+        breed: "",
+        announcementNumber: "",
+        closingDate: "",
+        furColor: "",
+        weight: "",
+        age: "",
+        foundLocation: "",
+        characteristics: "",
+        files: [] // 파일 데이터
+    });
+
+
     const navigate = useNavigate();
 
     // 파일 정보가 변경될 때마다 실행되는 함수
     const handleFileChange = (files) => {
-        setFileData(files); // 선택된 파일 데이터 저장
+        setFormData((prevData) => ({
+            ...prevData,
+            files // 파일을 formData에 추가
+        }));
     };
 
     const [text, setText] = useState("");
 
-    // 텍스트가 변경될 때마다 textarea 높이를 자동으로 조정
-    const handleChange = (e) => {
-      const { value } = e.target;
-      setText(value);
+    // // 텍스트가 변경될 때마다 textarea 높이를 자동으로 조정
+    // const handleChange = (e) => {
+    //   const { value } = e.target;
+    //   setText(value);
   
-      // 텍스트의 내용에 따라 textarea 높이를 자동으로 조정
-      e.target.style.height = 'auto';  // 높이를 'auto'로 설정해서 기본 높이로 리셋
-      e.target.style.height = `${e.target.scrollHeight}px`; // 내용에 맞춰 높이 설정
-    };
+    //   // 텍스트의 내용에 따라 textarea 높이를 자동으로 조정
+    //   e.target.style.height = 'auto';  // 높이를 'auto'로 설정해서 기본 높이로 리셋
+    //   e.target.style.height = `${e.target.scrollHeight}px`; // 내용에 맞춰 높이 설정
+    // };
 
-    // 모달을 닫는 함수
-    const closeModal = () => {
-        setIsModalOpen(false);  // 모달 닫기
-    };
 
-    // 모달을 열고 닫는 함수
-    const handleSubmit = () => {
-        // 여기에서 폼 데이터를 서버로 보내는 처리를 할 수 있습니다.
+        // 텍스트가 변경될 때마다 상태를 업데이트
+        const handleInputChange = (e) => {
+            console.log(handleInputChange)
+            const { name, value } = e.target;
+            setFormData((prevData) => ({
+                ...prevData,
+                [name]: value
+            }));
 
-        // 모달 열기
-        setIsModalOpen(true);
+            setText(value);
+        
+            // 텍스트의 내용에 따라 textarea 높이를 자동으로 조정
+            e.target.style.height = 'auto';  // 높이를 'auto'로 설정해서 기본 높이로 리셋
+            e.target.style.height = `${e.target.scrollHeight}px`; // 내용에 맞춰 높이 설정
+        };
+
+
+
+
+
+    // 폼 데이터를 서버로 전송하는 함수
+    const handleSubmit = async () => {
+        console.log("Submitting form...");
+        try {
+            const response = await axios.post("YOUR_API_ENDPOINT", formData); // 실제 API 엔드포인트로 교체
+            console.log(response);  // 응답 확인
+            if (response.status === 200) {
+                console.log("Success!");
+                setIsModalOpen(true); // 성공 시 모달 열기
+            } else {
+                console.error("Unexpected response status:", response.status);
+            }
+        } catch (error) {
+            console.error("Error posting data:", error);
+            // 에러 처리 (예: 에러 메시지 표시)
+        }
     };
+    
 
     // 모달에서 확인 버튼 클릭 시 페이지 이동
-    const handleConfirm = (e) => {
+    const handleConfirm = async(e) => {
         e.preventDefault(); // 기본 폼 제출 방지
+        await handleSubmit();//서버에 데이터 전송 후 이동
         navigate("/adoption");  // '입양' 페이지로 이동
         closeModal();
 
     };
+
+
+        // 모달을 닫는 함수
+        const closeModal = () => {
+            setIsModalOpen(false);  // 모달 닫기
+        };
+
+
 
     // InputBox 설정 정보 배열
     const inputFields = [
@@ -72,10 +126,7 @@ const Adoption_NewPost = ({gridArea}) => {
     ];
 
     return (
-        <div style={{ gridArea }} className="commwrapper">
-            <div className={styles.mainContainer}>
-                <h1 style={{textAlign : "center"}}>{text}</h1>
-                <Divider />
+        <div style={{ gridArea }}>
             <div className={styles.postheader}>
                 <Divider text={"입양"} width={"100%"} textAlign={"center"} paddingbt={"10px"} fontSize={"1.5rem"} />
 
@@ -83,9 +134,10 @@ const Adoption_NewPost = ({gridArea}) => {
                 {inputFields.map((field, index) => (
                     <InputBox
                         key={index}
+                        value={formData[field.text]}
                         backgroundColor={field.backgroundColor1 || "white"}
                         padding2={"none"}
-
+                        onChange={handleInputChange}
                         border1={field.border1 || "none"}
                         padding3={"5px"}
                         text={field.text}
@@ -113,8 +165,9 @@ const Adoption_NewPost = ({gridArea}) => {
                                 <span className={styles.fixedText}>{field.label}: </span>
                                 <textarea
                                     className={styles.textareaField}
+                                    value={formData[field.label]}
                                     placeholder={field.placeholder}
-                                    onChange={handleChange}
+                                    onChange={handleInputChange}
                                 />
                             </div>
                         ))}
@@ -132,6 +185,7 @@ const Adoption_NewPost = ({gridArea}) => {
                 cancelText="취소"
                 onConfirm={handleConfirm} //입양페이지로 이동
             />
+            <Outlet/>
         </div>
     );
 }

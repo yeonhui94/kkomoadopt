@@ -7,6 +7,7 @@ import SubNaviBar from "../../components/MyPage/SubNavi/SubNaviBar";
 import Button from "../../components/Button/Button";
 import { useEffect } from "react";
 import Modal from "../../components/Modal/Modal";
+import { Link } from "react-router-dom";
 
 function PostsMgmt({ gridArea }) {
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태
@@ -21,18 +22,18 @@ function PostsMgmt({ gridArea }) {
   const closeInfoModal = () => setIsInfoModalOpen(false);
   const [selectedReason, setSelectedReason] = useState("욕설");
   const [allPosts, setAllPosts] = useState([ // 모든 게시물 상태로 관리
-    { id: 1, category1: "아이를 찾습니다", title: "광진구에서 실종", date: "2024-11-28", viewCount: 150, nickname: "user1", email: "user1@example.com", reason: "욕설", category: "삭제된 글" },
-    { id: 2, category1: "입양후기", title: "인삼이 너무 기여워요", date: "2024-11-27", viewCount: 230, nickname: "user2", email: "user2@example.com", reason: "음담패설", category: "삭제된 댓글" },
-    { id: 3, category1: "사고팝니다", title: "목줄 판매합니다", date: "2024-11-26", viewCount: 45, nickname: "user3", email: "user3@example.com", reason: "", category: "댓글" },
-    { id: 4, category1: "신고합니다", title: "체리콕", date: "2024-11-25", viewCount: 78, nickname: "user4", email: "user4@example.com", reason: "광고", category: "삭제된 글" },
-    { id: 5, category1: "아이를 찾습니다", title: "서울에서 실종", date: "2024-11-24", viewCount: 100, nickname: "user5", email: "user5@example.com", reason: "", category: "글" },
-    { id: 6, category1: "입양후기", title: "애플이가 너무 귀엽다", date: "2024-11-23", viewCount: 210, nickname: "user6", email: "user6@example.com", reason: "관련없는내용", category: "삭제된 댓글" },
-    { id: 7, category1: "사고팝니다", title: "배변패드 무료 나눔", date: "2024-11-22", viewCount: 50, nickname: "user7", email: "user7@example.com", reason: "기타", category: "삭제된 글" },
-    { id: 8, category1: "신고합니다", title: "스팸 메시지", date: "2024-11-21", viewCount: 90, nickname: "user8", email: "user8@example.com", reason: "", category: "댓글" },
-    { id: 9, category1: "아이를 찾습니다", title: "경기에서 실종", date: "2024-11-20", viewCount: 150, nickname: "user9", email: "user9@example.com", reason: "", category: "댓글" },
-    { id: 10, category1: "공지사항", title: "사이트 점검 안내", date: "2024-11-19", viewCount: 320, nickname: "admin", email: "admin@example.com", reason: "", category: "글" },
-    { id: 11, category1: "FAQ", title: "회원가입 방법", content: "회원가입 방법에 대한 자주 묻는 질문", date: "2024-11-18", viewCount: 500, nickname: "admin", email: "admin@example.com", reason: "", category: "글" },
-    { id: 12, category1: "QnA", title: "아이를 찾습니다", content: "아이 찾기 관련 질문", date: "2024-11-17", viewCount: 220, nickname: "user10", email: "user10@example.com", reason: "", category: "글" }
+    { id: 1, category1: "아이를 찾습니다",ad:"community/find-child", title: "광진구에서 실종", date: "2024-11-28", viewCount: 150, nickname: "user1", email: "user1@example.com", reason: "욕설", category: "삭제된 글" },
+    { id: 2, category1: "입양후기",ad:"community/adoption-review", title: "인삼이 너무 기여워요", date: "2024-11-27", viewCount: 230, nickname: "user2", email: "user2@example.com", reason: "음담패설", category: "삭제된 댓글" },
+    { id: 3, category1: "사고팝니다",ad:"community/resell", title: "목줄 판매합니다", date: "2024-11-26", viewCount: 45, nickname: "user3", email: "user3@example.com", reason: "", category: "댓글" },
+    { id: 4, category1: "신고합니다",ad:"community/report", title: "체리콕", date: "2024-11-25", viewCount: 78, nickname: "user4", email: "user4@example.com", reason: "광고", category: "삭제된 글" },
+    { id: 5, category1: "아이를 찾습니다",ad:"community/find-child",title: "서울에서 실종", date: "2024-11-24", viewCount: 100, nickname: "user5", email: "user5@example.com", reason: "", category: "글" },
+    { id: 6, category1: "입양후기",ad:"community/adoption-review", title: "애플이가 너무 귀엽다", date: "2024-11-23", viewCount: 210, nickname: "user6", email: "user6@example.com", reason: "관련없는내용", category: "삭제된 댓글" },
+    { id: 7, category1: "사고팝니다",ad:"community/resell", title: "배변패드 무료 나눔", date: "2024-11-22", viewCount: 50, nickname: "user7", email: "user7@example.com", reason: "기타", category: "삭제된 글" },
+    { id: 8, category1: "신고합니다",ad:"community/report", title: "스팸 메시지", date: "2024-11-21", viewCount: 90, nickname: "user8", email: "user8@example.com", reason: "", category: "댓글" },
+    { id: 9, category1: "아이를 찾습니다",ad:"community/find-child", title: "경기에서 실종", date: "2024-11-20", viewCount: 150, nickname: "user9", email: "user9@example.com", reason: "", category: "댓글" },
+    { id: 10, category1: "공지사항",ad:"community/", title: "사이트 점검 안내", date: "2024-11-19", viewCount: 320, nickname: "admin", email: "admin@example.com", reason: "", category: "글" },
+    { id: 11, category1: "FAQ",ad:"customerservice/", title: "회원가입 방법", date: "2024-11-18", viewCount: 500, nickname: "admin", email: "admin@example.com", reason: "", category: "글" },
+    { id: 12, category1: "QnA",ad:"customer_qna/", title: "아이를 찾습니다", date: "2024-11-17", viewCount: 220, nickname: "user10", email: "user10@example.com", reason: "", category: "글" }
   ]);
 
   useEffect(() => {
@@ -208,7 +209,9 @@ function PostsMgmt({ gridArea }) {
                     </td>
                     <td>{post.category1}</td>
                     <td>{post.id}</td>
-                    <td>{post.title}</td>
+                    <td><Link to={`/${post.ad}`} style={{ textDecoration: 'none', color: 'inherit' , fontWeight:'normal' }}>
+                        {post.title}
+                      </Link></td>
                     <td>{post.nickname}</td>
                     <td>{post.date}</td>
                     <td>{post.reason}</td>

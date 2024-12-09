@@ -38,14 +38,14 @@ const Report_Post = ({post}) => {
                 <div className={postst.post_content1}>
                     
                     {/* 이미지 */}
-                    { !post.img ? (  // post.img가 없는 경우 "이미지 없음" 표시
+                    {!post.img ? (  // post.img가 없는 경우 "이미지 없음" 표시
                     <div className={postst.post_postimgs}>
                         <p>이미지 없음</p> {/* 이미지가 없을 때 텍스트 표시 */}
                     </div>
                     ) : (
                     <PostSlickSlide className={postst.post_postimgs} img={post.img} /> 
                     )}
-                    <ul>
+                    <ul className={postst.post_pettmi}>
                         <li>신고대상 : {post.target}</li>
                         <li>신고 게시물 번호 : {post.id}</li>
                         <li>신고 내용:{post.content} </li>

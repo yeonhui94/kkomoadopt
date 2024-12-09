@@ -1,0 +1,132 @@
+/* Section1.module.css */
+.main {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  transition: background-color 1s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* 섹션1의 위치를 상대적으로 설정 */
+  z-index: -1; /* 헤더 아래로 설정 */
+}
+
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+}
+
+.retriever {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("./section1_IMG/mainpage.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-image 1s ease; /* 배경 이미지가 서서히 변경되도록 설정 */
+}
+
+.grating {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.gratingImage {
+  width: 100px;
+  height: 100vh;
+  object-fit: cover;
+}
+
+.mainText1, .mainText2, .mainText3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 10%;
+  /* left: 50%; */
+  /* transform: translate(-50%, -50%); */
+  text-align: center;
+  opacity: 0;
+}
+/* .mainText1, .mainText2, .mainText3 {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: ;
+  left: 50%;
+  text-align: center; 
+  opacity: 0; 
+} */
+.mainText1 h1, .mainText2 h1, .mainText3 h1 {
+  font-size: 3rem;
+  color: white;
+  white-space:nowrap
+}
+
+.scrollText {
+  position: fixed;
+  bottom: 30px; 
+  text-align: center;
+  font-size: 18px;
+  color: white;
+  display: flex;
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+}
+
+.scrollText p {
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+
+.whitebg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  z-index: 1; 
+}
+@media (max-width:1024px){
+  .grating img{
+    width: 8%;
+  }
+}
+
+@media (max-width:768px){
+  .grating img{
+    width: 5%;
+  }
+  .mainText1, .mainText2, .mainText3 {
+    bottom: 15%;
+  }
+  .mainText1 h1, .mainText2 h1, .mainText3 h1 {
+    font-size: 2.2rem;
+    
+  }
+}

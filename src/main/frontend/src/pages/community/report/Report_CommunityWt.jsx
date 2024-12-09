@@ -3,12 +3,12 @@ import styled from "styled-components";
 // import Footer from "../../container/Footer";
 import Divider from "../../../components/Divider";
 import wtstyles from "../CommunityWt.module.css";
-import { Form, useOutletContext } from "react-router-dom";
+import { Form, Link, useOutletContext } from "react-router-dom";
 import Uploadfile from "../adopt_review/Uploadfile";
 import { useState } from "react";
 import Button from "../../../components/Button/Button";
 
-const Report_CommunityWt = ({ gridArea}) => {
+const Report_CommunityWt = ({ gridArea,  text = "신고합니다"}) => {
 
   const [title, setTitle] = useState("");  // 제목
   const [content, setContent] = useState("");  // 내용
@@ -37,6 +37,11 @@ const Report_CommunityWt = ({ gridArea}) => {
 
 
   return (
+    <div className="commwrapper"
+    style={{gridArea : gridArea}}>
+      <div className={wtstyles.mainContainer}>
+        <h1 style={{textAlign :"center"}}>{text}</h1>
+        <Divider />
     <Form 
     style={{gridArea : gridArea}} className={wtstyles.Container}
     onSubmit={handleSubmit} >
@@ -65,10 +70,13 @@ const Report_CommunityWt = ({ gridArea}) => {
         </div>
 
         {/* 등록 버튼 */}
-        <a className={wtstyles.submitButtonContainer}>
+        <Link className={wtstyles.submitButtonContainer}>
           <Button className={wtstyles.smallButton} text={"등록"} width={"100px"} fontSize={"20px"}/>
-        </a>
+        </Link>
     </Form>
+    </div>
+  
+  </div>
   );
 };
 export default Report_CommunityWt;

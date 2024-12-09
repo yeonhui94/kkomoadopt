@@ -54,9 +54,11 @@ const QnaForm = ({ initialValue }) => {
           value={formValues.content}
           onChange={handleChange}
         />
+        <div className={styles.Uploadfile}>
         <Uploadfile fileListComponent={null}>
           <Uploadfile.FileList className={gridStyles.spanCol5} />
         </Uploadfile>
+        </div>
         <label className={gridStyles.spanCol1}>비밀번호</label>
         <input
           className={gridStyles.spanCol5}

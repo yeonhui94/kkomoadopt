@@ -8,6 +8,10 @@
   padding-top: 16px;
 }
 
+.Uploadfile{
+  grid-column: span 6;
+}
+
 .gridFormContainer > * {
   border: none;
   outline: none;

@@ -1,5 +1,6 @@
 import Button from "../../../components/Button/Button";
 import gridStyles from "../../../styles/grid.module.css";
+import Uploadfile from "../../community/adopt_review/Uploadfile";
 import styles from "./QnaForm.module.css";
 import PropTypes from "prop-types";
 
@@ -37,13 +38,27 @@ const QnaResult = ({ data }) => {
           disabled
         />
         <label className={`${gridStyles.spanCol1} ${gridStyles.spanRow4}`}>
-          비밀번호
+          답변 내용
         </label>
         <textarea
           className={`${gridStyles.spanCol5} ${gridStyles.spanRow4}`}
           value={data.response}
           disabled
         />
+        <label className={`${gridStyles.spanCol1} ${gridStyles.spanRow4}`}>첨부 파일</label>
+        <div className={`${gridStyles.spanCol5} ${gridStyles.spanRow4}`}>
+          {data.files && data.files.length > 0 ? (
+            data.files.map((file, index) => (
+              <div key={index} className={styles.fileItem}>
+                <a href={file.url} download>
+                  {file.name} (다운로드)
+                </a>
+              </div>
+            ))
+          ) : (
+            <span>첨부된 파일이 없습니다.</span>
+          )}
+      </div>
       </div>
       <div className={styles.buttonContainer}>
         <Button text="삭제" type="submit" />

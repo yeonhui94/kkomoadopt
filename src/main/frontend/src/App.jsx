@@ -18,7 +18,6 @@ import CenterIntro from "./pages/CenterIntro";
 import SubNaviBar from "./components/MyPage/SubNavi/SubNaviBar";
 import Mypost from "./pages/mypage/MyPost";
 import MyComments from "./pages/mypage/MyComments";
-import EditProfile from "./pages/mypage/EdifProfile";
 import Csdetail from "./pages/mypage/Csdetail";
 import MyPage from "./pages/mypage/MyPage";
 import CommunityWt from "./pages/community/resell/Resell_CommunityWt";
@@ -261,7 +260,7 @@ function App() {
               { path: "edit-profile2", element: <EditMyPage2 gridArea="subsection" /> },
               { path: "user-management", element: <UserMgmt gridArea="subsection" /> },
               { path: "post-management", element: <PostsMgmt gridArea="subsection" /> },
-              { path: "re", element: <UserReservation gridArea="subsection" /> },
+              { path: "reservationlist", element: <UserReservation gridArea="subsection" /> },
               { path: "blacklist", element: <BlackList gridArea="subsection" /> },
             ]
         },

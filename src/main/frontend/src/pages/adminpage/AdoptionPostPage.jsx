@@ -196,7 +196,7 @@ function AdoptionPostPage({ gridArea }) {
                                 <option value="안락사">안락사</option>
                                 <option value="자연사">자연사</option>
                                 <option value="기타">기타</option>
-                                <option value=""></option>
+                                <option value="">빈칸</option>
                             </select>
                         </div>
                     </>

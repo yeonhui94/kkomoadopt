@@ -23,7 +23,6 @@ import MyPage from "./pages/mypage/MyPage";
 import CommunityWt from "./pages/community/resell/Resell_CommunityWt";
 import CommunityWt_report from "./pages/community/report/Report_CommunityWt";
 import IdPasswordContents from "./pages/Login/IdPasswordContents";
-import Report_Community from "./pages/community/report/Report_Community";
 import Report_CommunityWt from "./pages/community/report/Report_CommunityWt";
 import Find_child_community from "./pages/community/find_child/Missing_Community";
 import Find_child_CommunityWt from "./pages/community/find_child/Missing_CommunityWt";
@@ -61,7 +60,8 @@ import PostsMgmt from "./pages/adminpage/PostsMgmt.jsx";
 import BlackList from "./pages/adminpage/BlackList.jsx";
 import MainPage from './pages/Main/MainPage';
 import Adopt_postpage from "./pages/adoption/Adopt_postpage.jsx";
-
+import Announcement_Wt from "./pages/community/announce/Announcement_Wt.jsx";
+import Report_postpage from "./pages/community/report/Report_postpage.jsx";
 
 
 
@@ -164,22 +164,13 @@ function App() {
             },
           ],
         },
-        // 커뮤니티 > 신고합니다
-        {
-          path: "commu-report",
-          element: <Report_Community gridArea="section" />,
-          children: [
-            // 신고합니다 게시글
-            //  { path: "", element: < gridArea="subsection"/>},
-            // 신고합니다 글쓰기
-            {
-              path: "communitywt",
-              element: (
-                <Report_CommunityWt text="신고합니다" gridArea="subsection" />
-              ),
-            },
-          ],
-        },
+        // 커뮤니티 > 신고합니다 글쓰기
+        { path: "commu_report_wt", element: <Report_CommunityWt text="신고합니다" gridArea="section" />},
+        // 커뮤니티 > 신고합니다 게시글
+        { path: "report/post/:id", element: <Report_postpage gridArea="section" />},
+        // 커뮤니티 > 공지사항 글쓰기
+        { path: "/commu_announce_wt", element: <Announcement_Wt gridArea="section" />},
+
         // 고객센터
         {
           path: "customerservice",
@@ -285,6 +276,7 @@ function App() {
   return (
     <div>
       <RouterProvider router={router} />
+      {/* <PostsMgmt/> */}
       {/* <AdoptionPostPage></AdoptionPostPage> */}
       {/* <Section3333></Section3333> */}
       {/* <Adoption_NewPost></Adoption_NewPost> */}

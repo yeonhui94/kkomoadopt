@@ -1,38 +1,88 @@
-export const CHANGE_NOTICE_UID = "CHANGE_NOTICE_UID";
-export const CHANGE_NOTICE_CATEGORY = "CHANGE_NOTICE_CATEGORY";
-export const CHANGE_NOTICE_TITLE = "CHANGE_NOTICE_TITLE";
-export const CHANGE_NOTICE_VIEW_COUNT = "CHANGE_NOTICE_VIEW_COUNT";
-export const CHANGE_ANIMAL_TYPE = "CHANGE_ANIMAL_TYPE";
-export const CHANGE_ADOPT_STATUS = "CHANGE_ADOPT_STATUS";
-export const CHANGE_ANNOUNCEMENT_NUM = "CHANGE_ANNOUNCEMENT_NUM";
-export const CHANGE_UNIQUE_NUM = "CHANGE_UNIQUE_NUM";
-export const CHANGE_NOTICE_IMG_URL = "CHANGE_NOTICE_IMG_URL";
-export const CHANGE_EUTHANASIA_DATE = "CHANGE_EUTHANASIA_DATE";
-export const CHANGE_NOTICE_CONTENT = "CHANGE_NOTICE_CONTENT";
-export const CHANGE_NOTICE_CREATED_AT = "CHANGE_NOTICE_CREATED_AT";
-export const CHANGE_NOTICE_UPDATED_AT = "CHANGE_NOTICE_UPDATED_AT";
-export const CHANGE_IMPOSSIBLE_REASON = "CHANGE_IMPOSSIBLE_REASON";
-export const CHANGE_ADOPTION_AUTHOR = "CHANGE_ADOPTION_AUTHOR";
+import { 
+    fetchNotices, 
+    createNotice, 
+    updateNotice, 
+    deleteNotice, 
+    fetchNoticeByUid, 
+    fetchNoticesByCategory, 
+    uploadNoticeImage 
+} from '../service/apiService'; // apiService에서 함수들을 가져옵니다.
 
-// export const LOAD_JSON_DATA = "LOAD_JSON_DATA";
-export const RESET_STATE = "RESET_STATE";
+export const FETCH_NOTICES = 'FETCH_NOTICES';
+export const CREATE_NOTICE = 'CREATE_NOTICE';
+export const UPDATE_NOTICE = 'UPDATE_NOTICE';
+export const DELETE_NOTICE = 'DELETE_NOTICE';
+export const FETCH_NOTICE_BY_UID = 'FETCH_NOTICE_BY_UID';
+export const FETCH_NOTICES_BY_CATEGORY = 'FETCH_NOTICES_BY_CATEGORY';
+export const UPLOAD_NOTICE_IMAGE = 'UPLOAD_NOTICE_IMAGE';
+export const SET_ERROR = 'SET_ERROR';  // 오류 처리 액션 추가
 
-// Action Creators
-export const changeNoticeUid = (noticeUid) => ({ type: CHANGE_NOTICE_UID, payload: noticeUid });
-export const changeNoticeCategory = (noticeCategory) => ({ type: CHANGE_NOTICE_CATEGORY, payload: noticeCategory });
-export const changeNoticeTitle = (noticeTitle) => ({ type: CHANGE_NOTICE_TITLE, payload: noticeTitle });
-export const changeNoticeViewCount = (noticeViewCount) => ({ type: CHANGE_NOTICE_VIEW_COUNT, payload: noticeViewCount });
-export const changeAnimalType = (animalType) => ({ type: CHANGE_ANIMAL_TYPE, payload: animalType });
-export const changeAdoptStatus = (adoptStatus) => ({ type: CHANGE_ADOPT_STATUS, payload: adoptStatus });
-export const changeAnnouncementNum = (announcementNum) => ({ type: CHANGE_ANNOUNCEMENT_NUM, payload: announcementNum });
-export const changeUniqueNum = (uniqueNum) => ({ type: CHANGE_UNIQUE_NUM, payload: uniqueNum });
-export const changeNoticeImgUrl = (noticeImgUrl) => ({ type: CHANGE_NOTICE_IMG_URL, payload: noticeImgUrl });
-export const changeEuthanasiaDate = (euthanasiaDate) => ({ type: CHANGE_EUTHANASIA_DATE, payload: euthanasiaDate });
-export const changeNoticeContent = (noticeContent) => ({ type: CHANGE_NOTICE_CONTENT, payload: noticeContent });
-export const changeNoticeCreatedAt = (noticeCreatedAt) => ({ type: CHANGE_NOTICE_CREATED_AT, payload: noticeCreatedAt });
-export const changeNoticeUpdatedAt = (noticeUpdatedAt) => ({ type: CHANGE_NOTICE_UPDATED_AT, payload: noticeUpdatedAt });
-export const changeImpossibleReason = (impossibleReason) => ({ type: CHANGE_IMPOSSIBLE_REASON, payload: impossibleReason });
-export const changeAdoptionAuthor = (adoptionAuthor) => ({ type: CHANGE_ADOPTION_AUTHOR, payload: adoptionAuthor });
+// 게시물 목록 불러오기
+export const getNotices = () => async (dispatch) => {
+    try {
+        const data = await fetchNotices(); // api에서 데이터를 가져옵니다.
+        dispatch({ type: FETCH_NOTICES, payload: data });
+    } catch (error) {
+        dispatch({ type: SET_ERROR, payload: error.message }); // 오류 처리
+    }
+};
 
-// export const loadJsonData = (jsonData) => ({ type: LOAD_JSON_DATA, payload: jsonData });
-export const resetState = () => ({ type: RESET_STATE });
+// 게시물 추가
+export const addNotice = (noticeData) => async (dispatch) => {
+    try {
+        const data = await createNotice(noticeData); // api에서 게시물 추가
+        dispatch({ type: CREATE_NOTICE, payload: data });
+    } catch (error) {
+        dispatch({ type: SET_ERROR, payload: error.message }); // 오류 처리
+    }
+};
+
+// 게시물 수정
+export const updateNoticeAction = (noticeUid, updatedData) => async (dispatch) => {
+    try {
+        const data = await updateNotice(noticeUid, updatedData); // api에서 게시물 수정
+        dispatch({ type: UPDATE_NOTICE, payload: data });
+    } catch (error) {
+        dispatch({ type: SET_ERROR, payload: error.message }); // 오류 처리
+    }
+};
+
+// 게시물 삭제
+export const deleteNoticeAction = (noticeUid) => async (dispatch) => {
+    try {
+        await deleteNotice(noticeUid); // api에서 게시물 삭제
+        dispatch({ type: DELETE_NOTICE, payload: noticeUid });
+    } catch (error) {
+        dispatch({ type: SET_ERROR, payload: error.message }); // 오류 처리
+    }
+};
+
+// 특정 게시물 상세 보기
+export const getNoticeByUid = (noticeUid) => async (dispatch) => {
+    try {
+        const data = await fetchNoticeByUid(noticeUid); // api에서 상세 보기
+        dispatch({ type: FETCH_NOTICE_BY_UID, payload: data });
+    } catch (error) {
+        dispatch({ type: SET_ERROR, payload: error.message }); // 오류 처리
+    }
+};
+
+// 특정 카테고리의 게시물 불러오기
+export const getNoticesByCategory = (category) => async (dispatch) => {
+    try {
+        const data = await fetchNoticesByCategory(category); // api에서 카테고리별 게시물 불러오기
+        dispatch({ type: FETCH_NOTICES_BY_CATEGORY, payload: data });
+    } catch (error) {
+        dispatch({ type: SET_ERROR, payload: error.message }); // 오류 처리
+    }
+};
+
+// 이미지 업로드
+export const uploadNoticeImageAction = (formData) => async (dispatch) => {
+    try {
+        const data = await uploadNoticeImage(formData); // api에서 이미지 업로드
+        dispatch({ type: UPLOAD_NOTICE_IMAGE, payload: data });
+    } catch (error) {
+        dispatch({ type: SET_ERROR, payload: error.message }); // 오류 처리
+    }
+};

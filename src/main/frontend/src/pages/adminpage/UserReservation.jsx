@@ -13,9 +13,9 @@ function UserReservation({ gridArea }) {
 
   const [allPosts, setAllPosts] = useState([ // 모든 게시물 상태로 관리
     { id: 1, category: "온라인문의", nickname: "재벌3세", title: "입양 관련해서 문의 드립니다.", date: "2024-11-28", number: "010-1234-1234", status: "답변 대기" },
-    { id: 2, category: "온라인문의", nickname: "조랭삼", title: "입양 관련해서 문의 드립니다.", date: "2024-11-27", number: "010-1234-1234", status: "답변 대기" },
-    { id: 3, category: "방문상담 신청", nickname: "덴버", number: "010-1234-1234", purpose: "봉사", requestDate: "2024-11-25" },
-    { id: 4, category: "온라인문의", nickname: "텐사이재헌상", title: "신고합니다에 글 썼는데 봐주세요", date: "2024-11-25", number: "010-1234-1234", status: "답변 대기" },
+    { id: 3, category: "온라인문의", nickname: "조랭삼", title: "입양 관련해서 문의 드립니다.", date: "2024-11-27", number: "010-1234-1234", status: "답변 대기" },
+    { id: 2, category: "방문상담 신청", nickname: "덴버", number: "010-1234-1234", purpose: "입양", requestDate: "2024-11-25" },
+    { id: 4, category: "온라인문의", nickname: "텐사이재헌상", title: "품종 예약 되나요?", date: "2024-11-25", number: "010-1234-1234", status: "답변 대기" },
     { id: 5, category: "온라인문의", nickname: "파란만잔", title: "실종아이 본 경우 어떻게 하나요?", date: "2024-11-24", number: "010-1234-1234", status: "답변 대기" },
     { id: 6, category: "온라인문의", nickname: "주근익불주먹", title: "봉사 관련해서 문의 드립니다.", date: "2024-11-23", number: "010-1234-1234", status: "답변 대기" },
   ]);

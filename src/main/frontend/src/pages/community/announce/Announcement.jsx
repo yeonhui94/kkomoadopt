@@ -131,7 +131,7 @@ const Announcement = ({ gridArea }) => {
           {currentPosts.map((post, index) => (
             <li key={index} className={comstyle.post}>
               <p className={comstyle.postnumli}>{index + 1}</p>
-              <h3 className={comstyle.titleli}>{post.title}</h3>
+              <p className={comstyle.titleli}>{post.title}</p>
               <p className={comstyle.adminli}>{post.admin}</p>
               <p className={comstyle.dateli}>{post.date.toISOString().split("T")[0]}</p>
               <p className={comstyle.viewsli}>{post.views}</p>

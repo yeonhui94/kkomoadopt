@@ -1,8 +1,9 @@
-import { useState } from "react"; 
+import { useState } from "react";
 import SubNaviBar from "../../components/MyPage/SubNavi/SubNaviBar";
 import styles from "./MyPage.module.css";
 import SearchBar from "../../components/SearchBar";
 import Pagenumber from "../../components/pagenumber/Pagenumber";
+import { Link } from "react-router-dom";
 
 const Csdetail = ({ gridArea }) => {
     const [selectedCategory, setSelectedCategory] = useState("온라인 문의");
@@ -61,54 +62,63 @@ const Csdetail = ({ gridArea }) => {
                 <div className={styles.SearchBar}>
                     <SearchBar 
                         placeholder={"글 내용 & 글 제목"} 
-                        width="300px"               
+                        width="300px" 
                         onSearch={handleSearch} 
                     />
                 </div>
                 <div className={styles.subNaviBar}>
-                    <SubNaviBar tabs={tabs} onTabClick={handleTabClick}></SubNaviBar>
+                    <SubNaviBar tabs={tabs} onTabClick={handleTabClick} />
                 </div>
 
                 <div className={styles.content2}>
-                    {/* 헤더 */}
-                    {selectedCategory === "온라인 문의" && (
-                        <div className={styles.tableHeader}>
-                            <span className={styles.tableColumn}>글번호</span>
-                            <span className={styles.tableColumn}>제목</span>
-                            <span className={styles.tableColumn}>작성일</span>
-                            <span className={styles.tableColumn}>답변상태</span>
-                        </div>
-                    )}
-                    {selectedCategory === "방문상담 신청" && (
-                        <div className={styles.tableHeader}>
-                            <span className={styles.tableColumn}>글번호</span>
-                            <span className={styles.tableColumn}>연락처</span>
-                            <span className={styles.tableColumn}>상담 목적</span>
-                            <span className={styles.tableColumn}>예약일</span>
-                        </div>
-                    )}
-
-                    {/* 데이터 */}
-                    {currentPosts.map(post => (
-                        <div key={post.id} className={styles.postItem}>
-                            {selectedCategory === "온라인 문의" && (
-                                <>
-                                    <span className={styles.tableColumn}>{post.id}</span>
-                                    <span className={styles.tableColumn}>{post.title}</span>
-                                    <span className={styles.tableColumn}>{post.date}</span>
-                                    <span className={styles.tableColumn}>{post.answer ? "답변완료" : "답변대기"}</span>
-                                </>
-                            )}
-                            {selectedCategory === "방문상담 신청" && (
-                                <>
-                                    <span className={styles.tableColumn}>{post.id}</span>
-                                    <span className={styles.tableColumn}>{post.pnum}</span>
-                                    <span className={styles.tableColumn}>{post.purpose}</span>
-                                    <span className={styles.tableColumn}>{post.visitdate}</span>
-                                </>
-                            )}
-                        </div>
-                    ))}
+                    <table className={styles.table}>
+                        <thead>
+                            <tr>
+                                {selectedCategory === "온라인 문의" && (
+                                    <>
+                                        <th>글번호</th>
+                                        <th>제목</th>
+                                        <th>작성일</th>
+                                        <th>답변상태</th>
+                                    </>
+                                )}
+                                {selectedCategory === "방문상담 신청" && (
+                                    <>
+                                        <th>글번호</th>
+                                        <th>연락처</th>
+                                        <th>상담 목적</th>
+                                        <th>예약일</th>
+                                    </>
+                                )}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {/* 데이터 */}
+                            {currentPosts.map(post => (
+                                <tr key={post.id}>
+                                    {selectedCategory === "온라인 문의" && (
+                                        <>
+                                            <td>{post.id}</td>
+                                            <td>
+                                    <Link to={`/customer_qna/result/${post.id}`} style={{ textDecoration: 'none', color: 'inherit' , fontWeight:'normal' }}>
+                                            {post.title}
+                                        </Link></td>
+                                            <td>{post.date}</td>
+                                            <td>{post.answer ? "답변완료" : "답변대기"}</td>
+                                        </>
+                                    )}
+                                    {selectedCategory === "방문상담 신청" && (
+                                        <>
+                                            <td>{post.id}</td>
+                                            <td>{post.pnum}</td>
+                                            <td>{post.purpose}</td>
+                                            <td>{post.visitdate}</td>
+                                        </>
+                                    )}
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
 
                 {/* 페이지네이션 컴포넌트 */}

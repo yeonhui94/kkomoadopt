@@ -19,10 +19,8 @@ function PostsMgmt({ gridArea }) {
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
   const openInfoModal = () => setIsInfoModalOpen(true);
   const closeInfoModal = () => setIsInfoModalOpen(false);
-  const [selectedReason, setSelectedReason] = useState("");
+  const [selectedReason, setSelectedReason] = useState("욕설");
   const [allPosts, setAllPosts] = useState([ // 모든 게시물 상태로 관리
-
-    
     { id: 1, category1: "아이를 찾습니다", title: "광진구에서 실종", date: "2024-11-28", viewCount: 150, nickname: "user1", email: "user1@example.com", reason: "욕설", category: "삭제된 글" },
     { id: 2, category1: "입양후기", title: "인삼이 너무 기여워요", date: "2024-11-27", viewCount: 230, nickname: "user2", email: "user2@example.com", reason: "음담패설", category: "삭제된 댓글" },
     { id: 3, category1: "사고팝니다", title: "목줄 판매합니다", date: "2024-11-26", viewCount: 45, nickname: "user3", email: "user3@example.com", reason: "", category: "댓글" },
@@ -45,7 +43,7 @@ function PostsMgmt({ gridArea }) {
       (selectedSubCategory === "카테고리" || !selectedSubCategory || post.category1 === selectedSubCategory) &&
       // 검색어 필터링
       (post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        post.content?.toLowerCase().includes(searchQuery.toLowerCase()))
+        post.id?.toString().includes(searchQuery.toLowerCase()))
     );
   
     setFilteredData(updatedFilteredData); // 필터링된 데이터를 상태로 저장
@@ -142,7 +140,7 @@ function PostsMgmt({ gridArea }) {
       (selectedCategory === "글" ? post.category === "글" : post.category === selectedCategory) &&
       (selectedSubCategory === "카테고리" || !selectedSubCategory || post.category1 === selectedSubCategory) &&
       (post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        post.content?.toLowerCase().includes(searchQuery.toLowerCase()))
+        post.id?.toString().includes(searchQuery.toLowerCase()))
     );
     setFilteredData(updatedFilteredData); // 필터링된 데이터 상태 업데이트
     // 체크박스 초기화
@@ -161,7 +159,7 @@ function PostsMgmt({ gridArea }) {
       <div className={styles.mpcontainer}>
         <div className={styles.SearchBar}>
           <SearchBar
-            placeholder={"닉네임 & 이메일"}
+            placeholder={"글번호 & 제목"}
             width="300px"
             onSearch={handleSearch}
           />
@@ -243,7 +241,7 @@ function PostsMgmt({ gridArea }) {
                 modalText={"수정 하시겠습니까?"}
                 inPut={
                     <><div>
-                            <label> 사유를 선택하세요 ▼</label>
+                            <label> 사유를 선택하세요 ▼</label><br />
                             <select onChange={(e) => setSelectedReason(e.target.value)}
                               value={selectedReason}>
                                 <option value="욕설">욕설</option>

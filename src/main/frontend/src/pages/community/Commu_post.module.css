@@ -9,6 +9,9 @@
     height: 2800px;
     width: 100%;
     margin: 0 auto;
+    padding: 10px 70px ;
+
+
 }
 
 .post_title {
@@ -17,6 +20,7 @@
     height: 50px;
     align-self: center;
     color: var(--title-black);
+    padding-top: 10px;
 
 }
 /*  */
@@ -85,7 +89,8 @@ p {
 
 .post_content {
     width: 100%;
-    height: 750px;
+    height: auto;
+    /* height: 1200px; */
     display: flex;
     flex-direction: column;
     gap: 100px;
@@ -123,7 +128,7 @@ p {
 } */
 
 .post_postimgs {
-    width: 500px;
+    width: 100%;
     display: flex;
     flex-direction: row;
     margin-left: 30px;
@@ -165,6 +170,18 @@ p {
    
 }
 
+.post_articleimgs {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-left: 30px;
+    margin-top: 30px;
+    
+}
+
+/* 입양 상세 페이지 - 이미지 옆 테이블 */
 .post_pettmi {
     width: 100%;
     height: 100%;
@@ -173,6 +190,25 @@ p {
     justify-content: space-around;
     gap: 20px;
     margin-right: 150px;
+    /* grid-area: pettmi; */
+    /* grid-template: 
+        'tb1' 1fr
+        '...' 10px
+        'tb2' 1fr
+        '...' 10px
+        'tb3' 1fr
+        '...' 10px
+        'tb4' 1fr / 1fr ; */
+    
+}
+
+.post_article {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
     /* grid-area: pettmi; */
     /* grid-template: 
         'tb1' 1fr
@@ -387,7 +423,6 @@ p {
 .comment_list_item_text {
     display: flex;
     flex-direction: row;
-    text-align: center;
     align-items: center;
     width: 100%;
     height: 60px;
@@ -401,11 +436,13 @@ p {
 
 .comment_list_item_text2 {
     width: 80%;
-    text-align: center;
+    text-align: start;
+    padding-left: 30px;
 }
 
 .comment_list_item_text3 {
     width: 10%;
+    text-align: center;
     
 }
 
@@ -449,7 +486,7 @@ p {
     display: flex;
     flex-direction: column;
     background-color: var(--line-color);
-    margin-top: 10px;
+
 }
 
 .post_commentinput_head {

@@ -8,7 +8,6 @@ import { useState } from "react";
 
 const Comment = () => {
     const user = JSON.parse(sessionStorage.getItem('user'));
-    console.log(user); 
 
     const [newComment, setNewComment] = useState(""); // 새 댓글 입력 상태
     const [editingComment, setEditingComment] = useState(null); // 수정 중인 댓글의 인덱스 상태
@@ -17,9 +16,9 @@ const Comment = () => {
     
     const [report_comments, setReportComments]  = useState ([
         { userId : 1, nickname: "gdsgd", info: "저도봤어여", date: new Date("2024-11-25")},
-        { userId : 2, nickname: "집갈거야집집집", info: "불편합니다", date: new Date("2024-10-25") },
+        { userId : 2, nickname: "sangil0528", info: "바보멍청이말미잘", date: new Date("2024-10-25") },
         { userId : 3, admin: "관리자", info: "처리했습니다", date: new Date("2024-09-25") },
-        { userId : 4, nickname: "ㄴㅇㄹ", info: "감사합니다", date: new Date("2024-08-25") },
+        { userId : 4, nickname: "100wincattle", info: "바보바보바보바보", date: new Date("2024-08-25") },
         { userId : 5, nickname: "john982", info: "상일오빠 바보", date: new Date("2024-09-26") },
     ]);
 

@@ -8,15 +8,14 @@ import "slick-carousel/slick/slick-theme.css";
 import postimg1 from '../img/postimg1.svg';
 import postimg2 from '../../../assets/img2/2.jpg';
 import styled from 'styled-components';
-import PostSlickSlide from './PostSlickSlide';
+import PostSlickSlide from '../report/PostSlickSlide';
 import { filterProps } from 'framer-motion';
-import Comment from './Comment';
+import Comment from '../report/Comment';
 
-const Report_Post = ({post}) => {
+const Announcement_Post = ({post}) => {
 
-     //  { title: "새 게시물 제목", admin: "짱구는", target: "sangil22", reportpostnum: 334, 
-     // content : "악플이 달렸어요 ㅠㅠ", date: new Date("2024-11-25"), views: 5, files: 2 },
-
+//  { title: "새 게시물 제목 41", admin: "관리자", 
+// date: new Date("2021-07-03"), img: "" , content:"쓰기 귀찮다 아무거나 쓸게요 나 맛있는거 먹고싶어 프로젝트 끝나면 잘거야",views: 21, files: 2 },
 
     return (
 
@@ -29,7 +28,7 @@ const Report_Post = ({post}) => {
             <div className={postst.post_tmi}>
                 <div className={postst.post_tmi1}>
                     <p className={postst.post_nick}>&nbsp;&nbsp;닉네임&nbsp;:&nbsp; {post.admin}</p>
-                    <p className={postst.post_postnum}> 글번호 &nbsp;:&nbsp; {post.reportpostnum}</p>
+                    <p className={postst.post_postnum}> 글번호 &nbsp;:&nbsp; {post.id}</p>
                     <p className={postst.post_date}>작성일&nbsp;:&nbsp; {post.date.toLocaleDateString("ko-KR")} </p>
                 </div>
                 <p className={postst.post_view}>조회수 : {post.views}</p>
@@ -45,11 +44,8 @@ const Report_Post = ({post}) => {
                     ) : (
                     <PostSlickSlide className={postst.post_postimgs} img={post.img} /> 
                     )}
-                    <ul className={postst.post_article}>
-                        <li>-&nbsp; 신고대상 :&nbsp; &nbsp;{post.target}</li>
-                        <li>-&nbsp;&nbsp;신고 게시물 번호 : &nbsp;&nbsp;{post.id}</li>
-                        <li>-&nbsp;&nbsp;신고 내용:&nbsp; &nbsp;{post.content} </li>
-                    </ul>
+                    <div className={postst.post_article} dangerouslySetInnerHTML={{ __html: post.content }}
+                    />
                 </div>
                 <Comment className={postst.post_petif}/>
             </article>
@@ -57,4 +53,4 @@ const Report_Post = ({post}) => {
     )
 }
 
-export default Report_Post;
+export default Announcement_Post;

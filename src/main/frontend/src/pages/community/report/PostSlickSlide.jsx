@@ -33,7 +33,7 @@ const SlideWrapper = styled.div`
 
 const SlideImage = styled.img`
   width: 100%;
-  height: 100%;
+  height: 500px;
   object-fit: contain;
   position: relative;
 
@@ -73,7 +73,7 @@ function PostSlickSlide({img}) {
 
   return (
     <SliderContainer>
-      <StyledSlider>
+      <StyledSlider {...settings}>
         {img.map((image, index) => (
           <SlideWrapper key={index}>
             <SlideImage src={image} alt={`Slide ${index + 1}`} />

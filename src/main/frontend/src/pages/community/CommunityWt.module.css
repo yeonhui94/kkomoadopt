@@ -4,7 +4,7 @@
   flex-direction: column;
   padding: 80px 80px;
   gap: 15px;
-
+  
 }
 
 .inputContainer {
@@ -17,6 +17,7 @@
 .Container {
   display: flex; /* Flexbox로 정렬 */
   flex-direction: column; /* 세로 정렬 */
+  padding: 80px 80px;
   width: 100%;
   gap: 20px;
 }
@@ -101,6 +102,7 @@
 
 .posts_container {
   display: grid;
+  padding: 80px 80px;
   grid-template: 
     '... inputdrop ...' 1fr
     '... ... ...' 10px

@@ -1,12 +1,12 @@
 import QnaItem from "./QnaItem";
 import PropTypes from "prop-types";
-import { mainContainer, mainContainerItem, link } from "./QnaList.module.css";
+import { mainContainer, mainContainerItem, link,header } from "./QnaList.module.css";
 import { Link } from "react-router-dom";
 
 const QnaList = ({ qnaList }) => {
   return (
     <div className={mainContainer}>
-      <div className={mainContainerItem}>
+      <div className={mainContainerItem+" "+header}>
         <span>번호</span>
         <span>제목</span>
         <span>작성자</span>

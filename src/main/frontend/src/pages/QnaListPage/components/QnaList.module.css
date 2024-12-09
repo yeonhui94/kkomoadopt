@@ -3,6 +3,8 @@
   flex-direction: column;
   width: 100%;
   gap: 4px;
+
+  padding-bottom: 32px;
 }
 
 .mainContainerItem {
@@ -17,6 +19,11 @@
   align-items: center;
   justify-items: center;
   padding: 8px;
+
+}
+
+.header{
+  border-bottom: var(--main-color) 2px solid;
 }
 
 .link {

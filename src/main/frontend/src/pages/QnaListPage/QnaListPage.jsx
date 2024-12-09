@@ -1,8 +1,5 @@
 import QnaList from "./components/QnaList";
 import Pagenumber from "../../components/pagenumber/Pagenumber";
-import Select from "../../components/Select";
-
-import { useState } from "react";
 
 import {
   qnaPageContainer,
@@ -12,7 +9,8 @@ import {
   hidden,
 } from "./QnaListPage.module.css";
 import Button from "../../components/Button/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import Dropdown from "../../components/DropDown";
 
 const genQnaData = (count) =>
   Array.from({ length: count }, (_, index) => ({
@@ -24,35 +22,33 @@ const genQnaData = (count) =>
   }));
 
 const mockData = genQnaData(10);
-const mockOptions = [
-  { value: "all", label: "전체보기" },
-  { value: "notice", label: "공지사항" },
-  { value: "event", label: "이벤트" },
-  { value: "qna", label: "Q&A" },
-];
+const mockOptions = ["최신순", "오래된순", "조회수 높은순", "조회수 낮은순"];
 
 const QnaListPage = () => {
-  const [selectedOption, setSelectedOption] = useState(mockOptions[0]);
+  const pageParam = useSearchParams()[0].get("page");
+  const currentPage = pageParam ? parseInt(pageParam) : 1;
+  const navigate = useNavigate();
 
-  const handleSelectChange = (e) => {
-    setSelectedOption(e.target.value);
+  const handlePageChange = (page) => {
+    navigate(`?page=${page}`);
   };
 
   return (
     <div className={qnaPageContainer}>
       <div className={sectionContainer}>
-        <Select
-          options={mockOptions}
-          className={filterSelect}
-          value={selectedOption}
-          onChange={handleSelectChange}
-        />
+        <div className={filterSelect}>
+          <Dropdown options={mockOptions} />
+        </div>
         <QnaList qnaList={mockData} />
         <div className={bottomContainer}>
           <div className={hidden}>
             <Button />
           </div>
-          <Pagenumber />
+          <Pagenumber
+            totalPages={10}
+            currentPage={currentPage}
+            handlePageClick={handlePageChange}
+          />
           <Link to="communtywt">
             <Button text="글쓰기" />
           </Link>

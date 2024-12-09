@@ -3,6 +3,7 @@ import styles from "./QnaForm.module.css";
 import gridStyles from "../../../styles/grid.module.css";
 import PropTypes from "prop-types";
 import { useState } from "react";
+import Uploadfile from "./../../community/adopt_review/Uploadfile";
 
 const QnaForm = ({ initialValue }) => {
   const [formValues, setFormValues] = useState(initialValue);
@@ -53,6 +54,9 @@ const QnaForm = ({ initialValue }) => {
           value={formValues.content}
           onChange={handleChange}
         />
+        <Uploadfile fileListComponent={null}>
+          <Uploadfile.FileList className={gridStyles.spanCol5} />
+        </Uploadfile>
         <label className={gridStyles.spanCol1}>비밀번호</label>
         <input
           className={gridStyles.spanCol5}

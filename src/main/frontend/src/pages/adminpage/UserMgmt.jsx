@@ -17,16 +17,16 @@ function UserMgmt({ gridArea }) {
     const [isDeleteModal, setIsDeleteModal] = useState(false); // 탈퇴 모달 상태
 
     const [allPosts, setAllPosts] = useState([
-        { name: "지소엽", nickname: "재벌3세", number: "010-1234-1234", email: "soyeob@naver.com", signupdate: "2024-11-28", lastlogin: "2024-11-28", postlist: 150, isBlacklisted: false },
-        { name: "조연희", nickname: "조랭삼", number: "010-2255-6688", email: "yeonhui@naver.com", signupdate: "2024-11-27", lastlogin: "2024-12-10", postlist: 230, isBlacklisted: false },
-        { name: "장은지", nickname: "덴버", number: "010-4525-5553", email: "eunji@naver.com", signupdate: "2024-11-26", lastlogin: "2024-11-30", postlist: 45, isBlacklisted: false },
-        { name: "오재헌", nickname: "텐사이재헌상", number: "010-1552-4523", email: "jaehen@naver.com", signupdate: "2024-11-25", lastlogin: "2024-12-15", postlist: 78, isBlacklisted: false },
-        { name: "곽대훈", nickname: "파란만잔", number: "010-4521-5698", email: "daehun@naver.com", signupdate: "2024-11-24", lastlogin: "2024-11-26", postlist: 123, isBlacklisted: false },
-        { name: "문상일", nickname: "주근익불주먹", number: "010-7452-5362", email: "sangil@naver.com", signupdate: "2024-11-23", lastlogin: "2024-12-18", postlist: 99, isBlacklisted: false },
-        { name: "김인삼", nickname: "인쟘", number: "010-1245-5623", email: "jinseng@naver.com", signupdate: "2024-11-22", lastlogin: "2024-11-25", postlist: 10, isBlacklisted: false },
-        { name: "김홍삼", nickname: "체리콕", number: "010-4565-8978", email: "hongsam@naver.com", signupdate: "2024-11-21", lastlogin: "2024-11-28", postlist: 55, isBlacklisted: false },
-        { name: "김산삼", nickname: "산삼이최고", number: "010-1202-5203", email: "jinseng1@naver.com", signupdate: "2024-11-20", lastlogin: "2024-12-01", postlist: 200, isBlacklisted: false },
-        { name: "김도라지", nickname: "도라지정과", number: "010-4120-0215", email: "doraji@naver.com", signupdate: "2024-11-19", lastlogin: "2024-12-11", postlist: 140, isBlacklisted: false },
+        { name: "지소엽", nickname: "재벌3세", number: "010-1234-1234", email: "soyeob@naver.com", signupdate: "2024-11-28", lastlogin: "2024-11-28", postlist: 150, isBlacklisted: false,status: "normal" },
+        { name: "조연희", nickname: "조랭삼", number: "010-2255-6688", email: "yeonhui@naver.com", signupdate: "2024-11-27", lastlogin: "2024-12-10", postlist: 230, isBlacklisted: false,status: "normal" },
+        { name: "장은지", nickname: "덴버", number: "010-4525-5553", email: "eunji@naver.com", signupdate: "2024-11-26", lastlogin: "2024-11-30", postlist: 45, isBlacklisted: false,status: "normal"},
+        { name: "오재헌", nickname: "텐사이재헌상", number: "010-1552-4523", email: "jaehen@naver.com", signupdate: "2024-11-25", lastlogin: "2024-12-15", postlist: 78, isBlacklisted: false ,status: "normal"},
+        { name: "곽대훈", nickname: "파란만잔", number: "010-4521-5698", email: "daehun@naver.com", signupdate: "2024-11-24", lastlogin: "2024-11-26", postlist: 123, isBlacklisted: false,status: "normal" },
+        { name: "문상일", nickname: "주근익불주먹", number: "010-7452-5362", email: "sangil@naver.com", signupdate: "2024-11-23", lastlogin: "2024-12-18", postlist: 99, isBlacklisted: false ,status: "normal"},
+        { name: "김인삼", nickname: "인쟘", number: "010-1245-5623", email: "jinseng@naver.com", signupdate: "2024-11-22", lastlogin: "2024-11-25", postlist: 10, isBlacklisted: false ,status: "normal"},
+        { name: "김홍삼", nickname: "체리콕", number: "010-4565-8978", email: "hongsam@naver.com", signupdate: "2024-11-21", lastlogin: "2024-11-28", postlist: 55, isBlacklisted: false,status: "normal" },
+        { name: "김산삼", nickname: "산삼이최고", number: "010-1202-5203", email: "jinseng1@naver.com", signupdate: "2024-11-20", lastlogin: "2024-12-01", postlist: 200, isBlacklisted: false,status: "normal" },
+        { name: "김도라지", nickname: "도라지정과", number: "010-4120-0215", email: "doraji@naver.com", signupdate: "2024-11-19", lastlogin: "2024-12-11", postlist: 140, isBlacklisted: false ,status: "normal"},
     ]);
 
     // 검색 필터링된 데이터
@@ -79,7 +79,7 @@ function UserMgmt({ gridArea }) {
         // 블랙리스트에 추가된 사용자의 `isBlacklisted` 값을 true로 변경
         const updatedPosts = allPosts.map(post => {
             if (selectedUsers.includes(post.nickname)) {
-                return { ...post, isBlacklisted: true }; // 블랙리스트 처리
+                return { ...post, isBlacklisted: true ,status: "blacklisted" }; // 블랙리스트 처리
             }
             return post; // 그 외의 유저는 그대로
         });

@@ -29,7 +29,7 @@ function AdoptionPostPage({ gridArea }) {
         { id: 9, category: "기타동물", title: "6개월/햄스터/작고 귀여움", date: "2024-11-22", status: "입양 가능", reason: "", scrap: false },
         { id: 10, category: "강아지", title: "2세/비숑프리제/활발하고 사람 좋아함", date: "2024-11-21", status: "입양가능", reason: "", scrap: false }
     ]);
-    
+
     const tabs = [
         { label: "전체", category: "전체" },
         { label: "강아지", category: "강아지" },
@@ -37,17 +37,18 @@ function AdoptionPostPage({ gridArea }) {
         { label: "기타동물", category: "기타동물" },
         { label: "스크랩 보기", category: "스크랩 보기" }
     ];
-
-    // 검색 필터링된 데이터
     const filteredData = allPosts.filter(post => {
         if (selectedCategory === "스크랩 보기") {
-            return post.scrap === true;
+            // 스크랩 보기일 경우 id와 content 모두 검색
+            return post.scrap === true &&
+                (post.id.toString().includes(searchQuery) || post.content?.toLowerCase().includes(searchQuery.toLowerCase()));
         }
+        // 나머지 카테고리에서는 id만 검색
         return (selectedCategory === "전체" || post.category === selectedCategory) &&
-            (post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            post.content?.toLowerCase().includes(searchQuery.toLowerCase()));
+            post.id.toString().includes(searchQuery); // id만 검색
     });
-
+    
+    
     // 페이지당 보여지는 글 수
     const postsPerPage = 8;
 

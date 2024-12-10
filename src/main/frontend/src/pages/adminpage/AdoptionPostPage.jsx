@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; // useNavigate 임포트
 import styles from "../mypage/MyPage.module.css";
 import SearchBar from "../../components/SearchBar";
@@ -12,6 +12,7 @@ function AdoptionPostPage({ gridArea }) {
     const navigate = useNavigate(); // useNavigate 훅을 사용하여 navigate 함수 선언
 
     const [selectedCategory, setSelectedCategory] = useState("전체");
+    const [selectedSubCategory, setSelectedSubCategory] = useState(""); 
     const [currentPage, setCurrentPage] = useState(1);
     const [searchQuery, setSearchQuery] = useState('');
     const [checkedItems, setCheckedItems] = useState(null); // 선택된 체크박스를 관리
@@ -37,18 +38,21 @@ function AdoptionPostPage({ gridArea }) {
         { label: "기타동물", category: "기타동물" },
         { label: "스크랩 보기", category: "스크랩 보기" }
     ];
+
+    // 입양 상태와 검색어에 따라 필터링된 데이터
     const filteredData = allPosts.filter(post => {
         if (selectedCategory === "스크랩 보기") {
-            // 스크랩 보기일 경우 id와 content 모두 검색
             return post.scrap === true &&
                 (post.id.toString().includes(searchQuery) || post.content?.toLowerCase().includes(searchQuery.toLowerCase()));
         }
-        // 나머지 카테고리에서는 id만 검색
-        return (selectedCategory === "전체" || post.category === selectedCategory) &&
-            post.id.toString().includes(searchQuery); // id만 검색
+
+        // 카테고리와 상태에 따른 필터링
+        const isCategoryMatch = selectedCategory === "전체" || post.category === selectedCategory;
+        const isStatusMatch = !selectedSubCategory || post.status === selectedSubCategory;
+
+        return isCategoryMatch && isStatusMatch && post.id.toString().includes(searchQuery);
     });
-    
-    
+
     // 페이지당 보여지는 글 수
     const postsPerPage = 8;
 
@@ -139,7 +143,19 @@ function AdoptionPostPage({ gridArea }) {
                                 <th>공고번호</th>
                                 <th>글제목</th>
                                 <th>작성날짜</th>
-                                <th>입양상태</th>
+                                <th>
+                                    <select
+                                        name="category"
+                                        id="category"
+                                        style={{ border: "none", fontSize: "15px", fontWeight: "bold" }}
+                                        onChange={(e) => setSelectedSubCategory(e.target.value)}
+                                    >
+                                        <option value="">입양 상태</option>
+                                        <option value="입양 가능">입양 가능</option>
+                                        <option value="입양 불가">입양 불가</option>
+                                        <option value="예약중">예약중</option>
+                                    </select>
+                                </th>
                                 <th>사유</th>
                             </tr>
                         </thead>

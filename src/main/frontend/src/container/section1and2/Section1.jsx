@@ -5,7 +5,7 @@ import gratingimg from "../../assets/section1_IMG/Line45.png";
 import mainPageImage from '../../assets/section1_IMG/mainpage.png';
 import happyDogImg from '../../assets/section1_IMG/happyDog.png';
 
-function Section1({ onAnimationComplete, resetState, onScrollChange }) {
+function Section1({ onAnimationComplete, resetState, onScrollChange,setIsAnimatingComplete }) {
   const [mainBg, setMainBg] = useState("rgba(0, 0, 0, 0)"); // 배경 색상 초기화
   const [gratingImagesVisible, setGratingImagesVisible] = useState(false); // 격자 이미지 표시 상태
   const [textVisible, setTextVisible] = useState(false); // 첫 번째 텍스트 표시 여부
@@ -84,6 +84,7 @@ function Section1({ onAnimationComplete, resetState, onScrollChange }) {
         setMainBg("rgba(0, 0, 0, 0)"); // 배경을 투명하게 설정
         newScrollCount = 0;
         setGratingImagesVisible(false);
+        setIsAnimatingComplete(false);
       }
     }
 

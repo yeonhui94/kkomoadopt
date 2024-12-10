@@ -103,7 +103,10 @@ function MainPage() {
 };
 
   const handleSection1AnimationComplete = () => {
-    setIsAnimatingComplete(true);
+    // setIsAnimatingComplete(true);
+    setTimeout(()=> {
+      setIsAnimatingComplete(true);
+    }, 1500);
   };
 
   const resetSection1State = () => {
@@ -123,7 +126,15 @@ function MainPage() {
 
   return (
     <div className={styles.mainContainer}>
-      <MainHeader isScrolled={isScrolled} currentSection={currentSection} />
+      <MainHeader
+        isScrolled={isScrolled}
+        setIsScrolled={setIsScrolled}
+        currentSection={currentSection}
+        setCurrentSection={setCurrentSection}
+        setIsAnimatingComplete={setIsAnimatingComplete}
+        isFooter={isFooter}
+        setIsFooter={setIsFooter}
+        />
       <div className={styles.sections}>
         <AnimatePresence custom={isScrolling}>
           {currentSection === 1 && (
@@ -139,6 +150,7 @@ function MainPage() {
                 onScrollChange={setIsScrolled}
                 onAnimationComplete={handleSection1AnimationComplete}
                 resetState={resetSection1State}
+                setIsAnimatingComplete={setIsAnimatingComplete}
               />
             </motion.div>
           )}

@@ -118,17 +118,21 @@ const Comment = () => {
                         <li key={index} className={postst.comment_list_item}>
                             <div className={postst.comment_list_item_text}>
                                 <p className={postst.comment_list_item_text1}>{comment.nickname || comment.admin}</p>
-                                <p className={postst.comment_list_item_text2}> {editingComment === index ? (
-                                    // 수정 중인 댓글인 경우 텍스트 박스와 저장 버튼 표시
-                                    <>
-                                    <textarea
-                                        value={editedCommentText}
-                                        onChange={(e) => setEditedCommentText(e.target.value)}
-                                    />
-                                    <button onClick={() => handleSaveEditedComment(index)}>저장</button>
-                                    </>
-                                ) : (comment.info
-                                        )}
+                                <p  className={postst.comment_list_item_text2}
+                                    dangerouslySetInnerHTML={{
+                                        __html: editingComment === index
+                                        ? (
+                                            // 수정 중인 댓글인 경우 텍스트 박스와 저장 버튼 표시
+                                            <>
+                                            <textarea
+                                                value={editedCommentText}
+                                                onChange={(e) => setEditedCommentText(e.target.value)}
+                                            />
+                                            <button onClick={() => handleSaveEditedComment(index)}>저장</button>
+                                            </>
+                                        )
+                                        : comment.info.replace(/\n/g, "<br />"), // 줄바꿈을 <br />로 변환
+                                    }}>
                                 </p>
                                 <p className={postst.comment_list_item_text3}>{comment.date.toLocaleDateString()}</p>
                             </div>

@@ -12,16 +12,16 @@ const Mypost = ({ gridArea }) => {
   const [category1, setCategory1] = useState("");  // category1 상태 추가
 
   const allPosts = [
-    { id: 1, category: "아이를 찾습니다", category1 : "missing", title: "광진구에서 실종", content: "아이에 대한 정보", date: "2024-11-28", viewCount: 150 },
-    { id: 2, category: "입양후기", category1 : "review", title: "인삼이 너무 기여워요", content: "입양 후기 내용", date: "2024-11-27", viewCount: 230 },
+    { id: 1, category: "아이를 찾습니다", category1 : "find-child", title: "광진구에서 실종", content: "아이에 대한 정보", date: "2024-11-28", viewCount: 150 },
+    { id: 2, category: "입양후기", category1 : "adoption-review", title: "인삼이 너무 기여워요", content: "입양 후기 내용", date: "2024-11-27", viewCount: 230 },
     { id: 3, category: "사고팝니다", category1:"resell", title: "목줄 판매합니다", content: "중고 물건 판매", date: "2024-11-26", viewCount: 45 },
     { id: 4, category: "신고합니다", category1:"report", title: "체리콕", content: "불법 활동 신고", date: "2024-11-25", viewCount: 78 },
-    { id: 5, category: "아이를 찾습니다", category1 : "missing", title: "부천에서 실종", content: "아이에 대한 정보", date: "2024-11-24", viewCount: 123 },
-    { id: 6, category: "입양후기", category1 : "review", title: "조랭이는 귀엽다", content: "입양 후기 내용", date: "2024-11-23", viewCount: 99 },
+    { id: 5, category: "아이를 찾습니다", category1 : "find-child", title: "부천에서 실종", content: "아이에 대한 정보", date: "2024-11-24", viewCount: 123 },
+    { id: 6, category: "입양후기", category1 : "adoption-review", title: "조랭이는 귀엽다", content: "입양 후기 내용", date: "2024-11-23", viewCount: 99 },
     { id: 7, category: "사고팝니다", category1:"resell", title: "배변패드 판매합니다", content: "중고 물건 판매", date: "2024-11-22", viewCount: 10 },
     { id: 8, category: "신고합니다", category1:"report", title: "체리콕", content: "불법 활동 신고", date: "2024-11-21", viewCount: 55 },
-    { id: 9, category: "아이를 찾습니다", category1 : "missing", title: "파주 실종..", content: "아이에 대한 정보", date: "2024-11-20", viewCount: 200 },
-    { id: 10, category: "입양후기", category1 : "review", title: "사지말고 입양하세요", content: "입양 후기 내용", date: "2024-11-19", viewCount: 140 },
+    { id: 9, category: "아이를 찾습니다", category1 : "find-child", title: "파주 실종..", content: "아이에 대한 정보", date: "2024-11-20", viewCount: 200 },
+    { id: 10, category: "입양후기", category1 : "adoption-review", title: "사지말고 입양하세요", content: "입양 후기 내용", date: "2024-11-19", viewCount: 140 },
   ];
 
   // 검색 필터링된 데이터
@@ -56,10 +56,15 @@ const Mypost = ({ gridArea }) => {
     setSelectedCategory(category);  // 클릭한 카테고리로 상태 업데이트
     setCurrentPage(1);  // 카테고리 변경 시 페이지 1로 리셋
 
-    // 선택된 카테고리에서 category1을 찾아서 상태에 저장
-    const selectedCategoryPost = allPosts.find(post => post.category === category);
-    if (selectedCategoryPost) {
-      setCategory1(selectedCategoryPost.category1);  // 카테고리에 맞는 category1 값 저장
+    // 전체 카테고리인 경우 category1을 빈 값으로 설정
+    if (category === "전체") {
+      setCategory1("");  // 전체 카테고리에서는 category1 값 없이 처리
+    } else {
+      // 선택된 카테고리에서 category1을 찾아서 상태에 저장
+      const selectedCategoryPost = allPosts.find(post => post.category === category);
+      if (selectedCategoryPost) {
+        setCategory1(selectedCategoryPost.category1);  // 카테고리에 맞는 category1 값 저장
+      }
     }
   };
 
@@ -103,8 +108,8 @@ const Mypost = ({ gridArea }) => {
                 <tr key={post.id}>
                   <td>{post.id}</td>
                   <td>
-                    {/* 카테고리1 값을 URL에 사용 */}
-                    <Link to={`/${category1}/post/${post.id}`}>
+                    {/* 전체 탭에서 선택된 게시글은 해당 카테고리로 링크 연결 */}
+                    <Link to={selectedCategory === "전체" ? `/${post.category1}/post/${post.id}` : `/${category1}/post/${post.id}`}>
                       {post.title}
                     </Link>
                   </td>

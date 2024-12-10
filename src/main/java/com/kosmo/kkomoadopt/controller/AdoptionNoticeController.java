@@ -1,6 +1,8 @@
 package com.kosmo.kkomoadopt.controller;
 
 import com.kosmo.kkomoadopt.dto.*;
+import com.kosmo.kkomoadopt.enums.Authority;
+import com.kosmo.kkomoadopt.enums.NoticeCategory;
 import com.kosmo.kkomoadopt.service.AdoptionNoticeService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;

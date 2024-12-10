@@ -1,6 +1,6 @@
 package com.kosmo.kkomoadopt.converter;
 
-import com.kosmo.kkomoadopt.dto.PostCategory;
+import com.kosmo.kkomoadopt.enums.PostCategory;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 

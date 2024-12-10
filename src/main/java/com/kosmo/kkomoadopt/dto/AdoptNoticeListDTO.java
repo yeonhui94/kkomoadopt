@@ -1,5 +1,8 @@
 package com.kosmo.kkomoadopt.dto;
 
+import com.kosmo.kkomoadopt.enums.AdoptStatus;
+import com.kosmo.kkomoadopt.enums.NoticeCategory;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;

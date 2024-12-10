@@ -1,6 +1,6 @@
 package com.kosmo.kkomoadopt.converter;
 
-import com.kosmo.kkomoadopt.dto.Authority;
+import com.kosmo.kkomoadopt.enums.Authority;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 

@@ -2,7 +2,7 @@ package com.kosmo.kkomoadopt.controller;
 
 import com.kosmo.kkomoadopt.dto.CommunityListDTO;
 import com.kosmo.kkomoadopt.dto.CommunityDTO;
-import com.kosmo.kkomoadopt.dto.PostCategory;
+import com.kosmo.kkomoadopt.enums.PostCategory;
 import com.kosmo.kkomoadopt.service.CommunityPostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

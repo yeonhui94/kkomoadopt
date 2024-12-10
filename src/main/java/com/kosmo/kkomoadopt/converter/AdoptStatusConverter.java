@@ -1,6 +1,6 @@
 package com.kosmo.kkomoadopt.converter;
 
-import com.kosmo.kkomoadopt.dto.AdoptStatus;
+import com.kosmo.kkomoadopt.enums.AdoptStatus;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 

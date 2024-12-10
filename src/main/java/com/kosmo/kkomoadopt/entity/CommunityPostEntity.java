@@ -1,16 +1,13 @@
 package com.kosmo.kkomoadopt.entity;
 
 import com.kosmo.kkomoadopt.converter.PostCategoryConverter;
-import com.kosmo.kkomoadopt.converter.ScrapConverter;
 import com.kosmo.kkomoadopt.converter.UrlConverter;
-import com.kosmo.kkomoadopt.dto.PostCategory;
+import com.kosmo.kkomoadopt.enums.PostCategory;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.w3c.dom.Text;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity

@@ -1,5 +1,7 @@
 package com.kosmo.kkomoadopt.dto;
 
+import com.kosmo.kkomoadopt.enums.NoticeCategory;
+
 import java.time.LocalDate;
 
 public record AdoptNoticeDTO(

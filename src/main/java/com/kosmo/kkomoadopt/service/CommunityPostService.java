@@ -2,7 +2,7 @@ package com.kosmo.kkomoadopt.service;
 
 import com.kosmo.kkomoadopt.dto.CommunityListDTO;
 import com.kosmo.kkomoadopt.dto.CommunityDTO;
-import com.kosmo.kkomoadopt.dto.PostCategory;
+import com.kosmo.kkomoadopt.enums.PostCategory;
 import com.kosmo.kkomoadopt.entity.CommunityPostEntity;
 import com.kosmo.kkomoadopt.entity.UserEntity;
 import com.kosmo.kkomoadopt.repository.CommunityPostRepository;

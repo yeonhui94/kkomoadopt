@@ -1,6 +1,6 @@
 package com.kosmo.kkomoadopt.converter;
 
-import com.kosmo.kkomoadopt.dto.NoticeCategory;
+import com.kosmo.kkomoadopt.enums.NoticeCategory;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 

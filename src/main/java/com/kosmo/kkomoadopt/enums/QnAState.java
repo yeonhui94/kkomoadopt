@@ -1,4 +1,4 @@
-package com.kosmo.kkomoadopt.dto;
+package com.kosmo.kkomoadopt.enums;
 
 public enum QnAState {
     ANSWAIT, // 답변 대기

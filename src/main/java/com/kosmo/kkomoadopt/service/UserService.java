@@ -1,7 +1,7 @@
 package com.kosmo.kkomoadopt.service;
 
 import com.kosmo.kkomoadopt.dto.LoginRequestDTO;
-import com.kosmo.kkomoadopt.dto.Provider;
+import com.kosmo.kkomoadopt.enums.Provider;
 import com.kosmo.kkomoadopt.dto.RegisterUserDTO;
 import com.kosmo.kkomoadopt.entity.UserEntity;
 import com.kosmo.kkomoadopt.repository.UserRepository;

@@ -3,6 +3,8 @@ package com.kosmo.kkomoadopt.service;
 import com.kosmo.kkomoadopt.dto.*;
 import com.kosmo.kkomoadopt.entity.AdoptionNoticeEntity;
 import com.kosmo.kkomoadopt.entity.UserEntity;
+import com.kosmo.kkomoadopt.enums.AdoptStatus;
+import com.kosmo.kkomoadopt.enums.NoticeCategory;
 import com.kosmo.kkomoadopt.repository.AdoptionNoticeRepository;
 import com.kosmo.kkomoadopt.repository.UserRepository;
 import jakarta.persistence.EntityManager;

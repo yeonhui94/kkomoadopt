@@ -1,7 +1,7 @@
 package com.kosmo.kkomoadopt.entity;
 
-import com.kosmo.kkomoadopt.dto.VisitPurpose;
-import com.kosmo.kkomoadopt.dto.VisitTime;
+import com.kosmo.kkomoadopt.enums.VisitPurpose;
+import com.kosmo.kkomoadopt.enums.VisitTime;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

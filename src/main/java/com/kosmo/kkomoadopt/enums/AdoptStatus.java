@@ -1,4 +1,4 @@
-package com.kosmo.kkomoadopt.dto;
+package com.kosmo.kkomoadopt.enums;
 
 public enum AdoptStatus {
     ADOPTABLE, // 입양가능

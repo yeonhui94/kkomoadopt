@@ -1,5 +1,5 @@
 package com.kosmo.kkomoadopt.dto;
-import jakarta.validation.constraints.NotNull;
+import com.kosmo.kkomoadopt.enums.Authority;
 
 public record LoginResponseDTO(
         Authority authority,

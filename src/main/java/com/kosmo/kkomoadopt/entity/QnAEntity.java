@@ -1,11 +1,10 @@
 package com.kosmo.kkomoadopt.entity;
 
 import com.kosmo.kkomoadopt.converter.UrlConverter;
-import com.kosmo.kkomoadopt.dto.QnAState;
+import com.kosmo.kkomoadopt.enums.QnAState;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.w3c.dom.Text;
 
 import java.time.LocalDateTime;
 import java.util.List;

@@ -1,6 +1,7 @@
 package com.kosmo.kkomoadopt.dto;
 
 
+import com.kosmo.kkomoadopt.enums.PostCategory;
 
 public record CommunityDTO(
         PostCategory postCategory,

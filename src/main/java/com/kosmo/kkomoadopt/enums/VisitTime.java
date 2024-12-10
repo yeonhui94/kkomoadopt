@@ -1,4 +1,4 @@
-package com.kosmo.kkomoadopt.dto;
+package com.kosmo.kkomoadopt.enums;
 
 public enum VisitTime {
     TIME1, // 09:30 ~ 10:30

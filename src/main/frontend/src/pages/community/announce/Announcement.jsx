@@ -6,13 +6,16 @@ import Dropdown from "../../../components/DropDown";
 import comstyle from '../CommunityWt.module.css';
 import Button from "../../../components/Button/Button";
 import Pagenumber from "../../../components/pagenumber/Pagenumber";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import img3 from "../../../assets/CardImage/3.jpg";
 import img9 from "../../../assets/CardImage/9.jpg";
 import img11 from "../../../assets/CardImage/11.jpg";
 import imgc2 from "../../../assets/CardImage/c2.jpg";
 
 const Announcement = ({ gridArea }) => {
+
+  const location = useLocation(); // 현재 경로를 가져옴
+  const isAdminPage = location.pathname.includes('admin'); // 경로가 admin으로 포함되어 있는지 확인
 
   const [sortOption, setSortOption] = useState("전체보기");
   const [currentPage, setCurrentPage] = useState(1);
@@ -200,9 +203,11 @@ views: 10, files: 2 },
            handlePageClick={handlePageClick} 
           />
         </div>
+        {isAdminPage && (
         <Link to="/commu_announce_wt" className={comstyle.report_btn}>
         <Button text={"글쓰기"} width={"100px"}/>
         </Link>
+        )}
       </div>
     </div>
   );

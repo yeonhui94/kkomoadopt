@@ -25,13 +25,10 @@ import Divider from "../../components/Divider";
 import { Link } from "react-router-dom";
 
 const Adoption = ({ gridArea }) => {
-  
   const [selectedCategory, setSelectedCategory] = useState("강아지");
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOption, setSortOption] = useState("전체보기");
   const [searchQuery, setSearchQuery] = useState('');  // 검색어 상태 추가
-
-
 
   const options = ["전체보기","최신 순", "오래된 순", "조회 수 높은 순","조회 수 낮은 순"];
 
@@ -62,7 +59,6 @@ const Adoption = ({ gridArea }) => {
      item.breed.toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
-
   // 페이지당 아이템 수
   const postsPerPage = 12;
 
@@ -72,12 +68,12 @@ const Adoption = ({ gridArea }) => {
         return b.date - a.date;
       case "오래된 순":
         return a.date - b.date;
-        case "조회 수 높은 순":
-          return b.viewcount - a.viewcount;
-        case "조회 수 낮은 순":
-          return a.viewcount - b.viewcount;
-        default:
-          return 0;
+      case "조회 수 높은 순":
+        return b.viewcount - a.viewcount;
+      case "조회 수 낮은 순":
+        return a.viewcount - b.viewcount;
+      default:
+        return 0;
     }
   });
 
@@ -106,7 +102,8 @@ const Adoption = ({ gridArea }) => {
   };
 
   // 스크랩 상태를 토글하는 함수
-  const toggleScrap = (id) => {
+  const toggleScrap = (id, event) => {
+    event.preventDefault(); // Link의 기본 동작을 방지하여 상세 페이지로 넘어가지 않게 함
     setAllPosts(prevPosts => {
       const updatedPosts = prevPosts.map(post =>
         post.id === id ? { ...post, isScraped: !post.isScraped } : post
@@ -127,7 +124,6 @@ const Adoption = ({ gridArea }) => {
   const handleSortChange = (option) => {
     setSortOption(option);
     setCurrentPage(1); // 정렬 변경 시 페이지를 첫 번째로 리셋
-    console.log("정렬 옵션이 설정된 상태:", option); // 디버깅 추가
   };
 
   // 첫 번째 카테고리가 항상 선택되어 있도록 유지
@@ -135,8 +131,6 @@ const Adoption = ({ gridArea }) => {
     setSelectedCategory("강아지"); // 초기 렌더링 시 '강아지' 카테고리가 활성화되도록 설정
   }, []);
 
-
-  
   return (
     <div style={{ gridArea: gridArea }}>
       <SubMenuBar 
@@ -165,14 +159,14 @@ const Adoption = ({ gridArea }) => {
           </div>
           {currentPosts.map((item) => (
             <Link to={`/adoption/post/${item.id}`} key={item.id}>
-            <Card2
-              key={item.id}
-              imageFile={item.img}
-              text1={item.title}
-              text2={item.description}
-              isScraped={item.isScraped}
-              onScrapToggle={() => toggleScrap(item.id)} 
-            />
+              <Card2
+                key={item.id}
+                imageFile={item.img}
+                text1={item.title}
+                text2={item.description}
+                isScraped={item.isScraped}
+                onScrapToggle={(event) => toggleScrap(item.id, event)} // 스크랩 클릭 시 상세 페이지로 이동하지 않음
+              />
             </Link>
           ))}
         </div>
@@ -180,7 +174,7 @@ const Adoption = ({ gridArea }) => {
           <Pagenumber
             totalPages={totalPages}
             currentPage={currentPage}
-            handlePageClick={handlePageClick}
+            onPageChange={handlePageClick}
           />
         </div>
       </div>

@@ -1,7 +1,7 @@
 import {
-  fetchAdoptionPosts,
-  fetchAdoptionPostDetail,
-  createAdoptionPost,
+  getAdoptionPosts,
+  getAdoptionPostDetail,
+  createAdoptionPost as createAdoptionPostAPI,
   updateAdoptionPost,
   deleteAdoptionPost
 } from '../../service/apiService'
@@ -112,7 +112,7 @@ export const resetAdoptionState = () => ({
 // CRUD API 관련 액션 생성자들
 export const readAdoptionPosts = () => async (dispatch) => {
   try {
-      const response = await fetchAdoptionPosts();  // API 호출
+      const response = await getAdoptionPosts();  // API 호출
       dispatch({
           type: READ_ADOPTION_POSTS,
           payload: response.data,  // 서버로부터 받은 데이터
@@ -124,7 +124,7 @@ export const readAdoptionPosts = () => async (dispatch) => {
 
 export const readAdoptionPostDetail = (noticeUid) => async (dispatch) => {
   try {
-      const response = await fetchAdoptionPostDetail(noticeUid);  // 특정 게시물 API 호출
+      const response = await getAdoptionPostDetail(noticeUid);  // 특정 게시물 API 호출
       dispatch({
           type: READ_ADOPTION_POST_DETAIL,
           payload: response.data,  // 상세 정보
@@ -136,7 +136,7 @@ export const readAdoptionPostDetail = (noticeUid) => async (dispatch) => {
 
 export const createAdoptionPost = (adoptionData) => async (dispatch) => {
   try {
-      const response = await createAdoptionPostApi(adoptionData);  // 새로운 게시물 생성 API 호출
+      const response = await createAdoptionPost(adoptionData);  // 새로운 게시물 생성 API 호출
       dispatch({
           type: CREATE_ADOPTION_POST,
           payload: response.data,  // 생성된 게시물 데이터
@@ -148,7 +148,7 @@ export const createAdoptionPost = (adoptionData) => async (dispatch) => {
 
 export const updateAdoptionPost = (noticeUid, updatedData) => async (dispatch) => {
   try {
-      const response = await updateAdoptionPostApi(noticeUid, updatedData);  // 게시물 업데이트 API 호출
+      const response = await updateAdoptionPost(noticeUid, updatedData);  // 게시물 업데이트 API 호출
       dispatch({
           type: UPDATE_ADOPTION_POST,
           payload: response.data,  // 업데이트된 게시물 데이터
@@ -160,7 +160,7 @@ export const updateAdoptionPost = (noticeUid, updatedData) => async (dispatch) =
 
 export const deleteAdoptionPost = (noticeUid) => async (dispatch) => {
   try {
-      const response = await deleteAdoptionPostApi(noticeUid);  // 게시물 삭제 API 호출
+      const response = await deleteAdoptionPost(noticeUid);  // 게시물 삭제 API 호출
       dispatch({
           type: DELETE_ADOPTION_POST,
           payload: noticeUid,  // 삭제된 게시물의 UID

@@ -25,7 +25,7 @@ import Divider from "../../components/Divider";
 import { Link } from "react-router-dom";
 
 const Adoption = ({ gridArea }) => {
-  const [selectedCategory, setSelectedCategory] = useState("강아지");
+  const [selectedCategory, setSelectedCategory] = useState("전체");
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOption, setSortOption] = useState("전체보기");
   const [searchQuery, setSearchQuery] = useState('');  // 검색어 상태 추가
@@ -53,11 +53,16 @@ const Adoption = ({ gridArea }) => {
   ]);
 
   // 선택된 카테고리에 따라 필터링된 아이템
-  const filteredItems = allPosts.filter(item => 
-    item.category === selectedCategory &&
-    (item.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-     item.breed.toLowerCase().includes(searchQuery.toLowerCase()))
-  );
+  const filteredItems = allPosts.filter(item => {
+    if (selectedCategory !== "전체") {
+      return item.category === selectedCategory &&
+        (item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+         item.breed.toLowerCase().includes(searchQuery.toLowerCase()));
+    }
+    // "전체"일 경우 모든 항목을 필터링하지 않음
+    return item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+           item.breed.toLowerCase().includes(searchQuery.toLowerCase());
+  });
 
   // 페이지당 아이템 수
   const postsPerPage = 12;
@@ -85,6 +90,7 @@ const Adoption = ({ gridArea }) => {
   const totalPages = Math.ceil(filteredItems.length / postsPerPage);
 
   const menuItems = [
+      { name: '전체', category: '전체' },
     { name: '강아지', category: '강아지' },
     { name: '고양이', category: '고양이' },
     { name: '기타동물', category: '기타동물' },

@@ -83,14 +83,20 @@ function AdoptionPostPage({ gridArea }) {
     };
 
     // 체크박스 상태 변경 처리
-    const handleCheckBoxChange = (id) => {
-        setCheckedItems(prevState => (prevState === id ? null : id)); // 하나의 체크박스만 선택
-        if (id !== checkedItems) {
-            const selectedPost = allPosts.find(post => post.id === id);
-            setStatus(selectedPost.status);
-            setReason(selectedPost.reason);
+const handleCheckBoxChange = (id) => {
+    setCheckedItems(prevState => {
+        if (prevState === id) {
+            return null;  // 선택된 항목 해제
+        } else {
+            return id;  // 새 항목 선택
         }
-    };
+    });
+
+    const selectedPost = allPosts.find(post => post.id === id);
+    setStatus(selectedPost.status);  // 상태와 이유도 업데이트
+    setReason(selectedPost.reason);
+};
+
 
     const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
 
@@ -118,6 +124,7 @@ function AdoptionPostPage({ gridArea }) {
         );
         setAllPosts(updatedPosts); // 상태를 업데이트하여 렌더링에 반영
         setIsInfoModalOpen(false); // 모달 닫기
+        setCheckedItems(null); // 체크박스 해제
     };
 
     return (

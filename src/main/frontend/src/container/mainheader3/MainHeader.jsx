@@ -1,6 +1,6 @@
   import React, { useEffect, useState } from 'react';
   import { useLocation } from 'react-router-dom';  // useLocation 훅을 import
-  import Logo from '../../components/logo/Logo';
+  import Logo2 from '../../components/logo/Logo2';
   import Mypageicon2 from './header3/MyPageIcon2';
   import Button from '../../components/Button/Button';
   import HeaderList from './header3/HeaderList';
@@ -42,7 +42,7 @@
           style={{ position: headerPosition }} // 조건부로 포지션 설정
         >
           <Link className={styles.logo} to="#" onClick={handleLogoClick }>
-            <Logo isScrolled={isScrolled} />
+            <Logo2 isScrolled={isScrolled} />
           </Link>
           <div className={styles.headerList1}>
             <HeaderList onItemClick={handleItemClick} isScrolled={isScrolled} />

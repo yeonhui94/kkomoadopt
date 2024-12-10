@@ -7,7 +7,7 @@ import img2 from "../../../assets/img2/2.jpg";
 import img3 from "../../../assets/img2/3.jpg";
 import img4 from "../../../assets/img2/4.jpg";
 import styled from "styled-components";
-
+import commust from "../Commu_post.module.css";
 // styled-components로 스타일 정의
 const SliderContainer = styled.div`
   width: 100%;
@@ -20,7 +20,7 @@ const SliderContainer = styled.div`
 
 const StyledSlider = styled(Slider)`
   width: 100%; /* 슬라이드의 너비 설정 (화면의 80%) */
-  height: 100%; /* 부모 div와 동일한 높이 */
+  height: 100%; /* 부모 div와 동일한 높이 *
 `;
 
 const SlideWrapper = styled.div`
@@ -41,19 +41,27 @@ const SlideImage = styled.img`
 
 // 화살표 버튼 스타일
 const ArrowButton = styled.button`
-  width: 100px;
-  height: 100px;
-  color: white;
+  width: 80px;
+  height: 80px;
+  background-color: transparent;
   opacity : 60%;
   border-radius: 50%;
   z-index: 100;
+  color: blue; /* SVG에 적용 */
+
   &:focus {
     outline: none;
   }
   &:hover {
-    background-color: transparent;
+    // background-color: blue;
     opacity : 100%;
   }
+  &:before {
+  color : black
+  } 
+    
+  /* 버튼 내 텍스트 크기 조정 */
+
 `;
 
 function PostSlickSlide({img}) {

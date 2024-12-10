@@ -16,9 +16,6 @@
     padding-bottom: 8px;
     margin: 0;
 }
-span{
-  white-space: nowrap;
-}
 .textarea{
     height: auto;
 }
@@ -42,6 +39,8 @@ span{
 .fixedText {
   color: #444444;
   font-size: 1rem;
+  width: auto;
+  white-space: nowrap;
 }
 
 .textareaField {

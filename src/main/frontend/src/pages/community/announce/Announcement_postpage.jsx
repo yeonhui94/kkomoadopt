@@ -99,7 +99,7 @@ views: 10, files: 2 },
 
   ])
 
-  // // 파라미터로 받은 id로 게시글 찾기
+  // // 파라미터로 받은 id로 게시글 찾기sfsdf
   const { id } = useParams();
   // console.log(typeof alqlPosts);
 

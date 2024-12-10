@@ -14,7 +14,7 @@ import Comment from '../report/Comment';
 
 const Announcement_Post = ({post}) => {
 
-//  { title: "새 게시물 제목 41", admin: "관리자", 
+//  { title: "새 게시물 제목 41", admin: "관리자", sdfsdf
 // date: new Date("2021-07-03"), img: "" , content:"쓰기 귀찮다 아무거나 쓸게요 나 맛있는거 먹고싶어 프로젝트 끝나면 잘거야",views: 21, files: 2 },
 
     return (

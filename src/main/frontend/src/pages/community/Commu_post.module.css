@@ -43,6 +43,7 @@ p {
         '... ... ... ... ... ... ...'10px
         / 1fr 10px 1fr 10px 3fr 10fr 2fr ; */
     border-top: 1px solid var(--line-color);;
+    /* white-space: nowrap; */
 
 }
 
@@ -73,6 +74,7 @@ p {
 .post_date {
     width: 150px;
     height: 30px;
+    white-space: nowrap;
     /* grid-area: date; */
 }
 

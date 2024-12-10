@@ -18,23 +18,31 @@ import Card2 from "../components/Card2/Card2";
 import Button from "../components/Button/Button";
 import Pagenumber from "../components/pagenumber/Pagenumber";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Missing = ({ gridArea }) => {
     const options = ["전체보기", "최신 순", "오래된 순", "조회 수 높은 순", "조회 수 낮은 순"];
 
     const cardData = [
-        { imageFile: img1, text1: "충남 예산시", text2: "산책 중에 목줄이 끊겨버렸습니다 도와주세요 ", date: new Date(2024, 12, 1), viewcount: 150 },
-        { imageFile: img2, text1: "경기도 화성시", text2: "경기도 화성시 중앙공원에서 아이가 사라졌어요", date: new Date(2024, 12, 2), viewcount: 151 },
-        { imageFile: img3, text1: "서울 광진구", text2: "광진구 광진초등학교 근처에서 슈퍼에 들리다가", date: new Date(2024, 12, 3), viewcount: 151 },
-        { imageFile: img4, text1: "경기도 파주시", text2: "파주에 사람이 없다보니 목줄 풀고 애가 뛰어놀게 했는데", date: new Date(2024, 12, 4), viewcount: 153 },
-        { imageFile: img5, text1: "서울 동작구", text2: "갑자기 목줄 풀자마자 도망가더니 사라졌어요", date: new Date(2024, 12, 5), viewcount: 10 },
-        { imageFile: img6, text1: "서울 코스모구", text2: "주변에 신호등도 많고 사람도 많아서 걱정이 됩니다", date: new Date(2024, 12, 6), viewcount: 154 },
-        { imageFile: img7, text1: "경기도 부천시", text2: "겁이 너무 많아서 사람이 다가가면 도망갈수도 있어요", date: new Date(2024, 12, 7), viewcount: 155 },
-        { imageFile: img8, text1: "전북 군산시", text2: "이름은 행운이고 많이 사나운데 지금 혼자 있어서 떨고있을거같아요 ", date: new Date(2024, 12, 8), viewcount: 156 },
-        { imageFile: img9, text1: "경남 진주시", text2: "혹시라도 발견하시면 사례금 드리겠습니다 제발 연락주세요..", date: new Date(2024, 12, 9), viewcount: 157 },
-        { imageFile: img10, text1: "경남 사천시", text2: "내장칩이 없어서 너무 걱정이에요 제발 도와주세요", date: new Date(2024, 12, 10), viewcount: 158 },
-        { imageFile: img11, text1: "경기도 안양", text2: "사례금 100만원 드립니다", date: new Date(2024, 12, 11), viewcount: 159 },
-        { imageFile: img12, text1: "충남 서산", text2: "노견이라 슬개골이 많이 안좋아요 멀리 못갔을텐데 보이지가 않습니다", date: new Date(2024, 12, 12), viewcount: 15 }
+        { id:1, imageFile: img1, text1: "충남 예산시", text2: "산책 중에 목줄이 끊겨버렸습니다 도와주세요 ", date: new Date(2024, 12, 1), viewcount: 150 },
+        { id:2,imageFile: img2, text1: "경기도 화성시", text2: "경기도 화성시 중앙공원에서 아이가 사라졌어요", date: new Date(2024, 12, 2), viewcount: 151 },
+        { id:3,imageFile: img3, text1: "서울 광진구", text2: "광진구 광진초등학교 근처에서 슈퍼에 들리다가", date: new Date(2024, 12, 3), viewcount: 151 },
+        { id:4,imageFile: img4, text1: "경기도 파주시", text2: "파주에 사람이 없다보니 목줄 풀고 애가 뛰어놀게 했는데", date: new Date(2024, 12, 4), viewcount: 153 },
+        { id:5,imageFile: img5, text1: "서울 동작구", text2: "갑자기 목줄 풀자마자 도망가더니 사라졌어요", date: new Date(2024, 12, 5), viewcount: 10 },
+        { id:6,imageFile: img6, text1: "서울 코스모구", text2: "주변에 신호등도 많고 사람도 많아서 걱정이 됩니다", date: new Date(2024, 12, 6), viewcount: 154 },
+        { id:7,imageFile: img7, text1: "경기도 부천시", text2: "겁이 너무 많아서 사람이 다가가면 도망갈수도 있어요", date: new Date(2024, 12, 7), viewcount: 155 },
+        { id:8,imageFile: img8, text1: "전북 군산시", text2: "이름은 행운이고 많이 사나운데 지금 혼자 있어서 떨고있을거같아요 ", date: new Date(2024, 12, 8), viewcount: 156 },
+        { id:9,imageFile: img9, text1: "경남 진주시", text2: "혹시라도 발견하시면 사례금 드리겠습니다 제발 연락주세요..", date: new Date(2024, 12, 9), viewcount: 157 },
+        { id:10,imageFile: img10, text1: "경남 사천시", text2: "내장칩이 없어서 너무 걱정이에요 제발 도와주세요", date: new Date(2024, 12, 10), viewcount: 158 },
+        { id:11,imageFile: img11, text1: "경기도 안양", text2: "사례금 100만원 드립니다", date: new Date(2024, 12, 11), viewcount: 159 },
+        { id:12,imageFile: img12, text1: "충남 서산", text2: "노견이라 슬개골이 많이 안좋아요 멀리 못갔을텐데 보이지가 않습니다", date: new Date(2024, 12, 12), viewcount: 15 },
+        { id:13,imageFile: img12, text1: "충남 서산", text2: "노견이라 슬개골이 많이 안좋아요 멀리 못갔을텐데 보이지가 않습니다", date: new Date(2024, 12, 12), viewcount: 15 },
+        { id:14,imageFile: img12, text1: "충남 서산", text2: "노견이라 슬개골이 많이 안좋아요 멀리 못갔을텐데 보이지가 않습니다", date: new Date(2024, 12, 12), viewcount: 15 },
+        { id:15,imageFile: img12, text1: "충남 서산", text2: "노견이라 슬개골이 많이 안좋아요 멀리 못갔을텐데 보이지가 않습니다", date: new Date(2024, 12, 12), viewcount: 15 },
+        { id:16,imageFile: img12, text1: "충남 서산", text2: "노견이라 슬개골이 많이 안좋아요 멀리 못갔을텐데 보이지가 않습니다", date: new Date(2024, 12, 12), viewcount: 15 },
+        { id:17,imageFile: img12, text1: "충남 서산", text2: "노견이라 슬개골이 많이 안좋아요 멀리 못갔을텐데 보이지가 않습니다", date: new Date(2024, 12, 12), viewcount: 15 },
+        { id:18,imageFile: img12, text1: "충남 서산", text2: "노견이라 슬개골이 많이 안좋아요 멀리 못갔을텐데 보이지가 않습니다", date: new Date(2024, 12, 12), viewcount: 15 },
+        { id:19,imageFile: img12, text1: "충남 서산", text2: "노견이라 슬개골이 많이 안좋아요 멀리 못갔을텐데 보이지가 않습니다", date: new Date(2024, 12, 12), viewcount: 15 }
     ];
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -114,12 +122,14 @@ const Missing = ({ gridArea }) => {
                             <Divider width={"100%"} backgroundColor={"var(--line-color)"} />
                         </div>
                         {currentPosts.map((card, index) => (
+                            <Link to={`/find-child/post/${card.id}`} key={card.id}>
                             <Card2
                                 key={index}
                                 imageFile={card.imageFile}
                                 text1={card.text1}
                                 text2={card.text2}
                             />
+                            </Link>
                         ))}
                     </div>
                 </div>

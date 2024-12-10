@@ -12,12 +12,12 @@ const apiClient = axios.create({
 // 사용자 정보 가져오기
 export const fetchUserInfo = async (setUserInfo, userId) => {
   try {
-    const response = await apiClient.get('/api/user/login');
-    const userInfo = response.data;
+    // const response = await apiClient.get('/api/user/login');
+    // const userInfo = response.data;
 
-    // 사용자 정보 상태에 반영
-    setUserInfo(userInfo);
-    return userInfo; // 가져온 사용자 정보 반환
+    // // 사용자 정보 상태에 반영
+    // setUserInfo(userInfo);
+    // return userInfo; // 가져온 사용자 정보 반환
   } catch (error) {
     console.error("Failed to fetch user info:", error);
     throw error;

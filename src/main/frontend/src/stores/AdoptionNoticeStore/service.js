@@ -1,14 +1,20 @@
 import axios from 'axios';
 
 // API 기본 설정
-const apiClient = axios.create({
-  baseURL: 'http://localhost:5173', // API의 기본 URL
-  timeout: 5000,  // 요청 타임아웃 설정
+const apiClientJson = axios.create({
+  baseURL: 'http://localhost:8080', // 백엔드 서버의 URL
+  timeout: 10000,  // 요청 타임아웃 설정
   headers: { 'Content-Type': 'application/json' }
 });
 
-// 게시물 목록 불러오기
-export const fetchNotices = () => apiClient.get('/adoption');
+const apiClientFormData = axios.create({
+  baseURL: 'http://localhost:8080', // 백엔드 서버의 URL
+  timeout: 10000,  // 요청 타임아웃 설정
+});
+
+// 입양공지 API
+// 입양공지 전체 목록 불러오기
+export const getAllNotices = (pageNum) => apiClientJson.get(`/api/adopt/${pageNum}`);
 
 // 게시물 추가
 export const createNotice = (noticeData) => apiClient.post('/adoption', noticeData);

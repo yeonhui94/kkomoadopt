@@ -10,6 +10,16 @@ const apiClient = axios.create({
   },
 });
 
+export const fetchNotices = async () => {
+  try {
+      const response = await apiClient.get('/'); // 게시물 목록을 가져오는 GET 요청
+      return response.data;
+  } catch (error) {
+      console.error('Failed to fetch notices', error);
+      throw error; // 오류 처리
+  }
+};
+
 // 커뮤니티 포스트 가져오기
 export const fetchPost = async (postId) => {
   try {

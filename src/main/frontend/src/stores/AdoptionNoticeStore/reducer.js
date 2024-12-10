@@ -145,28 +145,33 @@
 // export default reducer;
 
 import { 
-  FETCH_NOTICES, 
+  GET_ALLNOTICES, 
   CREATE_NOTICE, 
   UPDATE_NOTICE, 
   DELETE_NOTICE, 
   FETCH_NOTICE_BY_UID, 
   FETCH_NOTICES_BY_CATEGORY, 
   UPLOAD_NOTICE_IMAGE, 
-  SET_ERROR 
-} from './actions';
+  SET_ERROR,
+  GET_PAGE_NUM
+} from './action';
 
 export const initialState = {
 notices: [],  // 게시물 목록
 currentNotice: null,  // 현재 선택된 게시물
 noticeImgUrl: [],  // 게시물 이미지 URL
 error: null,  // 오류 메시지 상태
+pageNum: 1,
 };
 
-const reducer = (state = initialState, action) => {
+export const reducer = (state = initialState, action) => {
 switch (action.type) {
   // 게시물 목록 불러오기
-  case FETCH_NOTICES:
-    return { ...state, notices: action.payload };
+  case GET_ALLNOTICES:
+    return { ...state, notices: action.payload,};
+
+  case GET_PAGE_NUM:
+    return { ...state, notice: action.payload };
 
   // 게시물 추가
   case CREATE_NOTICE:

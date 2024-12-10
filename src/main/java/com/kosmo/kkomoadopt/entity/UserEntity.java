@@ -42,7 +42,7 @@ public class UserEntity {
     @Column(length = 20)
     private String nickname;
 
-    @Column(nullable = false, length = 16)
+    @Column(nullable = false, columnDefinition = "text")
     private String password;
 
     @Column(name = "user_create", nullable = false, updatable = false)

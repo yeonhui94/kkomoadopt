@@ -37,6 +37,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	implementation 'org.springframework.data:spring-data-rest-hal-explorer'
+	implementation 'org.springframework.security:spring-security-crypto:5.8.1'
 }
 
 tasks.named('test') {
@@ -45,4 +46,45 @@ tasks.named('test') {
 
 tasks.withType(JavaCompile) {
 	options.compilerArgs << '-parameters'
+}
+
+def frontendDir = "$projectDir/src/main/frontend"
+
+sourceSets {
+	main {resources {
+		srcDirs = ["$projectDir/src/main/resources"]
+	}}}
+
+processResources {dependsOn "copyViteBuildFiles"}
+
+// install을하고
+task installVite(type: Exec) {
+	workingDir "$frontendDir"
+	inputs.dir "$frontendDir"
+	group = BasePlugin.BUILD_GROUP
+
+	if (System.getProperty('os.name')
+			.toLowerCase(Locale.ROOT).contains('windows')) {
+		commandLine "npm.cmd", "install"
+	} else {commandLine "npm", "install"}
+}
+
+//build를 할거임
+task buildVite(type: Exec) {
+	dependsOn "installVite"
+	workingDir "$frontendDir"
+	inputs.dir "$frontendDir"
+	group = BasePlugin.BUILD_GROUP
+
+	if (System.getProperty('os.name')
+			.toLowerCase(Locale.ROOT).contains('windows')) {
+		commandLine "npm.cmd", "run", "build"
+	} else {commandLine "npm", "run", "build"}
+}
+
+//static으로 빌드를 복사해놓는다.
+task copyViteBuildFiles(type: Copy) {
+	dependsOn "buildVite"
+	from "$frontendDir/dist"
+	into "$projectDir/src/main/resources/static"
 }

@@ -1,14 +1,14 @@
 import { 
-  fetchNotices, 
+  getAllNotices, 
   createNotice, 
   updateNotice, 
   deleteNotice, 
   fetchNoticeByUid, 
   fetchNoticesByCategory, 
-  uploadNoticeImage 
+  uploadNoticeImage, 
 } from './service';  // 서비스에서 API 호출 함수들 가져오기
 
-export const FETCH_NOTICES = "FETCH_NOTICES";
+export const GET_ALLNOTICES = "GET_ALLNOTICES";
 export const CREATE_NOTICE = "CREATE_NOTICE";
 export const UPDATE_NOTICE = "UPDATE_NOTICE";
 export const DELETE_NOTICE = "DELETE_NOTICE";
@@ -16,12 +16,21 @@ export const FETCH_NOTICE_BY_UID = "FETCH_NOTICE_BY_UID";
 export const FETCH_NOTICES_BY_CATEGORY = "FETCH_NOTICES_BY_CATEGORY";
 export const UPLOAD_NOTICE_IMAGE = "UPLOAD_NOTICE_IMAGE";
 export const SET_ERROR = "SET_ERROR";
+export const GET_ADOPT_NOTICE_LIST = 'GET_ADOPT_NOTICE_LIST';
+export const GET_TOTAL_CNT = 'GET_TOTAL_CNT';
+export const GET_CURRENT_PAGE = "GET_CURRENT_PAGE";
+export const GET_PAGE_NUM = "GET_PAGE_NUM";
 
 // 게시물 목록 불러오기
-export const fetchNoticesAction = () => async (dispatch) => {
+export const getAllNoticesAction = (pageNum) => async (dispatch) => {
 try {
-  const response = await fetchNotices();
-  dispatch({ type: FETCH_NOTICES, payload: response.data });
+  const response = await getAllNotices(pageNum);
+  console.log('Notices Data:', response);  // 데이터 콘솔에 출력
+    dispatch({type: GET_ALLNOTICES, payload: response.data.adoptNoticeList});
+    // 각각을 별도로 dispatch
+    // dispatch({ type: GET_ADOPT_NOTICE_LIST, payload: adoptNoticeList });
+    // dispatch({ type: GET_TOTAL_CNT, payload: totalCnt });
+    // dispatch({ type: GET_CURRENT_PAGE, payload: currentPage });
 } catch (error) {
   dispatch({ type: SET_ERROR, payload: error.message });
 }

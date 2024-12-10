@@ -158,8 +158,6 @@
 }
 
 
-
-
 .centint_header {
     /* position: sticky;  페이지 스크롤 시 고정 */
     top: 0;           /* 상단에 고정 */
@@ -218,12 +216,14 @@
 }
 
 .centint_highlight {
+    display: contents;
     color : var(--main-color);
     z-index: 1000;
 }
 
 .centint_blacktextshadow {
     /* text-shadow: 1px 1px 2px #232323; */
+    display: contents;
     font-weight: bolder;
     color: #444;
     z-index: 1000;

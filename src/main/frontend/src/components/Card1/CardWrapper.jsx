@@ -9,6 +9,10 @@ const CardWrapper = styled.div`
   overflow: hidden;
 
   &:hover {
+  .mainwrapper{
+    display : block;
+    height : 427px;
+  }
     .styled-card.large-card {
       height: 319px;
     }

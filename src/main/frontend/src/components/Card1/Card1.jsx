@@ -2,8 +2,9 @@ import styled from "styled-components";
 import CardImage from "./CardImage";
 
 const CardWrapper = styled.div`
+display: block;
   width: 260px;
-  height: 100%;
+  height: 427px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   position: relative;
@@ -11,6 +12,9 @@ const CardWrapper = styled.div`
   transition:transform 0.5s ease-in-out;
 
   &:hover {
+   .mainwrapper{
+    height : 427px;
+   }
     .styled-card.large-card {
       height: 319px;
     }
@@ -71,7 +75,7 @@ const CardContainer = styled.div`
 
 const Card1 = ({ images }) => {
   return (
-    <CardWrapper >
+    <CardWrapper className="mainwrapper">
       {/* 메인카드 분리 */}
       <StyledCard className="styled-card large-card">
         <CardImage

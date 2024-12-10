@@ -96,56 +96,57 @@ const Report = ({ gridArea }) => {
 
   return (
     <div style={{ gridArea }} className={comstyle.posts_container}>
-      <div className={`${styles.rwsubcontainer2} ${comstyle.inputdrop}`}>
-        <Dropdown options={options} onChange={handleSort} />
-        <SearchBar placeholder={"글 내용 & 글 제목"} width="300px" onSearch={handleSearch} />
-      </div>
-      <div className={comstyle.lin}>
-        <Divider height={"2px"} width={"100%"} backgroundColor={"var(--line-color)"} />
-      </div>
-      <div className={comstyle.subbar_post}>
-        <p className={comstyle.postnum}>번호</p>
-        <p className={comstyle.title}>제목</p>
-        <p className={comstyle.admin}>작성자</p>
-        <p className={comstyle.date}>작성일</p>
-        <p className={comstyle.views}>조회수</p>
-      </div>
-      <div className={comstyle.lin2}>
-        <Divider height={"2px"} width={"100%"} backgroundColor={"#E5E5E5"} />
-      </div>
-
-      {currentPosts.length > 0 ? (
-        <ul className={`${comstyle.postsbox}`}>
-          {currentPosts.map((post) => (
-            <Link to={`/report/post/${post.id}`} key={post.id}>
-            <li key={post.id} className={comstyle.post}>
-              <p className={comstyle.postnumli}>{post.id}</p>
-              <p className={comstyle.titleli}>{post.title}</p>
-              <p className={comstyle.adminli}>{post.admin}</p>
-              <p className={comstyle.dateli}>{post.date.toLocaleDateString("ko-KR")}</p>
-              <p className={comstyle.viewsli}>{post.views}</p>
-              {/* {post.files && <p>첨부파일: {post.files}개</p>} */}
-    
-            </li>
-            </Link>
-          ))}
-        </ul>
-      ) : (
-        <p className={comstyle.postsbox}> <br /><br /> 등록된 게시물이 없습니다.</p>
-      )}
-      <div className={comstyle.buttondiv}>
-        <div className={comstyle.pagenum}>
-          <Pagenumber
-           totalPages={totalPages} 
-           currentPage={currentPage} 
-           handlePageClick={handlePageClick} 
-          />
-        </div>
-        <Link to="/commu_report_wt" className={comstyle.report_btn}>
-          <Button text={"글쓰기"} width={"100px"} />
-        </Link>
-      </div>
+    <div className={`${styles.rwsubcontainer2} ${comstyle.inputdrop}`}>
+      <Dropdown options={options} onChange={handleSort} />
+      <SearchBar placeholder={"글 내용 & 글 제목"} width="300px" onSearch={handleSearch} />
     </div>
+    <div className={comstyle.lin}>
+      <Divider height={"2px"} width={"100%"} backgroundColor={"var(--line-color)"} />
+    </div>
+    <div className={comstyle.subbar_post}>
+      <p className={comstyle.postnum}>번호</p>
+      <p className={comstyle.title}>제목</p>
+      <p className={comstyle.admin}>작성자</p>
+      <p className={comstyle.date}>작성일</p>
+      <p className={comstyle.views}>조회수</p>
+    </div>
+    <div className={comstyle.lin2}>
+      <Divider height={"2px"} width={"100%"} backgroundColor={"#E5E5E5"} />
+    </div>
+
+    {currentPosts.length > 0 ? (
+      <ul className={`${comstyle.postsbox}`}>
+        {currentPosts.map((post) => (
+          <Link to={`/report/post/${post.id}`} key={post.id}>
+          <li key={post.id} className={comstyle.post}>
+            <p className={comstyle.postnumli}>{post.id}</p>
+            <p className={comstyle.titleli}>{post.title}</p>
+            <p className={comstyle.adminli}>{post.admin}</p>
+            <p className={comstyle.dateli}>{post.date.toLocaleDateString("ko-KR")}</p>
+            <p className={comstyle.viewsli}>{post.views}</p>
+            {/* {post.files && <p>첨부파일: {post.files}개</p>} */}
+  
+          </li>
+          </Link>
+        ))}
+      </ul>
+    ) : (
+      <p className={comstyle.postsbox}> <br /><br /> 등록된 게시물이 없습니다.</p>
+    )}
+    <div className={comstyle.buttondiv}>
+      <div className={comstyle.pagenum}>
+        <Pagenumber
+         totalPages={totalPages} 
+         currentPage={currentPage} 
+         handlePageClick={handlePageClick} 
+        />
+      </div>
+      <Link to="/commu_report_wt" className={comstyle.report_btn}>
+        <Button text={"글쓰기"} width={"100px"} />
+      </Link>
+    </div>
+  </div>
+ 
   );
 };
 

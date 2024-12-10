@@ -13,6 +13,10 @@
 
 
 }
+.slick_prev::before, .slick-next::before {
+   color: blue; /* 기본 화살표 색상 */
+    z-index: 100;
+  }
 
 .post_title {
     /* grid-area: title; */

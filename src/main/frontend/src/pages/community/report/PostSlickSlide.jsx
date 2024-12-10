@@ -41,8 +41,8 @@ const SlideImage = styled.img`
 
 // 화살표 버튼 스타일
 const ArrowButton = styled.button`
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   background-color: transparent;
   opacity : 60%;
   border-radius: 50%;
@@ -57,7 +57,8 @@ const ArrowButton = styled.button`
     opacity : 100%;
   }
   &:before {
-  color : black
+  color : black;
+
   } 
     
   /* 버튼 내 텍스트 크기 조정 */

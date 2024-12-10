@@ -7,7 +7,7 @@ const Screen3 = () => {
 
     return (
         <motion.div className={centerintrosty.centint_screen3} 
-        style={{gridArea : "3/2/3/4"}}
+        style={{gridArea : "3/2/3/3"}}
         initial={{ opacity: 0, scale: 0.9 }} // 화면이 처음 렌더링될 때 초기 상태 (투명도 0, 크기 90%)
               
         // 화면이 뷰포트에 들어올 때 실행할 애니메이션

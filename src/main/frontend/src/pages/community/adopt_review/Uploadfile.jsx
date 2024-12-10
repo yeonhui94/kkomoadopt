@@ -1,9 +1,10 @@
-import React, { useState, useRef } from 'react';
-import Button from '../../../components/Button/Button';
+import { useRef, useState } from "react";
+import Button from "../../../components/Button/Button";
 
 const Uploadfile = ({ maxFiles = 4, showImagePreview = true, onChange }) => {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const fileInputRef = useRef(null);
+  
 
   const handleFileChange = (event) => {
     const newFiles = Array.from(event.target.files);
@@ -15,7 +16,11 @@ const Uploadfile = ({ maxFiles = 4, showImagePreview = true, onChange }) => {
 
     setSelectedFiles((prevFiles) => {
       const updatedFiles = [...prevFiles, ...newFiles];
-      onChange(updatedFiles);  // 부모 컴포넌트로 파일 목록 전달
+      
+      if (typeof onChange === 'function') {
+        onChange(updatedFiles);  // 부모 컴포넌트로 파일 목록 전달
+      }
+
       return updatedFiles;
     });
   };
@@ -23,7 +28,10 @@ const Uploadfile = ({ maxFiles = 4, showImagePreview = true, onChange }) => {
   const handleRemoveFile = (index) => {
     const updatedFiles = selectedFiles.filter((_, i) => i !== index);
     setSelectedFiles(updatedFiles);
-    onChange(updatedFiles);  // 부모 컴포넌트로 변경된 파일 목록 전달
+    
+    if (typeof onChange === 'function') {
+      onChange(updatedFiles);  // 부모 컴포넌트로 변경된 파일 목록 전달
+    }
   };
 
   return (
@@ -44,22 +52,22 @@ const Uploadfile = ({ maxFiles = 4, showImagePreview = true, onChange }) => {
       />
       
       {selectedFiles.length > 0 && (
-        <div style={{ color: "var(--main-color)", fontWeight: "600", fontSize: "0.7rem",whiteSpace : "nowrap" }}>
+        <div style={{ color: "var(--main-color)", fontWeight: "600", fontSize: "0.7rem", whiteSpace: "nowrap" }}>
           * {selectedFiles.length} 개 파일이 첨부되었습니다.
         </div>
       )}
 
       {selectedFiles.length > 0 && (
-        <div>
-          <ul>
+        <div >
+          <ul style={{width : "50%", display:"flex", flexWrap:"wrap"}}>
             {selectedFiles.map((file, index) => (
               <li key={index}>
                 {file.type.startsWith('image/') && showImagePreview ? (
-                  <div style={{display : "flex"}}>
+                  <div style={{ display: "flex" }}>
                     <img
                       src={URL.createObjectURL(file)}
                       alt={file.name}
-                      style={{ width: '100px', height: '100px', objectFit: 'cover',margin:"10px"}}
+                      style={{ width: '100px', height: '100px', objectFit: 'cover', margin: "10px" }}
                     />
                     <Button
                       bg1color={"white"}

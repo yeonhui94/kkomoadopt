@@ -141,9 +141,9 @@ const Missing = ({ gridArea }) => {
                             handlePageClick={handlePageClick}
                         />
                     </div>
-                    <a className={styles.buttonContainer} href="http://localhost:5173/commu-find_child/communitywt">
+                    <Link to={"/commu_missing_wt"} className={styles.buttonContainer}>
                         <Button text={"글쓰기"} />
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>

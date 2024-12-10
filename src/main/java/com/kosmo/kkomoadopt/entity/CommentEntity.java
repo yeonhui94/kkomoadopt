@@ -31,12 +31,12 @@ public class CommentEntity {
     private Boolean isDeleted = false; // 댓글 삭제 여부를 나타내는 필드
 
     // communitypost의 post id
-    @Column(name = "post_id", nullable = false)
-    private String postId;
+    @Column(name = "post_uid", nullable = false)
+    private String postUid; // FK
 
-    // comment 작성자 nickname
-    @Column(name = "comment_author", nullable = false)
-    private String commentAuthor;
+    // comment 작성자
+    @Column(name = "user_id", nullable = false)
+    private String userId; // FK
 
     @Override
     public String toString() {
@@ -46,8 +46,8 @@ public class CommentEntity {
                 ", commentCreatedAt=" + commentCreatedAt +
                 ", commentUpdatedAt=" + commentUpdatedAt +
                 ", isDeleted=" + isDeleted +
-                ", postUid='" + postId + '\'' +
-                ", commentAuthor='" + commentAuthor + '\'' +
+                ", postUid='" + postUid + '\'' +
+                ", userId='" + userId + '\'' +
                 '}';
     }
 }

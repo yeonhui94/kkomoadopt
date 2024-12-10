@@ -3,6 +3,7 @@ package com.kosmo.kkomoadopt.controller;
 import com.kosmo.kkomoadopt.entity.CommentEntity;
 import com.kosmo.kkomoadopt.entity.CommunityPostEntity;
 import com.kosmo.kkomoadopt.service.CommentService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

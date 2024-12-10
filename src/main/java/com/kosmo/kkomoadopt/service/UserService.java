@@ -69,8 +69,8 @@ public class UserService {
         if (user != null && loginRequestDTO.password().equals(user.getPassword())) {
             // 로그인 성공: 세션에 사용자 정보 저장
             HttpSession session = request.getSession();
-            session.setAttribute("userId", user.getUserId());
-            session.setAttribute("email", user.getEmail());
+            System.out.println("Saving authority to session: " + user.getAuthority());  // 로그로 authority 확인
+            session.setAttribute("authority", user.getAuthority());
             session.setAttribute("nickname", user.getNickname());
             return true;
         }

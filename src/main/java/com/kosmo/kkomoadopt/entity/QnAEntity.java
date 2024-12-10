@@ -56,11 +56,11 @@ public class QnAEntity {
     @Column(name = "qna_state", length = 10)
     private QnAState qnaState;
 
-    // qna 작성자 nickname
-    @Column(name = "qna_author", nullable = false)
-    private String qnaAuthor;
+    // qna 작성자
+    @Column(name = "user_id", nullable = false)
+    private String userId; // FK
 
-    // qna 답변자 nickname
+    // qna 답변자(ADMIN 고정)
     @Column(name = "answer_author")
     private String answerAuthor;
 
@@ -78,7 +78,7 @@ public class QnAEntity {
                 ", qnaAnswer='" + qnaAnswer + '\'' +
                 ", qnaAnswerFile=" + qnaAnswerFile +
                 ", qnaState=" + qnaState +
-                ", qnaAuthor='" + qnaAuthor + '\'' +
+                ", userId='" + userId + '\'' +
                 ", answerAuthor='" + answerAuthor + '\'' +
                 '}';
     }

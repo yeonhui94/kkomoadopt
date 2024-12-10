@@ -1,5 +1,6 @@
 package com.kosmo.kkomoadopt.entity;
 
+import com.kosmo.kkomoadopt.converter.PostCategoryConverter;
 import com.kosmo.kkomoadopt.converter.ScrapConverter;
 import com.kosmo.kkomoadopt.converter.UrlConverter;
 import com.kosmo.kkomoadopt.dto.PostCategory;
@@ -26,7 +27,8 @@ public class CommunityPostEntity {
     @Column(name = "post_id", unique = true)
     private Integer postId;
 
-    @Enumerated(EnumType.STRING)
+//    @Enumerated(EnumType.STRING)
+    @Convert(converter = PostCategoryConverter.class)
     @Column(name = "post_category")
     private PostCategory postCategory;
 
@@ -45,7 +47,7 @@ public class CommunityPostEntity {
 
     @Convert(converter = UrlConverter.class)
     @Column(name = "post_img_url", columnDefinition = "text")
-    private List<String> postImgUr;
+    private List<String> postImgUrl;
 
     @Column(name = "is_deleted", nullable = false)
     private Boolean isDeleted;
@@ -53,9 +55,9 @@ public class CommunityPostEntity {
     @Column(name = "delete_reason")
     private String deleteReason;
 
-    // community 작성자 nickname
-    @Column(name = "community_author", nullable = false)
-    private String communityAuthor;
+    // communityPost 작성자
+    @Column(name = "user_id", nullable = false)
+    private String userId; // FK
 
     @Column(name = "post_view_count", nullable = false)
     private Integer postViewCount = 0;
@@ -70,10 +72,10 @@ public class CommunityPostEntity {
                 ", postContent='" + postContent + '\'' +
                 ", postCreatedAt=" + postCreatedAt +
                 ", postUpdatedAt=" + postUpdatedAt +
-                ", postImgUr=" + postImgUr +
+                ", postImgUrl=" + postImgUrl +
                 ", isDeleted=" + isDeleted +
                 ", deleteReason='" + deleteReason + '\'' +
-                ", communityAuthor='" + communityAuthor + '\'' +
+                ", userId='" + userId + '\'' +
                 ", postViewCount=" + postViewCount +
                 '}';
     }

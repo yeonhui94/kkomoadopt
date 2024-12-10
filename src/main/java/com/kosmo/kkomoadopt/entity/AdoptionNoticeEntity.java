@@ -1,5 +1,7 @@
 package com.kosmo.kkomoadopt.entity;
 
+import com.kosmo.kkomoadopt.converter.AdoptStatusConverter;
+import com.kosmo.kkomoadopt.converter.NoticeCategoryConverter;
 import com.kosmo.kkomoadopt.converter.UrlConverter;
 import com.kosmo.kkomoadopt.dto.AdoptStatus;
 import com.kosmo.kkomoadopt.dto.NoticeCategory;
@@ -27,7 +29,8 @@ public class AdoptionNoticeEntity {
     @Column(name = "notice_uid", nullable = false, length = 36)
     private String noticeUid;
 
-    @Enumerated(EnumType.STRING)
+//    @Enumerated(EnumType.STRING)
+    @Convert(converter = NoticeCategoryConverter.class)
     @Column(name = "notice_category", nullable = false)
     private NoticeCategory noticeCategory;
 
@@ -40,7 +43,8 @@ public class AdoptionNoticeEntity {
     @Column(name = "animal_type")
     private String animalType;
 
-    @Enumerated(EnumType.STRING)
+//    @Enumerated(EnumType.STRING)
+    @Convert(converter = AdoptStatusConverter.class)
     @Column(name = "adopt_status", nullable = false)
     private AdoptStatus adoptStatus;
 

@@ -71,7 +71,7 @@ public class UserController {
             UserEntity user = userRepository.findByEmail(loginRequestDTO.email()).orElse(null);
             if (user != null){
                 // 응답을 생성할 때 유효성 검사를 진행할 수 있습니다.
-                LoginResponseDTO responseDTO = new LoginResponseDTO(user.getUserId(), user.getEmail(), user.getNickname());
+                LoginResponseDTO responseDTO = new LoginResponseDTO(user.getAuthority(), user.getNickname());
                 return ResponseEntity.ok(responseDTO);
             }
         }

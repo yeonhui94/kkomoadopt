@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-@Table
+@Table(name = "visit_request")
 public class VisitRequestEntity {
 
     @Id
@@ -44,21 +44,22 @@ public class VisitRequestEntity {
     @Column(name = "visit_created_at", nullable = false, updatable = false)
     private LocalDateTime visitCreatedAt;
 
-    // visitRequest 작성자 nickname
-    @Column(name = "visit_request_author", nullable = false)
-    private String visitRequestAuthor;
+    // visitRequest 작성자
+    @Column(name = "user_id", nullable = false)
+    private String userId; // FK
 
     @Override
     public String toString() {
         return "VisitRequestEntity{" +
-                "requestId='" + requestId + '\'' +
+                "requestUid='" + requestUid + '\'' +
+                ", requestId=" + requestId +
                 ", phoneNum='" + phoneNum + '\'' +
                 ", visitDate=" + visitDate +
-                ", visitTime='" + visitTime + '\'' +
-                ", visitPurpose='" + visitPurpose + '\'' +
+                ", visitTime=" + visitTime +
+                ", visitPurpose=" + visitPurpose +
                 ", visitContent='" + visitContent + '\'' +
                 ", visitCreatedAt=" + visitCreatedAt +
-                ", visitRequestAuthor='" + visitRequestAuthor + '\'' +
+                ", userId='" + userId + '\'' +
                 '}';
     }
 }

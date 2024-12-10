@@ -1,5 +1,6 @@
 package com.kosmo.kkomoadopt.entity;
 
+import com.kosmo.kkomoadopt.converter.AuthorityConverter;
 import com.kosmo.kkomoadopt.converter.BlacklistConverter;
 import com.kosmo.kkomoadopt.converter.ScrapConverter;
 import com.kosmo.kkomoadopt.dto.Authority;
@@ -68,7 +69,8 @@ public class UserEntity {
     @Column(length = 10)
     private Provider provider;
 
-    @Enumerated(EnumType.STRING)
+//    @Enumerated(EnumType.STRING)
+    @Convert(converter = AuthorityConverter.class)
     @Column(nullable = false, length = 10)
     private Authority authority = Authority.USER;  // 기본값 설정
 

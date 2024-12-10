@@ -20,4 +20,7 @@ public interface UserRepository extends JpaRepository<UserEntity, String> {
 
     // 이메일로 사용자 조회
     Optional<UserEntity> findByEmail(String email);
+
+    // nickname으로 userId를 찾는 쿼리
+    UserEntity findByNickname(String nickname);
 }

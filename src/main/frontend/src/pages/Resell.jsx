@@ -19,6 +19,7 @@ import Card2 from "../components/Card2/Card2";
 import Button from "../components/Button/Button";
 import Pagenumber from "../components/pagenumber/Pagenumber";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 
 const Resell = ({ gridArea }) => {
@@ -27,18 +28,18 @@ const Resell = ({ gridArea }) => {
 
 
     const cardData = [
-        { imageFile: img1, text1: "땡처리 합니다", text2: "개별 판매 안하고 한번에 다 팔려고 합니다", date: new Date(2024, 12, 1), viewcount: 130  },
-        { imageFile: img2, text1: "강아지 기저귀", text2: "소형견 기저귀에요 5천원에 드릴게요", date: new Date(2024, 12, 12), viewcount: 1512  },
-        { imageFile: img3, text1: "대형견 신발", text2: "직거래만 합니당 연락주세요", date: new Date(2024, 12, 11), viewcount: 13  },
-        { imageFile: img4, text1: "발톱깎기,배변봉투", text2: "장난감 묶음으로 판매해요 한개씩도 파니까 연락주세요", date: new Date(2024, 12, 1), viewcount: 22  },
-        { imageFile: img5, text1: "이동가방", text2: "배변패드입니다 연락주세요", date: new Date(2024, 12, 21), viewcount: 1120  },
-        { imageFile: img6, text1: "소형견 기저귀", text2: "강아지가 더이상 장난감을 안쓰네요", date: new Date(2024, 12, 13), viewcount: 123  },
-        { imageFile: img7, text1: "장난감 기타등등 팝니다", text2: "개당 천원씩 드릴게요 연락주세요", date: new Date(2024, 12, 14), viewcount: 3240  },
-        { imageFile: img8, text1: "배변패드", text2: "무료나눔 합니다 연락주세요", date: new Date(2024, 12, 15), viewcount: 213 },
-        { imageFile: img9, text1: "장난감 팔아요", text2: "직거래 합니다 연락주세요", date: new Date(2024, 12, 16), viewcount: 235 },
-        { imageFile: img10, text1: "소형견 옷 땡처리", text2: "옷 개당 2천원에 드릴게요 연락주세요 소형견입니다", date: new Date(2024, 12, 17), viewcount: 54  },
-        { imageFile: img11, text1: "방석 팔아요", text2: "방석 많이 안사용했어요 연락주세요", date: new Date(2024, 12, 18), viewcount: 55  },
-        { imageFile: img12, text1: "이동가방 팔아요", text2: "이동가방 판매합니다 연락주세요", date: new Date(2024, 12, 19), viewcount: 7  }
+        { id: 1, imageFile: img1, text1: "땡처리 합니다", text2: "개별 판매 안하고 한번에 다 팔려고 합니다", date: new Date(2024, 12, 1), viewcount: 130  },
+        { id: 2, imageFile: img2, text1: "강아지 기저귀", text2: "소형견 기저귀에요 5천원에 드릴게요", date: new Date(2024, 12, 12), viewcount: 1512  },
+        { id: 3, imageFile: img3, text1: "대형견 신발", text2: "직거래만 합니당 연락주세요", date: new Date(2024, 12, 11), viewcount: 13  },
+        { id: 4, imageFile: img4, text1: "발톱깎기,배변봉투", text2: "장난감 묶음으로 판매해요 한개씩도 파니까 연락주세요", date: new Date(2024, 12, 1), viewcount: 22  },
+        { id: 5, imageFile: img5, text1: "이동가방", text2: "배변패드입니다 연락주세요", date: new Date(2024, 12, 21), viewcount: 1120  },
+        { id: 6, imageFile: img6, text1: "소형견 기저귀", text2: "강아지가 더이상 장난감을 안쓰네요", date: new Date(2024, 12, 13), viewcount: 123  },
+        { id: 7, imageFile: img7, text1: "장난감 기타등등 팝니다", text2: "개당 천원씩 드릴게요 연락주세요", date: new Date(2024, 12, 14), viewcount: 3240  },
+        { id: 8, imageFile: img8, text1: "배변패드", text2: "무료나눔 합니다 연락주세요", date: new Date(2024, 12, 15), viewcount: 213 },
+        { id: 9, imageFile: img9, text1: "장난감 팔아요", text2: "직거래 합니다 연락주세요", date: new Date(2024, 12, 16), viewcount: 235 },
+        { id: 10, imageFile: img10, text1: "소형견 옷 땡처리", text2: "옷 개당 2천원에 드릴게요 연락주세요 소형견입니다", date: new Date(2024, 12, 17), viewcount: 54  },
+        { id: 11, imageFile: img11, text1: "방석 팔아요", text2: "방석 많이 안사용했어요 연락주세요", date: new Date(2024, 12, 18), viewcount: 55  },
+        { id: 12, imageFile: img12, text1: "이동가방 팔아요", text2: "이동가방 판매합니다 연락주세요", date: new Date(2024, 12, 19), viewcount: 7  }
     ];
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -119,12 +120,14 @@ const handleSortChange = (option) => {
                             <Divider width={"100%"} backgroundColor={"var(--line-color)"} />
                         </div>
                         {currentPosts.map((card, index) => (
+                            <Link to={`/resell/post/${card.id}`} key={card.id}>
                             <Card2
                                 key={index}  // key prop을 고유하게 설정
                                 imageFile={card.imageFile}
                                 text1={card.text1}
                                 text2={card.text2}
                             />
+                            </Link>
                         ))}
                     </div>
                 </div>

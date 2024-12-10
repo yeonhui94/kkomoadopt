@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Mypageimg from '../../../components/logo/Mypageicon.svg';
 import { Link } from 'react-router-dom'; 
 const StyledImg = styled.img`
-  /* margin-top: 5px; */
+  margin-top: 5px;
 `;
 
 const Mypageicon2 = () => {

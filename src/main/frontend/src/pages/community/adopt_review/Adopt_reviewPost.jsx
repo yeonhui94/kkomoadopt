@@ -14,7 +14,6 @@ function Adopt_reviewPost ({ post }) {
             <div className={postst.post_title}>
                 <h3>&nbsp; {post.title}</h3>
             </div>
-
             <div className={postst.post_tmi}>
                 <div className={postst.post_tmi1}>
                     <p className={postst.post_nick}>&nbsp;&nbsp;닉네임&nbsp;:&nbsp; {post.userid}</p>

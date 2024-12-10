@@ -12,6 +12,7 @@ import SubNaviBar from "../../components/MyPage/SubNavi/SubNaviBar";  // SubNavi
 import styles from "./MyPage.module.css";  // 스타일시트 임포트
 import SearchBar from "../../components/SearchBar";
 import Pagenumber from "../../components/pagenumber/Pagenumber";  // Pagenumber 컴포넌트 임포트
+import { Link } from "react-router-dom";
 
 const Scrappage = ({ gridArea }) => {
   const [selectedCategory, setSelectedCategory] = useState("전체");
@@ -51,7 +52,8 @@ const Scrappage = ({ gridArea }) => {
   const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
 
   // 스크랩 토글 함수
-  const toggleScrap = (id) => {
+  const toggleScrap = (id, event) => {
+    event.preventDefault();
     setScrapedItems(prevScrapedItems => {
       if (prevScrapedItems.includes(id)) {
         return prevScrapedItems.filter(itemId => itemId !== id);
@@ -99,14 +101,17 @@ const Scrappage = ({ gridArea }) => {
 
         <div className={styles.content}>
           {currentPosts.map((item) => (
+            <Link to={`/adoption/post/${item.id}`} key={item.id}>
             <Card2 
               key={item.id} 
               imageFile={item.img} 
               text1={item.title} 
               description={item.description} 
               isScraped={scrapedItems.includes(item.id)}
-              onScrapToggle={() => toggleScrap(item.id)} 
-            />
+              onScrapToggle={(event) => toggleScrap(item.id, event)} 
+            >
+            </Card2>
+            </Link>
           ))}
         </div>
 

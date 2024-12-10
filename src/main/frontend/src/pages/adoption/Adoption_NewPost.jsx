@@ -51,21 +51,20 @@ const Adoption_NewPost = ({gridArea}) => {
     // };
 
 
-        // 텍스트가 변경될 때마다 상태를 업데이트
-        const handleInputChange = (e) => {
-            console.log(handleInputChange)
-            const { name, value } = e.target;
-            setFormData((prevData) => ({
-                ...prevData,
-                [name]: value
-            }));
-
-            setText(value);
-        
-            // 텍스트의 내용에 따라 textarea 높이를 자동으로 조정
-            e.target.style.height = 'auto';  // 높이를 'auto'로 설정해서 기본 높이로 리셋
-            e.target.style.height = `${e.target.scrollHeight}px`; // 내용에 맞춰 높이 설정
-        };
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value // name을 기준으로 상태 업데이트
+        }));
+    
+        setText(value);
+    
+        // 텍스트의 내용에 따라 textarea 높이를 자동으로 조정
+        e.target.style.height = 'auto';  // 높이를 'auto'로 설정해서 기본 높이로 리셋
+        e.target.style.height = `${e.target.scrollHeight}px`; // 내용에 맞춰 높이 설정
+    };
+    
 
 
 
@@ -160,18 +159,20 @@ const Adoption_NewPost = ({gridArea}) => {
                     <p className={styles.p}>내용</p>
                     {/* 반복되는 textarea 요소들 */}
                     <div className={styles.textareaWrapper}>
-                        {fields.map((field, index) => (
-                            <div key={index} className={styles.fixedTextWrapper}>
-                                <span className={styles.fixedText}>{field.label}: </span>
-                                <textarea
-                                    className={styles.textareaField}
-                                    value={formData[field.label]}
-                                    placeholder={field.placeholder}
-                                    onChange={handleInputChange}
-                                />
-                            </div>
-                        ))}
-                    </div>
+    {fields.map((field, index) => (
+        <div key={index} className={styles.fixedTextWrapper}>
+            <span className={styles.fixedText}>{field.label}: </span>
+            <textarea
+                className={styles.textareaField}
+                name={field.label} // name 속성 추가
+                value={formData[field.label]} // 상태에서 해당 값 바인딩
+                placeholder={field.placeholder}
+                onChange={handleInputChange}
+            />
+        </div>
+    ))}
+</div>
+
                 </div>
                 <div className={styles.postbtn}>
                     <Button text={"등록"} onClick={handleSubmit} />

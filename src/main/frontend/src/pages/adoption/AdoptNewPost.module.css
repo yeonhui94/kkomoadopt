@@ -16,6 +16,9 @@
     padding-bottom: 8px;
     margin: 0;
 }
+span{
+  white-space: nowrap;
+}
 .textarea{
     height: auto;
 }
@@ -42,8 +45,7 @@
 }
 
 .textareaField {
-    flex: 1;
-    padding: 8px;
+    width: 100%;
     font-size: 1rem;
     border: none;
     outline: none;

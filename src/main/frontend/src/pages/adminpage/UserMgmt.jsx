@@ -87,6 +87,7 @@ function UserMgmt({ gridArea }) {
         setAllPosts(updatedPosts); // 상태 업데이트
         setIsModalOpen(false); // 모달 닫기
         setSelectedUsers([]); // 선택된 사용자 목록 초기화
+        setCheckedItems({}); // 체크박스 해제
     };
     
 
@@ -102,6 +103,7 @@ function UserMgmt({ gridArea }) {
         setAllPosts(updatedPosts); // 새로운 사용자 목록으로 상태 업데이트
         setIsDeleteModal(false); // 모달 닫기
         setSelectedUsers([]); // 선택된 사용자 목록 초기화
+        setCheckedItems({}); // 체크박스 해제
     };
 
     // 모달을 닫는 함수
@@ -186,25 +188,21 @@ function UserMgmt({ gridArea }) {
                 {/* 블랙리스트 추가 모달 컴포넌트 */}
                 <Modal
                     isOpen={isModalOpen}
-                    modalText={`블랙리스트 사용자 : ${selectedUsers.join(", ")}`}
+                    modalText="사유를 선택해 주세요."
                     closeModal={closeModal}
                     onConfirm={handleAddToBlacklist}
-                    selectedUsers={selectedUsers} // 선택된 사용자들 전달
-                    inPut={
-                        <>
-                            <select value={selectedOption} onChange={handleDropdownChange}>
-                                <option value="">사유</option>
-                                <option value="욕설">욕설</option>
-                                <option value="음담패설">음담패설</option>
-                                <option value="광고">광고</option>
-                                <option value="관련없는 내용">관련없는 내용</option>
-                                <option value="기타">기타</option>
-                            </select>
-                        </>
-                    }
                     confirmText="확인"
                     cancelText="취소"
-                />
+                >
+                    <div>
+                        <select value={selectedOption} onChange={handleDropdownChange}>
+                            <option value="">선택</option>
+                            <option value="거래정지">거래정지</option>
+                            <option value="욕설">욕설</option>
+                            <option value="부정행위">부정행위</option>
+                        </select>
+                    </div>
+                </Modal>
             </div>
         </div>
     );

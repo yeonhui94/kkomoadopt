@@ -28,6 +28,21 @@ export const READ_ADOPTION_POSTS = "READ_ADOPTION_POSTS";
 export const READ_ADOPTION_POST_DETAIL = "READ_ADOPTION_POST_DETAIL";
 export const UPDATE_ADOPTION_POST = "UPDATE_ADOPTION_POST";
 export const DELETE_ADOPTION_POST = "DELETE_ADOPTION_POST";
+export const GET_ALLNOTICES = "GET_ALLNOTICES";
+export const GET_TOTAL_CNT = 'GET_TOTAL_CNT';
+export const GET_PAGE_NUM = "GET_PAGE_NUM";
+
+// 게시물 목록 불러오기
+export const getAdoptionPostsAction = (pageNum) => async (dispatch) => {
+  try {
+    const response = await getAdoptionPosts(pageNum);
+    console.log('Notices Data:', response);  // 데이터 콘솔에 출력
+      dispatch({ type: GET_ALLNOTICES, payload: response.data.adoptNoticeList});
+      dispatch({ type: GET_TOTAL_CNT, payload: response.data.totalCnt });
+  } catch (error) {
+    dispatch({ type: SET_ERROR, payload: error.message });
+  }
+  };
 
 // 액션 생성자들
 export const changeAdoptionNoticeUid = (noticeUid) => ({

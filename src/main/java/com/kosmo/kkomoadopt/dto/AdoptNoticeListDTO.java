@@ -10,9 +10,10 @@ import java.util.List;
 public record AdoptNoticeListDTO(
         List<Notice> adoptNoticeList,
         long totalCnt,
-        int PageNum
+        int pageNum
 ){
     public record Notice(
+            String noticeUid,
             NoticeCategory noticeCategory,
             String noticeTitle,
             String noticeContent,

@@ -38,12 +38,26 @@ const initialState = {
   noticeUpdatedAt: null,
   impossibleReason: '',
   adoptionAuthor: '',
-  posts: [],               // 모든 입양 게시물을 저장할 배열
-  postDetail: {},          // 선택된 게시물의 상세 정보를 저장
+  notices: [],               // 모든 입양 게시물을 저장할 배열
+  noticeDetail: {},          // 선택된 게시물의 상세 정보를 저장
+  pageNum: 1,
+  totalCnt: 0
 };
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
+    // 전체 게시물 불러오기
+    case GET_ALLNOTICES:
+      return { ...state, notices: action.payload,};
+  
+    // Page Num 목록 불러오기
+    case GET_PAGE_NUM:
+      return { ...state, notice: action.payload };
+    
+    // TotalCnt 불러오기
+    case GET_TOTAL_CNT:
+      return { ...state, notice: action.payload };
+
     // 입양 공지사항 상태 업데이트
     case CHANGE_ADOPTION_NOTICE_UID:
       return { ...state, noticeUid: action.payload };

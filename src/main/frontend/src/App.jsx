@@ -24,7 +24,6 @@ import CommunityWt from "./pages/community/resell/Resell_CommunityWt";
 import CommunityWt_report from "./pages/community/report/Report_CommunityWt";
 import IdPasswordContents from "./pages/Login/IdPasswordContents";
 import Report_CommunityWt from "./pages/community/report/Report_CommunityWt";
-import Find_child_community from "./pages/community/find_child/Missing_Community";
 import Find_child_CommunityWt from "./pages/community/find_child/Missing_CommunityWt";
 import Resell_Community from "./pages/community/resell/Resell_Community";
 import Adopt_review_Community from "./pages/community/adopt_review/Adopt_review_Community";
@@ -34,8 +33,6 @@ import Review from "./pages/Review";
 import Apply_consult from "./pages/customer_service/apply_consult/Apply_consult";
 import Qna from "./pages/customer_service/qna/Qna";
 import Adoption from "./pages/adoption/Adoption";
-import Missing from "./pages/Missing";
-import Missing_community from "./pages/community/find_child/Missing_Community";
 import Missing_CommunityWt from "./pages/community/find_child/Missing_CommunityWt";
 import Scrappage from "./pages/mypage/Scrappage";
 import Report from "./pages/community/report/Report.jsx";
@@ -62,8 +59,10 @@ import MainPage from './pages/Main/MainPage';
 import Adopt_postpage from "./pages/adoption/Adopt_postpage.jsx";
 import Announcement_Wt from "./pages/community/announce/Announcement_Wt.jsx";
 import Report_postpage from "./pages/community/report/Report_postpage.jsx";
-
-
+import Announcement_Post from "./pages/community/announce/Announcement_Post.jsx";
+import Announcement_postpage from "./pages/community/announce/Announcement_postpage.jsx";
+// import Missing_postpage from "./pages/community/find_child/Missing_postpage.jsx";
+import Missing from "./pages/Missing.jsx";
 
 
 function App() {
@@ -92,6 +91,7 @@ function App() {
         { path: "/welcome", element: <JoinSecession gridArea="section" /> },
         //입양
         {path: "/adoption", element: <Adoption gridArea="section" />},
+        //입양 글쓰기
         {path: "/adopt-wt", element: <Adoption_NewPost gridArea="section" />},
         //입양 게시글 디테일
         {path: "/adoption/post/:id", element: <Adopt_postpage gridArea="section" />},
@@ -103,6 +103,7 @@ function App() {
           children: [
             // 공지사항
             { path: "", element: <Announcement gridArea="subsection" /> },
+            { path: "admin", element: <Announcement gridArea="section" userType={userType} /> },
             // 사고팝니다
             { path: "resell", element: <Resell gridArea="subsection" /> },
             // 신고합니다
@@ -113,23 +114,11 @@ function App() {
             { path: "find-child", element: <Missing gridArea="section" /> },
           ],
         },
-        // 커뮤니티 > 아이를 찾습니다 (게시글 디테일 / 글쓰기화면)
-        {
-          path: "commu-find_child",
-          element: <Missing_community gridArea="section" />,
-          children: [
-            // 아이를 찾습니다 게시글
-            //  { path: "", element: <CommunityWt_report gridArea="subsection"/>},
-            // 아이를 찾습니다 글쓰기
-            {
-              path: "communitywt",
-              element: (
-                <Missing_CommunityWt text="신고합니다" gridArea="subsection" />
-              ),
-            },
-          ],
-        },
-        // 커뮤니티 > 입양 후기
+          // 커뮤니티 > 아이를 찾습니다 게시글
+            // { path: "Missing/post/:id", element: <Missing_postpage gridArea="section"/>},
+          // 커뮤니티 > 아이를 찾습니다 글쓰기
+            { path: "commu_missing_wt", element: <Missing_CommunityWt text="신고합니다" gridArea="section" />},
+          // 커뮤니티 > 입양 후기
         {
           path: "commu-adopt_review",
           element: <Adopt_review_Community gridArea="section" />,
@@ -170,7 +159,9 @@ function App() {
         { path: "report/post/:id", element: <Report_postpage gridArea="section" />},
         // 커뮤니티 > 공지사항 글쓰기
         { path: "/commu_announce_wt", element: <Announcement_Wt gridArea="section" />},
-
+        // 커뮤니티 > 공지사항 게시글
+        { path: "/announce/post/:id", element: <Announcement_postpage gridArea="section" />},
+        
         // 고객센터
         {
           path: "customerservice",
@@ -254,6 +245,8 @@ function App() {
               }
             ]
         },
+      
+        // 입양  글쓰기
         { path: "adoption-newpost", element: <Adoption_NewPost gridArea="subsection" /> },
         // { path: "admin/customer_qnaresult/:id", element: <QnaResultPage gridArea="subsection" /> },
         // 어드민용 마이페이지 자식 라우트
@@ -276,7 +269,6 @@ function App() {
   return (
     <div>
       <RouterProvider router={router} />
-      {/* <PostsMgmt/> */}
       {/* <AdoptionPostPage></AdoptionPostPage> */}
       {/* <Section3333></Section3333> */}
       {/* <Adoption_NewPost></Adoption_NewPost> */}

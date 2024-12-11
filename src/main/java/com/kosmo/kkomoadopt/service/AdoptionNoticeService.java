@@ -61,7 +61,7 @@ public class AdoptionNoticeService {
         adoptionNoticeEntity.setAnimalType(adoptNoticeDTO.animalType());
         adoptionNoticeEntity.setNoticeCreatedAt(LocalDateTime.now()); // 기본값 설정
         adoptionNoticeEntity.setNoticeUpdatedAt(LocalDateTime.now()); // 기본값 설정
-        adoptionNoticeEntity.setImpossibleReason("");
+        adoptionNoticeEntity.setImpossibleReason(""); // 기본값 설정
 
         String[] fileNames = null;
         try {
@@ -99,6 +99,7 @@ public class AdoptionNoticeService {
 
             // AdoptNoticeDTO.Notice 변환
             AdoptNoticeListDTO.Notice noticeDto = new AdoptNoticeListDTO.Notice(
+                    notice.getNoticeUid(),
                     notice.getNoticeCategory(),
                     notice.getNoticeTitle(),
                     notice.getNoticeContent(),
@@ -142,6 +143,7 @@ public class AdoptionNoticeService {
 
             // AdoptNoticeDTO.Notice 변환
             AdoptNoticeListDTO.Notice noticeDto = new AdoptNoticeListDTO.Notice(
+                    notice.getNoticeUid(),
                     notice.getNoticeCategory(),
                     notice.getNoticeTitle(),
                     notice.getNoticeContent(),

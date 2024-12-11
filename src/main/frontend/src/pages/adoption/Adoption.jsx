@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { useStore as AdoptionNoticeStore } from "../../stores/AdoptionNoticeStore/useStore";
 
 const Adoption = ({ gridArea }) => {
-  const [selectedCategory, setSelectedCategory] = useState("강아지");
+  const [selectedCategory, setSelectedCategory] = useState("ALL");
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOption, setSortOption] = useState("전체보기");
   const [searchQuery, setSearchQuery] = useState('');  // 검색어 상태 추가
@@ -79,10 +79,12 @@ const Adoption = ({ gridArea }) => {
   const totalPages = Math.ceil(state.totalCnt / postsPerPage);
 
   const menuItems = [
-    { name: '강아지', category: '강아지' },
-    { name: '고양이', category: '고양이' },
-    { name: '기타동물', category: '기타동물' },
+    { name : "전체", category : "ALL"},
+    { name: "강아지", category: "DOG" },
+    { name: "고양이", category: "CAT" },
+    { name: "기타동물", category: "OTHERS" }
   ];
+
 
   // SubMenuBar에서 선택된 카테고리 처리
   const handleTabClick = (category) => {
@@ -122,7 +124,7 @@ const Adoption = ({ gridArea }) => {
 
   // 첫 번째 카테고리가 항상 선택되어 있도록 유지
   useEffect(() => {
-    setSelectedCategory("강아지"); // 초기 렌더링 시 '강아지' 카테고리가 활성화되도록 설정
+    setSelectedCategory("ALL"); // 초기 렌더링 시 '강아지' 카테고리가 활성화되도록 설정
   }, []);
 
   return (

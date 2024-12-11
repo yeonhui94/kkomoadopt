@@ -26,6 +26,13 @@ const Adoption = ({ gridArea }) => {
   console.log(state.totalCnt);
   console.log(state.pageNum);
 
+// 전체 동물 목록을 필터링하는 로직
+  const filteredNotices = state.notices.filter(item => {
+    if (selectedCategory === "ALL") {
+      return true; // 전체 카테고리일 경우 모든 동물 반환
+    }
+    return item.category === selectedCategory;  // 선택된 카테고리에 맞는 동물만 반환
+  });
   // 카드 데이터 관리: 각 카드 데이터에 isScraped 포함
   // const [allPosts, setAllPosts] = useState([
   //   { id: 1, img: img1, title: "3세 / 포메라니안 / 성격나쁨", category: "강아지", isScraped: false, breed : "포메라니안", date: new Date(2024,12,10), viewcount: 150},

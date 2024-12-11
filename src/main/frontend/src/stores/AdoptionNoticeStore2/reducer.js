@@ -22,7 +22,7 @@ import {
   DELETE_ADOPTION_POST
 } from './action';
 
-const initialState = {
+ export const initialState = {
   noticeUid: '',
   noticeCategory: '',
   noticeTitle: '',

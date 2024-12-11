@@ -20,8 +20,8 @@ import {
   createAdoptionPost,
   readAdoptionPosts,
   readAdoptionPostDetail,
-  updateAdoptionPost,
-  deleteAdoptionPost,
+  updateAdoptionPostAPI,
+  deleteAdoptionPostAPI,
   getAdoptionPostsAction
 } from "./action"; // action.js에서 액션들 임포트
 
@@ -55,8 +55,8 @@ export const useStore = () => {
     createAdoptionPost: (adoptionData) => createAdoptionPost(adoptionData)(dispatch),
     readAdoptionPosts: () => readAdoptionPosts()(dispatch),
     readAdoptionPostDetail: (noticeUid) => readAdoptionPostDetail(noticeUid)(dispatch),
-    updateAdoptionPost: (noticeUid, updatedData) => updateAdoptionPost(noticeUid, updatedData)(dispatch),
-    deleteAdoptionPost: (noticeUid) => deleteAdoptionPost(noticeUid)(dispatch),
+    updateAdoptionPostAPI: (noticeUid, updatedData) => updateAdoptionPostAPI(noticeUid, updatedData)(dispatch),
+    deleteAdoptionPostAPI: (noticeUid) => deleteAdoptionPostAPI(noticeUid)(dispatch),
 
     // 상태 초기화
     resetAdoptionState: () => dispatch(resetAdoptionState()),

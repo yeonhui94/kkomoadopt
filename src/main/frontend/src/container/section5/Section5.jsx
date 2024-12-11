@@ -67,10 +67,12 @@ const CardWrapper = styled.div`
   & > div:hover img {
     transform: scale(1.1);
   }
-
+  @media (max-width: 1024px) {
+    & > div  {
+      margin-bottom: 10px;
+    }
+  }
   @media (max-width: 768px) {
-    padding: 5px 20px;
-
     & > div  {
       width: 100%; /* 카드 크기 비율로 설정 */
       height: 80%; /* 카드 높이를 자동으로 조정 */

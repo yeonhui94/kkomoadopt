@@ -60,7 +60,7 @@ export const useStore = () => {
 
     // 상태 초기화
     resetAdoptionState: () => dispatch(resetAdoptionState()),
-  };   
+  };
 
   return { state, actions }; // 상태와 액션들을 반환
 };

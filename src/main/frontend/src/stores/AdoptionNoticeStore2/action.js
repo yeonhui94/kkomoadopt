@@ -176,8 +176,8 @@ export const updateAdoptionPostAPI = (noticeUid, updatedData) => async (dispatch
 export const deleteAdoptionPostAPI = (noticeUid) => async (dispatch) => {
   try {
       const response = await deleteAdoptionPost(noticeUid);  // 게시물 삭제 API 호출
-      dispatch({  
-          type: DELETE_ADOPTION_POST,   
+      dispatch({
+          type: DELETE_ADOPTION_POST,
           payload: noticeUid,  // 삭제된 게시물의 UID
       });
   } catch (error) {

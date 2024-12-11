@@ -22,7 +22,7 @@ import imgm2 from "../../assets/CardImage/m2.jpg";
 import Adoption_Post from "./Adoption_Post";
 import { formatDate } from "../../utils/formattedDate";
 import { useParams } from "react-router-dom";
-import {fetchNoticeByUid} from "../../stores/AdoptionNoticeStore/service";
+// import {fetchNoticeByUid} from "../../stores/AdoptionNoticeStore/service";
 // import service from "../../stores/AdoptionNoticeStore/service";
 
 const Adopt_postpage = ({ text = "입양", gridArea }) => {

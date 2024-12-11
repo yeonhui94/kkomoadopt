@@ -20,13 +20,14 @@ import {
   export const CHANGE_COMMUNITY_AUTHOR = "CHANGE_COMMUNITY_AUTHOR";
   export const CHANGE_POST_VIEW_COUNT = "CHANGE_POST_VIEW_COUNT";
   export const RESET_STATE = "RESET_STATE";
-  
+     
   // CRUD 관련 액션 타입들 추가
   export const READ_COMMUNITY_POSTS = "READ_COMMUNITY_POSTS";
   export const READ_COMMUNITY_POST_DETAIL = "READ_COMMUNITY_POST_DETAIL";
   export const CREATE_COMMUNITY_POST = "CREATE_COMMUNITY_POST";
   export const UPDATE_COMMUNITY_POST = "UPDATE_COMMUNITY_POST";
   export const DELETE_COMMUNITY_POST = "DELETE_COMMUNITY_POST";
+  export const UPDATED_ALL = "UPDATED_ALL";
   
   // Action Creators
   export const changePostUid = (postUid) => ({ type: CHANGE_POST_UID, payload: postUid });
@@ -41,6 +42,7 @@ import {
   export const changeDeleteReason = (deleteReason) => ({ type: CHANGE_DELETE_REASON, payload: deleteReason });
   export const changeCommunityAuthor = (communityAuthor) => ({ type: CHANGE_COMMUNITY_AUTHOR, payload: communityAuthor });
   export const changePostViewCount = (postViewCount) => ({ type: CHANGE_POST_VIEW_COUNT, payload: postViewCount });
+  export const updatedAll = (post) => ({type: UPDATED_ALL, payload: post});
   export const resetState = () => ({ type: RESET_STATE });
   
   // CRUD 관련 액션 생성자

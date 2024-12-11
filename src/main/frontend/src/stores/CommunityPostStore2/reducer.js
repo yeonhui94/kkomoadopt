@@ -12,6 +12,7 @@ import {
   CHANGE_COMMUNITY_AUTHOR,
   CHANGE_POST_VIEW_COUNT,
   RESET_STATE,
+  UPDATED_ALL, //전체 상태 업데이트
   READ_COMMUNITY_POSTS,  // 추가된 액션 타입
   READ_COMMUNITY_POST_DETAIL,  // 추가된 액션 타입
   CREATE_COMMUNITY_POST,  // 추가된 액션 타입
@@ -65,6 +66,8 @@ export const reducer = (state = initialState, action) => {
       return { ...state, communityAuthor: action.payload };
     case CHANGE_POST_VIEW_COUNT:
       return { ...state, postViewCount: action.payload };
+    case UPDATED_ALL: 
+      return { ...state, post: action.payload};
 
     // CRUD 작업 관련 상태 변경
     case READ_COMMUNITY_POSTS:
@@ -75,7 +78,7 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         communityPosts: [...state.communityPosts, action.payload], // 새 게시물 추가
-      };
+      };   
     case UPDATE_COMMUNITY_POST:
       return {
         ...state,

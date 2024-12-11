@@ -13,6 +13,7 @@ import {
   changeDeleteReason,
   changeCommunityAuthor,
   changePostViewCount,
+  updatedAll,
   resetState,
   readCommunityPosts,
   readCommunityPostDetail,
@@ -38,6 +39,7 @@ export const useStore = () => {
     changeDeleteReason: (deleteReason) => dispatch(changeDeleteReason(deleteReason)),
     changeCommunityAuthor: (communityAuthor) => dispatch(changeCommunityAuthor(communityAuthor)),
     changePostViewCount: (postViewCount) => dispatch(changePostViewCount(postViewCount)),
+    updatedAll: (post) => dispatch(updatedAll(post)),
     resetState: () => dispatch(resetState()),  // 상태 초기화
 
     // CRUD 액션들
@@ -50,3 +52,4 @@ export const useStore = () => {
 
   return { state, actions };  // 상태와 액션들을 반환
 };
+   

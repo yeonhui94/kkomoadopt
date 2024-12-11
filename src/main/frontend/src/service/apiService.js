@@ -33,7 +33,7 @@ export const deleteAdoptionPost = (noticeUid) => apiClient.delete(`/api/adoption
 
 
 // 댓글 관련 API 요청 메서드
-
+   
 // 1. 댓글 목록 조회
 export const getComments = () => apiClient.get('/api/comments');
 
@@ -101,5 +101,10 @@ export const updateVisitRequest = (requestUid, updatedData) => apiClient.patch(`
 // 5. 방문 요청 삭제
 export const deleteVisitRequest = (requestUid) => apiClient.delete(`/api/visit-requests/${requestUid}`);
 
+
+
+
+// 공지사항 관련 API 
+export const fetchNotices = () => apiClient.get("/"); 
 
 export default apiClient;

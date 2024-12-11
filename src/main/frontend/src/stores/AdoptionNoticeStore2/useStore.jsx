@@ -17,9 +17,9 @@ import {
   changeAdoptionImpossibleReason,
   changeAdoptionAuthor,
   resetAdoptionState,
-  createAdoptionPost,
-  readAdoptionPosts,
-  readAdoptionPostDetail,
+  createAdoptionPostAPI,
+  readAdoptionPostsAPI,
+  readAdoptionPostDetailAPI,
   updateAdoptionPostAPI,
   deleteAdoptionPostAPI,
   getAdoptionPostsAction
@@ -32,7 +32,7 @@ export const useStore = () => {
     // 입양 공지 게시물 전체조회
     getAdoptionPostsAction: (pageNum) => getAdoptionPostsAction(pageNum)(dispatch),
     // 입양 공지 게시물 상세조회
-    getAdoptionPostAction: (noticeUid) => getAdoptionPostAction(noticeUid)(dispatch),
+    // getAdoptionPostAction: (noticeUid) => getAdoptionPostAction(noticeUid)(dispatch),
 
     // 입양 공지 관련 상태 변경
     changeAdoptionNoticeUid: (noticeUid) => dispatch(changeAdoptionNoticeUid(noticeUid)),
@@ -55,8 +55,8 @@ export const useStore = () => {
     createAdoptionPost: (adoptionData) => createAdoptionPost(adoptionData)(dispatch),
     readAdoptionPosts: () => readAdoptionPosts()(dispatch),
     readAdoptionPostDetail: (noticeUid) => readAdoptionPostDetail(noticeUid)(dispatch),
-    updateAdoptionPostAPI: (noticeUid, updatedData) => updateAdoptionPostAPI(noticeUid, updatedData)(dispatch),
-    deleteAdoptionPostAPI: (noticeUid) => deleteAdoptionPostAPI(noticeUid)(dispatch),
+    updateAdoptionPost: (noticeUid, updatedData) => updateAdoptionPost(noticeUid, updatedData)(dispatch),
+    deleteAdoptionPost: (noticeUid) => deleteAdoptionPost(noticeUid)(dispatch),
 
     // 상태 초기화
     resetAdoptionState: () => dispatch(resetAdoptionState()),

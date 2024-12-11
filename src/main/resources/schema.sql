@@ -49,26 +49,6 @@ COLLATE='utf8mb3_general_ci'
 ENGINE=InnoDB
 ;
 
-
-CREATE TABLE IF NOT EXISTS `comment` (
-	`comment_id` VARCHAR(36) NOT NULL COLLATE 'utf8mb3_general_ci',
-	`comment_content` TEXT NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`comment_created_at` DATETIME(6) NOT NULL,
-	`comment_updated_at` DATETIME(6) NOT NULL,
-	`is_deleted` BIT(1) NOT NULL,
-	`user_id` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	`post_uid` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
-	PRIMARY KEY (`comment_id`) USING BTREE,
-	INDEX `fk_post_uid` (`post_uid`) USING BTREE,
-	INDEX `fk_user_id` (`user_id`) USING BTREE,
-	CONSTRAINT `fk_post_uid` FOREIGN KEY (`post_uid`) REFERENCES `community_post` (`post_uid`) ON UPDATE CASCADE ON DELETE CASCADE,
-	CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE ON DELETE CASCADE
-)
-COLLATE='utf8mb3_general_ci'
-ENGINE=InnoDB
-;
-
-
 CREATE TABLE IF NOT EXISTS `community_post` (
 	`post_uid` VARCHAR(36) NOT NULL COLLATE 'utf8mb3_general_ci',
 	`delete_reason` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
@@ -90,6 +70,26 @@ CREATE TABLE IF NOT EXISTS `community_post` (
 COLLATE='utf8mb3_general_ci'
 ENGINE=InnoDB
 ;
+
+CREATE TABLE `comment` (
+	`comment_id` VARCHAR(36) NOT NULL COLLATE 'utf8mb3_general_ci',
+	`comment_content` TEXT NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`comment_created_at` DATETIME(6) NOT NULL,
+	`comment_updated_at` DATETIME(6) NOT NULL,
+	`is_deleted` BIT(1) NOT NULL,
+	`post_uid` VARCHAR(255) NOT NULL COLLATE 'utf8mb3_general_ci',
+	`user_id` VARCHAR(255) NOT NULL COLLATE 'utf8mb3_general_ci',
+	`comment_del_reason` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	PRIMARY KEY (`comment_id`) USING BTREE,
+	INDEX `fk_comment_post_uid` (`post_uid`) USING BTREE,
+	INDEX `fk_user_id` (`user_id`) USING BTREE,
+	CONSTRAINT `fk_comment_post_uid` FOREIGN KEY (`post_uid`) REFERENCES `community_post` (`post_uid`) ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON UPDATE CASCADE ON DELETE CASCADE
+)
+COLLATE='utf8mb3_general_ci'
+ENGINE=InnoDB
+;
+
 
 
 CREATE TABLE IF NOT EXISTS `qna` (

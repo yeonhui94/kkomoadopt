@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../../assets/whitever.png";
 import logo2 from '../../assets/logo2.png';  // logo2 이미지 import
+import { Link } from "react-router-dom";
 
 // Logo2는 헤더용으로 하나 따로 만든거임!!
 function Logo2({ width = "140px", height = "100px", isScrolled }) {

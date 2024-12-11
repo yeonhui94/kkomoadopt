@@ -7,19 +7,19 @@ import styles from "../Review.module.css";
 import Dropdown from "../../components/DropDown";
 import Divider from "../../components/Divider";
 import { Link } from "react-router-dom";
-import { useStore as AdoptionNoticeStore } from "../../stores/AdoptionNoticeStore/useStore";
+import { useStore as AdoptionNoticeStore2 } from "../../stores/AdoptionNoticeStore2/useStore";
 
 const Adoption = ({ gridArea }) => {
   const [selectedCategory, setSelectedCategory] = useState("강아지");
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOption, setSortOption] = useState("전체보기");
   const [searchQuery, setSearchQuery] = useState('');  // 검색어 상태 추가
-  const { state, actions } = AdoptionNoticeStore(); // useStore 훅을 통해 상태와 액션 가져오기
+  const { state, actions } = AdoptionNoticeStore2(); // useStore 훅을 통해 상태와 액션 가져오기
 
   const options = ["전체보기","최신 순", "오래된 순", "조회 수 높은 순","조회 수 낮은 순"];
 
   useEffect(() => {
-    actions.getAllNoticesAction(state.pageNum);
+    actions.getAdoptionPostsAction(state.pageNum);
     
   },[state.pageNum]);
   console.log(state.notices);

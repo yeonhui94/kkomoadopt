@@ -19,10 +19,13 @@ import {
   READ_ADOPTION_POSTS,
   READ_ADOPTION_POST_DETAIL,
   UPDATE_ADOPTION_POST,
-  DELETE_ADOPTION_POST
+  DELETE_ADOPTION_POST,
+  GET_ADOPTION_POSTS,
+  GET_PAGE_NUM,
+  GET_TOTAL_CNT
 } from './action';
 
-const initialState = {
+export const initialState = {
   noticeUid: '',
   noticeCategory: '',
   noticeTitle: '',
@@ -47,7 +50,7 @@ const initialState = {
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     // 전체 게시물 불러오기
-    case GET_ALLNOTICES:
+    case GET_ADOPTION_POSTS:
       return { ...state, notices: action.payload,};
   
     // Page Num 목록 불러오기

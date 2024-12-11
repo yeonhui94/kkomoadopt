@@ -149,7 +149,7 @@
   display: grid;
   grid-area: subbar;
   grid-template: 
-    'postnum title admin date views ' 30px/ 1fr 10fr 1fr 1fr 1fr ;
+    'postnum title admin date views ' 30px/ 1fr 6fr 1fr 1fr 1fr ;
   height: 30px;
   text-align: center;
   align-items: center;
@@ -192,7 +192,7 @@
 .post {
   display: grid;
   grid-template: 
-    'postnumli titleli adminli dateli viewsli'50px/ 1fr 10fr 1fr 1fr 1fr ;
+    'postnumli titleli adminli dateli viewsli'50px/ 1fr 6fr 1fr 1fr 1fr ;
   text-align: center;
   align-items: center;
   border-bottom: 1px solid #e9e9e9;
@@ -213,18 +213,29 @@
       'postsbox postsbox' auto
       'button button' auto
       / 1fr;
+    
   }
 
   .subbar_post {
     grid-template: 
-      'postnum title admin date views' auto / 1fr 8fr 1fr 1fr 1fr;
+      'postnum title admin date views' auto / 1fr 6fr 1fr 1fr 1fr;
+    height: 50px;
   
   }
 
+  .date {
+    white-space: nowrap;
+  }
   .post {
     grid-template: 
-      'postnumli titleli adminli dateli viewsli' auto / 1fr 8fr 1fr 1fr 1fr;
+      'postnumli titleli adminli dateli viewsli' auto / 1fr 6fr 1fr 1fr 1fr;
+      height: 50px;
+      white-space: nowrap;
+    
   }
+
+  
+  
 }
 
 /* 750px 이하 */
@@ -233,7 +244,6 @@
     padding: 0 20px;
     grid-template:
       'inputdrop' auto
-      'lin' 1px
       '...' 10px
       'subbar' auto
       'postsbox' auto
@@ -249,14 +259,26 @@
   }
 
   .subbar_post {
-    display: none; /* 서브바 숨기기 */
+    grid-template: 
+      'postnum title admin views' auto / 1fr 6fr 1fr 1fr;
+    height: 50px;
+    font-size: 0.3rem;
+  
+  }
+
+  .date {
+    display:  none;
   }
 
   .post {
     grid-template: 
-      'titleli' auto
-      'postnumli adminli dateli viewsli' auto / 1fr;
-    text-align: left;
+      'titleli postnumli adminli viewsli' auto / 1fr 6fr 1fr 1fr;
+      height: 50px;
+   
+  }
+
+  .dateli{
+    display: none;
   }
 }
 

@@ -22,6 +22,10 @@ const Adoption = ({ gridArea }) => {
     actions.getAdoptionPostsAction(state.pageNum);
   }, [state.pageNum]);
 
+  // useEffect(() => {
+  //   actions. getAdoptioncategoryPostsAPI(state.pageNum, state.noticeCategory);
+  // }, [state.pageNum,state.noticeCategory]);
+
   // 전체 동물 목록을 필터링하는 로직
   const filteredNotices = state.notices.filter(item => {
     if (selectedCategory === "ALL") {

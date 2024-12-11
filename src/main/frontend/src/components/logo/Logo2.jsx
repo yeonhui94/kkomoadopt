@@ -22,9 +22,9 @@ function Logo2({ width = "140px", height = "100px", isScrolled }) {
   };
 
   return (
-    <a style={aStyle} href="#">
+    <Link to={'/'} style={aStyle}>
       <div style={logoStyle} />
-    </a>
+    </Link>
   );
 }
 

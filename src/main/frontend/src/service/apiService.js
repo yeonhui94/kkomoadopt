@@ -18,7 +18,7 @@ export const getAdoptionPosts = (pageNum) => apiClient.get(`/api/adopt/${pageNum
 export const getAdoptionPostDetail = (noticeUid) => apiClient.get(`/api/adopt/${noticeUid}`);
 
 // 3. 입양 게시물 생성
-export const createAdoptionPost = (adoptionData) => apiClient.post('/api/adoption/posts', adoptionData);
+export const createAdoptionPost = (adoptionData) => apiClient.post('/api/adoption/posts', adoptionData);   
 
 // 5. 입양 게시물 수정
 export const updateAdoptionPost = (noticeUid, updatedData) => apiClient.patch(`/api/adoption/posts/${noticeUid}`, updatedData);

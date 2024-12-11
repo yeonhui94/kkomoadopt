@@ -124,7 +124,7 @@ export const reducer = (state = initialState, action) => {
 
     // 상태 초기화
     case RESET_ADOPTION_STATE:
-      return initialState;
+      return initialState;   
 
     // 기본 리턴: 상태 그대로 반환
     default:

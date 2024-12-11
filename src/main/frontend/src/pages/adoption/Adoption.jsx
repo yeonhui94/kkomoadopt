@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { useStore as AdoptionNoticeStore2 } from "../../stores/AdoptionNoticeStore2/useStore";
 
 const Adoption = ({ gridArea }) => {
-  const [selectedCategory, setSelectedCategory] = useState("강아지");
+  const [selectedCategory, setSelectedCategory] = useState("ALL");
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOption, setSortOption] = useState("전체보기");
   const [searchQuery, setSearchQuery] = useState('');  // 검색어 상태 추가
@@ -26,6 +26,13 @@ const Adoption = ({ gridArea }) => {
   console.log(state.totalCnt);
   console.log(state.pageNum);
 
+// 전체 동물 목록을 필터링하는 로직
+  const filteredNotices = state.notices.filter(item => {
+    if (selectedCategory === "ALL") {
+      return true; // 전체 카테고리일 경우 모든 동물 반환
+    }
+    return item.category === selectedCategory;  // 선택된 카테고리에 맞는 동물만 반환
+  });
   // 카드 데이터 관리: 각 카드 데이터에 isScraped 포함
   // const [allPosts, setAllPosts] = useState([
   //   { id: 1, img: img1, title: "3세 / 포메라니안 / 성격나쁨", category: "강아지", isScraped: false, breed : "포메라니안", date: new Date(2024,12,10), viewcount: 150},
@@ -79,10 +86,12 @@ const Adoption = ({ gridArea }) => {
   const totalPages = Math.ceil(state.totalCnt / postsPerPage);
 
   const menuItems = [
-    { name: '강아지', category: '강아지' },
-    { name: '고양이', category: '고양이' },
-    { name: '기타동물', category: '기타동물' },
+    { name : "전체", category : "ALL"},
+    { name: "강아지", category: "DOG" },
+    { name: "고양이", category: "CAT" },
+    { name: "기타동물", category: "OTHERS" }
   ];
+
 
   // SubMenuBar에서 선택된 카테고리 처리
   const handleTabClick = (category) => {
@@ -122,7 +131,7 @@ const Adoption = ({ gridArea }) => {
 
   // 첫 번째 카테고리가 항상 선택되어 있도록 유지
   useEffect(() => {
-    setSelectedCategory("강아지"); // 초기 렌더링 시 '강아지' 카테고리가 활성화되도록 설정
+    setSelectedCategory("ALL"); // 초기 렌더링 시 '강아지' 카테고리가 활성화되도록 설정
   }, []);
 
   return (

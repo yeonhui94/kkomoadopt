@@ -8,11 +8,10 @@ const apiClient = axios.create({
   });
   
 
-
 // 입양 게시판 관련 API
 
 // 1. 전체 입양 게시물 조회
-export const getAdoptionPosts = (pageNum) => apiClient.get(`/api/adopt/${pageNum}`);
+export const getAdoptionPosts = (pageNum) =>apiClient.get(`/api/adopt/${pageNum}`);
 
 // 2. 특정 입양 게시물 상세 조회
 export const getAdoptionPostDetail = (noticeUid) => apiClient.get(`/api/adopt/${noticeUid}`);

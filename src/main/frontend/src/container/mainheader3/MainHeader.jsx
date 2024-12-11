@@ -30,10 +30,26 @@
         setIsFooter(false);
       }
     }, [currentSection]);
+
     const toggleMenu = () => setIsMenuOpen((prev) => !prev);
 
     // 현재 경로가 '/'인 경우 absolute, 아니면 relative로 설정
     const headerPosition = location.pathname === '/' ? 'absolute' : 'relative';
+
+
+    useEffect(() => {
+      if (isMenuOpen) {
+        document.body.style.overflow = 'hidden'; // 스크롤 비활성화
+      } else {
+        document.body.style.overflow = 'auto'; // 기본 스크롤 활성화
+      }
+
+      return () => {
+        document.body.style.overflow = 'auto'; // 컴포넌트가 언마운트될 때 스크롤 활성화
+      };
+    }, [isMenuOpen]);
+
+
 
     return (
       <div className={`${styles.headerGroup} ${isMenuOpen ? styles['menu-open'] : ''}`}>

@@ -7,6 +7,7 @@ import Pagenumber from "../../components/pagenumber/Pagenumber";
 import styles from "../Review.module.css";
 import Dropdown from "../../components/DropDown";
 import Divider from "../../components/Divider";
+import { Link } from "react-router-dom";
 import { useStore as AdoptionNoticeStore2 } from "../../stores/AdoptionNoticeStore2/useStore";
 
 const Adoption = ({ gridArea }) => {
@@ -54,6 +55,7 @@ const Adoption = ({ gridArea }) => {
     setCurrentPage(pageNumber);  // 페이지 번호 업데이트
   };
 
+  // 정렬 옵션 변경 처리
   const handleSortChange = (option) => {
     setSortOption(option);
   };

@@ -1,20 +1,29 @@
 import Button from "../../Button/Button";
-import Logo from "../../logo/Logo";
+// import Logo from "../../logo/Logo";
 import styles from "./Profile.module.css"
+import logo from "../../../assets/logo.svg";
 
 
 
-function Profile({name, text1, btnName1, btnName2, hori1, hori2, btnLink1,}){
+function Profile({name, text1, btnName1, btnName2, hori1, hori2, btnLink1,profileImageUrl ,profileLetter}){
     return(
         <div className={styles['profile-container']}>
             <div className={styles['profile-contents']}>
                 <div className={styles.smallWrapper}>
                 <div className={styles['profile-img']}> 
-                    <Logo className={styles['profile-logo']}/>
+                    {profileImageUrl ? (
+                        <img src={profileImageUrl} alt="프로필 사진" className={styles['profile-logo']} />
+                    ) : (
+                    <img src={logo} alt="프로필 사진" className={styles['profile-logo']} />
+                )}
                 </div>
                 <div className={styles['profile-text1']}>
                     <p className={styles['profile-name']}>{name} 님</p>
+                    {profileLetter ? (
+                        <p className={styles['profile-text2']}>{profileLetter}</p>
+                    ) : (
                     <p className={styles['profile-text2']}>{text1}</p>
+                )}
                 </div>
                 </div>
                 <div className={styles['profile-btns']}>

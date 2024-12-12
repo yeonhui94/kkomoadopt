@@ -13,7 +13,7 @@ import wtstyles from "../CommunityWt.module.css";
 import { useParams } from "react-router-dom";
 import Resell_Post from "./Resell_Post";
 
-function Resell_PostPage({ text = "아이를 찾습니다", gridArea }) {
+function Resell_PostPage({ text = "사고팝니다", gridArea }) {
 
     const [allPosts, setAllposts] = useState([
         {

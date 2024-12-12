@@ -219,7 +219,7 @@ const Announcement = ({ gridArea }) => {
 
   return (
     <div style={{ gridArea }} className={comstyle.posts_container}>
-      {console.log(communityState)}
+      {/* {console.log(communityState)} */}
       <div className={`${styles.rwsubcontainer2} ${comstyle.inputdrop}`}>
         <Dropdown options={options} onChange={handleSort} />
         <SearchBar placeholder={"글 내용 & 글 제목"} width="300px" onSearch={handleSearch} />

@@ -15,11 +15,11 @@ const Comment = () => {
 
     
     const [report_comments, setReportComments]  = useState ([
-        { userId : 1, nickname: "gdsgd", info: "저도봤어여", date: new Date("2024-11-25")},
-        { userId : 2, nickname: "sangil0528", info: "바보멍청이말미잘", date: new Date("2024-10-25") },
-        { userId : 3, admin: "관리자", info: "처리했습니다", date: new Date("2024-09-25") },
-        { userId : 4, nickname: "100wincattle", info: "바보바보바보바보", date: new Date("2024-08-25") },
-        { userId : 5, nickname: "john982", info: "상일오빠 바보", date: new Date("2024-09-26") },
+        { userId : 1, nickname: "gdsgd", content: "저도봤어여", date: new Date("2024-11-25")},
+        { userId : 2, nickname: "sangil0528", content: "바보멍청이말미잘", date: new Date("2024-10-25") },
+        { userId : 3, admin: "관리자", content: "처리했습니다", date: new Date("2024-09-25") },
+        { userId : 4, nickname: "100wincattle", content: "바보바보바보바보", date: new Date("2024-08-25") },
+        { userId : 5, nickname: "john982", content: "상일오빠 바보", date: new Date("2024-09-26") },
     ]);
 
      // 댓글 추가 함수
@@ -27,7 +27,7 @@ const Comment = () => {
         if (newComment.trim()) { // 댓글이 비어 있지 않으면
         const newCommentObject = {
             nickname: user,
-            info : newComment, // 작성된 댓글
+            content : newComment, // 작성된 댓글
             date: new Date()  
         };
         // 현재 comments 배열에 새 댓글을 추가
@@ -131,7 +131,7 @@ const Comment = () => {
                                             <button onClick={() => handleSaveEditedComment(index)}>저장</button>
                                             </>
                                         )
-                                        : comment.info.replace(/\n/g, "<br />"), // 줄바꿈을 <br />로 변환
+                                        : comment.content.replace(/\n/g, "<br />"), // 줄바꿈을 <br />로 변환
                                     }}>
                                 </p>
                                 <p className={postst.comment_list_item_text3}>{comment.date.toLocaleDateString()}</p>

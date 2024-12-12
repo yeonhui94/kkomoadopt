@@ -1,8 +1,25 @@
 package com.kosmo.kkomoadopt.dto;
 import com.kosmo.kkomoadopt.enums.Authority;
+import com.kosmo.kkomoadopt.enums.Provider;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 public record LoginResponseDTO(
+        String userId,
+        String email,
+        String name,
+        String phoneNumber,
+        String password,
+        LocalDateTime userCreate,
+        String userImgUrl,
+        String profileText,
+        LocalDateTime userLastLogin,
+        Boolean isBlacklisted,
+        String socialId,
+        Provider provider,
         Authority authority,
-        String nickname
+        List<BlacklistDTO> blacklists,
+        List<String> scraps
 ) {
 }

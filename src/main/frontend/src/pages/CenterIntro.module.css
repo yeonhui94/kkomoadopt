@@ -298,6 +298,7 @@
 .centint_big_text {
     text-align: center; 
     color: var(--title-black); 
+    white-space: nowrap;
     font-size: 48px; 
     font-family: var(--main-font); 
     font-weight: 700;

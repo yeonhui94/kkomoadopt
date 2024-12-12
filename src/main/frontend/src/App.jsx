@@ -1,5 +1,4 @@
 import Main from "./pages/Main/Main";
-import Intro from "./pages/Main/Intro";
 import AccesstionPageContents from "./pages/Login/AccessionPageContents";
 import LoginPageContents from "./pages/Login/LoginPageContents";
 import Customer_service from "./pages/customer_service/Customer_service";
@@ -8,32 +7,24 @@ import Announcement from './pages/community/announce/Announcement.jsx';
 import Resell from "./pages/Resell";
 import {
   createBrowserRouter,
-  Router,
   RouterProvider,
-  Routes,
 } from "react-router-dom";
-import UserNavi from "./components/MyPage/MypageNaviBar/User/UserNavi";
 import FAQ from "./container/FAQ/FAQ";
 import CenterIntro from "./pages/CenterIntro";
-import SubNaviBar from "./components/MyPage/SubNavi/SubNaviBar";
 import Mypost from "./pages/mypage/MyPost";
 import MyComments from "./pages/mypage/MyComments";
 import Csdetail from "./pages/mypage/Csdetail";
 import MyPage from "./pages/mypage/MyPage";
-import CommunityWt from "./pages/community/resell/Resell_CommunityWt";
-import CommunityWt_report from "./pages/community/report/Report_CommunityWt";
 import IdPasswordContents from "./pages/Login/IdPasswordContents";
 import Report_CommunityWt from "./pages/community/report/Report_CommunityWt";
-import Find_child_CommunityWt from "./pages/community/find_child/Missing_CommunityWt";
+import Find_child_CommunityWt from "./pages/community/find_child/Find_child_CommunityWt.jsx";
 import Resell_Community from "./pages/community/resell/Resell_Community";
-import Adopt_review_Community from "./pages/community/adopt_review/Adopt_review_Community";
 import Adopt_review_CommunityWt from "./pages/community/adopt_review/Adopt_review_CommunityWt";
 import Resell_CommunityWt from "./pages/community/resell/Resell_CommunityWt";
 import Review from "./pages/Review";
 import Apply_consult from "./pages/customer_service/apply_consult/Apply_consult";
 import Qna from "./pages/customer_service/qna/Qna";
 import Adoption from "./pages/adoption/Adoption";
-import Missing_CommunityWt from "./pages/community/find_child/Missing_CommunityWt";
 import Scrappage from "./pages/mypage/Scrappage";
 import Report from "./pages/community/report/Report.jsx";
 import ChangeProfile from "./pages/mypage/ChangeProfile";
@@ -46,11 +37,8 @@ import ConcertationPage from "./pages/ConcertationPage/ConcertationPage";
 import EditMyPage1 from "./pages/mypage/EditMyPage1.jsx";
 import EditMyPage2 from "./pages/mypage/EditMyPage2.jsx";
 import Adoption_NewPost from "./pages/adoption/Adoption_NewPost.jsx";
-import Section3333 from "./container/section3/Section3333.jsx"
 import Secession from "./pages/Login/Secession.jsx";
-import { useEffect, useState } from "react";
 import AdoptionPostPage from "./pages/adminpage/AdoptionPostPage.jsx"
-import Adoption_Post from "./pages/adoption/Adoption_Post.jsx";
 import UserMgmt from "./pages/adminpage/UserMgmt.jsx";
 import UserReservation from "./pages/adminpage/UserReservation.jsx";
 import PostsMgmt from "./pages/adminpage/PostsMgmt.jsx";
@@ -59,10 +47,12 @@ import MainPage from './pages/Main/MainPage';
 import Adopt_postpage from "./pages/adoption/Adopt_postpage.jsx";
 import Announcement_Wt from "./pages/community/announce/Announcement_Wt.jsx";
 import Report_postpage from "./pages/community/report/Report_postpage.jsx";
-import Announcement_Post from "./pages/community/announce/Announcement_Post.jsx";
 import Announcement_postpage from "./pages/community/announce/Announcement_postpage.jsx";
 // import Missing_postpage from "./pages/community/find_child/Missing_postpage.jsx";
 import Missing from "./pages/Missing.jsx";
+import FindChild_PostPage from "./pages/community/find_child/FindChild_PostPage.jsx";
+import Adopt_reviewPostPage from "./pages/community/adopt_review/Adopt_reviewPostPage.jsx";
+import Resell_PostPage from "./pages/community/resell/Resell_PostPage.jsx";
 
 
 function App() {
@@ -105,7 +95,7 @@ function App() {
             { path: "", element: <Announcement gridArea="subsection" /> },
             { path: "admin", element: <Announcement gridArea="section" userType={userType} /> },
             // 사고팝니다
-            { path: "resell", element: <Resell gridArea="subsection" /> },
+            { path: "resell", element: <Resell gridArea="section" /> },
             // 신고합니다
             { path: "report", element: <Report gridArea="section" /> },
             // 입양 후기
@@ -114,45 +104,22 @@ function App() {
             { path: "find-child", element: <Missing gridArea="section" /> },
           ],
         },
-          // 커뮤니티 > 아이를 찾습니다 게시글
-            // { path: "Missing/post/:id", element: <Missing_postpage gridArea="section"/>},
-          // 커뮤니티 > 아이를 찾습니다 글쓰기
-            { path: "commu_missing_wt", element: <Missing_CommunityWt text="신고합니다" gridArea="section" />},
-          // 커뮤니티 > 입양 후기
-        {
-          path: "commu-adopt_review",
-          element: <Adopt_review_Community gridArea="section" />,
-          children: [
-            // 입양 후기 게시글
-            //  { path: "", element: <CommunityWt_report gridArea="subsection"/>},
-            // 입양 후기 글쓰기
-            {
-              path: "communitywt",
-              element: (
-                <Adopt_review_CommunityWt
-                  text="신고합니다"
-                  gridArea="subsection"
-                />
-              ),
-            },
-          ],
-        },
+        // 커뮤니티 > 아이를 찾습니다 게시글
+        { path: "find-child/post/:id", element: <FindChild_PostPage text="아이를 찾습니다" gridArea="section" />},
+        // 커뮤니티 > 아이를 찾습니다 글쓰기
+        { path: "commu_find-child_wt", element: <Find_child_CommunityWt text="아이를 찾습니다" gridArea="section" />},
+        // 커뮤니티 > 입양 후기
+        // { path: "commu-adopt_review", element: <Adopt_review_Community gridArea="section" />},????????
+        // 입양 후기 게시글
+        { path: "adoption-review/post/:id",element: <Adopt_reviewPostPage text="입양후기" gridArea="subsection" />},
+        // 입양 후기 글쓰기
+        { path: "/commu_review_wt",element: <Adopt_review_CommunityWt text="입양후기" gridArea="subsection" />},
         // 커뮤니티 > 사고팝니다
-        {
-          path: "commu-resell",
-          element: <Resell_Community gridArea="section" />,
-          children: [
-            // 사고팝니다 게시글
-            //  { path: "", element: <CommunityWt_report gridArea="subsection"/>},
-            // 사고팝니다 글쓰기
-            {
-              path: "communitywt",
-              element: (
-                <Resell_CommunityWt text="신고합니다" gridArea="subsection" />
-              ),
-            },
-          ],
-        },
+        { path: "commu-resell", element: <Resell_Community gridArea="section" />},
+        // 사고팝니다 게시글
+        { path: "resell/post/:id", element: <Resell_PostPage gridArea="section" />},
+        // 사고팝니다 글쓰기
+        { path: "/commu_resell_wt", element: <Resell_CommunityWt text="신고합니다" gridArea="subsection" />},
         // 커뮤니티 > 신고합니다 글쓰기
         { path: "commu_report_wt", element: <Report_CommunityWt text="신고합니다" gridArea="section" />},
         // 커뮤니티 > 신고합니다 게시글

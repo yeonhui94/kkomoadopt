@@ -7,8 +7,13 @@ import { Form, Outlet } from "react-router-dom";
 import Uploadfile from "../adopt_review/Uploadfile";
 import Button from "../../../components/Button/Button";
 
-const Find_child_CommunityWt = ({ gridArea}) => {
+const Find_child_CommunityWt = ({ text, gridArea}) => {
   return (
+    <div className="commwrapper"
+    style={{gridArea : gridArea}}>
+      <div className={wtstyles.mainContainer}>
+        <h1 style={{textAlign :"center"}}>{text="아이를 찾습니다"}</h1>
+        <Divider />
     <Form 
     style={{gridArea : gridArea}} className={wtstyles.Container}>
         {/* 제목과 인풋박스를 묶은 부분 */}
@@ -34,6 +39,8 @@ const Find_child_CommunityWt = ({ gridArea}) => {
           <Button className={wtstyles.smallButton} text={"등록"} width={"100px"} fontSize={"20px"}/>
         </a>
     </Form>
+    </div>
+    </div>
   );
 };
 export default Find_child_CommunityWt;

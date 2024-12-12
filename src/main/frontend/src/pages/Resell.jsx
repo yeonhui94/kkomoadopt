@@ -140,9 +140,11 @@ const handleSortChange = (option) => {
                             handlePageClick={handlePageClick}
                         />
                     </div>
+                    <Link to="/commu_resell_wt" >
                     <div className={styles.buttonContainer}>
                         <Button text={"글쓰기"} />
                     </div>
+                    </Link>
                 </div>
 
             </div>

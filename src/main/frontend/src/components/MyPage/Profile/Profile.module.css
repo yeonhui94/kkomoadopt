@@ -12,6 +12,11 @@
     align-items: center;
    
 }
+.profile-logo{
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+}
 
 .profile-contents {
     grid-area: contents;

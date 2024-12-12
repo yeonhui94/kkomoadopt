@@ -55,11 +55,11 @@ export const reducer = (state = initialState, action) => {
   
     // Page Num 목록 불러오기
     case GET_PAGE_NUM:
-      return { ...state, notice: action.payload };
+      return { ...state, pageNum: action.payload };
     
     // TotalCnt 불러오기
     case GET_TOTAL_CNT:
-      return { ...state, notice: action.payload };
+      return { ...state, totalCnt: action.payload };
 
     // 입양 공지사항 상태 업데이트
     case CHANGE_ADOPTION_NOTICE_UID:

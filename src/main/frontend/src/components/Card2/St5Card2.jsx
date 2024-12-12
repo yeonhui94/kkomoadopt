@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Img from "./Img";  // 이미지를 나타내는 컴포넌트
+import Img2 from "./Img2";  // 이미지를 나타내는 컴포넌트
 import TextBox from "./TextBox"; // 텍스트 박스 컴포넌트
 
 const CardBox5 = styled.div`
@@ -17,7 +17,7 @@ const CardBox5 = styled.div`
   }
 `;
 
-const ImgStyled = styled(Img)`
+const Img2Styled = styled(Img2)`
   width: 100%;
   height: auto;
   object-fit: cover; /* 이미지 비율을 유지하면서 영역을 채우도록 설정 */
@@ -39,7 +39,7 @@ const TextBoxStyled = styled(TextBox)`
 const FooterCard2 = ({ imageFile, text1, text2 }) => {
   return (
     <CardBox5>
-      <ImgStyled imageFile={imageFile} />
+      <Img2Styled imageFile={imageFile} />
       <TextBoxStyled text={text1 || "Text "} />
       <TextBoxStyled text={text2 || "Text "} />
     </CardBox5>

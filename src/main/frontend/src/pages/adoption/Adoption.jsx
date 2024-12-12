@@ -7,7 +7,6 @@ import Pagenumber from "../../components/pagenumber/Pagenumber";
 import styles from "../Review.module.css";
 import Dropdown from "../../components/DropDown";
 import Divider from "../../components/Divider";
-import { Link } from "react-router-dom";
 import { useStore as AdoptionNoticeStore2 } from "../../stores/AdoptionNoticeStore2/useStore";
 
 const Adoption = ({ gridArea }) => {

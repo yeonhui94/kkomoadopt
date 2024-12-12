@@ -33,7 +33,7 @@
     margin-bottom: -2px;
 }
 
-a {
+button {
     text-decoration: none;
     outline: none;
     color: #000000;
@@ -45,15 +45,15 @@ a {
     margin-inline: 2px; 
 }
 
-a:hover {
+button:hover {
     color: var(--main-color);
 }
 
-a:active {
+button:active {
     color: var(--main-color);
 }
 
-a.active {
+button.active {
     color: var(--main-color); /* 클릭된 링크에 고정되는 색 */
     outline: none;
     cursor: pointer;

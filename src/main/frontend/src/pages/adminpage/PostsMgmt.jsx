@@ -22,18 +22,18 @@ function PostsMgmt({ gridArea }) {
   const closeInfoModal = () => setIsInfoModalOpen(false);
   const [selectedReason, setSelectedReason] = useState("욕설");
   const [allPosts, setAllPosts] = useState([ // 모든 게시물 상태로 관리
-    { id: 1, category1: "아이를 찾습니다",ad:"community/find-child", title: "광진구에서 실종", date: "2024-11-28", viewCount: 150, nickname: "user1", email: "user1@example.com", reason: "욕설", category: "삭제된 글" },
-    { id: 2, category1: "입양후기",ad:"community/adoption-review", title: "인삼이 너무 기여워요", date: "2024-11-27", viewCount: 230, nickname: "user2", email: "user2@example.com", reason: "음담패설", category: "삭제된 댓글" },
-    { id: 3, category1: "사고팝니다",ad:"community/resell", title: "목줄 판매합니다", date: "2024-11-26", viewCount: 45, nickname: "user3", email: "user3@example.com", reason: "", category: "댓글" },
-    { id: 4, category1: "신고합니다",ad:"community/report", title: "체리콕", date: "2024-11-25", viewCount: 78, nickname: "user4", email: "user4@example.com", reason: "광고", category: "삭제된 글" },
-    { id: 5, category1: "아이를 찾습니다",ad:"community/find-child",title: "서울에서 실종", date: "2024-11-24", viewCount: 100, nickname: "user5", email: "user5@example.com", reason: "", category: "글" },
-    { id: 6, category1: "입양후기",ad:"community/adoption-review", title: "애플이가 너무 귀엽다", date: "2024-11-23", viewCount: 210, nickname: "user6", email: "user6@example.com", reason: "관련없는내용", category: "삭제된 댓글" },
-    { id: 7, category1: "사고팝니다",ad:"community/resell", title: "배변패드 무료 나눔", date: "2024-11-22", viewCount: 50, nickname: "user7", email: "user7@example.com", reason: "기타", category: "삭제된 글" },
-    { id: 8, category1: "신고합니다",ad:"community/report", title: "스팸 메시지", date: "2024-11-21", viewCount: 90, nickname: "user8", email: "user8@example.com", reason: "", category: "댓글" },
-    { id: 9, category1: "아이를 찾습니다",ad:"community/find-child", title: "경기에서 실종", date: "2024-11-20", viewCount: 150, nickname: "user9", email: "user9@example.com", reason: "", category: "댓글" },
-    { id: 10, category1: "공지사항",ad:"community/", title: "사이트 점검 안내", date: "2024-11-19", viewCount: 320, nickname: "admin", email: "admin@example.com", reason: "", category: "글" },
-    { id: 11, category1: "FAQ",ad:"customerservice/", title: "회원가입 방법", date: "2024-11-18", viewCount: 500, nickname: "admin", email: "admin@example.com", reason: "", category: "글" },
-    { id: 12, category1: "QnA",ad:"customer_qna/", title: "아이를 찾습니다", date: "2024-11-17", viewCount: 220, nickname: "user10", email: "user10@example.com", reason: "", category: "글" }
+    { id: 1, category1: "아이를 찾습니다",adress:"community/find-child", title: "광진구에서 실종", date: "2024-11-28", nickname: "user1", reason: "욕설", category: "삭제된 글" },
+    { id: 2, category1: "입양후기",adress:"community/adoption-review", title: "인삼이 너무 기여워요", date: "2024-11-27", nickname: "user2", reason: "음담패설", category: "삭제된 댓글" },
+    { id: 3, category1: "사고팝니다",adress:"community/resell", title: "목줄 판매합니다", date: "2024-11-26", nickname: "user3", reason: "", category: "댓글" },
+    { id: 4, category1: "신고합니다",adress:"community/report", title: "체리콕", date: "2024-11-25", nickname: "user4",reason: "광고", category: "삭제된 글" },
+    { id: 5, category1: "아이를 찾습니다",adress:"community/find-child",title: "서울에서 실종", date: "2024-11-24", nickname: "user5", reason: "", category: "글" },
+    { id: 6, category1: "입양후기",adress:"community/adoption-review", title: "애플이가 너무 귀엽다", date: "2024-11-23", nickname: "user6", reason: "관련없는내용", category: "삭제된 댓글" },
+    { id: 7, category1: "사고팝니다",adress:"community/resell", title: "배변패드 무료 나눔", date: "2024-11-22", nickname: "user7", reason: "기타", category: "삭제된 글" },
+    { id: 8, category1: "신고합니다",adress:"community/report", title: "스팸 메시지", date: "2024-11-21", nickname: "user8",reason: "", category: "댓글" },
+    { id: 9, category1: "아이를 찾습니다",adress:"community/find-child", title: "경기에서 실종", date: "2024-11-20",nickname: "user9",  reason: "", category: "댓글" },
+    { id: 10, category1: "공지사항",adress:"community/", title: "사이트 점검 안내", date: "2024-11-19", nickname: "admin", reason: "", category: "글" },
+    { id: 11, category1: "입양후기",adress:"community/adoption-review", title: "회원가입 방법", date: "2024-11-18",  nickname: "admin", reason: "", category: "글" },
+    { id: 12, category1: "아이를 찾습니다",adress:"community/find-child", title: "아이를 찾습니다", date: "2024-11-17",  nickname: "user10",reason: "", category: "글" }
   ]);
 
   useEffect(() => {
@@ -58,6 +58,7 @@ function PostsMgmt({ gridArea }) {
     setCurrentPage(1); // 페이지 번호를 초기화
   };
 
+  // 백엔드에서 연동해서 처리해야한다. 생각을 해보라 하시는데..
   // 페이지당 보여지는 글 수
   const postsPerPage = 8;
   const currentPosts = filteredData.slice(
@@ -187,8 +188,6 @@ function PostsMgmt({ gridArea }) {
                   <option value="사고팝니다">사고팝니다</option>
                   <option value="신고합니다">신고합니다</option>
                   <option value="공지사항">공지사항</option>
-                  <option value="FAQ">FAQ</option>
-                  <option value="QnA">QnA</option>
                 </select></th>
                 <th>글번호</th>
                 <th>제목</th>
@@ -209,7 +208,7 @@ function PostsMgmt({ gridArea }) {
                     </td>
                     <td>{post.category1}</td>
                     <td>{post.id}</td>
-                    <td><Link to={`/${post.ad}`} style={{ textDecoration: 'none', color: 'inherit' , fontWeight:'normal' }}>
+                    <td><Link to={`/${post.adress}`} style={{ textDecoration: 'none', color: 'inherit' , fontWeight:'normal' }}>
                         {post.title}
                       </Link></td>
                     <td>{post.nickname}</td>

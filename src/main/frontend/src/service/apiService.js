@@ -29,4 +29,38 @@ export const deleteAdoptionPost = (noticeUid) => apiClient.delete(`/api/adoption
 // // 7. 입양 게시물 이미지 업로드
 // export const uploadAdoptionPostImage = (imageData) => apiClient.post('/api/adoption/posts/upload-image', imageData);
 
+// 1. 마이 페이지 정보 가져오기
+export const getMyPageInfo = () => apiClient.get('/api/mypage/user');
+
+// 2. 특정 사용자 프로필 정보 가져오기
+export const getUserProfile = (userId) => apiClient.get(`/api/mypage/user/${userId}/change-profile`);
+
+// 3. 사용자 프로필 수정하기
+export const updateUserProfile = (userId, profileData) => apiClient.patch(`/api/mypage/user/${userId}/change-profile`, profileData);
+
+// 4. 회원 가입
+export const registerUser = (userData) => apiClient.post('/api/auth/register', userData);
+
+// 5. 로그인
+export const loginUser = (email, password) => apiClient.post('/api/user/login', { email, password });
+
+// 6. 로그아웃
+export const logout = () => apiClient.post('/api/user/logout');
+
+// 7. 유저 삭제 (회원 탈퇴)
+export const deleteUser = (userId) => apiClient.delete(`/api/mypage/user/${userId}`);
+
+// 8. 비밀번호 변경 요청
+export const changeUserPassword = (newPassword) => apiClient.patch('/api/mypage/user/change-password', { newPassword });
+
+// 9. 이메일 찾기 (이름과 전화번호로)
+export const findUserId = (name, phoneNumber) => apiClient.post('/api/auth/find-email', { name, phoneNumber });
+
+// 10. 비밀번호 검증
+export const verifyPassword = (password) => apiClient.post('/api/mypage/user/verify-password', { password });
+
+// 1. 프로필 이미지 업로드
+export const uploadProfileImage = (imageData) => apiClient.post('/api/mypage/user/upload-image', imageData);
+
+
 export default apiClient;

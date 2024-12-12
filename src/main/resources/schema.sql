@@ -92,7 +92,7 @@ ENGINE=InnoDB
 
 
 
-CREATE TABLE IF NOT EXISTS `qna` (
+CREATE TABLE `qna` (
 	`qna_uid` VARCHAR(36) NOT NULL COLLATE 'utf8mb3_general_ci',
 	`answer_author` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
 	`qna_answer` TEXT NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `qna` (
 	`qna_state` ENUM('ANSCOMPLETE','ANSWAIT') NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
 	`qna_title` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
 	`qna_view_count` INT(11) NULL DEFAULT NULL,
-	`user_id` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`user_id` VARCHAR(255) NOT NULL COLLATE 'utf8mb3_general_ci',
 	PRIMARY KEY (`qna_uid`) USING BTREE,
 	UNIQUE INDEX `UKfip1fmygipgc2icse6kviw0y5` (`qna_id`) USING BTREE,
 	INDEX `fk_qna_user_id` (`user_id`) USING BTREE,

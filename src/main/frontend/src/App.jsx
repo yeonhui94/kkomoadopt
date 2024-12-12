@@ -113,13 +113,13 @@ function App() {
         // 입양 후기 게시글
         { path: "adoption-review/post/:id",element: <Adopt_reviewPostPage text="입양후기" gridArea="subsection" />},
         // 입양 후기 글쓰기
-        { path: "communitywt",element: <Adopt_review_CommunityWt text="입양후기" gridArea="subsection" />},
+        { path: "/commu_review_wt",element: <Adopt_review_CommunityWt text="입양후기" gridArea="subsection" />},
         // 커뮤니티 > 사고팝니다
         { path: "commu-resell", element: <Resell_Community gridArea="section" />},
         // 사고팝니다 게시글
         { path: "resell/post/:id", element: <Resell_PostPage gridArea="section" />},
         // 사고팝니다 글쓰기
-        { path: "communitywt", element: <Resell_CommunityWt text="신고합니다" gridArea="subsection" />},
+        { path: "/commu_resell_wt", element: <Resell_CommunityWt text="신고합니다" gridArea="subsection" />},
         // 커뮤니티 > 신고합니다 글쓰기
         { path: "commu_report_wt", element: <Report_CommunityWt text="신고합니다" gridArea="section" />},
         // 커뮤니티 > 신고합니다 게시글
@@ -228,9 +228,43 @@ function App() {
     }
   ])
 
+
+
+
+
+
   return (
     <div>
       <RouterProvider router={router} />
+      {/* <AdoptionPostPage></AdoptionPostPage> */}
+      {/* <Section3333></Section3333> */}
+      {/* <Adoption_NewPost></Adoption_NewPost> */}
+
+      {/* <ParentComponent/> */}
+      {/* <UserNavi /> 네비게이션 바 추가 */}
+      {/* <Routes>
+        <Route path="/mypage/scrap" element={<Scrap />} />
+        <Route path="/mypage/my-posts" element={<MyPost />} />
+        <Route path="/mypage/my-comments" element={<MyComments />} />
+        <Route path="/mypage/edit-profile" element={<EditProfile />} />
+        <Route path="/mypage/cs-detail" element={<Csdetail />} />
+      </Routes> */}
+      {/* <Router>
+      <Routes>
+        <Route path="/" element={<Community />} /> */}
+      {/* <Route path="/" element={<Adoption />} /> */}
+
+      {/* 다른 페이지도 필요에 따라 추가 */}
+      {/* </Routes>
+    </Router> */}
+      {/* <Routes>
+        <Route path="/notice" element={<p>공지사항</p>} />
+        <Route path="/find-child" element={<p>아이를 찾습니다.</p>} />
+        <Route path="/adoption-review" element={<p>입양후기</p>} />
+        <Route path="/trade" element={<p>사고팝니다.</p>} />
+        <Route path="/report" element={<p>신고합니다.</p>} />
+        
+      </Routes> */}
     </div>
   );
 }

@@ -145,9 +145,9 @@ const Review = ({ gridArea }) => {
               handlePageClick={handlePageClick}
             />
           </div>
-          <a className={styles.buttonContainer} href="http://localhost:5173/commu-adopt_review/communitywt">
+          <Link to="/commu_review_wt"  className={styles.buttonContainer}>
             <Button text={"글쓰기"} />
-          </a>
+          </Link>
         </div>
       </div>
     </div>

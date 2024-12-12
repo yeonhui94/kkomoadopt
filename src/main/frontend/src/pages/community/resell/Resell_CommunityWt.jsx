@@ -9,8 +9,16 @@ import Uploadfile from "../adopt_review/Uploadfile";
 import Button from "../../../components/Button/Button";
 import wtstyles from "../CommunityWt.module.css";
 
-const Resell_CommunityWt = ({ text = "사고팝니다" , gridArea}) => {
+const Resell_CommunityWt = ({ text , gridArea}) => {
+
+  console.log("text prop:", text);
+  
   return (
+    <div className="commwrapper"
+    style={{gridArea : gridArea}}>
+      <div className={wtstyles.mainContainer}>
+        <h1 style={{textAlign :"center"}}>{text="사고 팝니다"}</h1>
+        <Divider />
     <Form 
     style={{gridArea : gridArea}} className={styles.Container}>
         {/* 제목과 인풋박스를 묶은 부분 */}
@@ -36,6 +44,8 @@ const Resell_CommunityWt = ({ text = "사고팝니다" , gridArea}) => {
           <Button className={wtstyles.smallButton} text={"등록"} width={"100px"} fontSize={"20px"}/>
         </a>
     </Form>
+    </div>
+    </div>
   );
 };
 export default Resell_CommunityWt;

@@ -15,7 +15,17 @@ const Find_child_CommunityWt = ({ text, gridArea }) => {
 
   const handleFileChange = (files) => {
     console.log('선택된 파일', files);
-    setFiles(files);
+
+    const reader = new FileReader();
+
+    reader.onloadend =()=>{
+      setFiles([reader.result]);
+    }
+
+    if(files[0]){
+      reader.readAsDataURL(files[0]);
+    }
+   
   };
 
   const handleSubmit = (e) => {
@@ -30,7 +40,7 @@ const Find_child_CommunityWt = ({ text, gridArea }) => {
       const postData = {
         title,
         content,
-        image: files.length > 0 ? files[0] : null, // 파일이 있으면 저장, 없으면 null
+        image: files[0] || null, // 파일이 있으면 저장, 없으면 null
         date: new Date(),
       };
 

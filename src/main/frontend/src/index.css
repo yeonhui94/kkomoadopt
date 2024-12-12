@@ -11,14 +11,7 @@
     --Q-font : 'Judson',sans-serif;
 }
 
-a {
-	text-decoration: none;
-	color: #444444;
-  }
 
-  a:active {
-	color: #444444; /* 클릭 시에도 색상을 검정색으로 유지 */
-  }
 
 /* default CSS  */
 html, body, div, span, applet, object, iframe,
@@ -57,14 +50,17 @@ img {
 	height: auto;
 	border: 0;
 }
+
+
 a {
 	text-decoration: none;
 	color: #444444;
-   }
- 
-   a:active {
+  }
+
+  a:active {
 	color: #444444; /* 클릭 시에도 색상을 검정색으로 유지 */
-   }
+  }
+
 button {
 	border: 0;
 	background: transparent;

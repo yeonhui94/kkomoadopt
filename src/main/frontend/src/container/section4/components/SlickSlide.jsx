@@ -79,7 +79,7 @@ function SlickSlide() {
         <Slider ref={sliderRef} {...settings}>
           {slides.map((slide, i) => (
             <div key={i}>
-              <a href="#">
+              <a href="#" style={{display:"inline-block"}}>
                 <div className={styles.slide}>
                   <img src={slide.img} alt={`슬라이드 ${slide.id}`} />
                 </div>

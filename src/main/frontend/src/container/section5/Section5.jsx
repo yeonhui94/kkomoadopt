@@ -81,27 +81,27 @@ const CardWrapper = styled.div`
 `;
 
 const cardData = [
-  { imageFile: Img5_1 },
-  { imageFile: Img5_2 },
-  { imageFile: Img5_3 },
-  { imageFile: Img5_4 },
-  { imageFile: Img5_5 },
-  { imageFile: Img5_6 },
-  { imageFile: Img5_7 },
-  { imageFile: Img5_8 },
-  { imageFile: Img5_9 },
-  { imageFile: Img5_10 },
+  { imageFile5: Img5_1 },
+  { imageFile5: Img5_2 },
+  { imageFile5: Img5_3 },
+  { imageFile5: Img5_4 },
+  { imageFile5: Img5_5 },
+  { imageFile5: Img5_6 },
+  { imageFile5: Img5_7 },
+  { imageFile5: Img5_8 },
+  { imageFile5: Img5_9 },
+  { imageFile5: Img5_10 },
 ];
 
 const SectionScroller = () => {
   return (
-    <div>
+    <div style={{ paddingBottom : '20px'}}>
       <H1tag>실종된 아이를 찾습니다.</H1tag>
       <Scroller>
         <AnimationContainer>
           {cardData.map((data, index) => (
             <CardWrapper key={index}>
-              <St5Card2 imageFile={data.imageFile}/>
+              <St5Card2 imageFile={data.imageFile5}/>
             </CardWrapper>
           ))}
         </AnimationContainer>

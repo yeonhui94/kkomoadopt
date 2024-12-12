@@ -7,6 +7,10 @@ import com.kosmo.kkomoadopt.service.AdoptionNoticeService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,34 +23,79 @@ public class AdoptionNoticeController {
 
     private final AdoptionNoticeService adoptionNoticeService;
 
-    // 전체 입양공지 불러오기(12개씩)
-    @GetMapping("/{pageNum}")
-    public ResponseEntity<AdoptNoticeListDTO> getNotices1(@PathVariable("pageNum") int pageNum) {
+    // 입양공지 조건별 검색
+    @GetMapping("/list")
+    public ResponseEntity<AdoptNoticeListDTO> getLists(
+            @RequestParam(defaultValue = "1") int page,   // 페이지 번호 (디폴트: 0)
+            @RequestParam(defaultValue = "12") int size,  // 페이지 크기 (디폴트: 10)
+            @RequestParam(defaultValue = "ALL") NoticeCategory noticeCategory,  // 카테고리 (선택 사항)
+            @RequestParam(defaultValue = "euthanasiaDate") String sortBy,  // 정렬 기준 (디폴트: "name")
+            @RequestParam(defaultValue = "desc") String sortOrder) {  // 정렬 순서 (디폴트: "asc")
 
-        // 해당 카테고리와 페이지 번호를 기반으로 게시글 리스트 조회
-        AdoptNoticeListDTO adoptNoticeListDTO = adoptionNoticeService.getListAdoptNotice1(pageNum);
-        return new ResponseEntity<>(adoptNoticeListDTO, HttpStatus.OK);
-    }
-
-    // category에 따른 게시글 불러오기(12개씩)
-    @GetMapping("/{noticeCategoryString}/{pageNum}")
-    public ResponseEntity<AdoptNoticeListDTO> getNotices2(
-            @PathVariable("noticeCategoryString") String noticeCategoryString,
-            @PathVariable("pageNum") int pageNum) {
-
-        // URL에서 받은 문자열을 NoticeCategory Enum으로 변환
-        NoticeCategory noticeCategory;
-        try {
-            noticeCategory = NoticeCategory.valueOf(noticeCategoryString.toUpperCase());
-        } catch (IllegalArgumentException e) {
-            // 잘못된 카테고리 이름이 들어왔을 경우 처리
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        // 페이지와 정렬 설정
+        Sort sort = Sort.by(Sort.Order.asc(sortBy));  // 기본 정렬은 오름차순
+        if ("desc".equalsIgnoreCase(sortOrder)) {
+            sort = Sort.by(Sort.Order.desc(sortBy));
         }
 
-        // 해당 카테고리와 페이지 번호를 기반으로 게시글 리스트 조회
-        AdoptNoticeListDTO adoptNoticeListDTO = adoptionNoticeService.getListAdoptNotice2(noticeCategory, pageNum);
-        return new ResponseEntity<>(adoptNoticeListDTO, HttpStatus.OK);
+        Pageable pageable = PageRequest.of(page, size, sort);
+
+        AdoptNoticeListDTO result;
+        // 카테고리 필터링 처리
+        if (NoticeCategory.ALL.equals(noticeCategory)) {
+            result = adoptionNoticeService.getNoticesByCategory(noticeCategory, pageable);
+        } else {
+            result = adoptionNoticeService.getNotices(pageable);  // 카테고리 없이 전체 아이템 반환
+        }
+
+        // 상태 코드 200 OK와 함께 반환
+        return ResponseEntity.ok(result);
     }
+
+    // 검색어로 공고 조회
+    @GetMapping("/search")
+    public ResponseEntity<AdoptNoticeListDTO> searchNotices(
+            @RequestParam String search,   // 검색어
+            @RequestParam(defaultValue = "1") int page,   // 페이지 번호
+            @RequestParam(defaultValue = "12") int size) { // 페이지 크기
+
+        Pageable pageable = PageRequest.of(page - 1, size);
+        AdoptNoticeListDTO result = adoptionNoticeService.searchNotices(search, pageable);
+
+        return ResponseEntity.ok(result);
+    }
+
+
+//    // 전체 입양공지 불러오기(12개씩)
+//    @GetMapping("/{pageNum}/{order}")
+//    public ResponseEntity<AdoptNoticeListDTO> getNotices1(
+//            @PathVariable("order") String order,
+//            @PathVariable("pageNum") int pageNum) {
+//
+//        // 해당 카테고리와 페이지 번호를 기반으로 게시글 리스트 조회
+//        AdoptNoticeListDTO adoptNoticeListDTO = adoptionNoticeService.getListAdoptNotice1(order, pageNum);
+//        return new ResponseEntity<>(adoptNoticeListDTO, HttpStatus.OK);
+//    }
+//
+//    // category에 따른 게시글 불러오기(12개씩)
+//    @GetMapping("/{noticeCategoryString}/{pageNum}")
+//    public ResponseEntity<AdoptNoticeListDTO> getNotices2(
+//            @PathVariable("noticeCategoryString") String noticeCategoryString,
+//            @PathVariable("pageNum") int pageNum) {
+//
+//        // URL에서 받은 문자열을 NoticeCategory Enum으로 변환
+//        NoticeCategory noticeCategory;
+//        try {
+//            noticeCategory = NoticeCategory.valueOf(noticeCategoryString.toUpperCase());
+//        } catch (IllegalArgumentException e) {
+//            // 잘못된 카테고리 이름이 들어왔을 경우 처리
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
+//
+//        // 해당 카테고리와 페이지 번호를 기반으로 게시글 리스트 조회
+//        AdoptNoticeListDTO adoptNoticeListDTO = adoptionNoticeService.getListAdoptNotice2(noticeCategory, pageNum);
+//        return new ResponseEntity<>(adoptNoticeListDTO, HttpStatus.OK);
+//    }
 
     // 입양공지글 등록 (session에서 authority 확인)
     @PostMapping("/save")

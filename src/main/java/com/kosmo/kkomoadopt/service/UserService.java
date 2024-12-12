@@ -67,8 +67,23 @@ public class UserService {
             // 로그인 성공: 세션에 사용자 정보 저장
             HttpSession session = request.getSession();
             System.out.println("Saving authority to session: " + user.getAuthority());  // 로그로 authority 확인
-            session.setAttribute("authority", user.getAuthority());
+            session.setAttribute("userId", user.getUserId());
+            session.setAttribute("email", user.getEmail());
+            session.setAttribute("name", user.getName());
+            session.setAttribute("phoneNumber", user.getPhoneNumber());
             session.setAttribute("nickname", user.getNickname());
+            session.setAttribute("password", user.getPassword());
+            session.setAttribute("user_create", user.getUserCreate());
+            session.setAttribute("userImgUrl", user.getUserImgUrl());
+            session.setAttribute("profileText", user.getProfileText());
+            session.setAttribute("userLastLogin", user.getUserLastLogin());
+            session.setAttribute("isBlacklisted", user.getIsBlacklisted());
+            session.setAttribute("socialId", user.getSocialId());
+            session.setAttribute("provider", user.getProvider());
+            session.setAttribute("authority", user.getAuthority());
+            session.setAttribute("blacklists", user.getBlacklists());
+            session.setAttribute("scraps", user.getScraps());
+
             return true;
         }
 

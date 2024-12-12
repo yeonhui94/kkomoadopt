@@ -1,15 +1,29 @@
 package com.kosmo.kkomoadopt.dto;
 
+import com.kosmo.kkomoadopt.enums.Authority;
+import com.kosmo.kkomoadopt.enums.Provider;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-public record LoginRequestDTO(
-        @Email(message = "올바른 이메일 주소를 입력해주세요.")
-        @NotBlank(message = "이메일은 필수 입력 항목입니다.")
-        String email,
+import java.time.LocalDateTime;
+import java.util.List;
 
-        @NotBlank(message = "비밀번호는 필수 입력 항목입니다.")
-        String password
+public record LoginRequestDTO(
+        String userId,
+        String email,
+        String name,
+        String phoneNumber,
+        String password,
+        LocalDateTime userCreate,
+        String userImgUrl,
+        String profileText,
+        LocalDateTime userLastLogin,
+        Boolean isBlacklisted,
+        String socialId,
+        Provider provider,
+        Authority authority,
+        List<BlacklistDTO> blacklists,
+        List<String> scraps
 ) {
 }

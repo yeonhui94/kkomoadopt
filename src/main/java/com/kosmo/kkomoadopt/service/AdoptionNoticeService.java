@@ -29,6 +29,7 @@ import java.util.stream.Collectors;
 @Service
 public class AdoptionNoticeService {
 
+    @Autowired
     private final AdoptionNoticeRepository adoptionNoticeRepository;
     private final FileService fileService;
     private final UserRepository userRepository;
@@ -96,7 +97,7 @@ public class AdoptionNoticeService {
 
     // 카테고리로 입양 공고 가져오기
     public AdoptNoticeListDTO getNoticesByCategory(NoticeCategory noticeCategory, Pageable pageable) {
-        Page<AdoptionNoticeEntity> adoptionNoticePage = adoptionNoticeRepository.findByCategory(noticeCategory, pageable);
+        Page<AdoptionNoticeEntity> adoptionNoticePage = adoptionNoticeRepository.findByNoticeCategory(noticeCategory, pageable);
 
         // 결과를 DTO로 변환
         List<AdoptNoticeListDTO.Notice> notices = adoptionNoticePage.getContent().stream()

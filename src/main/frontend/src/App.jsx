@@ -108,8 +108,6 @@ function App() {
         { path: "find-child/post/:id", element: <FindChild_PostPage text="아이를 찾습니다" gridArea="section" />},
         // 커뮤니티 > 아이를 찾습니다 글쓰기
         { path: "commu_find-child_wt", element: <Find_child_CommunityWt text="아이를 찾습니다" gridArea="section" />},
-        // 커뮤니티 > 입양 후기
-        // { path: "commu-adopt_review", element: <Adopt_review_Community gridArea="section" />},????????
         // 입양 후기 게시글
         { path: "adoption-review/post/:id",element: <Adopt_reviewPostPage text="입양후기" gridArea="subsection" />},
         // 입양 후기 글쓰기

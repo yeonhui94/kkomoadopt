@@ -19,7 +19,7 @@ public interface AdoptionNoticeRepository extends JpaRepository<AdoptionNoticeEn
     Page<AdoptionNoticeEntity> findAll(Pageable pageable);
 
     // 카테고리로 입양 공고 조회
-    Page<AdoptionNoticeEntity> findByCategory(NoticeCategory noticeCategory, Pageable pageable);
+    Page<AdoptionNoticeEntity> findByNoticeCategory(NoticeCategory noticeCategory, Pageable pageable);
 
     // LIKE 검색을 위한 쿼리
     @Query("SELECT a FROM AdoptionNoticeEntity a WHERE a.animalType LIKE %:searchTerm% OR a.animalType LIKE %:searchTerm%")

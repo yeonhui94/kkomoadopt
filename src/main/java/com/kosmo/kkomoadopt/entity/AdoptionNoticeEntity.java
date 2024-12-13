@@ -30,8 +30,9 @@ public class AdoptionNoticeEntity {
     private String noticeUid;
 
 //    @Enumerated(EnumType.STRING)
-    @Convert(converter = NoticeCategoryConverter.class)
+//    @Convert(converter = NoticeCategoryConverter.class)
     @Column(name = "notice_category", nullable = false)
+    @Enumerated(EnumType.STRING)
     private NoticeCategory noticeCategory;
 
     @Column(name = "notice_title")

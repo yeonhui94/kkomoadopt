@@ -22,14 +22,14 @@ const Scrappage = ({ gridArea }) => {
 
   // 각 카테고리 아이템
   const allPosts = [
-    { id: 1, img: img1, title: "3세 / 포메라니안 / 성격나쁨", category: "강아지", isScraped: false, breed : "포메라니안", date: new Date(2024,12,10), viewcount: 150},
-    { id: 2, img: imgc1, title: "3개월 추정/ 포메라니안", category: "고양이", isScraped: false, breed : "먼치킨", date: new Date(2024,10,11), viewcount: 50 },
-    { id: 3, img: imgm1, title: "미어캣 / 사나움", category: "기타동물", isScraped: false, breed : "미어캣", date: new Date(2024,5,1), viewcount: 10 },
-    { id: 4, img: img4, title: "3개월 추정 / 진돗개 / 온순함", category: "강아지", isScraped: false, breed : "진돗개", date: new Date(2024,10,30), viewcount: 0 },
-    { id: 5, img: img3, title: "3개월 추정 / 온순함", category: "강아지", isScraped: false, breed : "포메라니안", date: new Date(2024,11,11), viewcount: 15 },
-    { id: 6, img: img2, title: "3세 / 믹스견 / 성격나쁨", category: "강아지", isScraped: false, breed : "믹스견", date: new Date(2024,9,10), viewcount: 12 },
-    { id: 7, img: imgm2, title: "2세 / 야생소 / 사나움", category: "기타동물", isScraped: false, breed : "포메라니안", date: new Date(2024,9,29), viewcount: 26 },
-    { id: 8, img: imgc2, title: "3개월 추정", category: "고양이", isScraped: false, breed : "페르시안", date: new Date(2024,2,2), viewcount: 2 },
+    { id: 1, img: img1, title: "3세 / 포메라니안 / 성격나쁨", category: "강아지", isScraped: true, breed : "포메라니안", date: new Date(2024,12,10), viewcount: 150},
+    { id: 2, img: imgc1, title: "3개월 추정/ 포메라니안", category: "고양이", isScraped: true, breed : "먼치킨", date: new Date(2024,10,11), viewcount: 50 },
+    { id: 3, img: imgm1, title: "미어캣 / 사나움", category: "기타동물", isScraped: true, breed : "미어캣", date: new Date(2024,5,1), viewcount: 10 },
+    { id: 4, img: img4, title: "3개월 추정 / 진돗개 / 온순함", category: "강아지", isScraped: true, breed : "진돗개", date: new Date(2024,10,30), viewcount: 0 },
+    { id: 5, img: img3, title: "3개월 추정 / 온순함", category: "강아지", isScraped: true, breed : "포메라니안", date: new Date(2024,11,11), viewcount: 15 },
+    { id: 6, img: img2, title: "3세 / 믹스견 / 성격나쁨", category: "강아지", isScraped: true, breed : "믹스견", date: new Date(2024,9,10), viewcount: 12 },
+    { id: 7, img: imgm2, title: "2세 / 야생소 / 사나움", category: "기타동물", isScraped: true, breed : "포메라니안", date: new Date(2024,9,29), viewcount: 26 },
+    { id: 8, img: imgc2, title: "3개월 추정", category: "고양이", isScraped: true, breed : "페르시안", date: new Date(2024,2,2), viewcount: 2 },
     // 추가 아이템들...
   ];
 

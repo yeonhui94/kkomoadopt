@@ -15,6 +15,39 @@ import imgc2 from "../../../assets/CardImage/c2.jpg";
 // import { readCommunityPosts } from "../../../stores/CommunityPostStore2/action";
 
 
+
+
+
+
+
+
+
+
+
+//로컬스토리지 사용해보기
+
+
+async function readCommunityPosts() {
+  try {
+    const response = await fetch('/data/community_post.json');
+    const data = await response.json();
+
+    // post_category가 없는게 공지사항
+    const filteredData = data.filter(post => !post.post_category);
+
+    //로컬스토리지에 저장
+    localStorage.setItem('communityPosts', JSON.stringify(filteredData));
+  } catch (error) {
+    console.log('error reason', error);
+  }
+}
+
+
+
+
+
+
+
 const Announcement = ({ gridArea }) => {
   // const { state: communityState, actions: communityActions } = CommunityStore();
 
@@ -217,6 +250,38 @@ const Announcement = ({ gridArea }) => {
   };
 
 
+
+
+
+
+
+
+
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+
+    const storedPosts = JSON.parse(localStorage.getItem('communtiyPosts'));
+
+    if (storedPosts) {
+      setPosts(storedPosts);
+    } else {
+
+    }
+    async function fetchData() {
+      const data = await readCommunityPosts();
+      setPosts(data);
+    }
+    fetchData();
+
+  }, []);
+
+
+
+
+
+
+
   return (
     <div style={{ gridArea }} className={comstyle.posts_container}>
       {/* {console.log(communityState)} */}
@@ -238,16 +303,18 @@ const Announcement = ({ gridArea }) => {
         <Divider height={"2px"} width={"100%"} backgroundColor={"#E5E5E5"} />
       </div>
 
-      {currentPosts.length > 0 ? (
+      {/* {currentPosts.length > 0 ? ( */}
+      {Array.isArray(posts) && posts.length > 0 ? (
         <ul className={`${comstyle.postsbox}`}>
-          {currentPosts.map((post, index) => (
+          {/* {currentPosts.map((post, index) => ( */}
+          {posts.map(post => (
             <Link to={`/announce/post/${post.id}`} key={post.id}>
-              <li key={index} className={comstyle.post}>
+              <li key={post.post_uid} className={comstyle.post}>
                 <p className={comstyle.postnumli}>{index + 1}</p>
-                <p className={comstyle.titleli}>{post.title}</p>
-                <p className={comstyle.adminli}>{post.admin}</p>
-                <p className={comstyle.dateli}>{post.date.toLocaleDateString("ko-KR")}</p>
-                <p className={comstyle.viewsli}>{post.views}</p>
+                <p className={comstyle.titleli}>{post.post_title}</p>
+                <p className={comstyle.adminli}>{post.post_user_id}</p>
+                <p className={comstyle.dateli}>{post.post_create_at}</p>
+                <p className={comstyle.viewsli}>{post.post_view_count}</p>
                 {post.files && post.files.length > 0 && (
                   <p>첨부파일: {post.files.map(file => file.name).join(", ")}</p>
                 )}

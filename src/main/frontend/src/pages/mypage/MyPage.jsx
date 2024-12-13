@@ -11,6 +11,7 @@ function MyPage({gridArea}) {
   const isAdminPage = location.pathname.includes('admin'); // 경로가 /mypage/admin으로 포함되어 있는지 확인
   const [profileImage, setProfileImage] = useState(localStorage.getItem('profileImage') || null);
   const [profileLetter, setProfileLetter] = useState(localStorage.getItem('profileLetter') || null);
+  const [profileNickname, setProfileNickname] = useState(localStorage.getItem('profileNickname') || null);
 
 
   useEffect(()=>{
@@ -38,6 +39,7 @@ function MyPage({gridArea}) {
           btnName2={'로그아웃'}
           profileImageUrl={profileImage}
           profileLetter={profileLetter}
+          profileNickname={profileNickname}
           btnLink1={isAdminPage ? '/mypage/admin/edit-profile1' : "/mypage/user/change-profile"}
         />
       </div>

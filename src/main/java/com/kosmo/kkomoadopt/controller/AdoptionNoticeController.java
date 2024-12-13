@@ -7,6 +7,7 @@ import com.kosmo.kkomoadopt.service.AdoptionNoticeService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -21,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RequiredArgsConstructor
 public class AdoptionNoticeController {
 
+    @Autowired
     private final AdoptionNoticeService adoptionNoticeService;
 
     // 입양공지 조건별 검색

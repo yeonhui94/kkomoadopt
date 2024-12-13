@@ -5,10 +5,14 @@ import com.kosmo.kkomoadopt.dto.CommunityDTO;
 import com.kosmo.kkomoadopt.enums.PostCategory;
 import com.kosmo.kkomoadopt.service.CommunityPostService;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/post")
@@ -16,6 +20,9 @@ import org.springframework.web.multipart.MultipartFile;
 public class CommunityPostController {
 
     private final CommunityPostService communityPostService;
+
+//    @GetMapping()
+//    public ResponseEntity<List<CommunityListDTO>>  getPostByCategory()
 
     // category에 따른 게시글 불러오기(12개씩)
     @GetMapping("/list12/{postCategoryString}/{pageNum}")

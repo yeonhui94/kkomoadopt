@@ -2,9 +2,6 @@ package com.kosmo.kkomoadopt.dto;
 
 import com.kosmo.kkomoadopt.enums.Authority;
 import com.kosmo.kkomoadopt.enums.Provider;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 import java.util.List;

@@ -8,10 +8,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public record AdoptNoticeListDTO(
-        List<Notice> adoptNoticeList,
-        long totalCnt,
-        int pageNum
-){
+        List<Notice> notices,      // 공고 리스트
+        long totalElements,        // 총 공고 수
+        int pageNumber) {          // 현재 페이지 번호
+
     public record Notice(
             String noticeUid,
             NoticeCategory noticeCategory,
@@ -25,8 +25,6 @@ public record AdoptNoticeListDTO(
             List<String> noticeImgUrl,
             LocalDate euthanasiaDate,
             String impossibleReason,
-            Integer noticeViewCount,
-            String adoptionAuthor
-    ) {
-    }
+            int noticeViewCount,
+            String adoptionAuthor) {}
 }

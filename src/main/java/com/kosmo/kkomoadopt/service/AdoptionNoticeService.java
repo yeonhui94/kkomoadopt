@@ -11,6 +11,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,10 +20,10 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -30,9 +32,6 @@ public class AdoptionNoticeService {
     private final AdoptionNoticeRepository adoptionNoticeRepository;
     private final FileService fileService;
     private final UserRepository userRepository;
-
-    @Autowired
-    private EntityManager em;
 
     // post save 메서드
     public boolean saveNotice(AdoptNoticeDTO adoptNoticeDTO, MultipartFile[] files)  {
@@ -82,92 +81,165 @@ public class AdoptionNoticeService {
         }
     }
 
-    // 전체 게시물 12개씩 가져오기
-    public AdoptNoticeListDTO getListAdoptNotice1(int pageNum) {
-        List<AdoptionNoticeEntity> adoptionNoticeEntities = em.createQuery(
-                        "SELECT a FROM AdoptionNoticeEntity a ORDER BY a.noticeCreatedAt DESC", AdoptionNoticeEntity.class)
-                .setFirstResult((pageNum - 1) * 12)  // 페이지네이션
-                .setMaxResults(12)  // 한 페이지에 10개씩
-                .getResultList();
+    // 전체 게시물 가져오기
+    public AdoptNoticeListDTO getNotices(Pageable pageable) {
+        Page<AdoptionNoticeEntity> adoptionNoticePage = adoptionNoticeRepository.findAll(pageable);
 
-        // 게시글 정보를 AdoptNoticeDTO.Notice 형식으로 변환
-        List<AdoptNoticeListDTO.Notice> noticeDtos = new ArrayList<>();
-        for (AdoptionNoticeEntity notice : adoptionNoticeEntities) {
-            String userId = notice.getAdoptionAuthor();
-            UserEntity user = userRepository.findById(userId).orElse(null);
-            String nickname = (user != null) ? user.getNickname() : "닉네임과 일치하는 사용자 없음";
+        // 결과를 DTO로 변환
+        List<AdoptNoticeListDTO.Notice> notices = adoptionNoticePage.getContent().stream()
+                .map(this::convertToNoticeDTO)
+                .collect(Collectors.toList());
 
-            // AdoptNoticeDTO.Notice 변환
-            AdoptNoticeListDTO.Notice noticeDto = new AdoptNoticeListDTO.Notice(
-                    notice.getNoticeUid(),
-                    notice.getNoticeCategory(),
-                    notice.getNoticeTitle(),
-                    notice.getNoticeContent(),
-                    notice.getAnimalType(),
-                    notice.getAdoptStatus(),
-                    notice.getAnnouncementNum(),
-                    notice.getUniqueNum(),
-                    notice.getNoticeCreatedAt(),
-                    notice.getNoticeImgUrl(),
-                    notice.getEuthanasiaDate(),
-                    notice.getImpossibleReason(),
-                    notice.getNoticeViewCount(),
-                    notice.getAdoptionAuthor()
-            );
-            noticeDtos.add(noticeDto);
-        }
-        // 전체 게시글 수 가져오기
-        long totalCnt = (long)em.createQuery("SELECT count(a) FROM AdoptionNoticeEntity a")
-                .getSingleResult();
-
-        // 결과를 AdoptNoticeDTO에 담아서 반환
-        return new AdoptNoticeListDTO(noticeDtos, totalCnt, pageNum);
+        // DTO를 리턴
+        return new AdoptNoticeListDTO(notices, adoptionNoticePage.getTotalElements(), adoptionNoticePage.getNumber());
     }
 
-    // category 별 게시물 12개씩 가져오기
-    public AdoptNoticeListDTO getListAdoptNotice2(NoticeCategory noticeCategory, int pageNum) {
-        // 사용자 닉네임 가져오기
-        List<AdoptionNoticeEntity> adoptionNoticeEntities = em.createQuery(
-                        "select a from AdoptionNoticeEntity a where a.noticeCategory = :category ORDER BY a.noticeCreatedAt", AdoptionNoticeEntity.class)
-                .setParameter("category", noticeCategory)  // category를 바인딩
-                .setFirstResult((pageNum - 1) * 12)  // 페이지네이션
-                .setMaxResults(12)  // 한 페이지에 10개씩
-                .getResultList();
+    // 카테고리로 입양 공고 가져오기
+    public AdoptNoticeListDTO getNoticesByCategory(NoticeCategory noticeCategory, Pageable pageable) {
+        Page<AdoptionNoticeEntity> adoptionNoticePage = adoptionNoticeRepository.findByCategory(noticeCategory, pageable);
 
-        // 게시글 정보를 AdoptNoticeDTO.Notice 형식으로 변환
-        List<AdoptNoticeListDTO.Notice> noticeDtos = new ArrayList<>();
-        for (AdoptionNoticeEntity notice : adoptionNoticeEntities) {
-            String userId = notice.getAdoptionAuthor();
-            UserEntity user = userRepository.findById(userId).orElse(null);
-            String nickname = (user != null) ? user.getNickname() : "닉네임과 일치하는 사용자 없음";
+        // 결과를 DTO로 변환
+        List<AdoptNoticeListDTO.Notice> notices = adoptionNoticePage.getContent().stream()
+                .map(this::convertToNoticeDTO)
+                .collect(Collectors.toList());
 
-            // AdoptNoticeDTO.Notice 변환
-            AdoptNoticeListDTO.Notice noticeDto = new AdoptNoticeListDTO.Notice(
-                    notice.getNoticeUid(),
-                    notice.getNoticeCategory(),
-                    notice.getNoticeTitle(),
-                    notice.getNoticeContent(),
-                    notice.getAnimalType(),
-                    notice.getAdoptStatus(),
-                    notice.getAnnouncementNum(),
-                    notice.getUniqueNum(),
-                    notice.getNoticeCreatedAt(),
-                    notice.getNoticeImgUrl(),
-                    notice.getEuthanasiaDate(),
-                    notice.getImpossibleReason(),
-                    notice.getNoticeViewCount(),
-                    notice.getAdoptionAuthor()
-            );
-            noticeDtos.add(noticeDto);
-        }
-        // 전체 게시글 수 가져오기
-        long totalCnt = em.createQuery("select count(a) from AdoptionNoticeEntity a where a.noticeCategory = :category", Long.class)
-                .setParameter("category", noticeCategory)  // category를 바인딩
-                .getSingleResult();
-
-        // 결과를 AdoptNoticeDTO에 담아서 반환
-        return new AdoptNoticeListDTO(noticeDtos, totalCnt, pageNum);
+        // DTO를 리턴
+        return new AdoptNoticeListDTO(notices, adoptionNoticePage.getTotalElements(), adoptionNoticePage.getNumber());
     }
+
+    // 검색어로 입양 공고 조회
+    public AdoptNoticeListDTO searchNotices(String searchTerm, Pageable pageable) {
+        Page<AdoptionNoticeEntity> adoptionNoticePage = adoptionNoticeRepository.findBySearchTerm(searchTerm, pageable);
+
+        // 결과를 DTO로 변환
+        List<AdoptNoticeListDTO.Notice> notices = adoptionNoticePage.getContent().stream()
+                .map(this::convertToNoticeDTO)
+                .collect(Collectors.toList());
+
+        return new AdoptNoticeListDTO(notices, adoptionNoticePage.getTotalElements(), adoptionNoticePage.getNumber() + 1);
+    }
+
+    // DTO 변환 함수
+    private AdoptNoticeListDTO.Notice convertToNoticeDTO(AdoptionNoticeEntity entity) {
+        return new AdoptNoticeListDTO.Notice(
+                entity.getNoticeUid(),
+                entity.getNoticeCategory(),
+                entity.getNoticeTitle(),
+                entity.getNoticeContent(),
+                entity.getAnimalType(),
+                entity.getAdoptStatus(),
+                entity.getAnnouncementNum(),
+                entity.getUniqueNum(),
+                entity.getNoticeCreatedAt(),
+                entity.getNoticeImgUrl(),
+                entity.getEuthanasiaDate(),
+                entity.getImpossibleReason(),
+                entity.getNoticeViewCount(),
+                entity.getAdoptionAuthor()
+        );
+    }
+//    // 전체 게시물 12개씩 가져오기
+//    public AdoptNoticeListDTO getListAdoptNotice1(int pageNum, String order) {
+//        // 기본적으로 noticeCreatedAt DESC (최신순)으로 설정
+//        String orderByClause = "a.noticeCreatedAt DESC";
+//
+//        // order 값에 따라 정렬 기준 변경
+//        if ("공고마감순".equals(order)) {
+//            orderByClause = "a.euthanasiaDate DESC";  // 공고 마감순 (euthanasiaDate 내림차순)
+//        } else if ("오래된순".equals(order)) {
+//            orderByClause = "a.noticeCreatedAt ASC";  // 오래된 순 (noticeCreatedAt 오름차순)
+//        } else if ("최신순".equals(order)) {
+//            orderByClause = "a.noticeCreatedAt DESC";  // 최신순 (noticeCreatedAt 내림차순)
+//        } else if ("조회수높은순".equals(order)) {
+//            orderByClause = "a.noticeViewCount DESC";  // 조회수 높은 순 (noticeViewCount 내림차순)
+//        } else if ("조회수낮은순".equals(order)) {
+//            orderByClause = "a.noticeViewCount ASC";  // 조회수 낮은 순 (noticeViewCount 오름차순)
+//        }
+//
+//        List<AdoptionNoticeEntity> adoptionNoticeEntities = em.createQuery(
+//                        "SELECT a FROM AdoptionNoticeEntity a ORDER BY " + orderByClause, AdoptionNoticeEntity.class)
+//                .setFirstResult((pageNum - 1) * 12)  // 페이지네이션
+//                .setMaxResults(12)  // 한 페이지에 10개씩
+//                .getResultList();
+//
+//        // 게시글 정보를 AdoptNoticeDTO.Notice 형식으로 변환
+//        List<AdoptNoticeListDTO.Notice> noticeDtos = new ArrayList<>();
+//        for (AdoptionNoticeEntity notice : adoptionNoticeEntities) {
+//            String userId = notice.getAdoptionAuthor();
+//            UserEntity user = userRepository.findById(userId).orElse(null);
+//            String nickname = (user != null) ? user.getNickname() : "닉네임과 일치하는 사용자 없음";
+//
+//            // AdoptNoticeDTO.Notice 변환
+//            AdoptNoticeListDTO.Notice noticeDto = new AdoptNoticeListDTO.Notice(
+//                    notice.getNoticeUid(),
+//                    notice.getNoticeCategory(),
+//                    notice.getNoticeTitle(),
+//                    notice.getNoticeContent(),
+//                    notice.getAnimalType(),
+//                    notice.getAdoptStatus(),
+//                    notice.getAnnouncementNum(),
+//                    notice.getUniqueNum(),
+//                    notice.getNoticeCreatedAt(),
+//                    notice.getNoticeImgUrl(),
+//                    notice.getEuthanasiaDate(),
+//                    notice.getImpossibleReason(),
+//                    notice.getNoticeViewCount(),
+//                    notice.getAdoptionAuthor()
+//            );
+//            noticeDtos.add(noticeDto);
+//        }
+//        // 전체 게시글 수 가져오기
+//        long totalCnt = (long)em.createQuery("SELECT count(a) FROM AdoptionNoticeEntity a")
+//                .getSingleResult();
+//
+//        // 결과를 AdoptNoticeDTO에 담아서 반환
+//        return new AdoptNoticeListDTO(noticeDtos, totalCnt, pageNum);
+//    }
+//
+//    // category 별 게시물 12개씩 가져오기
+//    public AdoptNoticeListDTO getListAdoptNotice2(NoticeCategory noticeCategory, int pageNum) {
+//        // 사용자 닉네임 가져오기
+//        List<AdoptionNoticeEntity> adoptionNoticeEntities = em.createQuery(
+//                        "select a from AdoptionNoticeEntity a where a.noticeCategory = :category ORDER BY a.noticeCreatedAt", AdoptionNoticeEntity.class)
+//                .setParameter("category", noticeCategory)  // category를 바인딩
+//                .setFirstResult((pageNum - 1) * 12)  // 페이지네이션
+//                .setMaxResults(12)  // 한 페이지에 10개씩
+//                .getResultList();
+//
+//        // 게시글 정보를 AdoptNoticeDTO.Notice 형식으로 변환
+//        List<AdoptNoticeListDTO.Notice> noticeDtos = new ArrayList<>();
+//        for (AdoptionNoticeEntity notice : adoptionNoticeEntities) {
+//            String userId = notice.getAdoptionAuthor();
+//            UserEntity user = userRepository.findById(userId).orElse(null);
+//            String nickname = (user != null) ? user.getNickname() : "닉네임과 일치하는 사용자 없음";
+//
+//            // AdoptNoticeDTO.Notice 변환
+//            AdoptNoticeListDTO.Notice noticeDto = new AdoptNoticeListDTO.Notice(
+//                    notice.getNoticeUid(),
+//                    notice.getNoticeCategory(),
+//                    notice.getNoticeTitle(),
+//                    notice.getNoticeContent(),
+//                    notice.getAnimalType(),
+//                    notice.getAdoptStatus(),
+//                    notice.getAnnouncementNum(),
+//                    notice.getUniqueNum(),
+//                    notice.getNoticeCreatedAt(),
+//                    notice.getNoticeImgUrl(),
+//                    notice.getEuthanasiaDate(),
+//                    notice.getImpossibleReason(),
+//                    notice.getNoticeViewCount(),
+//                    notice.getAdoptionAuthor()
+//            );
+//            noticeDtos.add(noticeDto);
+//        }
+//        // 전체 게시글 수 가져오기
+//        long totalCnt = em.createQuery("select count(a) from AdoptionNoticeEntity a where a.noticeCategory = :category", Long.class)
+//                .setParameter("category", noticeCategory)  // category를 바인딩
+//                .getSingleResult();
+//
+//        // 결과를 AdoptNoticeDTO에 담아서 반환
+//        return new AdoptNoticeListDTO(noticeDtos, totalCnt, pageNum);
+//    }
 
     // 입양공지글 업데이트(announcementNum 기준)
     public boolean updateAdoptNotice(AdoptNoticeDTO adoptNoticeDTO, MultipartFile[] files) {

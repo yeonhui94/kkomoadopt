@@ -16,23 +16,20 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/community/posts")
+@RequiredArgsConstructor
 public class CommunityPostController {
 
     private final CommunityPostService communityPostService;
 
     @GetMapping
-    public ResponseEntity<List<CommunityDTO>> getPostByCategory(@RequestParam(name = "category") String projectCategory){
+    public ResponseEntity<List<CommunityListDTO>> getPostByCategory(@RequestParam(name = "category") String projectCategory){
         try{
-            List<CommunityDTO> communities = communityPostService.getCommunityListByCategory(projectCategory);
+            List<CommunityListDTO> communities = communityPostService.getCommunityListByCategory(projectCategory);
             return ResponseEntity.ok(communities);
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
-    public CommunityPostController(CommunityPostService communityPostService) {
-        this.communityPostService = communityPostService;
-    }
-
 
     @PostMapping
     public ResponseEntity<Boolean> createPosts(@ModelAttribute CommunityDTO communityDTO, @RequestParam("files") MultipartFile[] files) {

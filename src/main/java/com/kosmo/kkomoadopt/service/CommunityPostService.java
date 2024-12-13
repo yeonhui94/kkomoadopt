@@ -18,6 +18,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -80,6 +82,43 @@ public class CommunityPostService {
             return false;
         }
     }
+
+    // category별로 게시물 가져오기
+    public List<CommunityDTO> getCommunityListByCategory(String category) {
+        PostCategory category1 = PostCategory.valueOf(category.toUpperCase());
+
+        // Assuming you have a UserRepository injected here
+        List<CommunityDTO> communityDTOList = communityPostRepository.findByPostCategory(category1).stream()
+                .map(community -> {
+                    // Fetch the user entity by userId
+                    Optional<UserEntity> user = userRepository.findById(community.getUserId());
+
+                    // Create CommunityDTO using the nickname as postAuthor
+                    return new CommunityDTO(
+                            community.getPostCategory(),
+                            community.getPostTitle(),
+                            community.getPostContent(),
+                            community.getIsDeleted(),
+                            community.getDeleteReason(),
+                            user.isPresent() ? user.get().getNickname() : "Unknown"  // Using nickname as postAuthor
+                    );
+                })
+                .collect(Collectors.toList());
+
+        return communityDTOList;
+    }
+
+//                ProjectCategory category = ProjectCategory.valueOf(projectCategory.toUpperCase());
+//                return projectRepository.findProjectsByCategoryAndFundingStatusAndDateRange(category, fundingStatus, now)
+//                        .stream()
+//                        .map(project -> projectConverter.toOutDTO(project))
+//                        .collect(Collectors.toList());
+//            } catch (IllegalArgumentException e) {
+//                // Enum 변환 실패 시 빈 리스트 반환
+//                return Collections.emptyList();
+//            }
+//        }
+//    }
 
     // 게시물 12개씩 가져오기
     public CommunityListDTO getListCommunity1(PostCategory postCategory, int pageNum) {

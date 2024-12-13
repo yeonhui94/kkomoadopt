@@ -15,56 +15,26 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/post")
-@RequiredArgsConstructor
+@RequestMapping("/api/community/posts")
 public class CommunityPostController {
 
     private final CommunityPostService communityPostService;
 
-//    @GetMapping()
-//    public ResponseEntity<List<CommunityListDTO>>  getPostByCategory()
-
-    // category에 따른 게시글 불러오기(12개씩)
-    @GetMapping("/list12/{postCategoryString}/{pageNum}")
-    public ResponseEntity<CommunityListDTO> getPosts2(
-            @PathVariable("postCategoryString") String postCategoryString,
-            @PathVariable("pageNum") int pageNum) {
-
-        // URL에서 받은 문자열을 PostCategory Enum으로 변환
-        PostCategory postCategory;
-        try {
-            postCategory = PostCategory.valueOf(postCategoryString.toUpperCase());
-        } catch (IllegalArgumentException e) {
-            // 잘못된 카테고리 이름이 들어왔을 경우 처리
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    @GetMapping
+    public ResponseEntity<List<CommunityDTO>> getPostByCategory(@RequestParam(name = "category") String projectCategory){
+        try{
+            List<CommunityDTO> communities = communityPostService.getCommunityListByCategory(projectCategory);
+            return ResponseEntity.ok(communities);
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
-
-        // 해당 카테고리와 페이지 번호를 기반으로 게시글 리스트 조회
-        CommunityListDTO communityListDTO = communityPostService.getListCommunity1(postCategory, pageNum);
-        return new ResponseEntity<>(communityListDTO, HttpStatus.OK);
+    }
+    public CommunityPostController(CommunityPostService communityPostService) {
+        this.communityPostService = communityPostService;
     }
 
-    // category에 따른 게시글 불러오기(10개씩)
-    @GetMapping("/list10/{postCategoryString}/{pageNum}")
-    public ResponseEntity<CommunityListDTO> getPosts1(
-            @PathVariable("postCategoryString") String postCategoryString,
-            @PathVariable("pageNum") int pageNum) {
 
-        // URL에서 받은 문자열을 PostCategory Enum으로 변환
-        PostCategory postCategory;
-        try {
-            postCategory = PostCategory.valueOf(postCategoryString.toUpperCase());
-        } catch (IllegalArgumentException e) {
-            // 잘못된 카테고리 이름이 들어왔을 경우 처리
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
-        // 해당 카테고리와 페이지 번호를 기반으로 게시글 리스트 조회
-        CommunityListDTO communityListDTO = communityPostService.getListCommunity2(postCategory, pageNum);
-        return new ResponseEntity<>(communityListDTO, HttpStatus.OK);
-    }
-
-    @PostMapping("/save")
+    @PostMapping
     public ResponseEntity<Boolean> createPosts(@ModelAttribute CommunityDTO communityDTO, @RequestParam("files") MultipartFile[] files) {
         Boolean result = communityPostService.savePost(communityDTO, files);
         return new ResponseEntity<>(result, HttpStatus.CREATED);

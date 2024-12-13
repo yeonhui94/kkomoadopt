@@ -18,14 +18,23 @@ import Card2 from "../components/Card2/Card2";
 // import Footer from "../container/Footer";
 import Button from "../components/Button/Button";
 import Pagenumber from "../components/pagenumber/Pagenumber";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+
+import { useStore } from "../stores/CommunityPostStore2/useStore"
 
 
 const Resell = ({ gridArea }) => {
+    const { state: communityState, actions: communityActions } = useStore();
 
     const options = ["전체보기", "최신 순", "오래된 순", "조회 수 높은 순", "조회 수 낮은 순"];
 
+      useEffect(() => {
+        const fetchPosts = async () => {
+          const response = await communityActions.readCommunityPostsByCategory("BUYANDSELL");
+        };
+        fetchPosts();
+      }, []);
 
     const cardData = [
         { id: 1, imageFile: img1, text1: "땡처리 합니다", text2: "개별 판매 안하고 한번에 다 팔려고 합니다", date: new Date(2024, 12, 1), viewcount: 130  },
@@ -119,13 +128,13 @@ const handleSortChange = (option) => {
                         <div className={styles.rwdivider} >
                             <Divider width={"100%"} backgroundColor={"var(--line-color)"} />
                         </div>
-                        {currentPosts.map((card, index) => (
+                        {communityState.communityPosts.map((card, index) => (
                             <Link to={`/resell/post/${card.id}`} key={card.id}>
                             <Card2
                                 key={index}  // key prop을 고유하게 설정
                                 imageFile={card.imageFile}
-                                text1={card.text1}
-                                text2={card.text2}
+                                text1={card.postTitle}
+                                text2={card.postContent}
                             />
                             </Link>
                         ))}

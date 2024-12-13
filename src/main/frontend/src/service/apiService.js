@@ -85,6 +85,8 @@ export const deleteCommentAPI = (commentId) => apiClient.delete(`/api/comments/$
 // 1. 전체 커뮤니티 게시물 조회
 export const getCommunityPosts = () => apiClient.get('/api/community/posts');
 
+// 2. 카테고리별 게시물 조회
+export const getCommunityPostsByCategory = (category) => apiClient.get(`/api/community/posts?category=${category}`)
 // 2. 특정 커뮤니티 게시물 상세 조회
 export const getCommunityPostDetail = (postUid) => apiClient.get(`/api/community/posts/${postUid}`);
 

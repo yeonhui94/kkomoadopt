@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `community_post` (
 	`post_uid` VARCHAR(36) NOT NULL COLLATE 'utf8mb3_general_ci',
 	`delete_reason` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
 	`is_deleted` BIT(1) NOT NULL,
-	`post_category` ENUM('ADOPTREVIEW','BUYANDSELL','FINDCHILD','REPORT') NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
+	`post_category` ENUM('ANNOUNCEMENT','ADOPTREVIEW','BUYANDSELL','FINDCHILD','REPORT') NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
 	`post_content` TEXT NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
 	`post_created_at` DATETIME(6) NOT NULL,
 	`post_id` INT(11) NULL DEFAULT NULL,

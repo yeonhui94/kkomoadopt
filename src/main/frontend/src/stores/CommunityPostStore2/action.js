@@ -50,14 +50,9 @@ export const resetState = () => ({ type: RESET_STATE });
 export const readCommunityPosts = () => async (dispatch) => {
   try {
     const response = await getCommunityPosts();  // API 호출: 게시물 목록 가져오기
-    const filterdPosts = response.data.filter(post => !post.post_category);  // `post_category` 없는 데이터 필터링
-
-    // 로컬스토리지에 저장
-    localStorage.setItem('communityPosts', JSON.stringify(filteredPosts));
-
     dispatch({
       type: READ_COMMUNITY_POSTS,
-      payload: filteredPosts,  // 게시물 목록 데이터
+      payload: response.data,  // 게시물 목록 데이터
     });
   } catch (error) {
     console.error("커뮤니티 게시물 목록을 불러올 수 없습니다.", error);

@@ -1,8 +1,8 @@
 import { useState } from "react";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import InputField from "../../components/InputField";
 import styles from "../Login/LoginPageContents.module.css";
-import { Outlet, useNavigate } from "react-router-dom";
 import { useStore as UserStore2 } from "../../stores/UserStore2/useStore"; // UserStore2를 import
 
 function LoginPageContents({ gridArea }) {
@@ -32,12 +32,12 @@ function LoginPageContents({ gridArea }) {
       <h1 className={styles.hText}>로그인</h1>
       <div className={styles.LoginBox}>
         <div className={styles.a1Box}>
-          <a href="http://localhost:5173/IdPassword" className={styles.a1}>
+          <Link to="/IdPassword" className={styles.a1}>
             <p style={{ fontSize: "15px" }}>ID/PW찾기</p>
-          </a>
-          <a href="http://localhost:5173/join" className={styles.a1}>
+          </Link>
+          <Link to="/join" className={styles.a1}>
             <p style={{ fontSize: "15px", paddingLeft: "5px" }}>회원가입</p>
-          </a>
+          </Link>
         </div>
 
         <form className={styles.form1} onSubmit={handleLogin}>

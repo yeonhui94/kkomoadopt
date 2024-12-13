@@ -7,6 +7,7 @@ import java.util.List;
 
 public record LoginResponseDTO(
         String userId,
+        String nickname,
         String email,
         String name,
         String phoneNumber,

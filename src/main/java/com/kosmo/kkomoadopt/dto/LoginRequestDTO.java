@@ -8,6 +8,7 @@ import java.util.List;
 
 public record LoginRequestDTO(
         String userId,
+        String nickname,
         String email,
         String name,
         String phoneNumber,

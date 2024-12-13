@@ -73,6 +73,7 @@ public class UserController {
                 // LoginResponseDTO 객체를 생성하여 응답으로 반환
                 LoginResponseDTO responseDTO = new LoginResponseDTO(
                         user.getUserId(),
+                        user.getNickname(),
                         user.getEmail(),
                         user.getName(),
                         user.getPhoneNumber(),

@@ -272,6 +272,7 @@ const Announcement = ({ gridArea }) => {
               <Link to={`/announce/post/${post.id}`} key={post.id}>
                 <li key={post.post_uid} className={comstyle.post}>
                   <p className={comstyle.postnumli}>{index + 1}</p>
+                  {/* index+1 나중에 postId 로 변경 */}
                   <p className={comstyle.titleli}>{post.postTitle}</p>
                   <p className={comstyle.adminli}>{post.postAuthor}</p>
                   {/* <p className={comstyle.dateli}>{post.post_create_at}</p>

@@ -29,7 +29,7 @@ const Img = ( {imageFile} ) =>{
 
     return(
         <ImageBox >
-         <Image src={`http://localhost:8080/upload/${imageFile}`} />
+         <Image src={`http://localhost:8080/upload/${imageFile[0]}`} />
         </ImageBox>
     )
 }

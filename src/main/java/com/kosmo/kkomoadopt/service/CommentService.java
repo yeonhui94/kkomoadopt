@@ -1,23 +1,14 @@
 package com.kosmo.kkomoadopt.service;
 
-import com.kosmo.kkomoadopt.dto.AdoptNoticeDTO;
 import com.kosmo.kkomoadopt.dto.CommentDTO;
-import com.kosmo.kkomoadopt.dto.CommunityDTO;
-import com.kosmo.kkomoadopt.entity.AdoptionNoticeEntity;
 import com.kosmo.kkomoadopt.entity.CommentEntity;
-import com.kosmo.kkomoadopt.entity.CommunityPostEntity;
-import com.kosmo.kkomoadopt.entity.UserEntity;
 import com.kosmo.kkomoadopt.repository.CommentRepository;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor

@@ -102,7 +102,7 @@ export const reducer = (state = initialState, action) => {
     case READ_ADOPTION_POSTS:
       return { 
         ...state, 
-        posts: action.payload  // 모든 게시물 불러오기
+        notices: action.payload  // 모든 게시물 불러오기
       };
     case READ_ADOPTION_POST_DETAIL:
       return { 

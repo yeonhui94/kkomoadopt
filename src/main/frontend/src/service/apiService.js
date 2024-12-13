@@ -14,6 +14,16 @@ const apiClient = axios.create({
 // 1. 전체 입양 게시물 조회
 export const getAdoptionPosts = (pageNum) => apiClient.get(`/api/adopt/${pageNum}`);
 
+// 카테고리별 입양 게시물 조회
+export const getAdoptionPostList = (page, noticeCategory, sortBy, sortOrder) => apiClient.get('/api/adopt/list', {
+  params: {
+    page: page - 1,
+    noticeCategory: noticeCategory,  // 'ALL', 'DOG', 'CAT', 'OTHERS'
+    sortBy: sortBy,                 // 'euthanasiaDate', 'noticeCreatedAt', noticeViewCount
+    sortOrder: sortOrder            // 'asc', 'desc'
+  }
+});
+
 // 2. 특정 입양 게시물 상세 조회
 export const getAdoptionPostDetail = (noticeUid) => apiClient.get(`/api/adopt/${noticeUid}`);
 

@@ -28,11 +28,10 @@ public class AdoptionNoticeController {
     // 입양공지 조건별 검색
     @GetMapping("/list")
     public ResponseEntity<AdoptNoticeListDTO> getLists(
-            @RequestParam(defaultValue = "1") int page,   // 페이지 번호 (디폴트: 0)
-            @RequestParam(defaultValue = "12") int size,  // 페이지 크기 (디폴트: 10)
-            @RequestParam(defaultValue = "ALL") NoticeCategory noticeCategory,  // 카테고리 (선택 사항)
-            @RequestParam(defaultValue = "euthanasiaDate") String sortBy,  // 정렬 기준 (디폴트: "name")
-            @RequestParam(defaultValue = "desc") String sortOrder) {  // 정렬 순서 (디폴트: "asc")
+            @RequestParam(name = "page", defaultValue = "1") int page,   // 페이지 번호 (디폴트: 0)
+            @RequestParam(name = "noticeCategory") NoticeCategory noticeCategory,  // 카테고리 (선택 사항)
+            @RequestParam(name = "sortBy", defaultValue = "euthanasiaDate") String sortBy,  // 정렬 기준 (디폴트: "name")
+            @RequestParam(name = "sortOrder", defaultValue = "desc") String sortOrder) {  // 정렬 순서 (디폴트: "asc")
 
         // 페이지와 정렬 설정
         Sort sort = Sort.by(Sort.Order.asc(sortBy));  // 기본 정렬은 오름차순
@@ -40,14 +39,17 @@ public class AdoptionNoticeController {
             sort = Sort.by(Sort.Order.desc(sortBy));
         }
 
+        // size를 고정값 12로 설정
+        int size = 12;
+
         Pageable pageable = PageRequest.of(page, size, sort);
 
         AdoptNoticeListDTO result;
         // 카테고리 필터링 처리
         if (NoticeCategory.ALL.equals(noticeCategory)) {
-            result = adoptionNoticeService.getNoticesByCategory(noticeCategory, pageable);
-        } else {
             result = adoptionNoticeService.getNotices(pageable);  // 카테고리 없이 전체 아이템 반환
+        } else {
+            result = adoptionNoticeService.getNoticesByCategory(noticeCategory, pageable);
         }
 
         // 상태 코드 200 OK와 함께 반환

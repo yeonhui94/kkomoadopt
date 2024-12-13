@@ -12,23 +12,50 @@ import { useStore as AdoptionNoticeStore2 } from "../../stores/AdoptionNoticeSto
 const Adoption = ({ gridArea }) => {
   const [selectedCategory, setSelectedCategory] = useState("ALL");
   const [currentPage, setCurrentPage] = useState(1);
-  const [sortOption, setSortOption] = useState("전체보기");
+  const [sortOption, setSortOption] = useState("euthanasiaDate");
+  const [orderBy, setOrderBy ] = useState("DESC")
   const [searchQuery, setSearchQuery] = useState('');
   const { state, actions } = AdoptionNoticeStore2();
 
   const options = ["전체보기", "최신 순", "오래된 순", "조회 수 높은 순", "조회 수 낮은 순"];
+  const sortOptions = [
+    "euthanasiaDate",  // 전체보기
+    "noticeCreatedAt", // 최신 순
+    "noticeCreatedAt", // 오래된 순
+    "noticeViewCount", // 조회 수 높은 순
+    "noticeViewCount"  // 조회 수 낮은 순
+  ];
+  const orders = [
+    "DESC", // 전체보기
+    "ASC",  // 최신 순
+    "DESC", // 오래된 순
+    "DESC", // 조회 수 높은 순
+    "ASC"   // 조회 수 낮은 순
+  ];
 
+
+  // 페이지가 변경될 때마다 데이터 요청
+  // useEffect(() => {
+  //   actions.getAdoptionPostsAction(currentPage);  // 페이지 번호가 변경되면 API 호출
+  // }, [currentPage]);  // currentPage가 변경될 때마다 실행
+
+    // 페이지가 변경될 때마다 데이터 요청
+    useEffect(() =>  {
+      actions.getAdoptionPostListAction(currentPage, selectedCategory, sortOption, orderBy);  // 페이지 번호가 변경되면 API 호출
+    }, [currentPage, selectedCategory, sortOption, orderBy]);
 
   // 카테고리 필터링
-  const filteredNotices = state.notices.filter(item => {
+  const filteredNotices = Array.isArray(state.notices) ? state.notices.filter(item => {
     if (selectedCategory === "ALL") {
       return true;
     }
     return item.category === selectedCategory;
-  });
+  }) : []; // notices가 배열이 아닌 경우 빈 배열 반환
 
   // 총 페이지 수 계산
-  const totalPages = Math.ceil(state.totalCnt / 12);
+// 숫자로 변환하고 NaN이 될 경우 기본값 0으로 설정
+const totalElements = Number(state.totalElements); // or parseInt(state.totalElements, 10)
+const totalPages = Math.ceil(isNaN(totalElements) ? 0 : totalElements / 12);
 
   // 메뉴 항목 설정
   const menuItems = [
@@ -52,7 +79,11 @@ const Adoption = ({ gridArea }) => {
 
   // 정렬 옵션 변경 처리
   const handleSortChange = (option) => {
-    setSortOption(option);
+    const optionIndex = options.indexOf(option);
+    if (optionIndex !== -1) {
+      setSortOption(sortOptions[optionIndex]);
+      setOrderBy(orders[optionIndex]);
+    }
   };
 
   return (
@@ -67,6 +98,7 @@ const Adoption = ({ gridArea }) => {
           <div className={styles.rwsubcontainer2}>
             <Dropdown
               options={options}
+              orders={orders}
               defaultText="전체보기"
               onChange={handleSortChange}
             />

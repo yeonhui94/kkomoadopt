@@ -22,7 +22,8 @@ import {
   readAdoptionPostDetailAPI,
   updateAdoptionPostAPI,
   deleteAdoptionPostAPI,
-  getAdoptionPostsAction
+  getAdoptionPostsAction,
+  getAdoptionPostListAction
 } from "./action"; // action.js에서 액션들 임포트
 
 export const useStore = () => {
@@ -31,6 +32,10 @@ export const useStore = () => {
   const actions = {
     // 입양 공지 게시물 전체조회
     getAdoptionPostsAction: (pageNum) => getAdoptionPostsAction(pageNum)(dispatch),
+
+    // 입양 공지 카테고리별 조회
+    getAdoptionPostListAction: (page, noticeCategory, sortBy, sortOrder) => getAdoptionPostListAction(page, noticeCategory, sortBy, sortOrder)(dispatch),
+
     // 입양 공지 게시물 상세조회
     // getAdoptionPostAction: (noticeUid) => getAdoptionPostAction(noticeUid)(dispatch),
 

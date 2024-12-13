@@ -3,7 +3,8 @@ import {
   getAdoptionPostDetail,
   createAdoptionPost,
   updateAdoptionPost,
-  deleteAdoptionPost
+  deleteAdoptionPost,
+  getAdoptionPostList,
 } from '../../service/apiService'
 
 // 액션 타입 정의
@@ -128,6 +129,7 @@ export const resetAdoptionState = () => ({
 export const readAdoptionPostsAPI = () => async (dispatch) => {
   try {
       const response = await getAdoptionPosts();  // API 호출
+      console.log("노티스가뭔데"+ response.data);
       dispatch({
           type: READ_ADOPTION_POSTS,
           payload: response.data,  // 서버로부터 받은 데이터
@@ -136,6 +138,19 @@ export const readAdoptionPostsAPI = () => async (dispatch) => {
       console.error("입양 게시물을 불러올 수 없습니다.", error);
   }
 };
+
+export const getAdoptionPostListAction = (page, noticeCategory, sortBy, sortOrder) => async (dispatch) => {
+  try {
+    const response = await getAdoptionPostList(page, noticeCategory, sortBy, sortOrder);
+    console.log('Notices Data:', response.data.notices);  // 데이터 콘솔에 출력
+    dispatch({
+       type: READ_ADOPTION_POSTS,
+       payload: response.data.notices
+    });
+  } catch (error) {
+    console.error("입양 게시물을 불러올 수 없습니다.", error);
+  }
+} 
 
 export const readAdoptionPostDetailAPI = (noticeUid) => async (dispatch) => {
   try {

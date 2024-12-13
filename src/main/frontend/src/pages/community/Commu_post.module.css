@@ -552,7 +552,12 @@ p {
     color:var(--line-color);
 }
 
-
+.buttonwrap{
+    display: flex;
+    justify-content: flex-end;
+    gap: 30px;
+    margin-top: 10px;
+}
 
 
 

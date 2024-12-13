@@ -46,6 +46,10 @@ function Resell_Post ({ post }) {
                     </ul>
                 </div>
                 <Comment className={postst.post_petif}/>
+                <div className={postst.buttonwrap}>
+                    <Button  text={"수정"} width={"100px"} fontSize={"20px"} />
+                    <Button text={"삭제"} width={"100px"} fontSize={"20px"} />
+                </div>
             </article>
         </div>
     )

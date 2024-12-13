@@ -5,6 +5,7 @@ import postst from '../../community/Commu_post.module.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import React from "react";
+import Button from "../../../components/Button/Button";
 
 
 
@@ -46,6 +47,11 @@ function FindChild_Post ({ post }) {
                     </ul>
                 </div>
                 <Comment className={postst.post_petif}/>
+
+                <div className={postst.buttonwrap}>
+                    <Button  text={"수정"} width={"100px"} fontSize={"20px"} />
+                    <Button text={"삭제"} width={"100px"} fontSize={"20px"} />
+                </div>
             </article>
         </div>
     )

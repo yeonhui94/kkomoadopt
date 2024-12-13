@@ -13,6 +13,7 @@ import img11 from '../../../assets/CardImage/11.jpg';
 import wtstyles from "../CommunityWt.module.css";
 import FindChild_Post from "./FindChild_Post";
 import { useParams } from "react-router-dom";
+import Button from "../../../components/Button/Button";
 
 function FindChild_PostPage({ text = "아이를 찾습니다", gridArea }) {
 
@@ -303,7 +304,7 @@ function FindChild_PostPage({ text = "아이를 찾습니다", gridArea }) {
         return <p>해당 게시글을 찾을 수 없습니다.</p>;
 
     }
-    
+
 
 
     return (

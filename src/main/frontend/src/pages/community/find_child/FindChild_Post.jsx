@@ -28,7 +28,7 @@ function FindChild_Post ({ postDetail }) {
                 <div className={postst.post_tmi1}>
                     <p className={postst.post_nick}>&nbsp;&nbsp;닉네임&nbsp;:&nbsp; {postDetail.nickname}</p>
                     <p className={postst.post_postnum}> 글번호 &nbsp;:&nbsp; {postDetail.postId}</p>
-                    <p className={postst.post_date}>작성일&nbsp;:&nbsp; {postDetail.postUpdateAt} </p>
+                    <p className={postst.post_date}>작성일&nbsp;:&nbsp; {postDetail.postCreatedAt} </p>
                 </div>
                 <p className={postst.post_view}>조회수 : {postDetail.postViewCount}</p>
             </div>

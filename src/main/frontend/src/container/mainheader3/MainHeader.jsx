@@ -79,7 +79,7 @@ const MainHeader = ({ isScrolled, currentSection, setCurrentSection, setIsAnimat
 
           {/* 로그인 상태에 따라 버튼 변경 */}
           {isLoggedIn ? (
-            <Button text="로그아웃" padding="12px 20px" onClick={handleLogout} />
+            <Button  text="로그아웃" padding="12px 20px" onClick={handleLogout} />
           ) : (
             <Link className={styles.btn} to="/login">
               <Button text="로그인" padding="12px 20px" />

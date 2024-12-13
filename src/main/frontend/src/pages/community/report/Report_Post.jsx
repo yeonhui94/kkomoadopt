@@ -11,11 +11,14 @@ import styled from 'styled-components';
 import PostSlickSlide from './PostSlickSlide';
 import { filterProps } from 'framer-motion';
 import Comment from './Comment';
+import Button from '../../../components/Button/Button';
 
-const Report_Post = ({post}) => {
+const Report_Post = ({postDetail}) => {
 
-     //  { title: "새 게시물 제목", admin: "짱구는", target: "sangil22", reportpostnum: 334, 
-     // content : "악플이 달렸어요 ㅠㅠ", date: new Date("2024-11-25"), views: 5, files: 2 },
+    if (!postDetail) {
+        // 데이터가 없으면 로딩 중 또는 오류 메시지를 표시
+        return <p>Loading post details...</p>;
+    }
 
 
     return (
@@ -23,16 +26,16 @@ const Report_Post = ({post}) => {
         <div className={postst.post_container}>
             <Divider/>
             <div className={postst.post_title}>
-                <h3>&nbsp; {post.title}</h3>
+                <h3>&nbsp; {postDetail.postTitle}</h3>
             </div>
 
             <div className={postst.post_tmi}>
                 <div className={postst.post_tmi1}>
-                    <p className={postst.post_nick}>&nbsp;&nbsp;닉네임&nbsp;:&nbsp; {post.admin}</p>
-                    <p className={postst.post_postnum}> 글번호 &nbsp;:&nbsp; {post.reportpostnum}</p>
-                    <p className={postst.post_date}>작성일&nbsp;:&nbsp; {post.date.toLocaleDateString("ko-KR")} </p>
+                    <p className={postst.post_nick}>&nbsp;&nbsp;닉네임&nbsp;:&nbsp; {postDetail.nickname}</p>
+                    <p className={postst.post_postnum}> 글번호 &nbsp;:&nbsp; {postDetail.postId}</p>
+                    <p className={postst.post_date}>작성일&nbsp;:&nbsp; {postDetail.postCreatedAt} </p>
                 </div>
-                <p className={postst.post_view}>조회수 : {post.views}</p>
+                <p className={postst.post_view}>조회수 : {postDetail.postViewCount}</p>
             </div>
 
             
@@ -40,16 +43,13 @@ const Report_Post = ({post}) => {
                 <div className={postst.post_content1}>
                     
                     {/* 이미지 */}
-                    {!post.img ? (  // post.img가 없는 경우 "이미지 없음" 표시
+                    {!postDetail.postImgUrl ? (  // post.img가 없는 경우 "이미지 없음" 표시
                     ""
                     ) : (
-                    <PostSlickSlide className={postst.post_postimgs} img={post.img} /> 
+                    <PostSlickSlide className={postst.post_postimgs} img={postDetail.postImgUrl} /> 
                     )}
-                    <ul className={postst.post_article}>
-                        <li>-&nbsp; 신고대상 :&nbsp; &nbsp;{post.target}</li>
-                        <li>-&nbsp;&nbsp;신고 게시물 번호 : &nbsp;&nbsp;{post.id}</li>
-                        <li>-&nbsp;&nbsp;신고 내용:&nbsp; &nbsp;{post.content} </li>
-                    </ul>
+                    <div className={postst.post_article} dangerouslySetInnerHTML={{ __html: postDetail.postContent }}
+                    />
                 </div>
                 <Comment className={postst.post_petif}/>
                 <div className={postst.buttonwrap}>

@@ -26,35 +26,6 @@ useEffect(() => {
 
   const postsPerPage = 10;
 
-//   const [allPosts, setAllposts] = useState([ 
-//     { id: 1, title: "새 게시물 제목", admin: "짱구는", date: new Date("2024-11-25"), views: 5, files: 2, target: "sangil0528", reportpostnum: 334, content: "악플이 달렸어요 ㅠㅠ" },
-//     { id: 2, title: "새 게시물 제목 2", admin: "집갈래", date: new Date("2024-10-25"), views: 4, files: 2, target: "100wincattle", reportpostnum: 335, content: "누가 이런 글을 썼나요?" },
-//     { id: 3, title: "새 게시물 제목 3", admin: "고소연하게", date: new Date("2024-09-25"), views: 10, files: 2, target: "sangil0528", reportpostnum: 336, content: "이 글이 너무 마음에 안 들어요." },
-//     { id: 4, title: "새 게시물 제목 4@", admin: "규카츠온", date: new Date("2024-08-25"), views: 50, files: 2, target: "100wincattle", reportpostnum: 337, content: "댓글이 너무 비판적이에요!" },
-//     { id: 5, title: "새 게시물 제목 5", admin: "레일라온", date: new Date("2024-07-25"), views: 0, files: 2, target: "sangil0528", reportpostnum: 338, content: "이거 정말 문제 있는 글 같아요." },
-//     { id: 6, title: "새 게시물 제목 6", admin: "닝ㄴ잉", date: new Date("2024-06-25"), views: 7, files: 2, target: "100wincattle", reportpostnum: 339, content: "이건 너무한 댓글이에요!" },
-//     { id: 7, title: "새 게시물 제목 7", admin: "문상만원", date: new Date("2024-05-25"), views: 23, files: 2, target: "sangil0528", reportpostnum: 340, content: "악플이 달렸어요 ㅠㅠ" },
-//     { id: 8, title: "새 게시물 제목 8", admin: "재헌*5", date: new Date("2024-04-25"), views: 15, files: 2, target: "100wincattle", reportpostnum: 341, content: "누가 이런 글을 썼나요?" },
-//     { id: 9, title: "새 게시물 제목 9@", admin: "작은지", date: new Date("2024-03-25"), views: 4, files: 2, target: "sangil0528", reportpostnum: 342, content: "이 글이 너무 마음에 안 들어요." },
-//     { id: 10, title: "새 게시물 제목 10@", admin: "큰은지", date: new Date("2024-02-25"), views: 1, files: 2, target: "100wincattle", reportpostnum: 343, content: "댓글이 너무 비판적이에요!" },
-//     { id: 11, title: "새 게시물 제목 11", admin: "연금술사", date: new Date("2024-01-15"), views: 14, files: 2, target: "sangil0528", reportpostnum: 344, content: "이거 정말 문제 있는 글 같아요." },
-//     { id: 12, title: "새 게시물 제목 12", admin: "무지개추격자", date: new Date("2023-12-10"), views: 30, files: 2, target: "100wincattle", reportpostnum: 345, content: "이건 너무한 댓글이에요!" },
-//     { id: 13, title: "새 게시물 제목 13", admin: "시간루팡", date: new Date("2023-11-05"), views: 5, files: 2, target: "sangil0528", reportpostnum: 346, content: "악플이 달렸어요 ㅠㅠ" },
-//     { id: 14, title: "새 게시물 제목 14", admin: "포슬핑", date: new Date("2023-10-10"), views: 25, files: 2, target: "100wincattle", reportpostnum: 347, content: "누가 이런 글을 썼나요?" },
-//     { id: 15, title: "새 게시물 제목 15", admin: "졸령", date: new Date("2023-09-20"), views: 12, files: 2, target: "sangil0528", reportpostnum: 348, content: "이 글이 너무 마음에 안 들어요." },
-//     { id: 16, title: "새 게시물 제목 16", admin: "피고냉", date: new Date("2023-08-18"), views: 9, files: 2, target: "100wincattle", reportpostnum: 349, content: "댓글이 너무 비판적이에요!" },
-//     { id: 17, title: "새 게시물 제목 17", admin: "도토리행성주민", date: new Date("2023-07-11"), views: 3, files: 2, target: "sangil0528", reportpostnum: 350, content: "이거 정말 문제 있는 글 같아요." },
-//     { id: 18, title: "새 게시물 제목 18", admin: "혜린온귀여웡", date: new Date("2023-06-22"), views: 18, files: 2, target: "100wincattle", reportpostnum: 351, content: "이건 너무한 댓글이에요!" },
-//     { id: 19, title: "새 게시물 제목 19", admin: "호유동", date: new Date("2023-05-15"), views: 20, files: 2, target: "sangil0528", reportpostnum: 352, content: "악플이 달렸어요 ㅠㅠ" },
-//     { id: 20, title: "새 게시물 제목 20@", admin: "햄스퉈", date: new Date("2023-04-05"), views: 13, files: 2, target: "100wincattle", reportpostnum: 353, content: "누가 이런 글을 썼나요?" },
-//     { id: 21, title: "새 게시물 제목 21", admin: "수혀나뮤직큐", date: new Date("2023-03-02"), views: 30, files: 2, target: "sangil0528", reportpostnum: 354, content: "이 글이 너무 마음에 안 들어요." },
-//     { id: 22, title: "새 게시물 제목 22", admin: "집에가고시퍼", date: new Date("2023-02-18"), views: 8, files: 2, target: "100wincattle", reportpostnum: 355, content: "댓글이 너무 비판적이에요!" },
-//     { id: 23, title: "새 게시물 제목 23", admin: "소고기", date: new Date("2023-01-12"), views: 6, files: 2, target: "sangil0528", reportpostnum: 356, content: "이거 정말 문제 있는 글 같아요." },
-//     { id: 24, title: "새 게시물 제목 24", admin: "gpt바보", date: new Date("2022-12-05"), views: 17, files: 2, target: "100wincattle", reportpostnum: 357, content: "이건 너무한 댓글이에요!" },
-//     { id: 25, title: "새 게시물 제목 25", admin: "안드로이드몽상가", date: new Date("2022-11-21"), views: 27, files: 2, target: "sangil0528", reportpostnum: 358, content: "악플이 달렸어요 ㅠㅠ" },
-//     { id: 26, title: "새 게시물 제목 26", admin: "개굴", date: new Date("2022-10-15"), views: 19, files: 2, target: "100wincattle", reportpostnum: 359, content: "누가 이런 글을 썼나요?" },
-//     { id: 27, title: "새 게시물 제목 27", admin: "캬핳", date: new Date("2022-09-10"), views: 2, files: 2, target: "sangil0528", reportpostnum: 360, content: "이 글이 너무 마음에 안 들어요." }
-// ]); 
 
 
   const options = ["전체보기", "최신 순", "오래된 순", "조회 수 높은 순", "조회 수 낮은 순"];
@@ -131,7 +102,7 @@ useEffect(() => {
     {communityState.communityPosts.length > 0 ? (
       <ul className={`${comstyle.postsbox}`}>
         {communityState.communityPosts.map((post) => (
-          <Link to={`/report/post/${post.id}`} key={post.id}>
+          <Link to={`/report/post/${post.postUid}`} key={post.id}>
           <li key={post.id} className={comstyle.post}>
             <p className={comstyle.postnumli}>{post.id}</p>
             <p className={comstyle.titleli}>{post.postTitle}</p>

@@ -63,7 +63,7 @@ const Report_CommunityWt = ({ gridArea,  text = "신고합니다"}) => {
         {/* 내용 입력 */}
         <div className={wtstyles.textAreaContainer}>
           <h3>내용</h3>
-          <textarea className={wtstyles.textArea} defaultValue={`\n신고대상:\n\n신고 게시물 번호:\n신고 내용:\n\n첨부자료:\n`} 
+          <textarea className={wtstyles.textArea} 
           value={content}
           onChange={(e) => setContent(e.target.value)}  // 내용 입력 처리
           />

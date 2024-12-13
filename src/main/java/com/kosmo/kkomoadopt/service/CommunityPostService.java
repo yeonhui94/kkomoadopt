@@ -126,6 +126,8 @@ public class CommunityPostService {
         }
 
         CommunityPostEntity post = optionalPost.get();
+        System.out.println("User ID: " + post.getUserId());
+
 
         //유저 정보 조회
         Optional<UserEntity> userOptional = userRepository.findById(post.getUserId());

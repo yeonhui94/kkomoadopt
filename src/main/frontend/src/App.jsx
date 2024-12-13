@@ -115,17 +115,17 @@ function App() {
         // 커뮤니티 > 사고팝니다
         { path: "commu-resell", element: <Resell_Community gridArea="section" />},
         // 사고팝니다 게시글
-        { path: "resell/post/:id", element: <Resell_PostPage gridArea="section" />},
+        { path: "resell/post/:postUid", element: <Resell_PostPage gridArea="section" />},
         // 사고팝니다 글쓰기
         { path: "/commu_resell_wt", element: <Resell_CommunityWt text="신고합니다" gridArea="subsection" />},
         // 커뮤니티 > 신고합니다 글쓰기
         { path: "commu_report_wt", element: <Report_CommunityWt text="신고합니다" gridArea="section" />},
         // 커뮤니티 > 신고합니다 게시글
-        { path: "report/post/:id", element: <Report_postpage gridArea="section" />},
+        { path: "report/post/:postUid", element: <Report_postpage gridArea="section" />},
         // 커뮤니티 > 공지사항 글쓰기
         { path: "/commu_announce_wt", element: <Announcement_Wt gridArea="section" />},
         // 커뮤니티 > 공지사항 게시글
-        { path: "/announce/post/:id", element: <Announcement_postpage gridArea="section" />},
+        { path: "/announce/post/:postUid", element: <Announcement_postpage gridArea="section" />},
         
         // 고객센터
         {

@@ -18,6 +18,7 @@ import {
     login,
     loginSuccess,
     logoutUser,
+    register,
 //     changePasswordSuccess,
 //     verifyPassword
 } from "./action";
@@ -45,7 +46,8 @@ export const useStore = () => {
         login: (email, password) => login(email, password)(dispatch),
         loginSuccess: (userData) => dispatch(loginSuccess(userData)),
         logoutUser: () => dispatch(logoutUser()),
-
+        register: (RegisterUserDTO) => register(RegisterUserDTO)(dispatch),
+//         register:(userInDTO) => register(userInDTO)(dispatch),
         // 비밀번호 변경 및 검증
         changePasswordSuccess: (newPassword) => dispatch(changePasswordSuccess(newPassword)),
         verifyPassword: (password) => dispatch(verifyPassword(password)),

@@ -1,6 +1,6 @@
 import Button from "../../components/Button/Button";
 import styles from "../../pages/Login/JoinSecession.module.css";
-import { Outlet } from "react-router-dom";
+import { Outlet , Link} from "react-router-dom";
 import Logo from "../../components/logo/Logo";
 
 // 텍스트 데이터 관리
@@ -28,10 +28,11 @@ function JoinSecession() {
       <p className={styles.p2}>{texts.text2}</p>
       <p className={styles.p3}>{texts.text3}</p>
 
+    <Link to="/">
       <div className={styles.btn1}>
         <Button width="100%" text={texts.btnName} />
       </div>
-
+    </Link>
       <Outlet />
     </div>
   );

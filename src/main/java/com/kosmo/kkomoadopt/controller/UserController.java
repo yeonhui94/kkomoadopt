@@ -51,7 +51,7 @@ public class UserController {
 
     // 회원가입 처리 API
     @PostMapping("/register")
-    public ResponseEntity<String> registerUser(@RequestBody @Valid RegisterUserDTO registerUserDTO) {
+    public ResponseEntity<String> registerUser(@RequestBody RegisterUserDTO registerUserDTO) {
         boolean isRegistered = userService.registerUser(registerUserDTO);
 
         if (!isRegistered) {

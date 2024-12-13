@@ -71,10 +71,10 @@ export const LOGOUT_USER = "LOGOUT_USER";
 export const CHANGE_PASSWORD_SUCCESS = 'CHANGE_PASSWORD_SUCCESS';
 export const VERIFY_PASSWORD = 'VERIFY_PASSWORD' // 비밀번호 검증
 
-export const createUser = (userData) => ({
-    type: CREATE_USER,
-    payload: userData
-});
+//export const createUser = (userData) => ({
+//    type: CREATE_USER,
+//    payload: userData
+//});
 
 export const readUser = (userId) => ({
     type: READ_USER,
@@ -154,7 +154,7 @@ export const login = (email, password) => async (dispatch) => {
     const response = await loginUser(email, password);
     console.log("로그인 응답:", response);
     console.log("로그인 응답 데이터:", response.data);
-
+    console.log("닉네임",response.data.nickname);
     if (response.status === 200) {
       const userData = {
         userId: response.data.userId || "",

@@ -18,10 +18,6 @@ const Adoption = ({ gridArea }) => {
 
   const options = ["전체보기", "최신 순", "오래된 순", "조회 수 높은 순", "조회 수 낮은 순"];
 
-  // 페이지가 변경될 때마다 데이터 요청
-  useEffect(() => {
-    actions.getAdoptionPostsAction(currentPage);  // 페이지 번호가 변경되면 API 호출
-  }, [currentPage]);  // currentPage가 변경될 때마다 실행
 
   // 카테고리 필터링
   const filteredNotices = state.notices.filter(item => {

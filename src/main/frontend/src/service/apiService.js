@@ -39,7 +39,8 @@ export const getUserProfile = (userId) => apiClient.get(`/api/mypage/user/${user
 export const updateUserProfile = (userId, profileData) => apiClient.patch(`/api/mypage/user/${userId}/change-profile`, profileData);
 
 // 4. 회원 가입
-export const registerUser = (userData) => apiClient.post('/api/user/register', userData);
+//export const registerUser = (userData) => apiClient.post('/api/user/register', userData);
+export const registerUser = (RegisterUserDTO) => apiClient.post('/api/user/register', RegisterUserDTO);
 
 // 5. 로그인
 export const loginUser = (email, password) => apiClient.post('/api/user/login', { email, password });

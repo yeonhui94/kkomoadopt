@@ -85,7 +85,7 @@ function PostSlickSlide({img}) {
       <StyledSlider {...settings}>
         {img.map((image, index) => (
           <SlideWrapper key={index}>
-            <SlideImage src={image} alt={`Slide ${index + 1}`} />
+            <SlideImage src={`http://localhost:8080/upload/${image}`} alt={`Slide ${index + 1}`} />
           </SlideWrapper>
         ))}
       </StyledSlider>

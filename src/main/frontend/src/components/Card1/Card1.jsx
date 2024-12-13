@@ -76,21 +76,21 @@ const CardContainer = styled.div`
 
 const Card1 = ({ images }) => {
 
-  const [smimage, setSmallimage] = useState("");
-  const [smimage2, setSmallimage2] = useState([]);
+  console.log("images", images)
+
+const [smimage, setSmallimage] = useState("");  // 첫 번째 이미지를 위한 상태
+const [smimage2, setSmallimage2] = useState([]); // 나머지 이미지를 위한 상태
+
+useEffect(() => {
+  if (images && Array.isArray(images)) {
+    setSmallimage(smimage || ""); // 첫 번째 이미지를 설정
+    setSmallimage2(images.slice(1, 3)); // 1번째부터 3번째까지의 이미지를 설정
+  }
+}, [images]); // images 배열이 변경될 때마다 실행
 
 
 
-  useEffect(() => {
-    if (images && Array.isArray(images)) {
-      setSmallimage(images[0] || ""); // 안전하게 기본값 처리
-      setSmallimage2(images.slice(1, 4)); // 1, 2, 3번째 이미지만 추출
-    }
-  }, []);
-
-
-
-  console.log("Received images prop:", images);
+  // console.log("Received images prop:", images);
 
 
   return (
@@ -115,12 +115,12 @@ const Card1 = ({ images }) => {
             <StyledCard key={index} className="styled-card small-card" width="72px" height="72px">
               {index === smimage2.length - 1 ? (
                 <CardImage
-                  imageFile={card.image}
+                  imageFile={card.smimage2}
                   thirdtext={"자세히 보기"} // 마지막 카드에만 '자세히 보기' 추가
                   isFirst={false}
                 />
               ) : (
-                <CardImage imageFile={card.image} text={""} />
+                <CardImage imageFile={smimage} text={""} />
               )}
             </StyledCard>
           ))

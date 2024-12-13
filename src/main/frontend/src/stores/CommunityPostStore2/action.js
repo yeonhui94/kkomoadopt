@@ -81,11 +81,15 @@ export const readCommunityPostsByCategory = (category) => async (dispatch) => {
 export const readCommunityPostDetail = (postUid) => async (dispatch) => {
   try {
     const response = await getCommunityPostDetail(postUid);  // API 호출: 게시물 상세 정보 가져오기
+
+    if (response.status === 200) {
     dispatch({
       type: READ_COMMUNITY_POST_DETAIL,
       payload: response.data,  // 게시물 상세 데이터
     });
-  } catch (error) {
+    return "ok"
+  };
+ } catch (error) {
     console.error("커뮤니티 게시물 상세 정보를 불러올 수 없습니다.", error);
   }
 };

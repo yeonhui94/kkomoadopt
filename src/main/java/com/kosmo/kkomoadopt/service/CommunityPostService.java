@@ -9,6 +9,7 @@ import com.kosmo.kkomoadopt.repository.CommunityPostRepository;
 import com.kosmo.kkomoadopt.repository.UserRepository;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -114,6 +115,40 @@ public class CommunityPostService {
 
         return CommunityListDTOList;
     }
+
+
+
+    public CommunityListDTO getCommunityPostUid (String postUid) {
+        Optional<CommunityPostEntity> optionalPost = communityPostRepository.findByPostUid(postUid);
+
+        if(optionalPost.isEmpty()){
+            throw new RuntimeException("Post with UID" + postUid + "not found");
+        }
+
+        CommunityPostEntity post = optionalPost.get();
+
+        //유저 정보 조회
+        Optional<UserEntity> userOptional = userRepository.findById(post.getUserId());
+        String nickname = userOptional.map(UserEntity::getNickname).orElse("Unknown");
+
+        return new CommunityListDTO(
+                post.getPostUid(),
+                post.getPostId(),
+                post.getPostCategory(),
+                post.getPostTitle(),
+                post.getPostContent(),
+                post.getPostCreatedAt(),
+                post.getPostUpdatedAt(),
+                post.getPostImgUrl(),
+                post.getIsDeleted(),
+                post.getDeleteReason(),
+                post.getUserId(),
+                post.getPostViewCount(),
+                nickname
+        );
+    };
+
+
 
 //                ProjectCategory category = ProjectCategory.valueOf(projectCategory.toUpperCase());
 //                return projectRepository.findProjectsByCategoryAndFundingStatusAndDateRange(category, fundingStatus, now)

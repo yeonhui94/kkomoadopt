@@ -21,9 +21,12 @@ import {
   deleteCommunityPostAction,
   readCommunityPostsByCategory
 } from "./action";  // 액션 크리에이터들을 import
+import { getCommunityPostsByCategory } from "../../service/apiService";
 
 export const useStore = () => {
   const [state, dispatch] = useReducer(reducer, initialState);  // useReducer 훅을 사용
+
+  
 
   // 액션을 디스패치할 수 있도록 하는 함수들
   const actions = {
@@ -43,11 +46,12 @@ export const useStore = () => {
 
     // CRUD 액션들
     readCommunityPosts: (posts) => dispatch(readCommunityPosts(posts)),
-    readCommunityPostDetail: (postDetail) => dispatch(readCommunityPostDetail(postDetail)),
+    readCommunityPostDetail: (postUid) => readCommunityPostDetail(postUid)(dispatch),
     createCommunityPostAction: (postData) => dispatch(createCommunityPost(postData)),
     updateCommunityPostAction: (postData) => dispatch(updateCommunityPost(postData)),
     deleteCommunityPostAction: (postId) => dispatch(deleteCommunityPost(postId)),
     readCommunityPostsByCategory: (category) => readCommunityPostsByCategory(category)(dispatch)
+    
   };
 
   return { state, actions };  // 상태와 액션들을 반환

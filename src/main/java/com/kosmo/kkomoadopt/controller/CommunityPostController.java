@@ -31,10 +31,18 @@ public class CommunityPostController {
         }
     }
 
+
     @PostMapping
     public ResponseEntity<Boolean> createPosts(@ModelAttribute CommunityDTO communityDTO, @RequestParam("files") MultipartFile[] files) {
         Boolean result = communityPostService.savePost(communityDTO, files);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
+    }
+
+
+    @GetMapping("/{postUid}")
+    public ResponseEntity<CommunityListDTO> getPostByUid(@PathVariable String postUid){
+        CommunityListDTO post = communityPostService.getCommunityPostUid(postUid);
+        return ResponseEntity.ok(post);
     }
 
 }

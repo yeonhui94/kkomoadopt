@@ -104,7 +104,7 @@
   display: grid;
   padding: 0px 80px;
   grid-template: 
-    '... inputdrop ...' 1fr
+    '... inputdrop ...' auto
     '... ... ...' 10px
     '... ... ...' 8px
     '... subbar ...' 30px

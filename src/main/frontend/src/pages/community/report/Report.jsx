@@ -101,16 +101,14 @@ useEffect(() => {
 
     {communityState.communityPosts.length > 0 ? (
       <ul className={`${comstyle.postsbox}`}>
-        {communityState.communityPosts.map((post) => (
+        {communityState.communityPosts.map((post ,index) => (
           <Link to={`/report/post/${post.postUid}`} key={post.id}>
           <li key={post.id} className={comstyle.post}>
-            <p className={comstyle.postnumli}>{post.id}</p>
+            <p className={comstyle.postnumli}>{index + 1}</p>
             <p className={comstyle.titleli}>{post.postTitle}</p>
             <p className={comstyle.adminli}>{post.postAuthor}</p>
-            {/* <p className={comstyle.dateli}>{post.date.toLocaleDateString("ko-KR")}</p>
-            <p className={comstyle.viewsli}>{post.views}</p> */}
-            {/* {post.files && <p>첨부파일: {post.files}개</p>} */}
-  
+            <p className={comstyle.dateli}>{post.postCreatedAt}</p>
+            <p className={comstyle.viewsli}>{post.postViewCount}</p>
           </li>
           </Link>
         ))}

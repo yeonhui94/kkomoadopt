@@ -67,6 +67,7 @@ export const reducer = (state = initialState, action) => {
       return { ...state, postViewCount: action.payload };
 
     // CRUD 작업 관련 상태 변경
+    // {커뮤니티관련된state, communityPosts: {데이터 }}
     case READ_COMMUNITY_POSTS:
       return { ...state, communityPosts: action.payload }; // 게시물 목록
     case READ_COMMUNITY_POST_DETAIL:

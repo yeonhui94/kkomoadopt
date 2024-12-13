@@ -16,9 +16,10 @@ import {
   resetState,
   readCommunityPosts,
   readCommunityPostDetail,
-  createCommunityPost,
-  updateCommunityPost,
-  deleteCommunityPost
+  createCommunityPostAction,
+  updateCommunityPostAction,
+  deleteCommunityPostAction,
+  readCommunityPostsByCategory
 } from "./action";  // 액션 크리에이터들을 import
 
 export const useStore = () => {
@@ -43,9 +44,10 @@ export const useStore = () => {
     // CRUD 액션들
     readCommunityPosts: (posts) => dispatch(readCommunityPosts(posts)),
     readCommunityPostDetail: (postDetail) => dispatch(readCommunityPostDetail(postDetail)),
-    createCommunityPost: (postData) => dispatch(createCommunityPost(postData)),
-    updateCommunityPost: (postData) => dispatch(updateCommunityPost(postData)),
-    deleteCommunityPost: (postId) => dispatch(deleteCommunityPost(postId))
+    createCommunityPostAction: (postData) => dispatch(createCommunityPost(postData)),
+    updateCommunityPostAction: (postData) => dispatch(updateCommunityPost(postData)),
+    deleteCommunityPostAction: (postId) => dispatch(deleteCommunityPost(postId)),
+    readCommunityPostsByCategory: (category) => readCommunityPostsByCategory(category)(dispatch)
   };
 
   return { state, actions };  // 상태와 액션들을 반환

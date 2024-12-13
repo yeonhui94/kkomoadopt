@@ -83,7 +83,7 @@ const AdditionalText = styled.div`
 
 const CardImage = ({ imageFile, text, additionalText, ps, size, isFirst,thirdtext }) => {
   return (
-    <ImageWrapper url={imageFile} ps={ps}>
+    <ImageWrapper url={`http://localhost:8080/upload/${imageFile[0]}`} ps={ps}>
       <BackgroundDiv />
       {isFirst && <Divider className="divider" />}
       <TextBox2 text={text} size={size}  />

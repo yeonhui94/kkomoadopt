@@ -28,5 +28,7 @@ public interface AdoptionNoticeRepository extends JpaRepository<AdoptionNoticeEn
     // noticeUid를 기준으로 삭제하고, 삭제된 레코드 수를 반환
     int deleteByNoticeUid(String noticeUid);
 
+
+
     long count();
 }

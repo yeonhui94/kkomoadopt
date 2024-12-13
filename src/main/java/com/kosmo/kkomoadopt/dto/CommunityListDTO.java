@@ -7,22 +7,17 @@ import java.util.List;
 
 public record CommunityListDTO
         (
-                List<Post> communityList,
-                long totalCnt,
-                long currentPageNum
-        ){
-
-        public record Post(
+                String postUid,
                 Integer postId,
                 PostCategory postCategory,
                 String postTitle,
                 String postContent,
                 LocalDateTime postCreatedAt,
+                LocalDateTime postUpdatedAt,
                 List<String> postImgUrl,
                 Boolean isDeleted,
                 String deleteReason,
+                String userId,
                 Integer postViewCount,
-                String postNickname
-        ) {
-        }
-}
+                String postAuthor
+        ){ }

@@ -3,7 +3,8 @@ import {
   getCommunityPostDetail,
   createCommunityPost,
   updateCommunityPost,
-  deleteCommunityPost
+  deleteCommunityPost,
+  getCommunityPostsByCategory
 } from '../../service/apiService';
 
 // Action Types
@@ -49,19 +50,32 @@ export const resetState = () => ({ type: RESET_STATE });
 export const readCommunityPosts = () => async (dispatch) => {
   try {
     const response = await getCommunityPosts();  // API 호출: 게시물 목록 가져오기
-    const filterdPosts = response.data.filter ( post=> !post.post_category);  // `post_category` 없는 데이터 필터링
-
-    // 로컬스토리지에 저장
-    localStorage.setItem('communityPosts', JSON.stringify(filteredPosts));
-
     dispatch({
       type: READ_COMMUNITY_POSTS,
-      payload: filteredPosts,  // 게시물 목록 데이터
+      payload: response.data,  // 게시물 목록 데이터
     });
   } catch (error) {
     console.error("커뮤니티 게시물 목록을 불러올 수 없습니다.", error);
   }
 };
+
+// 커뮤니티 카테고리로 조회 
+export const readCommunityPostsByCategory = (category) => async (dispatch) => {
+  try {
+    const response = await getCommunityPostsByCategory(category);
+
+    if (response.status === 200) {
+      dispatch({
+        type: READ_COMMUNITY_POSTS,
+        payload: response.data
+      });
+      return "ok"
+    };
+  } catch (error) {
+    console.error("커뮤니티 게시물 목록을 불러올 수 없습니다.", error)
+  }
+}
+
 
 // 2. 특정 커뮤니티 게시물 상세 조회
 export const readCommunityPostDetail = (postUid) => async (dispatch) => {

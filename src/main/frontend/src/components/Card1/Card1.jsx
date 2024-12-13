@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import CardImage from "./CardImage";
+import { useEffect, useState } from "react";
 
 const CardWrapper = styled.div`
 display: block;
@@ -74,16 +75,34 @@ const CardContainer = styled.div`
 `;
 
 const Card1 = ({ images }) => {
+
+  const [smimage, setSmallimage] = useState("");
+  const [smimage2, setSmallimage2] = useState([]);
+
+
+
+  useEffect(() => {
+    if (images && Array.isArray(images)) {
+      setSmallimage(images[0] || ""); // 안전하게 기본값 처리
+      setSmallimage2(images.slice(1, 4)); // 1, 2, 3번째 이미지만 추출
+    }
+  }, []);
+
+
+
+  console.log("Received images prop:", images);
+
+
   return (
     <CardWrapper className="mainwrapper">
       {/* 메인카드 분리 */}
       <StyledCard className="styled-card large-card">
         <CardImage
-          imageFile={images.main}
-          text={images.texts[0]}
+          imageFile={smimage}
+          text={images?.texts?.[0] || ""}
           ps={"top"}
           size={"1.5rem"}
-          additionalText={images.additionalTexts[0]}
+          additionalText={images?.additionalTexts?.[0] || ""}
           fontSize={"1rem"}
           isFirst={true}
         />
@@ -91,19 +110,25 @@ const Card1 = ({ images }) => {
 
       {/* 작은 이미지 컨테이너로 묶음 */}
       <CardContainer className="card-container">
-        {images.others.map((card, index) => (
-          <StyledCard key={index} className="styled-card small-card" width="72px" height="72px">
-            {index === images.others.length - 1 ? (
-              <CardImage
-                imageFile={card.image}
-                thirdtext={"자세히 보기"} // 마지막 카드에만 '자세히 보기' 추가
-                isFirst={false}
-              />
-            ) : (
-              <CardImage imageFile={card.image} text={""} />
-            )}
-          </StyledCard>
-        ))}
+        {Array.isArray(smimage2) && smimage2.length > 0 ? (
+          smimage2.map((card, index) => (
+            <StyledCard key={index} className="styled-card small-card" width="72px" height="72px">
+              {index === smimage2.length - 1 ? (
+                <CardImage
+                  imageFile={card.image}
+                  thirdtext={"자세히 보기"} // 마지막 카드에만 '자세히 보기' 추가
+                  isFirst={false}
+                />
+              ) : (
+                <CardImage imageFile={card.image} text={""} />
+              )}
+            </StyledCard>
+          ))
+        ) : (
+          <p>No additional images available</p> // 추가 이미지가 없을 경우
+        )}
+
+
       </CardContainer>
     </CardWrapper>
   );

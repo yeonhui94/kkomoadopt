@@ -13,7 +13,7 @@ import {
   readCommentDetail,
   createComment,
   updateComment,
-  deleteComment
+  deleteComment  
 } from "./action";  
 
 export const useStore = () => {

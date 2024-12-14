@@ -13,7 +13,7 @@ import {
   UPDATE_COMMENT,
   DELETE_COMMENT
 } from './action';
-
+  
 // 초기 상태 정의
 export const initialState = {
   commentId: "",

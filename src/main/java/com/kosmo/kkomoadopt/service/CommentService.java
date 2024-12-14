@@ -1,21 +1,32 @@
 package com.kosmo.kkomoadopt.service;
 
 import com.kosmo.kkomoadopt.dto.CommentDTO;
+import com.kosmo.kkomoadopt.dto.CommentListDTO;
 import com.kosmo.kkomoadopt.entity.CommentEntity;
+import com.kosmo.kkomoadopt.entity.CommunityPostEntity;
+import com.kosmo.kkomoadopt.entity.UserEntity;
 import com.kosmo.kkomoadopt.repository.CommentRepository;
+import com.kosmo.kkomoadopt.repository.CommunityPostRepository;
+import com.kosmo.kkomoadopt.repository.UserRepository;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.xml.stream.events.Comment;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
 public class CommentService {
 
     private final CommentRepository commentRepository;
+    private final UserRepository userRepository;
+    private final CommunityPostRepository communityPostRepository;
 
     @Autowired
     private EntityManager em;
@@ -97,5 +108,28 @@ public class CommentService {
         return true; // 삭제 성공
     }
 
+    public List<CommentListDTO> getCommentByPostId(String commentId){
+        // 1. postUid로 해당하는 댓글을 받고
+        List<CommentEntity> comments = commentRepository.findByPostUid(commentId);
+        // 2. 해당 하는 댓글의 userId를 받아서 userRepository에서 유저닉네임을 찾아야함.
+        // 2. 댓글 리스트를 순회하면서 각각의 댓글 작성자의 닉네임을 조회
+        return comments.stream().map(comment -> {
+            // 댓글 작성자의 userId로 닉네임 조회
+            Optional<UserEntity> user = userRepository.findById(comment.getUserId());
+            // postUid로 postCategory 가져오기
+            Optional<CommunityPostEntity> community = communityPostRepository.findByPostUid(comment.getPostUid());
+            // CommentListDTO 객체 생성
 
+            return new CommentListDTO(
+                    comment.getCommentId(),
+                    comment.getCommentContent(),
+                    comment.getCommentCreatedAt(),
+                    comment.getPostUid(),
+                    user.get().getNickname(),
+                    comment.getIsDeleted(),
+                    comment.getCommentDelReason(),
+                    community.get().getPostCategory()
+            );
+        }).collect(Collectors.toList()); // 리스트로 변환
+    }
 }

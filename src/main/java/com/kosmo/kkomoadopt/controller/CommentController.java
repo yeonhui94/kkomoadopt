@@ -1,6 +1,7 @@
 package com.kosmo.kkomoadopt.controller;
 
 import com.kosmo.kkomoadopt.dto.CommentDTO;
+import com.kosmo.kkomoadopt.dto.CommentListDTO;
 import com.kosmo.kkomoadopt.dto.CommunityDTO;
 import com.kosmo.kkomoadopt.entity.CommentEntity;
 import com.kosmo.kkomoadopt.enums.Authority;
@@ -11,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/comment")
@@ -83,6 +86,16 @@ public class CommentController {
             return new ResponseEntity<>("댓글 삭제 완료", HttpStatus.OK);
         } else {
             return new ResponseEntity<>("댓글 삭제 실패", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/{commentId}")
+    public ResponseEntity<List<CommentListDTO>> getCommentByPostId(@PathVariable("commentId") String commentId){
+        try{
+            List<CommentListDTO> comments = commentService.getCommentByPostId(commentId);
+            return ResponseEntity.ok(comments);
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
 

@@ -80,7 +80,8 @@ export const uploadProfileImage = (imageData) => apiClient.post('/api/mypage/use
 // 1. 댓글 목록 조회
 export const getComments = () => apiClient.get('/api/comments');
 
-// 2. 특정 댓글 상세 조회
+
+// 2. 페이지 별, 특정 댓글 상세 조회
 export const getCommentDetail = (commentId) => apiClient.get(`/api/comments/${commentId}`);
 
 // 3. 댓글 생성
@@ -98,6 +99,7 @@ export const getCommunityPosts = () => apiClient.get('/api/community/posts');
 
 // 2. 카테고리별 게시물 조회
 export const getCommunityPostsByCategory = (category) => apiClient.get(`/api/community/posts?category=${category}`)
+
 // 2. 특정 커뮤니티 게시물 상세 조회
 export const getCommunityPostDetail = (postUid) => apiClient.get(`/api/community/posts/${postUid}`);
 

@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -22,8 +23,11 @@ public interface AdoptionNoticeRepository extends JpaRepository<AdoptionNoticeEn
     Page<AdoptionNoticeEntity> findByNoticeCategory(NoticeCategory noticeCategory, Pageable pageable);
 
     // LIKE 검색을 위한 쿼리
-    @Query("SELECT a FROM AdoptionNoticeEntity a WHERE a.animalType LIKE %:searchTerm% OR a.animalType LIKE %:searchTerm%")
-    Page<AdoptionNoticeEntity> findBySearchTerm(String searchTerm, Pageable pageable);
+    @Query("SELECT a FROM AdoptionNoticeEntity a WHERE a.animalType LIKE %:searchTerm%" )
+    Page<AdoptionNoticeEntity> findBySearchTerm(@Param("searchTerm") String searchTerm, Pageable pageable);
+
+    @Query("SELECT a FROM AdoptionNoticeEntity a WHERE a.animalType LIKE %:searchTerm% AND noticeCategory = :noticeCategory" )
+    Page<AdoptionNoticeEntity> findBySearchTermCategory(@Param("searchTerm")String searchTerm, @Param("noticeCategory")NoticeCategory noticeCategory,Pageable pageable);
 
     // noticeUid를 기준으로 삭제하고, 삭제된 레코드 수를 반환
     int deleteByNoticeUid(String noticeUid);

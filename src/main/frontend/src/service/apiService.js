@@ -24,6 +24,17 @@ export const getAdoptionPostList = (page, noticeCategory, sortBy, sortOrder) => 
   }
 });
 
+// 카테고리별 품종 검색 
+export const getSearchAdoptionPostList = (page, noticeCategory,sortBy,  sortOrder, search) => apiClient.get('/api/adopt/search', {
+  params: {
+    page: page ,
+    noticeCategory: noticeCategory,  // 'ALL', 'DOG', 'CAT', 'OTHERS'
+    search : search ,
+    sortBy: sortBy,                 // 'euthanasiaDate', 'noticeCreatedAt', noticeViewCount
+    sortOrder: sortOrder            // 'asc', 'desc'
+  }
+});
+
 // 2. 특정 입양 게시물 상세 조회
 export const getAdoptionPostDetail = (noticeUid) => apiClient.get(`/api/adopt/${noticeUid}`);
 

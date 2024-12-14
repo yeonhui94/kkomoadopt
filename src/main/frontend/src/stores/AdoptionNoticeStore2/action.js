@@ -5,6 +5,7 @@ import {
   updateAdoptionPost,
   deleteAdoptionPost,
   getAdoptionPostList,
+  getSearchAdoptionPostList,
 } from '../../service/apiService'
 
 // 액션 타입 정의
@@ -145,7 +146,20 @@ export const getAdoptionPostListAction = (page, noticeCategory, sortBy, sortOrde
     console.log('Notices Data:', response.data.notices);  // 데이터 콘솔에 출력
     dispatch({
        type: READ_ADOPTION_POSTS,
-       payload: response.data.notices
+       payload: response.data
+    });
+  } catch (error) {
+    console.error("입양 게시물을 불러올 수 없습니다.", error);
+  }
+} 
+
+export const getAdoptionSearchPostListAction = (page, noticeCategory, sortBy, sortOrder,search) => async (dispatch) => {
+  try {
+    const response = await getSearchAdoptionPostList(page, noticeCategory, sortBy, sortOrder,search);
+    console.log('Notices Data:', response.data.notices);  // 데이터 콘솔에 출력
+    dispatch({
+       type: READ_ADOPTION_POSTS,
+       payload: response.data
     });
   } catch (error) {
     console.error("입양 게시물을 불러올 수 없습니다.", error);

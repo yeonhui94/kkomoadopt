@@ -109,8 +109,14 @@ public class AdoptionNoticeService {
     }
 
     // 검색어로 입양 공고 조회
-    public AdoptNoticeListDTO searchNotices(String searchTerm, Pageable pageable) {
-        Page<AdoptionNoticeEntity> adoptionNoticePage = adoptionNoticeRepository.findBySearchTerm(searchTerm, pageable);
+    public AdoptNoticeListDTO searchNotices(String searchTerm, NoticeCategory noticeCategory,Pageable pageable) {
+        Page<AdoptionNoticeEntity> adoptionNoticePage = null;
+        if (NoticeCategory.ALL.equals(noticeCategory)) {
+            adoptionNoticePage = adoptionNoticeRepository.findBySearchTerm(searchTerm, pageable);
+        } else {
+            adoptionNoticePage = adoptionNoticeRepository.findBySearchTermCategory(searchTerm, noticeCategory,pageable);
+        }
+
 
         // 결과를 DTO로 변환
         List<AdoptNoticeListDTO.Notice> notices = adoptionNoticePage.getContent().stream()

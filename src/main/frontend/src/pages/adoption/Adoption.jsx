@@ -41,20 +41,27 @@ const Adoption = ({ gridArea }) => {
 
     // 페이지가 변경될 때마다 데이터 요청
     useEffect(() =>  {
-      actions.getAdoptionPostListAction(currentPage, selectedCategory, sortOption, orderBy);  // 페이지 번호가 변경되면 API 호출
-    }, [currentPage, selectedCategory, sortOption, orderBy]);
+      console.log(searchQuery)
+      if(searchQuery == null || searchQuery == '') {
+        actions.getAdoptionPostListAction(currentPage, selectedCategory, sortOption, orderBy);  // 페이지 번호가 변경되면 API 호출
+      } else {
+        actions.getAdoptionSearchPostListAction(currentPage, selectedCategory, sortOption, orderBy,searchQuery) ;  // 페이지 번호가 변경되면 API 호출
+      }
+      
+    }, [currentPage, selectedCategory, sortOption, orderBy,searchQuery]);
 
   // 카테고리 필터링
-  const filteredNotices = Array.isArray(state.notices) ? state.notices.filter(item => {
+  const filteredNotices = Array.isArray(state.notices.notices) ? state.notices.notices.filter(item => {
+    
     if (selectedCategory === "ALL") {
       return true;
     }
-    return item.category === selectedCategory;
+    return item.noticeCategory === selectedCategory;
   }) : []; // notices가 배열이 아닌 경우 빈 배열 반환
 
   // 총 페이지 수 계산
 // 숫자로 변환하고 NaN이 될 경우 기본값 0으로 설정
-const totalElements = Number(state.totalElements); // or parseInt(state.totalElements, 10)
+const totalElements = Number(state.notices.totalElements); // or parseInt(state.totalElements, 10)
 const totalPages = Math.ceil(isNaN(totalElements) ? 0 : totalElements / 12);
 
   // 메뉴 항목 설정
@@ -86,6 +93,11 @@ const totalPages = Math.ceil(isNaN(totalElements) ? 0 : totalElements / 12);
     }
   };
 
+  const searchTest = query => {
+    setSearchQuery(query)
+    setCurrentPage(1)
+  }
+
   return (
     <div style={{ gridArea: gridArea }}>
       <SubMenuBar
@@ -104,7 +116,7 @@ const totalPages = Math.ceil(isNaN(totalElements) ? 0 : totalElements / 12);
             />
             <SearchBar
               placeholder={"품종 검색"}
-              onSearch={(query) => setSearchQuery(query)}
+              onSearch={searchTest}
               width="300px"
             />
           </div>

@@ -1,10 +1,10 @@
 import {
-  getAdoptionPosts,
   getAdoptionPostDetail,
   createAdoptionPost,
   updateAdoptionPost,
   deleteAdoptionPost,
   getAdoptionPostList,
+  getSearchAdoptionPostList,
 } from '../../service/apiService'
 
 // 액션 타입 정의
@@ -29,21 +29,6 @@ export const READ_ADOPTION_POSTS = "READ_ADOPTION_POSTS";
 export const READ_ADOPTION_POST_DETAIL = "READ_ADOPTION_POST_DETAIL";
 export const UPDATE_ADOPTION_POST = "UPDATE_ADOPTION_POST";
 export const DELETE_ADOPTION_POST = "DELETE_ADOPTION_POST";
-export const GET_TOTAL_CNT = 'GET_TOTAL_CNT';
-export const GET_PAGE_NUM = "GET_PAGE_NUM";
-export const GET_ADOPTION_POSTS = "GET_ADOPTION_POSTS";
-
-// 게시물 목록 불러오기
-export const getAdoptionPostsAction = (pageNum) => async (dispatch) => {
-  try {
-    const response = await getAdoptionPosts(pageNum);
-    console.log('Notices Data:', response);  // 데이터 콘솔에 출력
-      dispatch({ type: GET_ADOPTION_POSTS, payload: response.data.adoptNoticeList});
-      dispatch({ type: GET_TOTAL_CNT, payload: response.data.totalCnt });
-  } catch (error) {
-    dispatch({ type: SET_ERROR, payload: error.message });
-  }
-  };
 
 // 액션 생성자들
 export const changeAdoptionNoticeUid = (noticeUid) => ({
@@ -126,45 +111,49 @@ export const resetAdoptionState = () => ({
 });
 
 // CRUD API 관련 액션 생성자들
-export const readAdoptionPostsAPI = () => async (dispatch) => {
-  try {
-      const response = await getAdoptionPosts();  // API 호출
-      console.log("노티스가뭔데"+ response.data);
-      dispatch({
-          type: READ_ADOPTION_POSTS,
-          payload: response.data,  // 서버로부터 받은 데이터
-      });
-  } catch (error) {
-      console.error("입양 게시물을 불러올 수 없습니다.", error);
-  }
-};
-
+// 전체, 카테고리 list 페이지 불러오기
 export const getAdoptionPostListAction = (page, noticeCategory, sortBy, sortOrder) => async (dispatch) => {
   try {
     const response = await getAdoptionPostList(page, noticeCategory, sortBy, sortOrder);
     console.log('Notices Data:', response.data.notices);  // 데이터 콘솔에 출력
     dispatch({
        type: READ_ADOPTION_POSTS,
-       payload: response.data.notices
+       payload: response.data
     });
   } catch (error) {
     console.error("입양 게시물을 불러올 수 없습니다.", error);
   }
 } 
 
-export const readAdoptionPostDetailAPI = (noticeUid) => async (dispatch) => {
+// 검색어 적용한 전체, 카테고리 list 페이지 불러오기
+export const getAdoptionSearchPostListAction = (page, noticeCategory, sortBy, sortOrder,search) => async (dispatch) => {
   try {
-      const response = await getAdoptionPostDetail(noticeUid);  // 특정 게시물 API 호출
+    const response = await getSearchAdoptionPostList(page, noticeCategory, sortBy, sortOrder,search);
+    console.log('Notices Data:', response.data.notices);  // 데이터 콘솔에 출력
+    dispatch({
+       type: READ_ADOPTION_POSTS,
+       payload: response.data
+    });
+  } catch (error) {
+    console.error("입양 게시물을 불러올 수 없습니다.", error);
+  }
+} 
+
+// 입양공지 상세불러오기(announcementNum)
+export const getAdoptionPostDetailAction = (announcementNum) => async (dispatch) => {
+  try {
+      const response = await getAdoptionPostDetail(announcementNum);  // 특정 게시물 API 호출
+      console.log('NoticeDetila Data:', response.data);  // 데이터 콘솔에 출력
       dispatch({
           type: READ_ADOPTION_POST_DETAIL,
-          payload: response.data,  // 상세 정보
+          payload: response.data // 상세 정보
       });
   } catch (error) {
       console.error("입양 게시물 상세 정보를 불러올 수 없습니다.", error);
   }
 };
 
-export const createAdoptionPostAPI = (adoptionData) => async (dispatch) => {
+export const createAdoptionPostAction = (adoptionData) => async (dispatch) => {
   try {
       const response = await createAdoptionPost(adoptionData);  // 새로운 게시물 생성 API 호출
       dispatch({
@@ -176,7 +165,7 @@ export const createAdoptionPostAPI = (adoptionData) => async (dispatch) => {
   }
 };
 
-export const updateAdoptionPostAPI = (noticeUid, updatedData) => async (dispatch) => {
+export const updateAdoptionPostAction = (noticeUid, updatedData) => async (dispatch) => {
   try {
       const response = await updateAdoptionPost(noticeUid, updatedData);  // 게시물 업데이트 API 호출
       dispatch({
@@ -188,7 +177,7 @@ export const updateAdoptionPostAPI = (noticeUid, updatedData) => async (dispatch
   }
 };
 
-export const deleteAdoptionPostAPI = (noticeUid) => async (dispatch) => {
+export const deleteAdoptionPostAction = (noticeUid) => async (dispatch) => {
   try {
       const response = await deleteAdoptionPost(noticeUid);  // 게시물 삭제 API 호출
       dispatch({

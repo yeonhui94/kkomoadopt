@@ -20,9 +20,6 @@ import {
   READ_ADOPTION_POST_DETAIL,
   UPDATE_ADOPTION_POST,
   DELETE_ADOPTION_POST,
-  GET_ADOPTION_POSTS,
-  GET_PAGE_NUM,
-  GET_TOTAL_CNT
 } from './action';
 
 export const initialState = {
@@ -42,25 +39,11 @@ export const initialState = {
   impossibleReason: '',
   adoptionAuthor: '',
   notices: [],               // 모든 입양 게시물을 저장할 배열
-  noticeDetail: {},          // 선택된 게시물의 상세 정보를 저장
-  pageNum: 1,
-  totalCnt: 0
+  noticeDetail: null,          // 선택된 게시물의 상세 정보를 저장
 };
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    // 전체 게시물 불러오기
-    case GET_ADOPTION_POSTS:
-      return { ...state, notices: action.payload,};
-  
-    // Page Num 목록 불러오기
-    case GET_PAGE_NUM:
-      return { ...state, pageNum: action.payload };
-    
-    // TotalCnt 불러오기
-    case GET_TOTAL_CNT:
-      return { ...state, totalCnt: action.payload };
-
     // 입양 공지사항 상태 업데이트
     case CHANGE_ADOPTION_NOTICE_UID:
       return { ...state, noticeUid: action.payload };
@@ -107,7 +90,7 @@ export const reducer = (state = initialState, action) => {
     case READ_ADOPTION_POST_DETAIL:
       return { 
         ...state, 
-        postDetail: action.payload  // 선택된 게시물의 상세 정보
+        noticeDetail: action.payload  // 선택된 게시물의 상세 정보
       };
     case UPDATE_ADOPTION_POST:
       return { 

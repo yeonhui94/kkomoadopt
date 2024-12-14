@@ -3,14 +3,12 @@ import Button from "../../Button/Button";
 import styles from "./Profile.module.css"
 import logo from "../../../assets/logo.svg";
 
-
-
 function Profile({name, text1, btnName1, btnName2, hori1, hori2, btnLink1,profileImageUrl ,profileLetter}){
     return(
         <div className={styles['profile-container']}>
             <div className={styles['profile-contents']}>
                 <div className={styles.smallWrapper}>
-                <div className={styles['profile-img']}> 
+                <div className={styles['profile-img']}>
                     {profileImageUrl ? (
                         <img src={profileImageUrl} alt="프로필 사진" className={styles['profile-logo']} />
                     ) : (
@@ -18,7 +16,7 @@ function Profile({name, text1, btnName1, btnName2, hori1, hori2, btnLink1,profil
                 )}
                 </div>
                 <div className={styles['profile-text1']}>
-                    <p className={styles['profile-name']}>{name} 님</p>
+                    <p className={styles['profile-name']}>{name}님</p>
                     {profileLetter ? (
                         <p className={styles['profile-text2']}>{profileLetter}</p>
                     ) : (
@@ -28,11 +26,11 @@ function Profile({name, text1, btnName1, btnName2, hori1, hori2, btnLink1,profil
                 </div>
                 <div className={styles['profile-btns']}>
                 <Button
-                        text={btnName1}
-                        horizontalPadding={hori1}
-                        to={btnLink1} // Pass the link prop
-                    />
-                    <Button text={btnName2} horizontalPadding={hori2}/>
+                    text={btnName1}
+                    horizontalPadding={hori1}
+                    to={btnLink1} // Pass the link prop
+                />
+                <Button text={btnName2} horizontalPadding={hori2}/>
                 </div>
             </div>
         </div>

@@ -32,32 +32,73 @@ const ChangeProfile = () => {
         setLetterData(letter.target.value);
     }
 
-    const handleSaveProfile=()=>{
-        console.log('저장할 파일 데이터:', fileData);
+//     const handleSaveProfile=()=>{
+//         console.log('저장할 파일 데이터:', fileData);
+//     // 파일 데이터가 존재하는지 확인
+//     if (fileData && fileData.length > 0) {
+//         const reader = new FileReader();
+//         reader.onload = () => {
+//             localStorage.setItem('profileImage', reader.result); // 로컬스토리지에 이미지 저장
+//             updateProfileImgae(reader.result); // 상태 업데이트
+//             console.log("이미지 파일 저장 완료");
+//         };
+
+//         reader.readAsDataURL(fileData[0]); // 첫 번째 파일을 읽기
+//     } else {
+//         console.log("파일 선택 안됨");
+//     }
+
+//     console.log("변경된 소개글", letterData);
+//     if(letterData && letterData.length > 0){
+//         localStorage.setItem('profileLetter', letterData); // 로컬스토리지에 소개글 저장
+//         updateProfileLetter(letterData); // 상태 업데이트
+//         console.log('소개글 변경');
+//     } else {
+//         console.log("소개글이 비어 있음");
+//     }
+// };
+const handleSaveProfile = () => {
+    console.log('저장할 파일 데이터:', fileData);
+
     // 파일 데이터가 존재하는지 확인
     if (fileData && fileData.length > 0) {
         const reader = new FileReader();
         reader.onload = () => {
-            localStorage.setItem('profileImage', reader.result); // 로컬스토리지에 이미지 저장
+            // 로컬스토리지에서 'user' 객체를 가져옵니다.
+            const storedUserData = localStorage.getItem('user');
+            const parsedUserData = storedUserData ? JSON.parse(storedUserData) : {};
+
+            // 'user' 객체의 userImgUrl을 업데이트
+            parsedUserData.userImgUrl = reader.result;
+            localStorage.setItem('user', JSON.stringify(parsedUserData)); // 수정된 'user' 객체를 다시 로컬스토리지에 저장
+
             updateProfileImgae(reader.result); // 상태 업데이트
             console.log("이미지 파일 저장 완료");
         };
-        
+
         reader.readAsDataURL(fileData[0]); // 첫 번째 파일을 읽기
     } else {
         console.log("파일 선택 안됨");
     }
 
     console.log("변경된 소개글", letterData);
-    if(letterData && letterData.length > 0){
-        localStorage.setItem('profileLetter', letterData); // 로컬스토리지에 소개글 저장
+
+    if (letterData && letterData.length > 0) {
+        // 로컬스토리지에서 'user' 객체를 가져옵니다.
+        const storedUserData = localStorage.getItem('user');
+        const parsedUserData = storedUserData ? JSON.parse(storedUserData) : {};
+
+        // 'user' 객체의 profileText를 업데이트
+        parsedUserData.profileText = letterData;
+        localStorage.setItem('user', JSON.stringify(parsedUserData)); // 수정된 'user' 객체를 다시 로컬스토리지에 저장
+
         updateProfileLetter(letterData); // 상태 업데이트
         console.log('소개글 변경');
     } else {
         console.log("소개글이 비어 있음");
     }
 };
-    
+
 
     return (
         <div className={styles.chfWrapper} >

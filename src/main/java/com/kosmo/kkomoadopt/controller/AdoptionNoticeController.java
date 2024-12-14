@@ -59,47 +59,29 @@ public class AdoptionNoticeController {
     // 검색어로 공고 조회
     @GetMapping("/search")
     public ResponseEntity<AdoptNoticeListDTO> searchNotices(
-            @RequestParam String search,   // 검색어
-            @RequestParam(defaultValue = "1") int page,   // 페이지 번호
-            @RequestParam(defaultValue = "12") int size) { // 페이지 크기
+            @RequestParam(name = "page", defaultValue = "1") int page,   // 페이지 번호 (디폴트: 0)
+            @RequestParam(name = "noticeCategory") NoticeCategory noticeCategory,  // 카테고리 (선택 사항)
+            @RequestParam(name = "search") String search,  // 카테고리 (선택 사항)
+            @RequestParam(name = "sortBy", defaultValue = "euthanasiaDate") String sortBy,  // 정렬 기준 (디폴트: "name")
+            @RequestParam(name = "sortOrder", defaultValue = "desc") String sortOrder) {  // 정렬 순서 (디폴트: "asc")
 
-        Pageable pageable = PageRequest.of(page - 1, size);
-        AdoptNoticeListDTO result = adoptionNoticeService.searchNotices(search, pageable);
+        // 페이지와 정렬 설정
+        Sort sort = Sort.by(Sort.Order.asc(sortBy));  // 기본 정렬은 오름차순
+        if ("desc".equalsIgnoreCase(sortOrder)) {
+            sort = Sort.by(Sort.Order.desc(sortBy));
+        }
+        Pageable pageable = PageRequest.of(page - 1, 12,sort);
+        AdoptNoticeListDTO result = adoptionNoticeService.searchNotices(search,noticeCategory, pageable);
 
         return ResponseEntity.ok(result);
     }
 
-
-//    // 전체 입양공지 불러오기(12개씩)
-//    @GetMapping("/{pageNum}/{order}")
-//    public ResponseEntity<AdoptNoticeListDTO> getNotices1(
-//            @PathVariable("order") String order,
-//            @PathVariable("pageNum") int pageNum) {
-//
-//        // 해당 카테고리와 페이지 번호를 기반으로 게시글 리스트 조회
-//        AdoptNoticeListDTO adoptNoticeListDTO = adoptionNoticeService.getListAdoptNotice1(order, pageNum);
-//        return new ResponseEntity<>(adoptNoticeListDTO, HttpStatus.OK);
-//    }
-//
-//    // category에 따른 게시글 불러오기(12개씩)
-//    @GetMapping("/{noticeCategoryString}/{pageNum}")
-//    public ResponseEntity<AdoptNoticeListDTO> getNotices2(
-//            @PathVariable("noticeCategoryString") String noticeCategoryString,
-//            @PathVariable("pageNum") int pageNum) {
-//
-//        // URL에서 받은 문자열을 NoticeCategory Enum으로 변환
-//        NoticeCategory noticeCategory;
-//        try {
-//            noticeCategory = NoticeCategory.valueOf(noticeCategoryString.toUpperCase());
-//        } catch (IllegalArgumentException e) {
-//            // 잘못된 카테고리 이름이 들어왔을 경우 처리
-//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//        }
-//
-//        // 해당 카테고리와 페이지 번호를 기반으로 게시글 리스트 조회
-//        AdoptNoticeListDTO adoptNoticeListDTO = adoptionNoticeService.getListAdoptNotice2(noticeCategory, pageNum);
-//        return new ResponseEntity<>(adoptNoticeListDTO, HttpStatus.OK);
-//    }
+    // 입양 공고 상세페이지
+    @GetMapping("/{announcementNum}")
+    public ResponseEntity<AdoptNoticeDTO> getAnnouncementNum(@PathVariable("announcementNum") String announcementNum){
+        AdoptNoticeDTO adoptNoticeDTO = adoptionNoticeService.getAnnouncementNum(announcementNum);
+        return ResponseEntity.ok(adoptNoticeDTO);
+    }
 
     // 입양공지글 등록 (session에서 authority 확인)
     @PostMapping("/save")

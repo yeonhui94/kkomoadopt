@@ -29,7 +29,7 @@ function LoginPageContents({ gridArea }) {
 
   return (
     <div className={styles.LoginContainer} style={{ gridArea: gridArea }}>
-      <h1 className={styles.hText}>로그인</h1>
+      <h1 className={styles.hText}>KKOMO 센터</h1>
       <div className={styles.LoginBox}>
         <div className={styles.a1Box}>
           <Link to="/IdPassword" className={styles.a1}>
@@ -60,9 +60,8 @@ function LoginPageContents({ gridArea }) {
           <Button
             type="submit"
             text="로그인"
-            color="var(--title-black)"
+            color="#444"
             bg1color="var(--main-color)"
-            fontWeight="bold"
             fontSize="24px"
             horizontalPadding="223px"
             verticalPadding="14px"

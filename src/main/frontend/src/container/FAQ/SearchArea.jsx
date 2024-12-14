@@ -6,7 +6,7 @@ const SearchWrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: 10px;
-  background-color: #ee846f89;
+  background-color: var(--line-color);
   height: 100px;
   border-radius: 5px;
 
@@ -21,7 +21,7 @@ const SearchWrapper = styled.div`
     padding: 8px;
     font-size: 14px;
     border: 1px solid #ccc;
-    /* border: 1px solid var(--main-color); */
+    /* border: 1px solid var(--line-color); */
     border-radius: 4px;
   }
 

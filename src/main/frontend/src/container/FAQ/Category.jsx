@@ -13,10 +13,9 @@ const CategoryWrapper = styled.div`
   }
 
   li {
-    border: 1px solid #eee;
+    border: 1px solid #cfcbcb;
     border-radius: 10px;
     padding: 10px 40px;
-    font-weight: bold;
     font-size: 16px;
     color: #333;
     cursor: pointer;
@@ -37,7 +36,7 @@ const CategoryWrapper = styled.div`
 `;
 
 const Category = ({ selectedCategory, setSelectedCategory }) => {
-  const categories = ['전체', '계정 및 회원관리', '입양', '봉사', '후원', '블랙리스트','카테고리'];
+  const categories = ['전체', '계정 및 회원관리', '입양', '봉사', '후원', '블랙리스트'];
 
   return (
     <CategoryWrapper>

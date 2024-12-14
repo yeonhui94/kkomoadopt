@@ -18,8 +18,7 @@ const ContentWrapper = styled.div`
       flex-direction: column;
 
       .title {
-        font-weight: bold;
-        color: var(--main-color);
+        color: #444;
         display: flex;
         align-items: center; /* 제목과 이미지를 세로로 정렬 */
       }
@@ -32,8 +31,7 @@ const ContentWrapper = styled.div`
 
       /* content 스타일은 motion.div로 변경할 예정 */
       .content {
-        color: #666;
-        font-weight: bold;
+        color: black;
         margin: 10px 100px;
       }
     }

@@ -32,10 +32,25 @@ public class CommunityPostController {
     }
 
 
-    @PostMapping
-    public ResponseEntity<Boolean> createPosts(@ModelAttribute CommunityDTO communityDTO, @RequestParam("files") MultipartFile[] files) {
-        Boolean result = communityPostService.savePost(communityDTO, files);
-        return new ResponseEntity<>(result, HttpStatus.CREATED);
+//    @PostMapping
+//    public ResponseEntity<Boolean> createPosts(@ModelAttribute CommunityDTO communityDTO, @RequestParam("files") MultipartFile[] files) {
+//        Boolean result = communityPostService.savePost(communityDTO, files);
+//        return new ResponseEntity<>(result, HttpStatus.CREATED);
+//    }
+
+
+    // 게시물 생성 API
+    @PostMapping("/newposts")
+    public ResponseEntity<String> createPost(@RequestBody CommunityDTO communityDTO) {
+
+        // CommunityDTO에서 받은 데이터를 CommunityPostEntity로 변환
+        boolean isPostCreated = communityPostService.savePost(communityDTO);
+
+        if (isPostCreated) {
+            return ResponseEntity.ok("게시물이 성공적으로 작성되었습니다.");
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("게시물 작성에 실패했습니다.");
+        }
     }
 
 

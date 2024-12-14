@@ -6,6 +6,11 @@ const apiClient = axios.create({
     timeout: 10000,  // 요청 타임아웃 설정
     headers: { 'Content-Type': 'application/json' }
   });
+
+  const apiClientForm = axios.create({
+    baseURL: 'http://localhost:8080', // 백엔드 서버의 URL
+    timeout: 10000,  // 요청 타임아웃 설정
+  });
   
 
 
@@ -104,21 +109,32 @@ export const updateCommentAPI = (commentId, updatedData) => apiClient.patch(`/ap
 export const deleteCommentAPI = (commentId) => apiClient.delete(`/api/comments/${commentId}`);
 
 
-// 1. 전체 커뮤니티 게시물 조회
+// 1. 전체 커뮤니티 게시물 조회 (admin 글관리)
 export const getCommunityPosts = () => apiClient.get('/api/community/posts');
 
 // 2. 카테고리별 게시물 조회
 export const getCommunityPostsByCategory = (category) => apiClient.get(`/api/community/posts?category=${category}`)
-// 2. 특정 커뮤니티 게시물 상세 조회
+
+// 3. 특정 커뮤니티 게시물 상세 조회
 export const getCommunityPostDetail = (postUid) => apiClient.get(`/api/community/posts/${postUid}`);
 
-// 3. 커뮤니티 게시물 생성
-export const createCommunityPost = (postData) => apiClient.post('/api/community/posts', postData);
-
-// 4. 커뮤니티 게시물 수정
+// 4. 커뮤니티 게시물 생성
+export const createCommunityPost = async (postData) => {
+  try {
+    const response = await apiClientForm.post('/api/community/posts', postData, {
+      headers: {
+        'Content-Type': 'application/json',  // JSON으로 보내는 데이터임을 명시
+      },
+    });
+    console.log('게시물 작성 성공:', response.data);
+  } catch (error) {
+    console.error('게시물 작성 실패:', error);
+  }
+};
+// 5. 커뮤니티 게시물 수정
 export const updateCommunityPost = (postUid, updatedData) => apiClient.patch(`/api/community/posts/${postUid}`, updatedData);
 
-// 5. 커뮤니티 게시물 삭제
+// 6. 커뮤니티 게시물 삭제
 export const deleteCommunityPost = (postUid) => apiClient.delete(`/api/community/posts/${postUid}`);
 
 
@@ -143,7 +159,7 @@ export const deleteQnaPost = (qnaUid) => apiClient.delete(`/api/qna/posts/${qnaU
 // 방문 요청 관련 API 요청 메서드 추가
 
 // 1. 전체 방문 요청 조회
-export const getVisitRequests = () => apiClient.get('/api/visit-requests');
+export const getVisitRequests = () => apiClient.get('../../../');
 
 // 2. 특정 방문 요청 상세 조회
 export const getVisitRequestDetail = (requestUid) => apiClient.get(`/api/visit-requests/${requestUid}`);

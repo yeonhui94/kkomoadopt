@@ -33,53 +33,46 @@ public class CommunityPostService {
     @Autowired
     private EntityManager em;
 
-    // post save 메서드
-    public boolean savePost(CommunityDTO communityDTO, MultipartFile[] files)  {
-
-        CommunityPostEntity communityPostEntity = new CommunityPostEntity();
-
-        Integer maxPostId = communityPostRepository.findMaxPostId();
-        // 만약 DB에 저장된 postId가 없다면, 1부터 시작
-        if (maxPostId == null) {
-            communityPostEntity.setPostId(1);  // 첫 번째 게시글은 postId 1
-        } else {
-            communityPostEntity.setPostId(maxPostId + 1);  // 기존의 최대 postId 값에 1을 더해 다음 postId를 설정
-        }
-
-        // nickname을 통해 UserEntity를 찾기
-        String nickname = communityDTO.postAuthor();
-        UserEntity userEntity = userRepository.findByNickname(nickname);
-
-        // nickname에 해당하는 UserEntity가 없을 경우 처리
-        if (userEntity == null) {
-            // 예외 처리 또는 로깅
-            throw new RuntimeException("User with the nickname " + nickname + " not found");
-        }
-
-        // 엔티티 설정
-        communityPostEntity.setUserId(userEntity.getUserId());
-        communityPostEntity.setPostCategory(communityDTO.postCategory());
-        communityPostEntity.setPostContent(communityDTO.postContent());
-        communityPostEntity.setPostTitle(communityDTO.postTitle());
-        communityPostEntity.setPostCreatedAt(LocalDateTime.now()); // 기본값 설정
-        communityPostEntity.setPostUpdatedAt(LocalDateTime.now()); // 기본값 설정
-        communityPostEntity.setIsDeleted(false);  // 기본값 설정
-
-        String[] fileNames = null;
+    // 게시물 저장 메서드
+    public boolean savePost(CommunityDTO communityDTO) {
         try {
-                fileNames = fileService.saveFiles(files);
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
+            // CommunityPostEntity 객체 생성
+            CommunityPostEntity communityPostEntity = new CommunityPostEntity();
 
-        if(fileNames != null) {
-            communityPostEntity.setPostImgUrl( Arrays.stream(fileNames).toList());
-        }
-        communityPostEntity =  communityPostRepository.save(communityPostEntity);
+            // postId 설정 (DB에서 maxPostId를 조회하여 자동 증가)
+            Integer maxPostId = communityPostRepository.findMaxPostId();
+            if (maxPostId == null) {
+                communityPostEntity.setPostId(1); // 첫 번째 게시물의 ID는 1
+            } else {
+                communityPostEntity.setPostId(maxPostId + 1); // 기존의 maxPostId에 1을 더한 값을 설정
+            }
 
-        if(communityPostEntity != null) {
-            return true;
-        } else {
+            // DTO에서 전달받은 데이터로 엔티티 채우기
+            communityPostEntity.setPostCategory(communityDTO.postCategory());
+            communityPostEntity.setPostTitle(communityDTO.postTitle());
+            communityPostEntity.setPostContent(communityDTO.postContent());
+            communityPostEntity.setIsDeleted(communityDTO.isDeleted());
+            communityPostEntity.setDeleteReason(communityDTO.deleteReason());
+            communityPostEntity.setPostCreatedAt(LocalDateTime.now()); // 생성 시간
+            communityPostEntity.setPostUpdatedAt(LocalDateTime.now()); // 수정 시간
+            communityPostEntity.setPostViewCount(0); // 기본 뷰 카운트
+
+            // 작성자 정보 처리 (nickname으로 UserEntity 찾기)
+            String nickname = communityDTO.postAuthor();
+            UserEntity userEntity = userRepository.findByNickname(nickname);
+            if (userEntity != null) {
+                communityPostEntity.setUserId(userEntity.getUserId());
+            } else {
+                throw new RuntimeException("User with the nickname " + nickname + " not found");
+            }
+
+            // CommunityPostEntity 저장
+            communityPostEntity = communityPostRepository.save(communityPostEntity);
+
+            return communityPostEntity != null;
+        } catch (Exception e) {
+            // 예외 발생 시 로깅하고 false 반환
+            e.printStackTrace();  // 로그에 에러 출력
             return false;
         }
     }

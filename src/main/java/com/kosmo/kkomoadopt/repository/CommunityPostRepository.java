@@ -27,6 +27,6 @@ public interface CommunityPostRepository extends JpaRepository<CommunityPostEnti
     long count();
 
 
-//    @Override
+    //    @Override
     Optional<CommunityPostEntity> findByPostUid(String postUid);
 }

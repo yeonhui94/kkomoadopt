@@ -1,6 +1,7 @@
 package com.kosmo.kkomoadopt.repository;
 
 import com.kosmo.kkomoadopt.entity.AdoptionNoticeEntity;
+import com.kosmo.kkomoadopt.entity.CommunityPostEntity;
 import com.kosmo.kkomoadopt.enums.NoticeCategory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -32,7 +33,8 @@ public interface AdoptionNoticeRepository extends JpaRepository<AdoptionNoticeEn
     // noticeUid를 기준으로 삭제하고, 삭제된 레코드 수를 반환
     int deleteByNoticeUid(String noticeUid);
 
-
+    // announcementNum 찾기
+    Optional<AdoptionNoticeEntity> findByAnnouncementNum(String announcementNum);
 
     long count();
 }

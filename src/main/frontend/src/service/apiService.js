@@ -16,10 +16,7 @@ const apiClient = axios.create({
 
 // 입양 게시판 관련 API
 
-// 1. 전체 입양 게시물 조회
-export const getAdoptionPosts = (pageNum) => apiClient.get(`/api/adopt/${pageNum}`);
-
-// 카테고리별 입양 게시물 조회
+// 1. 전체, 카테고리별 입양 게시물 조회
 export const getAdoptionPostList = (page, noticeCategory, sortBy, sortOrder) => apiClient.get('/api/adopt/list', {
   params: {
     page: page - 1,
@@ -29,7 +26,7 @@ export const getAdoptionPostList = (page, noticeCategory, sortBy, sortOrder) => 
   }
 });
 
-// 카테고리별 품종 검색 
+// 2. 전체, 카테고리별 품종 검색 
 export const getSearchAdoptionPostList = (page, noticeCategory,sortBy,  sortOrder, search) => apiClient.get('/api/adopt/search', {
   params: {
     page: page ,
@@ -40,8 +37,8 @@ export const getSearchAdoptionPostList = (page, noticeCategory,sortBy,  sortOrde
   }
 });
 
-// 2. 특정 입양 게시물 상세 조회
-export const getAdoptionPostDetail = (noticeUid) => apiClient.get(`/api/adopt/${noticeUid}`);
+// 3. 특정 입양 게시물 상세 조회
+export const getAdoptionPostDetail = (announcementNum) => apiClient.get(`/api/adopt/${announcementNum}`);
 
 // 3. 입양 게시물 생성
 export const createAdoptionPost = (adoptionData) => apiClient.post('/api/adoption/posts', adoptionData);

@@ -2,20 +2,25 @@ import Divider from '../../components/Divider';
 import InputBox from '../../components/InputBox';
 import Button from '../../components/Button/Button';
 import styles from '../../pages/mypage/EditMyPage1.module.css';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 function EditMyPage1({ gridArea }) {
 
     const location = useLocation(); // 현재 경로를 가져옴
 
-
-
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const correctPassword = 'asdf1234'; // 일치하는 비밀번호 지정
-
+    const [correctPassword, setCorrectPassword] = useState('');
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+            const parsedUser = JSON.parse(storedUser);
+            setCorrectPassword(parsedUser.password); // 저장된 비밀번호 설정
+        }
+    }, []);
 
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '../../components/Button/Button';
 import Divider from '../../components/Divider';
 import InputBox from '../../components/InputBox';
@@ -11,62 +11,79 @@ function EditMyPage2({ gridArea }) {
 
     const location = useLocation(); // 현재 경로를 가져옴
     const isAdminPage = location.pathname.includes('admin'); // 경로가 /mypage/admin으로 포함되어 있는지 확인
-//관리자, 유저 나눠서 랜더링
-    
+    // 관리자를 확인하고, 유저 페이지에서 수정하도록 구현
+
+    useEffect(() => {
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+            const parsedUser = JSON.parse(storedUser);
+            setUserData(parsedUser  || '');
+            setNickname(parsedUser.nickname || '');
+            setPhoneNumber(parsedUser.phoneNumber || '');
+        }
+    }, []);
 
     const navigate = useNavigate();
-    // 닉네임 상태와 유효성 검사 상태
     const [nickname, setNickname] = useState('');
     const [nicknameError, setNicknameError] = useState('');
     const [nicknameValid, setNicknameValid] = useState(false);
-    const [password, setPassword] = useState("");
-    const [password1, setPassword1] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [password, setPassword] = useState('');
+    const [password1, setPassword1] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [passwordMatch, setPasswordMatch] = useState(null);
-    const [passwordError, setPasswordError] = useState("");
+    const [passwordError, setPasswordError] = useState('');
     const [passwordMessage, setPasswordMessage] = useState('');
+    const [userData, setUserData] = useState(null);
+    const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
 
-    // 닉네임 입력값을 처리하는 함수
     const handleNicknameChange = (e) => {
         setNickname(e.target.value);
-        setNicknameError(''); // 사용자가 입력할 때 오류 메시지 초기화
+        setNicknameError('');
+    };
+    const handlePhoneNumberChange = (e) => {
+        setPhoneNumber(e.target.value);
     };
 
-    // 중복확인 버튼 클릭 시 유효성 검사 함수
     const handleDuplicateCheck = (e) => {
-        e.preventDefault(); // 폼 제출을 막기 위해 기본 동작 방지
-        // 닉네임이 유효한지 패턴으로 검사
+        e.preventDefault();
+        if (nickname === userData.nickname) {
+            setNicknameValid(false);
+            setNicknameError('사용할 수 없는 닉네임 입니다.');
+            return;
+        }
+
+        if (nickname === '관리자' && userData.nickname !== '관리자') {
+            setNicknameValid(false);
+            setNicknameError('닉네임 "관리자"는 사용할 수 없습니다.');
+            return;
+        }
+
         if (nickname.match(nicknamePattern)) {
             setNicknameValid(true);
-            setNicknameError(''); // 유효한 닉네임일 경우 오류 메시지 초기화
+            setNicknameError('');
         } else {
             setNicknameValid(false);
-            setNicknameError('사용할 수 없는 닉네임 입니다.'); // 유효하지 않으면 오류 메시지 표시
+            setNicknameError('사용할 수 없는 닉네임 입니다.');
         }
     };
 
-    const correctPassword = 'asdf1234';  // 실제 비밀번호
-
-    // 비밀번호 입력 변경 처리 함수
     const handlePassword = (e) => {
         const inputPassword = e.target.value;
         setPassword1(inputPassword);
-        // 입력할 때마다 비밀번호 확인
-        if (inputPassword === correctPassword) {
+        if (inputPassword === userData.password) {
             setPasswordMessage('비밀번호가 일치합니다');
         } else {
             setPasswordMessage('비밀번호가 일치하지 않습니다');
         }
     };
 
-    // 비밀번호와 비밀번호 확인이 일치하는지 확인하는 함수
     const handlePasswordChange = (event) => {
         const passwordValue = event.target.value;
         setPassword(passwordValue);
 
-        // 비밀번호 유효성 검사
         if (!pwPattern.test(passwordValue)) {
-            setPasswordError("비밀번호는 최소 8자 이상 16자이하, 숫자와 문자가 모두 포함되어야 합니다.");
+            setPasswordError("비밀번호는 최소 8자 이상 16자 이하, 숫자와 문자가 모두 포함되어야 합니다.");
         } else {
             setPasswordError("");
         }
@@ -75,7 +92,7 @@ function EditMyPage2({ gridArea }) {
     const handleConfirmPasswordChange = (event) => {
         const confirmPass = event.target.value;
         setConfirmPassword(confirmPass);
-        // 비밀번호와 비밀번호 확인이 일치하는지 확인
+
         if (password === confirmPass) {
             setPasswordMatch(true);
         } else {
@@ -83,10 +100,8 @@ function EditMyPage2({ gridArea }) {
         }
     };
 
-    // 수정 버튼 클릭 시 처리
     const handleSubmit = (e) => {
-        e.preventDefault(); // 기본 폼 제출 방지
-        // 유효성 검사
+        e.preventDefault();
         if (!nickname.match(nicknamePattern)) {
             alert('닉네임이 유효하지 않습니다.');
             return;
@@ -99,26 +114,24 @@ function EditMyPage2({ gridArea }) {
             alert('비밀번호가 일치하지 않습니다.');
             return;
         }
-        // 모든 유효성 검사를 통과했을 때만 수정 처리
+
+        // 로컬스토리지의 사용자 정보 업데이트
+        const updatedUserData = { ...userData, nickname, password,phoneNumber };
+        localStorage.setItem('user', JSON.stringify(updatedUserData));
+
         alert('수정 되었습니다.');
-        navigate('/mypage'); // "/mypage"로 이동
+        navigate('/mypage/user/edit-profile1');
     };
+    const openInfoModal = () => setIsInfoModalOpen(true);
+    const closeInfoModal = () => setIsInfoModalOpen(false);
 
-
-    const [isInfoModalOpen, setIsInfoModalOpen] = useState(false); // 아이디 정보 모달
-
-    const openInfoModal = () => setIsInfoModalOpen(true); // 정보 모달 열기
-    const closeInfoModal = () => setIsInfoModalOpen(false); // 정보 모달 닫기
-  
     const handleBtn1 = (e) => {
-      e.preventDefault(); // 폼 제출로 인한 새로 고침을 방지
-      openInfoModal(); // 모달 열기
+        e.preventDefault();
+        openInfoModal();
     };
 
     const handleConfirmClick = () => {
-        // /secession 페이지로 이동
         navigate('/secession');
-        // 모달 닫기
         closeInfoModal();
     };
 
@@ -134,7 +147,6 @@ function EditMyPage2({ gridArea }) {
                     </div>
 
                     <form className={styles.input1Form}>
-                        {/* 닉네임 입력 */}
                         <InputBox style={{ gridArea: "input2" }}
                             itype="text" fontSize="20px"
                             text="닉네임" backgroundColor="white"
@@ -142,33 +154,37 @@ function EditMyPage2({ gridArea }) {
                             border="none" borderBottom="none"
                             marginBottom="40px"
                             value={nickname}
-                            onChange={handleNicknameChange}/>
+                            onChange={handleNicknameChange} />
 
                         <Button style={{ gridArea: "btn1" }}
                             text="중복확인" height="44px"
                             width="100px" fontSize="15px"
                             marginTop="51px" horizontalPadding="12px"
                             marginLeft="-25px"
-                            onClick={handleDuplicateCheck} // 버튼 클릭 시 유효성 검사 실행
-                            type="button" // type="button"을 설정하여 submit 동작을 방지
-                        />
+                            onClick={handleDuplicateCheck}
+                            type="button" />
 
-                        {/* 유효성 검사 메시지 표시 */}
                         {nicknameError && (
-                            <p style={{ position: "absolute", gridArea: "text", color: 'red', fontSize: '10px', marginLeft: "20px", marginTop: "100px" }}>{nicknameError}</p> // 오류 메시지
+                            <p style={{ position: "absolute", gridArea: "text", color: 'red', fontSize: '10px', marginLeft: "20px", marginTop: "100px" }}>
+                                {nicknameError}
+                            </p>
                         )}
                         {nicknameValid && (
-                            <p style={{ position: "absolute", gridArea: "text", color: 'green', fontSize: '10px', marginLeft: "20px", marginTop: "100px" }}>사용이 가능한 닉네임 입니다.</p> // 유효한 닉네임 메시지
+                            <p style={{ position: "absolute", gridArea: "text", color: 'green', fontSize: '10px', marginLeft: "20px", marginTop: "100px" }}>
+                                사용이 가능한 닉네임 입니다.
+                            </p>
                         )}
                     </form>
 
-                    {/* 휴대폰 번호 입력 */}
                     <div className={styles.input2}>
                         <InputBox style={{ marginTop: "20px", gridArea: "contents3" }}
                             itype="tel" text="휴대폰 번호"
                             backgroundColor="white" height="97px"
                             width="350px" marginBottom="40px"
-                            border="none" borderBottom="none"/>
+                            border="none" borderBottom="none"
+                            value={phoneNumber}
+                            onChange={handlePhoneNumberChange}
+                            />
                     </div>
 
                     <div className={styles.SecondDividerWrapper2}>
@@ -183,12 +199,13 @@ function EditMyPage2({ gridArea }) {
                                 width="350px" marginBottom="20px"
                                 border="none" borderBottom="none"
                                 value={password1}
-                                onChange={handlePassword}/>
+                                onChange={handlePassword} />
 
                             {passwordMessage && (
                                 <p style={{
-                                        position: "absolute", color: passwordMessage === '비밀번호가 일치합니다' ? 'green' : 'red',
-                                        fontSize: '10px', marginLeft: "20px", marginTop: "-25px"}}>
+                                    position: "absolute", color: passwordMessage === '비밀번호가 일치합니다' ? 'green' : 'red',
+                                    fontSize: '10px', marginLeft: "20px", marginTop: "-25px"
+                                }}>
                                     {passwordMessage}
                                 </p>
                             )}
@@ -201,11 +218,12 @@ function EditMyPage2({ gridArea }) {
                             value={password}
                             onChange={handlePasswordChange} />
 
-                        {/* 비밀번호 유효성 검사 에러 메시지 */}
                         {passwordError && <p style={{
                             color: "red", fontSize: "10px",
                             position: "absolute", marginTop: "-25px", marginLeft: "18px"
-                        }}>{passwordError}</p>}
+                        }}>
+                            {passwordError}
+                        </p>}
 
                         <InputBox
                             itype="password" text="변경 비밀번호 확인"
@@ -214,7 +232,6 @@ function EditMyPage2({ gridArea }) {
                             border="none" borderBottom="none"
                             value={confirmPassword}
                             onChange={handleConfirmPasswordChange} />
-                        {/* 비밀번호 일치 여부에 따른 메시지 표시 */}
                         {passwordMatch !== null && (
                             <p
                                 style={{
@@ -227,28 +244,30 @@ function EditMyPage2({ gridArea }) {
                             </p>
                         )}
                     </div>
+
                     <Button text="수정" width="100%" marginLeft="10px" marginBottom="40px" onClick={handleSubmit} />
                 </div>
             </form>
 
             {!isAdminPage && (
                 <div>
-                <div className={styles.SecondDividerWrapper2}>
-                    <p style={{ fontSize: "1.2rem"}}>회원 탈퇴</p>
-                </div>
-                <Button color="#444444" bg1color="#444444" text="회원 탈퇴"
+                    <div className={styles.SecondDividerWrapper2}>
+                        <p style={{ fontSize: "1.2rem" }}>회원 탈퇴</p>
+                    </div>
+                    <Button color="#444444" bg1color="#444444" text="회원 탈퇴"
                         width="100%" arginLeft="10px" marginTop="60px" marginBottom="20px"
-                        onClick={handleBtn1}/>
+                        onClick={handleBtn1} />
                 </div>
             )}
+
             {!isAdminPage && (
                 <Modal
                     isOpen={isInfoModalOpen}
-                    closeModal={closeInfoModal} // 여기에서 "확인" 버튼 클릭 시 모달 닫힘
+                    closeModal={closeInfoModal}
                     modalText="탈퇴 하시겠습니까?"
-                    confirmText={"확인"} // 확인 버튼만
-                    cancelText={"취소"} // 취소 버튼은 없음
-                    onConfirm={handleConfirmClick}/>
+                    confirmText={"확인"}
+                    cancelText={"취소"}
+                    onConfirm={handleConfirmClick} />
             )}
             <Outlet />
         </div>

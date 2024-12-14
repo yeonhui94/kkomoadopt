@@ -5,41 +5,43 @@ import AdminNavi from "../../components/MyPage/MypageNaviBar/Adim/AdminNavi"; //
 import Profile from "../../components/MyPage/Profile/Profile";
 import styles from "./MyPage.module.css";
 import { useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 function MyPage({gridArea}) {
   const location = useLocation(); // 현재 경로를 가져옴
   const isAdminPage = location.pathname.includes('admin'); // 경로가 /mypage/admin으로 포함되어 있는지 확인
-  const [profileImage, setProfileImage] = useState(localStorage.getItem('profileImage') || null);
-  const [profileLetter, setProfileLetter] = useState(localStorage.getItem('profileLetter') || null);
-  const [profileNickname, setProfileNickname] = useState(localStorage.getItem('profileNickname') || null);
+  const [profileImage, setProfileImage] = useState('');
+  const [profileLetter, setProfileLetter] = useState('');
+  const [userData, setUserData] = useState(null);
 
 
-  useEffect(()=>{
-    const storedImage = localStorage.getItem('profileImage');
-    if(storedImage){
-      setProfileImage(storedImage);
+  useEffect(() => {
+    const storedUserData = localStorage.getItem('user');
+    const parsedUserData = storedUserData ? JSON.parse(storedUserData) : null;
+
+    if (parsedUserData) {
+      setUserData(parsedUserData);
+      setProfileImage(parsedUserData.userImgUrl);
+      setProfileLetter(parsedUserData.profileText);  // 기본 텍스트 설정
     }
-  },[]);
+  }, []);
 
-  useEffect(()=>{
-    const storedLetter = localStorage.getItem('profileLetter');
-    if(storedLetter){
-      setProfileLetter(storedLetter);
-    }
-  },[]);
+  // userData가 로드되지 않으면 로딩 화면 표시
+  if (!userData) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className={styles.mpWrapper}>
       <div className={styles.Profile}>
         {/* 공통적인 프로필 정보 렌더링 */}
         <Profile
-          name={isAdminPage ? '관리자' : '조랭삼'}
-          text1={isAdminPage ? '소개글이 없습니다' : '자기소개는 부끄렁 인삼이 최고'}
+          name={isAdminPage ? '관리자' :  userData.nickname}
+          text1={isAdminPage ? '관리자입니다.' : userData.profileText ? userData.profileText : '프로필이 없습니다'}
           btnName1={isAdminPage ? '관리자 정보 변경' : '프로필 변경'}
           btnName2={'로그아웃'}
           profileImageUrl={profileImage}
           profileLetter={profileLetter}
-          profileNickname={profileNickname}
           btnLink1={isAdminPage ? '/mypage/admin/edit-profile1' : "/mypage/user/change-profile"}
         />
       </div>

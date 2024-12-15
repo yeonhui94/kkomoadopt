@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
 import styles from './Dropdown.module.css';
 
-function Dropdown({ options = [], defaultText = "선택해주세요", maxVisibleItems = 5, onChange }) {
+function Dropdown({ options = [], orders = [], defaultText = "선택해주세요", maxVisibleItems = 5, onChange }) {
   const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOrder, setSelectedOrder] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleOptionClick = (option) => {
+  const handleOptionClick = (option, order) => {
     console.log("옵션 선택됨:", option); // 디버깅 로그
+    console.log("순서 선택됨:", order); // 디버깅 로그
     setSelectedOption(option);
+    setSelectedOrder(order);
     setIsOpen(false);
-    onChange?.(option); // 부모로 전달
+    onChange?.(option, order); // 부모로 전달
   };
   console.log(options);
   return (
@@ -31,7 +34,7 @@ function Dropdown({ options = [], defaultText = "선택해주세요", maxVisible
               <li
                 key={index}
                 className={styles.dropdownItem}
-                onClick={() => handleOptionClick(option)}
+                onClick={() => handleOptionClick(option, orders[index])}
               >
                 {option}
               </li>

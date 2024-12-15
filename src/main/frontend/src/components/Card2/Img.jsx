@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const ImageBox = styled.div`
@@ -17,14 +18,16 @@ const Image = styled.img`
   }
 `;
 
-const Img = ( {imageFile} ) =>{
+const Img = ( {imageFile,onDetailPage,adoptNum} ) =>{
     // imageFile이 배열일 경우 첫 번째 요소만 사용
 
 
     return(
-        <ImageBox >
-         <Image src={`http://localhost:8080/upload/${imageFile[0]}`} />
+        <Link to={`/adoption/post/${adoptNum}`}>
+        <ImageBox onClick={onDetailPage}>
+         <Image src={imageFile[0]} />
         </ImageBox>
+        </Link>
     )
 }
 

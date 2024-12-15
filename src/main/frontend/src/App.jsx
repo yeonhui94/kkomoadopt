@@ -84,7 +84,7 @@ function App() {
         //입양 글쓰기
         {path: "/adopt-wt", element: <Adoption_NewPost gridArea="section" />},
         //입양 게시글 디테일
-        {path: "/adoption/post/:id", element: <Adopt_postpage gridArea="section" />},
+        {path: "/adoption/post/:adoptNum", element: <Adopt_postpage gridArea="section" />},
         //커뮤니티
         {
           path: "community",

@@ -2,13 +2,13 @@ import axios from "axios";
 
 // API 기본 설정
 const apiClient = axios.create({
-    baseURL: 'http://localhost:8080', // 백엔드 서버의 URL
+    baseURL: 'http://192.168.0.54:8080', // 백엔드 서버의 URL
     timeout: 10000,  // 요청 타임아웃 설정
     headers: { 'Content-Type': 'application/json' }
   });
 
   const apiClientForm = axios.create({
-    baseURL: 'http://localhost:8080', // 백엔드 서버의 URL
+    baseURL: 'http://192.168.0.54:8080', // 백엔드 서버의 URL
     timeout: 10000,  // 요청 타임아웃 설정
     headers: { 'Content-Type': 'multipart/form-data' }
   });

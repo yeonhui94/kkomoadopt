@@ -3,6 +3,8 @@ import Img from "./Img";
 import TextBox from "./TextBox";
 import Scrap from "../Scrap/Scrap"; // Scrap 컴포넌트 임포트
 
+
+
 const CardBox = styled.div`
   width: 260px;
   height: 427px;
@@ -19,10 +21,10 @@ const ScrapContainer = styled.div`
   right: 16px;
 `;
 
-const Card2 = ({ imageFile, text1, text2, isScraped, onScrapToggle }) => {
+const Card2 = ({ imageFile, text1, text2, isScraped, onScrapToggle, adoptNum }) => {
     return (
         <CardBox>
-            <Img imageFile={imageFile} />
+            <Img imageFile={imageFile}  adoptNum={adoptNum}/>
             <TextBox text={text1 || "Text"} />
             <TextBox text={text2 || "Text"} />
             {onScrapToggle && ( // onScrapToggle

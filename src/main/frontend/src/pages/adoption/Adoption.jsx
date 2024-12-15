@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";  // Link 임포트 추가
+import { Link, useNavigate } from "react-router-dom";  // Link 임포트 추가
 import { useState, useEffect } from "react";
 import SearchBar from "../../components/SearchBar";
 import SubMenuBar from "../../components/submenubar/SubMenuBar";
@@ -9,12 +9,17 @@ import Dropdown from "../../components/DropDown";
 import Divider from "../../components/Divider";
 import { useStore as AdoptionNoticeStore2 } from "../../stores/AdoptionNoticeStore2/useStore";
 
+
+
+
+
 const Adoption = ({ gridArea }) => {
   const [selectedCategory, setSelectedCategory] = useState("ALL");
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOption, setSortOption] = useState("euthanasiaDate");
   const [orderBy, setOrderBy ] = useState("DESC")
   const [searchQuery, setSearchQuery] = useState('');
+  const [changeScraps, setChangeScraps] = useState(false);
   const { state, actions } = AdoptionNoticeStore2();
 
   const options = ["전체보기", "최신 순", "오래된 순", "조회 수 높은 순", "조회 수 낮은 순"];
@@ -41,18 +46,22 @@ const Adoption = ({ gridArea }) => {
 
     // 페이지가 변경될 때마다 데이터 요청
     useEffect(() =>  {
-      console.log(searchQuery)
-      if(searchQuery == null || searchQuery == '') {
-        actions.getAdoptionPostListAction(currentPage, selectedCategory, sortOption, orderBy);  // 페이지 번호가 변경되면 API 호출
+      if(changeScraps) {
+        setChangeScraps(false)
       } else {
-        actions.getAdoptionSearchPostListAction(currentPage, selectedCategory, sortOption, orderBy,searchQuery) ;  // 페이지 번호가 변경되면 API 호출
+        if(searchQuery == null || searchQuery == '') {
+          actions.getAdoptionPostListAction(currentPage, selectedCategory, sortOption, orderBy);  // 페이지 번호가 변경되면 API 호출
+        } else {
+          actions.getAdoptionSearchPostListAction(currentPage, selectedCategory, sortOption, orderBy,searchQuery) ;  // 페이지 번호가 변경되면 API 호출
+        }
       }
+      
       
     }, [currentPage, selectedCategory, sortOption, orderBy,searchQuery]);
 
   // 카테고리 필터링
   const filteredNotices = Array.isArray(state.notices.notices) ? state.notices.notices.filter(item => {
-    
+    console.log(item)
     if (selectedCategory === "ALL") {
       return true;
     }
@@ -98,6 +107,18 @@ const totalPages = Math.ceil(isNaN(totalElements) ? 0 : totalElements / 12);
     setCurrentPage(1)
   }
 
+  const gotoDetailPage = adoptNum => {
+    const navigate = useNavigate()
+    navigate(`/adoption/post/${adoptNum}`)
+  }
+
+  const toggleScrap = (announcementNum,index) => {
+    console.log(filteredNotices)
+    console.log(index,filteredNotices[index])
+    filteredNotices[index].isScraped = true
+    setChangeScraps(true)
+  }
+
   return (
     <div style={{ gridArea: gridArea }}>
       <SubMenuBar
@@ -126,15 +147,16 @@ const totalPages = Math.ceil(isNaN(totalElements) ? 0 : totalElements / 12);
             <Divider width={"100%"} backgroundColor={"var(--line-color)"} />
           </div>
           {filteredNotices.map((item, index) => (
-            <Link to={`/adoption/post/${item.announcementNum}`} key={index}>
+            
               <Card2
                 imageFile={item.noticeImgUrl}
                 text1={item.noticeTitle}
                 text2={`입양종료 날짜:${item.euthanasiaDate}`}
                 isScraped={item.isScraped}
-                onScrapToggle={(event) => toggleScrap(item.announcementNum, event)}
+                adoptNum= {item.announcementNum}
+                onDetailPage={(adoptNum)=> {gotoDetailPage(adoptNum)}}
+                onScrapToggle={(event) => toggleScrap(item.announcementNum, index)}
               />
-            </Link>
           ))}
         </div>
         <div className={styles.endcontainer}>

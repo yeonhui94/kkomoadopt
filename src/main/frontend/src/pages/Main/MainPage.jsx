@@ -134,6 +134,7 @@ function MainPage() {
         setIsAnimatingComplete={setIsAnimatingComplete}
         isFooter={isFooter}
         setIsFooter={setIsFooter}
+        isAnimatingComplete={isAnimatingComplete}
         />
       <div className={styles.sections}>
         <AnimatePresence custom={isScrolling}>

@@ -12,16 +12,17 @@ import img4_6 from './slideImg/6.png';
 import img4_7 from './slideImg/7.png';
 import { motion, AnimatePresence } from 'framer-motion';
 import ControlButton from "./ControlButton";
+import { Link } from "react-router-dom";
 
 function SlickSlide() {
   const slides = [
-    { id: 1, img: img4_1, title: '첫 번째 입양 후기', nickname: '글쓴이', content: '이것은 첫 번째 입양 후기입니다.' },
-    { id: 2, img: img4_2, title: '두 번째 입양 후기', nickname: '글쓴이', content: '이것은 두 번째 입양 후기입니다.' },
-    { id: 3, img: img4_3, title: '세 번째 입양 후기', nickname: '글쓴이', content: '이것은 세 번째 입양 후기입니다.' },
-    { id: 4, img: img4_4, title: '네 번째 입양 후기', nickname: '글쓴이', content: '이것은 네 번째 입양 후기입니다.' },
-    { id: 5, img: img4_5, title: '다섯 번째 입양 후기', nickname: '글쓴이', content: '이것은 다섯 번째 입양 후기입니다.' },
-    { id: 6, img: img4_6, title: '여섯 번째 입양 후기', nickname: '글쓴이', content: '이것은 여섯 번째 입양 후기입니다.' },
-    { id: 7, img: img4_7, title: '일곱 번째 입양 후기', nickname: '글쓴이', content: '이것은 일곱 번째 입양 후기입니다.' },
+    { id: 1, img: img4_1, title: '우리 집에 온 토리, 첫 인사', nickname: '글쓴이 : alice123', content: '토리를 입양한 후 첫날부터 반가워하며 다가와줬어요. 아주 기분 좋은 시작이었고, 이제는 집 안을 뛰어다니며 에너지를 발산하고 있어요!' },
+    { id: 2, img: img4_2, title: '입양 후 첫날, 정말 행복해요', nickname: '글쓴이 : mike987', content: '너무 사랑스러워서 매일매일 행복합니다. 입양을 망설이지 말고, 사랑을 주면 그만큼 돌아옵니다.' },
+    { id: 3, img: img4_3, title: '페페의 사랑스러운 모습', nickname: '글쓴이 : steve1980', content: '처음엔 많이 겁을 먹었지만, 이제는 내 품에서 자고, 옆에서 같이 시간을 보내요. 정말 소중한 가족이 되었어요.' },
+    { id: 4, img: img4_4, title: '입양한 고양이 미르의 첫날', nickname: '글쓴이 : sophia876', content: '미르가 집에 오고 나서 적응하기까지 시간이 걸렸지만, 이제는 정말 친근하게 다가와요!!' },
+    { id: 5, img: img4_5, title: '입양한 고양이가 잘 지내고 있어요!', nickname: '글쓴이 : steve1980', content: '입양한 고양이가 이제 집에 적응해서 잘 지내고 있어요. 처음엔 낯설어했지만, 이제는 사람들과 함께 자고, 잘 먹고 잘 놀아요. 너무 행복합니다.' },
+    { id: 6, img: img4_6, title: '우리 강아지 입양 후 첫날 이야기', nickname: '글쓴이 : mike23', content: '처음에는 조금 낯설어했지만, 이제는 우리 집에서 편안하게 지내고 있어요.\n너무 사랑스러운 강아지입니다.' },
+    { id: 7, img: img4_7, title: '입양한 강아지 구름이의 첫날', nickname: '글쓴이 : mike23', content: '처음에는 조금 낯설어했지만, 이제는 집안 곳곳을 돌아다니며 나랑 함께 놀자고 해요.' },
   ];
 
   const [slideIndex, setSlideIndexState] = useState(0);
@@ -75,15 +76,15 @@ function SlickSlide() {
 
   return (
     <div className={styles.slider}>
-      <div className={styles.slidewrap}>
+      <div className={styles.slidewrap} style={{zIndex:1}}>
         <Slider ref={sliderRef} {...settings}>
           {slides.map((slide, i) => (
             <div key={i}>
-              <a href="#" style={{display:"inline-block"}}>
+              <Link to="/" style={{display:"inline-block",zIndex:'10000000000000000000000'}}>
                 <div className={styles.slide}>
                   <img src={slide.img} alt={`슬라이드 ${slide.id}`} />
                 </div>
-              </a>
+              </Link>
             </div>
           ))}
         </Slider>
@@ -100,8 +101,8 @@ function SlickSlide() {
           />
         </div>
       </div>
-
-       <div className={`${styles.textContent} ${isEdge ? styles.edge : ""}`}> {/* 엣지인 경우 styles.edge 추가 */}
+        {/* 엣지인 경우 styles.edge 추가 */}
+       <div className={`${styles.textContent} ${isEdge ? styles.edge : ""}`}>
         <AnimatePresence mode="wait">
           <motion.div
             key={slideIndex}

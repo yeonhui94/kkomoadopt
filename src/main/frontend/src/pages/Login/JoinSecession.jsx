@@ -16,11 +16,10 @@ function JoinSecession() {
 
   return (
     <div className={styles.welcomeContainer} style={{ gridArea: "section" }} >
-
-      <div className={styles.a1}>
-        <a href="./intro" style={{ height: "100px" }} >
+      <div className={styles.a1} style={{display:'flex', justifyContent:'center'}}>
+        <Link to="./intro" style={{ height: "100px" }} >
           <Logo className={styles.logo1} width="200px" />
-        </a>
+        </Link>
       </div>
       
       <h1 className={styles.hText1}>{texts.h1}</h1>
@@ -28,10 +27,8 @@ function JoinSecession() {
       <p className={styles.p2}>{texts.text2}</p>
       <p className={styles.p3}>{texts.text3}</p>
 
-    <Link to="/">
-      <div className={styles.btn1}>
-        <Button width="100%" text={texts.btnName} />
-      </div>
+    <Link to="/" className={styles.btn1}>
+        <Button width="100%" text={texts.btnName} className/>
     </Link>
       <Outlet />
     </div>

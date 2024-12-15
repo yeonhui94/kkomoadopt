@@ -44,7 +44,7 @@ const StyledInput = styled.input`
 
 // InputBox 컴포넌트
 function InputBox({ text,padding2,backgroundColor1, backgroundColor2, color,padding3, paddingBottom3, border, borderBottom ,padding, itype, value, width, height, onChange, placeholder,radius,width1,
-                    backgroundColor,border1,fixedText,fontSize,marginBottom, paddingRight,marginRight, focus,name}) {
+                    backgroundColor,border1,fixedText,fontSize,marginBottom, paddingRight,marginRight, focus,id}) {
   return (
     <StyledDiv 
         width={width} 
@@ -72,6 +72,7 @@ function InputBox({ text,padding2,backgroundColor1, backgroundColor2, color,padd
         placeholder={placeholder}
         backgroundColor2={backgroundColor2}
         focus={focus}
+        id={id}
       />
     </StyledDiv>
   );

@@ -103,13 +103,20 @@
 }
 
 .contents {
+  display: flex;
+  align-items: end;
   position: absolute;
-  bottom: 0%;
+  bottom:0;
   left: 50%;
   transform: translateX(-50%);
+  white-space: pre-line;
+  word-wrap: break-word;
   color: black;
   text-align: center;
-  width: 80%;
+  width: 20%;
+  height: 150px; /* 텍스트 영역의 높이를 고정 */
+  overflow: auto; /* 텍스트가 많을 경우 스크롤바 추가 */
+  padding: 10px;
 }
 
 .slideContent {

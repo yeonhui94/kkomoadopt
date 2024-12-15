@@ -8,11 +8,19 @@ function Profile({name, text1, btnName1, btnName2, hori1, hori2, btnLink1,profil
         <div className={styles['profile-container']}>
             <div className={styles['profile-contents']}>
                 <div className={styles.smallWrapper}>
+{/*                 <div className={styles['profile-img']}> */}
+{/*                     {profileImageUrl ? ( */}
+{/*                         <img src={`http://localhost:8080/upload/${profileImageUrl}`} alt="" className={styles['profile-logo']} /> */}
+{/*                     ) : ( */}
+{/*                     <img src={logo} alt="프로필 사진" className={styles['profile-logo']} /> */}
+{/*                 )} */}
+{/*                 </div> */}
                 <div className={styles['profile-img']}>
-                    {profileImageUrl ? (
-                        <img src={profileImageUrl} alt="프로필 사진" className={styles['profile-logo']} />
+                    {profileImageUrl === '5123e3f8-12c3-42d3-9fad-5cbc808e0793.jpg' ? (
+                        <img src={`http://localhost:8080/upload/${profileImageUrl}`} alt="" className={styles['profile-logo']} />
                     ) : (
-                    <img src={logo} alt="프로필 사진" className={styles['profile-logo']} />
+//                     <img src={logo} alt="프로필 사진" className={styles['profile-logo']} />
+                       <img src={profileImageUrl} alt="프로필 사진" className={styles['profile-logo']} />
                 )}
                 </div>
                 <div className={styles['profile-text1']}>

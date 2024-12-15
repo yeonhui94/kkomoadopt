@@ -1,15 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
-import Mypageimg from '../../../components/logo/Mypageicon.svg';
-import { Link, useNavigate } from 'react-router-dom'; // useNavigate를 추가
+// import Mypageimg from '../../../components/logo/Mypageicon.svg';
+// import MypageImg from '../../../assets/maincolor.svg';
+import blackImg from '../../../assets/black.svg';
+import whiteImg from '../../../assets/white.svg';
+import mypageImg6 from '../../../assets/maincolor.svg'
+import { Link, useNavigate,useLocation } from 'react-router-dom'; // useNavigate를 추가
 
 const StyledImg = styled.img`
   margin-top: 5px;
   cursor: pointer;
 `;
 
-const Mypageicon2 = ({ isLoggedIn }) => {
+const Mypageicon2 = ({ isLoggedIn, isScrolled,isAnimatingComplete }) => {
   const navigate = useNavigate(); // navigate 훅을 사용해 페이지 이동
+  const location = useLocation();
+
+  const isMainPage = location.pathname === '/';
 
   const handleClick = () => {
     if (!isLoggedIn) {
@@ -23,8 +30,13 @@ const Mypageicon2 = ({ isLoggedIn }) => {
   };
 
   return (
-    <div onClick={handleClick} style={{cursor : 'pointer'}}>
-      <StyledImg src={Mypageimg} alt="Mypage"/>
+    <div onClick={handleClick} style={{ cursor: 'pointer', display: 'flex' }}>
+      {/* 메인 페이지 여부에 따라 다른 StyledImg 렌더링 */}
+      {isMainPage ? (
+          <StyledImg src={isScrolled ? whiteImg : isAnimatingComplete ? mypageImg6 : blackImg} alt="Mypage" />
+      ) : (
+          <StyledImg src={mypageImg6} alt="Mypage" />
+      )}
     </div>
   );
 };

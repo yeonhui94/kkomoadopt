@@ -6,6 +6,7 @@ import styles from "../../pages/Login/JoinContents.module.css";
 import { emailPattern, nicknamePattern, pwPattern } from "../../utils/regExp";
 import { useState } from 'react';
 import { useStore } from '../../stores/UserStore2/useStore';
+import InputBox from '../../components/InputBox';
 
 const StyledDividerWrapper = styled.div`
   position: relative;
@@ -31,9 +32,9 @@ const StyledText = styled.p`
 const ValidationMessage = styled.p`
   color: ${props => props.color};
   font-size: 15px;
-  position: absolute;
-  margin-left: 18px;
-  margin-top: 100px;
+  position: relative;
+  left: 8px;
+  bottom: 40px;
 `;
 
 function JoinContents() {
@@ -162,29 +163,66 @@ const isFormValid =
 
       <form className={styles.form1} onSubmit={handleFormSubmit}>
         <div className={styles.inputWrapper}>
-          <label htmlFor="name">이름</label>
-          <input
+          {/* <label htmlFor="name">이름</label> */}
+          <InputBox
+            itype="text"
+            fontSize="20px"
+            text="이름"
+            backgroundColor="white"
+            height="105px"
+            width="85%"
+            border="none"
+            borderBottom="none"
+            marginBottom="40px"
+            name="name"
+            value={formData.name}
+            onChange={handleInputChange}
+            placeholder="이름을 입력해주세요"
+            id={'name'} // id 속성 추가
+          />
+          {/* <input
             type="text"
             id="name"
             value={formData.name}
             onChange={handleInputChange}
             placeholder="이름을 입력해주세요"
-          />
+          /> */}
         </div>
 
         <div className={styles.inputWrapper}>
-          <label htmlFor="phoneNumber">휴대전화 번호</label>
-          <input
+          {/* <label htmlFor="phoneNumber">휴대전화 번호</label> */}
+          {/* <input
             type="text"
             id="phoneNumber"
             value={formData.phoneNumber}
             onChange={handleInputChange}
             placeholder="휴대전화 번호를 입력해주세요"
+          /> */}
+          <InputBox
+            itype="text"
+            fontSize="20px"
+            text="휴대전화 번호"
+            backgroundColor="white"
+            height="105px"
+            width="85%"
+            border="none"
+            borderBottom="none"
+            marginBottom="40px"
+            name="phoneNumber"
+            value={formData.phoneNumber}
+            onChange={handleInputChange}
+            id={'phoneNumber'}
           />
         </div>
 
-        <div className={styles.inputWrapper}>
-          <label htmlFor="email">이메일</label>
+        <div style={{
+          display:'flex',
+          justifyContent:'flex-start',
+          alignItems :'center',
+          width:'100%',
+          // gap:'px'
+          }}>
+          {/* <label htmlFor="email">이메일</label>
           <input
             type="email"
             id="email"
@@ -201,7 +239,34 @@ const isFormValid =
             marginTop="52px"
             horizontalPadding="12px"
             onClick={handleEmailCheck}
+          /> */}
+          <InputBox
+            itype="email"
+            fontSize="20px"
+            text="이메일"
+            backgroundColor="white"
+            height="105px"
+            width="100%"
+            border="none"
+            borderBottom="none"
+            marginBottom="40px"
+            placeholder="ex) example@naver.com"
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
+            id={'email'}
           />
+          <div style={{position:'relative',left:'50px',width:'15%'}}>
+            <Button
+              text="중복확인"
+              height="44px"
+              width="100px"
+              fontSize="15px"
+              horizontalPadding="12px"
+              onClick={handleEmailCheck}
+              style={{position:'relative',left:'50px'}}
+            />
+          </div>
         </div>
         {validationMessage1 && (
           <ValidationMessage color={messageColor1}>
@@ -209,8 +274,13 @@ const isFormValid =
           </ValidationMessage>
         )}
 
-        <div className={styles.inputWrapper}>
-          <label htmlFor="nickname">닉네임</label>
+        <div style={{
+          display:'flex',
+          justifyContent:'flex-start',
+          alignItems :'center',
+          width:'100%',
+        }}>
+          {/* <label htmlFor="nickname">닉네임</label>
           <input
             type="text"
             id="nickname"
@@ -227,16 +297,51 @@ const isFormValid =
             marginTop="52px"
             horizontalPadding="12px"
             onClick={handleNicknameCheck}
+          /> */}
+          <InputBox
+            itype="text"
+            fontSize="20px"
+            text="닉네임"
+            backgroundColor="white"
+            height="105px"
+            width="100%"
+            border="none"
+            borderBottom="none"
+            marginBottom="40px"
+            name="nickname"
+            id={'nickname'}
+            value={formData.nickname}
+            onChange={handleInputChange}
           />
+          {/* <Button
+            text="중복확인"
+            height="44px"
+            width="100px"
+            fontSize="15px"
+            marginLeft="10px"
+            marginTop="52px"
+            horizontalPadding="12px"
+            onClick={handleNicknameCheck}
+          /> */}
+          <div style={{position:'relative',left:'50px',width:'15%'}}>
+            <Button
+              text="중복확인"
+              height="44px"
+              width="100px"
+              fontSize="15px"
+              horizontalPadding="12px"
+              onClick={handleNicknameCheck}
+              style={{position:'relative',left:'50px'}}
+            />
+          </div>
         </div>
         {validationMessage2 && (
           <ValidationMessage color={messageColor2}>
             {validationMessage2}
           </ValidationMessage>
         )}
-
         <div className={styles.inputWrapper}>
-          <label htmlFor="password">비밀번호</label>
+          {/* <label htmlFor="password">비밀번호</label>
           <input
             type="password"
             id="password"
@@ -280,20 +385,83 @@ const isFormValid =
             >
               {passwordMatch ? "비밀번호가 일치합니다" : "비밀번호가 일치하지 않습니다"}
             </p>
+          )} */}
+          <InputBox
+            itype="password"
+            fontSize="20px"
+            text="비밀번호"
+            backgroundColor="white"
+            height="105px"
+            width="85%"
+            border="none"
+            borderBottom="none"
+            marginBottom="40px"
+            value={formData.password}
+            onChange={handlePasswordChange}
+          />
+
+          {passwordError && (
+            <p
+              style={{
+                color: "red",
+                fontSize: "16px",
+                position: "absolute",
+                marginTop: "-45px",
+                marginLeft: "10px",
+              }}
+            >
+              {passwordError}
+            </p>
+          )}
+
+          <InputBox
+            itype="password"
+            fontSize="20px"
+            text="비밀번호 확인"
+            backgroundColor="white"
+            height="105px"
+            width="85%"
+            border="none"
+            borderBottom="none"
+            marginBottom="40px"
+            value={formData.confirmPassword}
+            onChange={handleConfirmPasswordChange}
+          />
+
+          {passwordMatch !== null && (
+            <p
+              style={{
+                color: passwordMatch ? "green" : "red",
+                fontSize: "16px",
+                position: "absolute",
+                marginTop: "-45px",
+                marginLeft: "10px",
+              }}
+            >
+              {passwordMatch ? "비밀번호가 일치합니다" : "비밀번호가 일치하지 않습니다"}
+            </p>
           )}
         </div>
 
         <StyledText>개인정보 이용 약관 동의</StyledText>
         <div className={styles.checkboxWrapper}>
-          <label htmlFor="checkbox">약관에 동의 하십니까</label>
-          <input
-            type="checkbox"
-            id="checkbox"
-            style={{ width: "18px", height: "18px", marginLeft: "10px" }}
-            checked={checkboxChecked}
-            onChange={handleCheckboxChange}
-          />
+          <div className={styles.div2}>
+            <p>
+              개인정보보호법에 따라 KKOMO_ADOPT에 회원가입 신청하시는 분께 수집하는 개인정보의 항목, 개인정보의 수집 및 이용목적,
+              개인정보의 보유 및 이용기간, 동의 거부권 및 동의 거부 시 불이익에 관한 사항을 안내 드리오니 자세히 읽은 후 동의하여 주시기 바랍니다.
+            </p>
+          </div>
         </div>
+        <div style={{display:'flex'}}>
+          <StyledText>약관에 동의 하십니까?</StyledText>
+            <input
+              type="checkbox"
+              id="checkbox"
+              style={{ width: "18px", height: "18px", marginLeft: "10px" }}
+              checked={checkboxChecked}
+              onChange={handleCheckboxChange}
+            />
+          </div>
         <Button text="회원가입" width="100%" height="60px" disabled={!isFormValid} />
       </form>
       <Outlet />

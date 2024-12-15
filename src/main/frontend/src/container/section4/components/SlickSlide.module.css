@@ -186,6 +186,9 @@
     left: 42%;
     gap: 220px;
   }
+  .contents {
+    width: 40%;
+  }
 }
 
 /* 모바일 기준 (max-width: 768px) */
@@ -235,7 +238,7 @@
     top: 30px;
   }
   .contents {
-    bottom: 50px;
+    width: 70%;
   }
   
   .controls {
@@ -247,8 +250,8 @@
     left: 25%;
   }
   .edge .titleAndninckname{
-
     width: 94%;
     height: 10%;
   }
 }
+/* ads */

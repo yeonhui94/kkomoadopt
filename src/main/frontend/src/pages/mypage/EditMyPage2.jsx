@@ -128,9 +128,11 @@ function EditMyPage2({ gridArea }) {
     const handleBtn1 = (e) => {
         e.preventDefault();
         openInfoModal();
+        
     };
 
     const handleConfirmClick = () => {
+        localStorage.removeItem('user');
         navigate('/secession');
         closeInfoModal();
     };

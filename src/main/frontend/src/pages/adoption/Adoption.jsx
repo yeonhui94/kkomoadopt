@@ -19,8 +19,10 @@ const Adoption = ({ gridArea }) => {
   const [sortOption, setSortOption] = useState("euthanasiaDate");
   const [orderBy, setOrderBy ] = useState("DESC")
   const [searchQuery, setSearchQuery] = useState('');
-  const [changeScraps, setChangeScraps] = useState(false);
+  const [changeScraps, setChangeScraps] = useState(0);
   const { state, actions } = AdoptionNoticeStore2();
+  const navigate = useNavigate()
+  const storedUser = localStorage.getItem('user');
 
   const options = ["전체보기", "최신 순", "오래된 순", "조회 수 높은 순", "조회 수 낮은 순"];
   const sortOptions = [
@@ -46,18 +48,15 @@ const Adoption = ({ gridArea }) => {
 
     // 페이지가 변경될 때마다 데이터 요청
     useEffect(() =>  {
-      if(changeScraps) {
-        setChangeScraps(false)
-      } else {
-        if(searchQuery == null || searchQuery == '') {
+        if(searchQuery == null || searchQuery == '' ) {
           actions.getAdoptionPostListAction(currentPage, selectedCategory, sortOption, orderBy);  // 페이지 번호가 변경되면 API 호출
         } else {
           actions.getAdoptionSearchPostListAction(currentPage, selectedCategory, sortOption, orderBy,searchQuery) ;  // 페이지 번호가 변경되면 API 호출
         }
-      }
       
       
-    }, [currentPage, selectedCategory, sortOption, orderBy,searchQuery]);
+      
+    }, [currentPage, selectedCategory, sortOption, orderBy,searchQuery,changeScraps]);
 
   // 카테고리 필터링
   const filteredNotices = Array.isArray(state.notices.notices) ? state.notices.notices.filter(item => {
@@ -107,16 +106,19 @@ const totalPages = Math.ceil(isNaN(totalElements) ? 0 : totalElements / 12);
     setCurrentPage(1)
   }
 
-  const gotoDetailPage = adoptNum => {
-    const navigate = useNavigate()
-    navigate(`/adoption/post/${adoptNum}`)
-  }
+
+  
 
   const toggleScrap = (announcementNum,index) => {
-    console.log(filteredNotices)
-    console.log(index,filteredNotices[index])
-    filteredNotices[index].isScraped = true
-    setChangeScraps(true)
+      if(!storedUser) {
+        navigate('/login')
+        return;
+       }
+       actions.changeMyScrap(announcementNum)
+
+       let value = changeScraps;
+       setChangeScraps(++value)
+
   }
 
   return (
@@ -152,7 +154,7 @@ const totalPages = Math.ceil(isNaN(totalElements) ? 0 : totalElements / 12);
                 imageFile={item.noticeImgUrl}
                 text1={item.noticeTitle}
                 text2={`입양종료 날짜:${item.euthanasiaDate}`}
-                isScraped={item.isScraped}
+                isScraped={state.notices?.scrapList ? state.notices?.scrapList.includes(item.announcementNum):false}
                 adoptNum= {item.announcementNum}
                 onDetailPage={(adoptNum)=> {gotoDetailPage(adoptNum)}}
                 onScrapToggle={(event) => toggleScrap(item.announcementNum, index)}

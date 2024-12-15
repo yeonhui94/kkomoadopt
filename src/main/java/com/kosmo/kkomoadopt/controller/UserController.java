@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/user")
@@ -117,8 +118,8 @@ public class UserController {
     }
 
     @PostMapping("/scrap/save")
-    public ResponseEntity<Boolean> changeScrap(String adoptNum, HttpServletRequest request){
-        boolean result = userService.saveScarpUser(adoptNum, request);
+    public ResponseEntity<Boolean> changeScrap(@RequestBody Map<String,Object> map, HttpServletRequest request){
+        boolean result = userService.saveScarpUser((String)map.get("adoptNum"), request);
 
         return ResponseEntity.ok(result);
     }

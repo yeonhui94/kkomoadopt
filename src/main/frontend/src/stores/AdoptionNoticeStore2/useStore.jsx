@@ -22,7 +22,8 @@ import {
   deleteAdoptionPostAction,
   getAdoptionPostListAction,
   getAdoptionSearchPostListAction,
-  getAdoptionPostDetailAction
+  getAdoptionPostDetailAction,
+  changeMyScrapAction
 } from "./action"; // action.js에서 액션들 임포트
 
 export const useStore = () => {
@@ -46,6 +47,7 @@ export const useStore = () => {
     changeAdoptionNoticeViewCount: (noticeViewCount) => dispatch(changeAdoptionNoticeViewCount(noticeViewCount)),
     changeAdoptionAnimalType: (animalType) => dispatch(changeAdoptionAnimalType(animalType)),
     changeAdoptionStatus: (adoptStatus) => dispatch(changeAdoptionStatus(adoptStatus)),
+    
     changeAdoptionNoticeNum: (announcementNum) => dispatch(changeAdoptionNoticeNum(announcementNum)),
     changeAdoptionUniqueNum: (uniqueNum) => dispatch(changeAdoptionUniqueNum(uniqueNum)),
     changeAdoptionNoticeImgUrl: (noticeImgUrl) => dispatch(changeAdoptionNoticeImgUrl(noticeImgUrl)),
@@ -60,6 +62,7 @@ export const useStore = () => {
     createAdoptionPostAction: (adoptionData) => createAdoptionPostAction(adoptionData)(dispatch),
     updateAdoptionPostAction: (noticeUid, updatedData) => updateAdoptionPostAction(noticeUid, updatedData)(dispatch),
     deleteAdoptionPostAction: (noticeUid) => deleteAdoptionPostAction(noticeUid)(dispatch),
+    changeMyScrap: (adoptNum) => changeMyScrapAction(adoptNum)(dispatch),
 
     // 상태 초기화
     resetAdoptionState: () => dispatch(resetAdoptionState()),

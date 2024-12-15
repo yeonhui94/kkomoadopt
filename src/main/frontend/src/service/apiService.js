@@ -2,13 +2,13 @@ import axios from "axios";
 
 // API 기본 설정
 const apiClient = axios.create({
-    baseURL: 'http://192.168.0.54:8080', // 백엔드 서버의 URL
+    baseURL: 'http://localhost:8080', // 백엔드 서버의 URL
     timeout: 10000,  // 요청 타임아웃 설정
     headers: { 'Content-Type': 'application/json' }
   });
 
   const apiClientForm = axios.create({
-    baseURL: 'http://192.168.0.54:8080', // 백엔드 서버의 URL
+    baseURL: 'http://localhost:8080', // 백엔드 서버의 URL
     timeout: 10000,  // 요청 타임아웃 설정
     headers: { 'Content-Type': 'multipart/form-data' }
   });
@@ -26,6 +26,10 @@ export const getAdoptionPostList = (page, noticeCategory, sortBy, sortOrder) => 
     sortOrder: sortOrder            // 'asc', 'desc'
   }
 });
+
+export const changeMyScrap = (adoptNum) => apiClient.post('/api/user/scrap/save', {
+  adoptNum: adoptNum
+})
 
 // 2. 전체, 카테고리별 품종 검색
 export const getSearchAdoptionPostList = (page, noticeCategory,sortBy,  sortOrder, search) => apiClient.get('/api/adopt/search', {
@@ -173,5 +177,7 @@ export const updateVisitRequest = (requestUid, updatedData) => apiClient.patch(`
 
 // 5. 방문 요청 삭제
 export const deleteVisitRequest = (requestUid) => apiClient.delete(`/api/visit-requests/${requestUid}`);
+
+
 
 export default apiClient;

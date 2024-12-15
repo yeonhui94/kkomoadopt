@@ -5,6 +5,7 @@ import {
   deleteAdoptionPost,
   getAdoptionPostList,
   getSearchAdoptionPostList,
+  changeMyScrap
 } from '../../service/apiService'
 
 // 액션 타입 정의
@@ -163,6 +164,14 @@ export const createAdoptionPostAction = (adoptionData) => async (dispatch) => {
       });
   } catch (error) {
       console.error("입양 게시물을 생성할 수 없습니다.", error);
+  }
+};
+
+export const changeMyScrapAction = (adoptNum) => async (dispatch) => {
+  try { 
+    return await changeMyScrap(adoptNum);
+  } catch(e) {
+    console.error(e)
   }
 };
 

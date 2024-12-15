@@ -98,6 +98,8 @@ public class UserService {
         HttpSession session = request.getSession();
         String userId = (String)session.getAttribute("userId");
         UserEntity user = userRepository.findById(userId).orElse(null);
+        System.out.println("adoptNum "+adoptNum);
+        System.out.println("user "+ user);
         if(user != null) {
             List<String> scrapList = user.getScraps();
             String scrapNum = "";
@@ -111,12 +113,13 @@ public class UserService {
 
             if(!result) {
                 scrapList.add(adoptNum);
-                user.setScraps(scrapList);
-                user = userRepository.save(user);
-                if(user != null) {
-                    result = true;
-                }
 
+            }
+
+            user.setScraps(scrapList);
+            user = userRepository.save(user);
+            if(user != null) {
+                result = true;
             }
         }
 

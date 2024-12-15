@@ -6,6 +6,8 @@ import com.kosmo.kkomoadopt.enums.NoticeCategory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -27,6 +29,14 @@ public interface UserRepository extends JpaRepository<UserEntity, String> {
 
     // nickname으로 userId를 찾는 쿼리
     UserEntity findByNickname(String nickname);
+
+    Page<UserEntity> findAllByIsBlacklisted(Boolean blackYn ,Pageable pageable);
+    @Query("SELECT a FROM UserEntity a WHERE a.nickname LIKE %:query% OR a.email LIKE %:query% AND isBlacklisted = :blackListed"  )
+    Page<UserEntity> findEmailOrNickByBlackUser(@Param("query")String Query,@Param("blackListed")Boolean blackListed,Pageable pageable);
+
+
+    @Query("SELECT a FROM UserEntity a WHERE a.nickname LIKE %:query% OR a.email LIKE %:query%" )
+    Page<UserEntity> findEmailOrNick(@Param("query") String query, Pageable pageable);
 //
 //    // 유저 전체 조회
 //    Page<UserEntity> findAll(Pageable pageable);

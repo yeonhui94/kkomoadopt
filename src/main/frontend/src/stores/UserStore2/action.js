@@ -7,7 +7,8 @@ import {
     logout,
     deleteUser,
     findUserId,
-    changeUserPassword
+    changeUserPassword,
+    getUserList
 } from '../../service/apiService'; // apiService에서 함수 import
 
 // action.js
@@ -62,6 +63,7 @@ export const getUserScraps = (scraps) => ({
     payload: scraps
 });
 
+export const READ_USER_LIST = "READ_USER_LIST";
 export const READ_USER = "READ_USER";
 export const CREATE_USER = "CREATE_USER";
 export const UPDATE_USER = "UPDATE_USER";
@@ -114,6 +116,18 @@ export const fetchUserProfile = (userId) => async(dispatch) => {
         });
     } catch (error) {
         console.error('사용자 프로필 가져오기 실패:', error);
+    }
+};
+// 특정 사용자 프로필 가져오기
+export const getUserListAction = (page,query) => async(dispatch) => {
+    try {
+        const response = await getUserList(page,query);
+        dispatch({
+              type: READ_USER_LIST,
+              payload: response.data
+        });
+    } catch (error) {
+        console.error('사용자 리스트 가져오기 실패:', error);
     }
 };
 //사용자 프로필 업데이트

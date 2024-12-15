@@ -5,7 +5,8 @@ import {
   deleteAdoptionPost,
   getAdoptionPostList,
   getSearchAdoptionPostList,
-  changeMyScrap
+  changeMyScrap,
+  getUserList
 } from '../../service/apiService'
 
 // 액션 타입 정의

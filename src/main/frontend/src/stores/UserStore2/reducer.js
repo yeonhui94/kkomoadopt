@@ -17,6 +17,7 @@ import {
     REMOVE_SCRAP,
     GET_USER_SCRAP,
     READ_USER,
+    READ_USER_LIST,
     CREATE_USER,
     UPDATE_USER,
     DELETE_USER,
@@ -44,7 +45,10 @@ import {
     blacklists: [],
     scraps: [],
     isLoggedIn: false, // 로그인 상태
-    userData: null // 유저 데이터
+    userData: null, // 유저 데이터
+    userDataList : {
+      content : []
+    }
   };
   
   export const reducer = (state = initialState, action) => {
@@ -94,6 +98,8 @@ import {
         return { ...state, userData: action.payload };
       case READ_USER:
         return { ...state, userData: action.payload };
+      case READ_USER_LIST:
+        return { ...state, userDataList: action.payload };
       case UPDATE_USER:
         return { ...state, userData: action.payload };
       case DELETE_USER:

@@ -1,16 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../mypage/MyPage.module.css";
 import SearchBar from "../../components/SearchBar";
 import Pagenumber from "../../components/pagenumber/Pagenumber";
 import Button from "../../components/Button/Button";
 import CheckBox from "../../components/CheckBox";  // CheckBox 임포트
 import Modal from "../../components/Modal/Modal";
+import {useStore as UserStore} from "../../stores/UserStore2/useStore"
 
 function UserMgmt({ gridArea }) {
     const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태
     const [searchQuery, setSearchQuery] = useState('');
     const [checkedItems, setCheckedItems] = useState({});  // 체크박스 상태를 관리
     const [selectedOption , setSelectedOption] = useState('')
+
+
+  const { state, actions } = UserStore();
 
     const [isModalOpen, setIsModalOpen] = useState(false);  // 모달 열기 상태
     const [selectedUsers, setSelectedUsers] = useState([]); // 모달 열면 체크된 사람들 보여줄 상태
@@ -29,6 +33,12 @@ function UserMgmt({ gridArea }) {
         { name: "김도라지", nickname: "도라지정과", number: "010-4120-0215", email: "doraji@naver.com", signupdate: "2024-11-19", lastlogin: "2024-12-11", postlist: 140, isBlacklisted: false ,status: "normal"},
     ]);
 
+
+    useEffect(()=> {
+        actions.getUserList(currentPage,searchQuery)
+        console.log(state.userDataList)
+    } ,[currentPage,searchQuery,checkedItems,selectedOption])
+
     // 검색 필터링된 데이터
     const filteredData = allPosts.filter(post =>
         (post.nickname.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -45,7 +55,7 @@ function UserMgmt({ gridArea }) {
     );
 
     // 전체 페이지 수 계산
-    const totalPages = Math.ceil(filteredData.length / postsPerPage);
+    const totalPages = Math.ceil(state.userDataList.totalElements / postsPerPage);
 
     // 검색어 변경 처리 함수
     const handleSearch = (query) => {
@@ -56,14 +66,17 @@ function UserMgmt({ gridArea }) {
     // 페이지네이션 처리
     const handlePageClick = (pageNumber) => {
         setCurrentPage(pageNumber);
+        console.log(pageNumber)
     };
 
     // 체크박스 상태 변경 처리
     const handleCheckBoxChange = (nickname) => {
+        console.log('nickname',nickname)
         setCheckedItems((prevState) => {
             const newCheckedItems = { ...prevState, [nickname]: !prevState[nickname] };
             // 체크된 사용자들 추출
             const selectedUsersList = Object.keys(newCheckedItems).filter(key => newCheckedItems[key]);
+            console.log(selectedUsersList)
             setSelectedUsers(selectedUsersList); // 선택된 사용자 목록 업데이트
             return newCheckedItems;
         });
@@ -119,6 +132,7 @@ function UserMgmt({ gridArea }) {
 
     return (
         <div style={{ gridArea: gridArea }}>
+            
             <div className={styles.mpcontainer}>
                 <div className={styles.SearchBar}>
                     <SearchBar
@@ -142,7 +156,8 @@ function UserMgmt({ gridArea }) {
                             </tr>
                         </thead>
                         <tbody>
-                            {currentPosts.map(post => (
+
+                            {state?.userDataList ? state?.userDataList?.content.map(post => (
                                 <tr key={post.email} className={post.isBlacklisted ? styles.blacklisted : ""}> {/* 블랙리스트 처리 */}
                                     <td>
                                         <CheckBox
@@ -153,12 +168,12 @@ function UserMgmt({ gridArea }) {
                                     <td>{post.name}</td>
                                     <td>{post.nickname}</td>
                                     <td>{post.email}</td>
-                                    <td>{post.number}</td>
-                                    <td>{post.signupdate}</td>
+                                    <td>{post.phoneNumber}</td>
+                                    <td>{post.userCreate}</td>
                                     <td>{post.postlist}</td>
-                                    <td>{post.lastlogin}</td>
+                                    <td>{post.userLastLogin}</td>
                                 </tr>
-                            ))}
+                            )) : null}
                         </tbody>
                     </table>
                 </div>
@@ -167,7 +182,7 @@ function UserMgmt({ gridArea }) {
                     <Pagenumber
                         totalPages={totalPages}
                         currentPage={currentPage}
-                        handlePageClick={handlePageClick}
+                        onPageChange={handlePageClick}
                     />
                     <div className={styles.adminbtn}>
                         <Button text={"블랙리스트 추가"} onClick={() => setIsModalOpen(true)} />

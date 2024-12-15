@@ -4,16 +4,23 @@ import com.kosmo.kkomoadopt.dto.LoginRequestDTO;
 import com.kosmo.kkomoadopt.dto.LoginResponseDTO;
 import com.kosmo.kkomoadopt.dto.RegisterUserDTO;
 import com.kosmo.kkomoadopt.entity.UserEntity;
+import com.kosmo.kkomoadopt.enums.NoticeCategory;
 import com.kosmo.kkomoadopt.repository.UserRepository;
 import com.kosmo.kkomoadopt.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -122,6 +129,68 @@ public class UserController {
         boolean result = userService.saveScarpUser((String)map.get("adoptNum"), request);
 
         return ResponseEntity.ok(result);
+    }
+
+    // 유저가져오기
+    @GetMapping("/user/list")
+    public ResponseEntity<Page<UserEntity>> getUserList(@RequestParam(name = "page", defaultValue = "1") int page,   // 페이지 번호 (디폴트: 0)
+
+                                              @RequestParam(name = "sortBy", defaultValue = "userLastLogin") String sortBy,  // 정렬 기준 (디폴트: "name")
+                                              @RequestParam(name = "sortOrder", defaultValue = "desc") String sortOrder,
+                                              @RequestParam(name = "query" , defaultValue = "") String query) {
+
+        // 페이지와 정렬 설정
+        Sort sort = Sort.by(Sort.Order.asc(sortBy));  // 기본 정렬은 오름차순
+        if ("desc".equalsIgnoreCase(sortOrder)) {
+            sort = Sort.by(Sort.Order.desc(sortBy));
+        }
+
+        Pageable pageable = PageRequest.of(page-1, 8,sort );
+
+
+        Page<UserEntity> result = userService.getUserList(pageable,query);
+
+
+        return ResponseEntity.ok(result);
+    }
+    @GetMapping("/search/blacklist")
+    public ResponseEntity<Page<UserEntity>> searchBlackList(@RequestParam(name = "page", defaultValue = "1") int page,   // 페이지 번호 (디폴트: 0)
+                                                            @RequestParam(name = "sortBy", defaultValue = "userLastLogin") String sortBy,  // 정렬 기준 (디폴트: "name")
+                                                            @RequestParam(name = "sortOrder", defaultValue = "desc") String sortOrder,
+                                                            @RequestParam(name = "query" , defaultValue = "") String query){
+
+
+        // 페이지와 정렬 설정
+        Sort sort = Sort.by(Sort.Order.asc(sortBy));  // 기본 정렬은 오름차순
+        if ("desc".equalsIgnoreCase(sortOrder)) {
+            sort = Sort.by(Sort.Order.desc(sortBy));
+        }
+
+        Pageable pageable = PageRequest.of(page-1, 8,sort );
+        Page<UserEntity> entityList =  userService.searchBlackUserList(pageable,query);
+
+        return ResponseEntity.ok(entityList);
+    }
+
+
+    @PostMapping("/regi/blacklist")
+    public ResponseEntity<Boolean> regiBlackList(@RequestBody Map<String,Object> map){
+        List<String> blackList = (ArrayList) map.get("blackList");
+        String blackReason = (String)map.get("blackReason");
+
+         Boolean result = userService.saveBlackUserList(blackReason,blackList);
+
+        return ResponseEntity.ok(result);
+    }
+
+    @PostMapping("/del/blacklist")
+    public ResponseEntity<Boolean> deleteBlackList(@RequestBody Map<String,Object> map){
+        List<String> blackList = (ArrayList) map.get("blackList");
+
+
+        userService.delBlackUserList(blackList);
+
+        return ResponseEntity.ok(null);
     }
 
     // Dummy-Users 등록

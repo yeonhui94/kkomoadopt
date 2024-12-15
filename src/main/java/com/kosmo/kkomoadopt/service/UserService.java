@@ -1,17 +1,18 @@
 package com.kosmo.kkomoadopt.service;
 
-import com.kosmo.kkomoadopt.dto.AdoptNoticeListDTO;
-import com.kosmo.kkomoadopt.dto.LoginRequestDTO;
+import com.kosmo.kkomoadopt.dto.*;
 import com.kosmo.kkomoadopt.enums.Provider;
-import com.kosmo.kkomoadopt.dto.RegisterUserDTO;
 import com.kosmo.kkomoadopt.entity.UserEntity;
 import com.kosmo.kkomoadopt.repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -127,6 +128,70 @@ public class UserService {
         return result;
     }
 
+    public Page<UserEntity> getUserList(Pageable pageable,String query) {
+        Page<UserEntity> result= null;
+
+        if(query != null && (!"".equals(query))) {
+             result = userRepository.findEmailOrNick(query,pageable);
+        } else {
+            result =userRepository.findAll( pageable);
+        }
+
+        return result;
+    }
+
+
+    public Page<UserEntity> searchBlackUserList(Pageable pageable,String query) {
+        Page<UserEntity> result= null;
+
+        if(query != null && (!"".equals(query))) {
+            result = userRepository.findEmailOrNickByBlackUser(query,true,pageable);
+        } else {
+            result =userRepository.findAllByIsBlacklisted( true,pageable);
+        }
+
+        return result;
+    }
+
+
+    public boolean saveBlackUserList (String blackReason, List<String> blackList) {
+
+
+        UserEntity entity = null;
+        BlacklistDTO dto = null;
+        ArrayList<BlacklistDTO> dtoList = new ArrayList<>();
+        for(String nickname : blackList) {
+
+            entity = userRepository.findByNickname(nickname);
+            entity.setIsBlacklisted(true);
+            dto = new BlacklistDTO(LocalDateTime.now(),blackReason);
+            dtoList = new ArrayList<>();
+            dtoList.add(dto);
+            entity.setBlacklists(dtoList);
+            userRepository.save(entity);
+        }
+
+        return true;
+    }
+
+    public boolean delBlackUserList ( List<String> blackList) {
+
+
+        UserEntity entity = null;
+        BlacklistDTO dto = null;
+        ArrayList<BlacklistDTO> dtoList = new ArrayList<>();
+        for(String nickname : blackList) {
+
+            entity = userRepository.findByNickname(nickname);
+            entity.setIsBlacklisted(false);
+
+            dtoList = new ArrayList<>();
+            entity.setBlacklists(dtoList);
+            userRepository.save(entity);
+        }
+
+        return true;
+    }
 //    // dummy-Users 저장 메서드
 //    public List<UserEntity> saveUsers(List<UserEntity> userEntities) {
 //        return userRepository.saveAll(userEntities);

@@ -24,8 +24,18 @@ const Mypageicon2 = ({ isLoggedIn, isScrolled,isAnimatingComplete }) => {
       alert('로그인 해주세요!');
       navigate('/login'); // 로그인 페이지로 이동
     } else {
-      // 로그인 상태라면 마이페이지로 이동
+      let user = JSON.parse(localStorage.getItem('user'))
+      console.log(user)
+      if(user.authority === 'USER') {
+        // 로그인 상태라면 마이페이지로 이동
       navigate('/mypage/user');
+      } else  if(user.authority === 'ADMIN') { 
+        // 로그인 상태라면 마이페이지로 이동
+        navigate('/mypage/admin');
+      }
+
+      
+      
     }
   };
 

@@ -27,6 +27,13 @@ export const getAdoptionPostList = (page, noticeCategory, sortBy, sortOrder) => 
   }
 });
 
+export const getUserList = (page,query) => apiClient.get('api/user/user/list', {
+  params : {
+    page : page,
+    query : query
+  }
+})
+
 export const changeMyScrap = (adoptNum) => apiClient.post('/api/user/scrap/save', {
   adoptNum: adoptNum
 })

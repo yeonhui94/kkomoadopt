@@ -4,21 +4,21 @@ import Button from "../../components/Button/Button";
 import InputField from "../../components/InputField";
 import styles from "../Login/LoginPageContents.module.css";
 import { useStore as UserStore2 } from "../../stores/UserStore2/useStore"; // UserStore2를 import
-import { useStore as VisitRequestStore2 } from "../../stores/VisitRequestStore2/useStore";
-import { useStore as CommunityPostStore2 } from "../../stores/CommunityPostStore2/useStore";
-import { readCommunityPostsByCategory } from "../../stores/CommunityPostStore2/action";
-import { useStore as CommentStore2 } from "../../stores/CommentStore2/useStore"; // CommentStore를 import
-import { readAllComments } from "../../stores/CommentStore2/action"; // readAllComments 액션을 import
+// import { useStore as VisitRequestStore2 } from "../../stores/VisitRequestStore2/useStore";
+// import { useStore as CommunityPostStore2 } from "../../stores/CommunityPostStore2/useStore";
+// import { readCommunityPostsByCategory } from "../../stores/CommunityPostStore2/action";
+// import { useStore as CommentStore2 } from "../../stores/CommentStore2/useStore"; // CommentStore를 import
+// import { readAllComments } from "../../stores/CommentStore2/action"; // readAllComments 액션을 import
 
 function LoginPageContents({ gridArea }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { state, actions } = UserStore2(); // UserStore2에서 상태와 액션 가져오기
-  const { state: visitRequestState, actions: visitRequestActions } = VisitRequestStore2();
-  const { state: communityPostState, actions: communityPostActions } = CommunityPostStore2();
-  const { actions: commentActions } = CommentStore2(); // CommentStore에서 actions 가져오기
+  // const { state, actions } = UserStore2(); // UserStore2에서 상태와 액션 가져오기
+  // const { state: visitRequestState, actions: visitRequestActions } = VisitRequestStore2();
+  // const { state: communityPostState, actions: communityPostActions } = CommunityPostStore2();
+  // const { actions: commentActions } = CommentStore2(); // CommentStore에서 actions 가져오기
 
   // 로그인 요청을 트리거하는 함수
   const handleLogin = async (e) => {
@@ -34,12 +34,12 @@ function LoginPageContents({ gridArea }) {
       setError("이메일 또는 비밀번호가 잘못되었습니다.");
     }
   };
-  useEffect(() => {
-    const fetchAllComments = async () => {
-      const response = await commentActions.readAllComments();
-    };
-    fetchAllComments();
-  }, []);
+  // useEffect(() => {
+  //   const fetchAllComments = async () => {
+  //     const response = await commentActions.readAllComments();
+  //   };
+  //   fetchAllComments();
+  // }, []);
 //   모든 댓글을 불러오는 함수
 //   useEffect(() => {
 //     const fetchAllComments = async () => {

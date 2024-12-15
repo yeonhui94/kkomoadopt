@@ -116,6 +116,13 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인하지 않았습니다.");
     }
 
+    @PostMapping("/scrap/save")
+    public ResponseEntity<Boolean> changeScrap(String adoptNum, HttpServletRequest request){
+        boolean result = userService.saveScarpUser(adoptNum, request);
+
+        return ResponseEntity.ok(result);
+    }
+
     // Dummy-Users 등록
 //    @PostMapping("/dummy_users")
 //    public ResponseEntity<List<UserEntity>> createUsers(@RequestBody List<UserEntity> userEntities) {

@@ -1,7 +1,10 @@
 package com.kosmo.kkomoadopt.service;
 
+import com.kosmo.kkomoadopt.dto.AdoptNoticeListDTO;
 import com.kosmo.kkomoadopt.dto.CommunityListDTO;
 import com.kosmo.kkomoadopt.dto.CommunityDTO;
+import com.kosmo.kkomoadopt.entity.AdoptionNoticeEntity;
+import com.kosmo.kkomoadopt.enums.NoticeCategory;
 import com.kosmo.kkomoadopt.enums.PostCategory;
 import com.kosmo.kkomoadopt.entity.CommunityPostEntity;
 import com.kosmo.kkomoadopt.entity.UserEntity;
@@ -11,6 +14,8 @@ import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -109,7 +114,18 @@ public class CommunityPostService {
         return CommunityListDTOList;
     }
 
-
+//    // 카테고리로 커뮤니티글 가져오기
+//    public CommunityListDTO getCommunityByCategory(PostCategory postCategory, Pageable pageable) {
+//        Page<AdoptionNoticeEntity> adoptionNoticePage = communityPostRepository.findByNoticeCategory(noticeCategory, pageable);
+//
+//        // 결과를 DTO로 변환
+//        List<AdoptNoticeListDTO.Notice> notices = adoptionNoticePage.getContent().stream()
+//                .map(this::convertToNoticeDTO)
+//                .collect(Collectors.toList());
+//
+//        // DTO를 리턴
+//        return new AdoptNoticeListDTO(notices, adoptionNoticePage.getTotalElements(), adoptionNoticePage.getNumber());
+//    }
 
     public CommunityListDTO getCommunityPostUid (String postUid) {
         Optional<CommunityPostEntity> optionalPost = communityPostRepository.findByPostUid(postUid);

@@ -34,7 +34,9 @@ public class AdoptionNoticeController {
             @RequestParam(name = "page", defaultValue = "1") int page,   // 페이지 번호 (디폴트: 0)
             @RequestParam(name = "noticeCategory") NoticeCategory noticeCategory,  // 카테고리 (선택 사항)
             @RequestParam(name = "sortBy", defaultValue = "euthanasiaDate") String sortBy,  // 정렬 기준 (디폴트: "name")
-            @RequestParam(name = "sortOrder", defaultValue = "desc") String sortOrder) {  // 정렬 순서 (디폴트: "asc")
+            @RequestParam(name = "sortOrder", defaultValue = "desc") String sortOrder,
+            HttpServletRequest request) {  // 정렬 순서 (디폴트: "asc")
+
 
         // 페이지와 정렬 설정
         Sort sort = Sort.by(Sort.Order.asc(sortBy));  // 기본 정렬은 오름차순
@@ -55,6 +57,9 @@ public class AdoptionNoticeController {
             result = adoptionNoticeService.getNoticesByCategory(noticeCategory, pageable);
         }
 
+        result = adoptionNoticeService.getUserScrapMappingList(result,request);
+
+
         // 상태 코드 200 OK와 함께 반환
         return ResponseEntity.ok(result);
     }
@@ -66,7 +71,7 @@ public class AdoptionNoticeController {
             @RequestParam(name = "noticeCategory") NoticeCategory noticeCategory,  // 카테고리 (선택 사항)
             @RequestParam(name = "search") String search,  // 카테고리 (선택 사항)
             @RequestParam(name = "sortBy", defaultValue = "euthanasiaDate") String sortBy,  // 정렬 기준 (디폴트: "name")
-            @RequestParam(name = "sortOrder", defaultValue = "desc") String sortOrder) {  // 정렬 순서 (디폴트: "asc")
+            @RequestParam(name = "sortOrder", defaultValue = "desc") String sortOrder, HttpServletRequest request) {  // 정렬 순서 (디폴트: "asc")
 
         // 페이지와 정렬 설정
         Sort sort = Sort.by(Sort.Order.asc(sortBy));  // 기본 정렬은 오름차순
@@ -75,6 +80,8 @@ public class AdoptionNoticeController {
         }
         Pageable pageable = PageRequest.of(page - 1, 12,sort);
         AdoptNoticeListDTO result = adoptionNoticeService.searchNotices(search,noticeCategory, pageable);
+
+        result = adoptionNoticeService.getUserScrapMappingList(result,request);
 
         return ResponseEntity.ok(result);
     }

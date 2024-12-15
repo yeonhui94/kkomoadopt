@@ -1,7 +1,6 @@
 package com.kosmo.kkomoadopt.repository;
 
 import com.kosmo.kkomoadopt.entity.AdoptionNoticeEntity;
-import com.kosmo.kkomoadopt.entity.CommunityPostEntity;
 import com.kosmo.kkomoadopt.enums.NoticeCategory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

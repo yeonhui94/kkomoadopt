@@ -93,9 +93,6 @@ public class CommentService {
         return true; // 댓글 업데이트 성공
     }
 
-
-
-
     public boolean deleteCommentByCommentId(String commentId) {
         Optional<CommentEntity> commentEntityOptional = commentRepository.findById(commentId);
 

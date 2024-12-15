@@ -9,6 +9,8 @@ import com.kosmo.kkomoadopt.enums.NoticeCategory;
 import com.kosmo.kkomoadopt.repository.AdoptionNoticeRepository;
 import com.kosmo.kkomoadopt.repository.UserRepository;
 import jakarta.persistence.EntityManager;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -96,7 +99,7 @@ public class AdoptionNoticeService {
                 .collect(Collectors.toList());
 
         // DTO를 리턴
-        return new AdoptNoticeListDTO(notices, adoptionNoticePage.getTotalElements(), adoptionNoticePage.getNumber());
+        return new AdoptNoticeListDTO(notices, adoptionNoticePage.getTotalElements(), adoptionNoticePage.getNumber(),null);
     }
 
     // 카테고리로 입양 공고 가져오기
@@ -109,7 +112,7 @@ public class AdoptionNoticeService {
                 .collect(Collectors.toList());
 
         // DTO를 리턴
-        return new AdoptNoticeListDTO(notices, adoptionNoticePage.getTotalElements(), adoptionNoticePage.getNumber());
+        return new AdoptNoticeListDTO(notices, adoptionNoticePage.getTotalElements(), adoptionNoticePage.getNumber(),null);
     }
 
     // 검색어로 입양 공고 조회
@@ -127,7 +130,7 @@ public class AdoptionNoticeService {
                 .map(this::convertToNoticeDTO)
                 .collect(Collectors.toList());
 
-        return new AdoptNoticeListDTO(notices, adoptionNoticePage.getTotalElements(), adoptionNoticePage.getNumber() + 1);
+        return new AdoptNoticeListDTO(notices, adoptionNoticePage.getTotalElements(), adoptionNoticePage.getNumber() + 1,null);
     }
 
     // 입양 공지 상세 페이지 불러오기(1건)
@@ -274,4 +277,33 @@ public class AdoptionNoticeService {
     public void scheduledDeleteExpiredNotAdoptNotices() {
         deleteExpiredNotAdoptNotices();
     }
+
+
+
+    public AdoptNoticeListDTO getUserScrapMappingList (AdoptNoticeListDTO dto, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        List<String> scrapNumList= new ArrayList<>();
+        if(session != null) {
+            String userId = (String)session.getAttribute("userId");
+
+            if(userId == null) {
+                return dto;
+            }
+            System.out.println("userId :" +userId);
+            UserEntity entity = userRepository.findById(userId).orElse(null);
+
+
+
+            if (entity != null) {
+                scrapNumList = entity.getScraps();
+
+            }
+
+        }
+
+        return new AdoptNoticeListDTO(dto.notices(), dto.totalElements(), dto.pageNumber(),scrapNumList);
+
+    }
+
+
 }

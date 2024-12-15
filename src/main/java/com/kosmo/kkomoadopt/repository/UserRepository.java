@@ -1,6 +1,10 @@
 package com.kosmo.kkomoadopt.repository;
 
+import com.kosmo.kkomoadopt.entity.AdoptionNoticeEntity;
 import com.kosmo.kkomoadopt.entity.UserEntity;
+import com.kosmo.kkomoadopt.enums.NoticeCategory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -23,4 +27,10 @@ public interface UserRepository extends JpaRepository<UserEntity, String> {
 
     // nickname으로 userId를 찾는 쿼리
     UserEntity findByNickname(String nickname);
+//
+//    // 유저 전체 조회
+//    Page<UserEntity> findAll(Pageable pageable);
+//
+//    // 블랙리스트 된 유저 조회
+//    Page<UserEntity> findByNoticeCategory(NoticeCategory noticeCategory, Pageable pageable);
 }

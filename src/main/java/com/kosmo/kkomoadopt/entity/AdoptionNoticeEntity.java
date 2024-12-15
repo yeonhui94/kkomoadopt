@@ -80,6 +80,9 @@ public class AdoptionNoticeEntity {
     @Column(name = "adoption_author", nullable = false)
     private String adoptionAuthor = "관리자";
 
+    @Transient
+    private boolean isScraped;
+
     @Override
     public String toString() {
         return "AdoptionNoticeEntity{" +

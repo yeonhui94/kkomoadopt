@@ -1,5 +1,6 @@
 package com.kosmo.kkomoadopt.service;
 
+import com.kosmo.kkomoadopt.dto.AdoptNoticeListDTO;
 import com.kosmo.kkomoadopt.dto.LoginRequestDTO;
 import com.kosmo.kkomoadopt.enums.Provider;
 import com.kosmo.kkomoadopt.dto.RegisterUserDTO;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -90,7 +92,37 @@ public class UserService {
         return false; // 사용자가 없거나 비밀번호가 일치하지 않으면 실패
     }
 
+    public boolean saveScarpUser (String adoptNum, HttpServletRequest request) {
 
+        boolean result = false;
+        HttpSession session = request.getSession();
+        String userId = (String)session.getAttribute("userId");
+        UserEntity user = userRepository.findById(userId).orElse(null);
+        if(user != null) {
+            List<String> scrapList = user.getScraps();
+            String scrapNum = "";
+            for(int idx = 0 ; idx < scrapList.size(); idx++) {
+                scrapNum =  scrapList.get(idx);
+                if(scrapNum.equals(adoptNum)) {
+                    scrapList.remove(idx);
+                    result = true;
+                }
+            }
+
+            if(!result) {
+                scrapList.add(adoptNum);
+                user.setScraps(scrapList);
+                user = userRepository.save(user);
+                if(user != null) {
+                    result = true;
+                }
+
+            }
+        }
+
+
+        return result;
+    }
 
 //    // dummy-Users 저장 메서드
 //    public List<UserEntity> saveUsers(List<UserEntity> userEntities) {

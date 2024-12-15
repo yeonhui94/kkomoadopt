@@ -10,7 +10,8 @@ import java.util.List;
 public record AdoptNoticeListDTO(
         List<Notice> notices,      // 공고 리스트
         long totalElements,        // 총 공고 수
-        int pageNumber) {          // 현재 페이지 번호
+        int pageNumber,
+        List<String> scrapList) {          // 현재 페이지 번호
 
     public record Notice(
             String noticeUid,
@@ -26,5 +27,6 @@ public record AdoptNoticeListDTO(
             LocalDate euthanasiaDate,
             String impossibleReason,
             int noticeViewCount,
+
             String adoptionAuthor) {}
 }

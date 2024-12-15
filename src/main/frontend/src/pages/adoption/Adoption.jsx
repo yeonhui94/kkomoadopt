@@ -32,7 +32,7 @@ const Adoption = ({ gridArea }) => {
     "DESC", // 조회 수 높은 순
     "ASC"   // 조회 수 낮은 순
   ];
-
+  console.dir(state);
 
   // 페이지가 변경될 때마다 데이터 요청
   // useEffect(() => {

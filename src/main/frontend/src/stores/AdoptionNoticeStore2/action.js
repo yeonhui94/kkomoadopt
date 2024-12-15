@@ -155,7 +155,8 @@ export const getAdoptionPostDetailAction = (announcementNum) => async (dispatch)
 
 export const createAdoptionPostAction = (adoptionData) => async (dispatch) => {
   try {
-      const response = await createAdoptionPost(adoptionData);  // 새로운 게시물 생성 API 호출
+       return await createAdoptionPost(adoptionData);  // 새로운 게시물 생성 API 호출
+      console.log('Response:', response);  // 데이터 콘솔에 출력
       dispatch({
           type: CREATE_ADOPTION_POST,
           payload: response.data,  // 생성된 게시물 데이터

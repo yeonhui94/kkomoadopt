@@ -10,6 +10,7 @@ const apiClient = axios.create({
   const apiClientForm = axios.create({
     baseURL: 'http://localhost:8080', // 백엔드 서버의 URL
     timeout: 10000,  // 요청 타임아웃 설정
+    headers: { 'Content-Type': 'multipart/form-data' }
   });
 
 
@@ -41,7 +42,7 @@ export const getSearchAdoptionPostList = (page, noticeCategory,sortBy,  sortOrde
 export const getAdoptionPostDetail = (announcementNum) => apiClient.get(`/api/adopt/${announcementNum}`);
 
 // 3. 입양 게시물 생성
-export const createAdoptionPost = (adoptionData) => apiClient.post('/api/adoption/posts', adoptionData);
+export const createAdoptionPost = (adoptionData) => apiClientForm.post('/api/adopt/save', adoptionData);
 
 // 5. 입양 게시물 수정
 export const updateAdoptionPost = (noticeUid, updatedData) => apiClient.patch(`/api/adoption/posts/${noticeUid}`, updatedData);

@@ -40,18 +40,18 @@ public class AdoptionNoticeService {
 
         AdoptionNoticeEntity adoptionNoticeEntity = new AdoptionNoticeEntity();
 
-        // nickname을 통해 UserEntity를 찾기
-        String nickname = adoptNoticeDTO.adoptionAuthor();
-        UserEntity userEntity = userRepository.findByNickname(nickname);
-
-        // nickname에 해당하는 UserEntity가 없을 경우 처리
-        if (userEntity == null) {
-            // 예외 처리 또는 로깅
-            throw new RuntimeException("User with the nickname " + nickname + " not found");
-        }
+//        // nickname을 통해 UserEntity를 찾기
+//        String nickname = adoptNoticeDTO.adoptionAuthor();
+//        UserEntity userEntity = userRepository.findByNickname(nickname);
+//
+//        // nickname에 해당하는 UserEntity가 없을 경우 처리
+//        if (userEntity == null) {
+//            // 예외 처리 또는 로깅
+//            throw new RuntimeException("User with the nickname " + nickname + " not found");
+//        }
 
         // 엔티티 설정
-        adoptionNoticeEntity.setAdoptionAuthor(userEntity.getNickname());
+//        adoptionNoticeEntity.setAdoptionAuthor(userEntity.getNickname());
         adoptionNoticeEntity.setNoticeCategory(adoptNoticeDTO.noticeCategory());
         adoptionNoticeEntity.setNoticeContent(adoptNoticeDTO.noticeContent());
         adoptionNoticeEntity.setNoticeTitle(adoptNoticeDTO.noticeTitle());
@@ -64,16 +64,19 @@ public class AdoptionNoticeService {
         adoptionNoticeEntity.setNoticeUpdatedAt(LocalDateTime.now()); // 기본값 설정
         adoptionNoticeEntity.setImpossibleReason(""); // 기본값 설정
 
-        String[] fileNames = null;
-        try {
-            fileNames = fileService.saveFiles(files);
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
+        if(files != null ) {
+            String[] fileNames = null;
+            try {
+                fileNames = fileService.saveFiles(files);
+            }catch (IOException e) {
+                e.printStackTrace();
+            }
 
-        if(fileNames != null) {
-            adoptionNoticeEntity.setNoticeImgUrl( Arrays.stream(fileNames).toList());
+            if(fileNames != null) {
+                adoptionNoticeEntity.setNoticeImgUrl( Arrays.stream(fileNames).toList());
+            }
         }
+        System.out.println(adoptionNoticeEntity);
         adoptionNoticeEntity =  adoptionNoticeRepository.save(adoptionNoticeEntity);
 
         if(adoptionNoticeEntity != null) {

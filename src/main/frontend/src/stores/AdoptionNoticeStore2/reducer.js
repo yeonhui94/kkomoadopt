@@ -80,7 +80,7 @@ export const reducer = (state = initialState, action) => {
     case CREATE_ADOPTION_POST:
       return { 
         ...state, 
-        posts: [...state.posts, action.payload]  // 새로운 게시물 추가
+        notices: [...state.notices, action.payload]  // 새로운 게시물 추가
       };
     case READ_ADOPTION_POSTS:
       return { 

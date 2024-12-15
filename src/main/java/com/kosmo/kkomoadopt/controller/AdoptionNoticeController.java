@@ -17,6 +17,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/adopt")
 @RequiredArgsConstructor
@@ -85,23 +88,26 @@ public class AdoptionNoticeController {
 
     // 입양공지글 등록 (session에서 authority 확인)
     @PostMapping("/save")
-    public ResponseEntity<Boolean> createNotices(
+    public ResponseEntity<Map<String, Object>> createNotices(
             @ModelAttribute AdoptNoticeDTO adoptNoticeDTO,
-            @RequestParam("files") MultipartFile[] files,
+            @RequestParam(name="files", required = false) MultipartFile[] files,
             HttpServletRequest request) {
 
-        // 세션에서 권한 값 가져오기
-        HttpSession session = request.getSession();
-        Authority authority = (Authority) session.getAttribute("authority");  // 세션에서 authority 값을 가져옴
-
-        // authority가 ADMIN인 경우에만 글 작성 가능
-        if (authority == null || !authority.name().equals("ADMIN")) {
-            return new ResponseEntity<>(false, HttpStatus.FORBIDDEN); // 권한 없을 경우 403 응답
-        }
-
-        // ADMIN 권한이면 공지글 저장 처리
+//        // 세션에서 권한 값 가져오기
+//        HttpSession session = request.getSession();
+//        Authority authority = (Authority) session.getAttribute("authority");  // 세션에서 authority 값을 가져옴
+//
+//        // authority가 ADMIN인 경우에만 글 작성 가능
+//        if (authority == null || !authority.name().equals("ADMIN")) {
+//            return new ResponseEntity<>(false, HttpStatus.FORBIDDEN); // 권한 없을 경우 403 응답
+//        }
         Boolean result = adoptionNoticeService.saveNotice(adoptNoticeDTO, files);
-        return new ResponseEntity<>(result, HttpStatus.CREATED);
+        // 응답 객체를 Map으로 만들어서 반환
+        Map<String, Object> response = new HashMap<>();
+        response.put("success", result);  // 'success' 속성을 추가
+        System.out.println("Response: " + response); // 로그 출력
+
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     @PostMapping("/update")

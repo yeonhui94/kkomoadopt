@@ -78,7 +78,7 @@ public class AdoptionNoticeEntity {
 
     // 입양공지 작성자(nickname)
     @Column(name = "adoption_author", nullable = false)
-    private String adoptionAuthor;
+    private String adoptionAuthor = "관리자";
 
     @Override
     public String toString() {

@@ -45,14 +45,17 @@ const AnimationContainer = styled.div`
   }
 
   @keyframes scroll {
-    from {
-      transform: translateX(0%);
-    }
-    to {
-      transform: translateX(-100%);
-    }
+  from {
+    transform: translateX(0%);
   }
-
+  to {
+    transform: translateX(-100%);
+  }
+}
+//섹샨4->5로 이동할 떄 버벅거림 최소화
+.AnimationContainer {
+  will-change: transform;
+}
   @media (max-width: 768px) {
     width: 100%;
     justify-content: space-around;

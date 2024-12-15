@@ -22,11 +22,30 @@ public class CommentController {
 
     private final CommentService commentService;
 
-    //댓글 저장
     @PostMapping("/save")
-    public ResponseEntity<Boolean> createComment(@RequestBody CommentDTO commentDTO) {
-        Boolean result = commentService.saveComment(commentDTO);
-        return new ResponseEntity<>(result, HttpStatus.CREATED);
+    public ResponseEntity<String> createComment(
+            @RequestBody CommentDTO commentDTO, HttpServletRequest request) {
+        // 세션에서 로그인한 사용자 ID를 가져옴
+        HttpSession session = request.getSession();
+        String sessionUserId = (String) session.getAttribute("userId"); // 현재 로그인한 사용자 ID
+
+        // 로그인 여부 확인
+        if (sessionUserId == null) {
+            return new ResponseEntity<>("로그인이 필요합니다.", HttpStatus.FORBIDDEN); // 로그인하지 않은 경우
+        }
+
+        // 댓글 DTO에 로그인한 사용자 ID 설정
+        commentDTO.setUserId(sessionUserId); // 로그인한 사용자 ID를 댓글 DTO에 설정
+
+        // 댓글 저장 서비스 호출
+        boolean result = commentService.saveComment(commentDTO, sessionUserId); // 로그인한 userId를 함께 전달
+
+        // 댓글 저장 결과에 따른 응답
+        if (result) {
+            return ResponseEntity.status(HttpStatus.CREATED).body("댓글이 성공적으로 저장되었습니다.");
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("댓글 저장에 실패했습니다.");
+        }
     }
 
     //댓글 업데이트 (수정)

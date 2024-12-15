@@ -9,4 +9,6 @@ public record CommentDTO(
         String userId,
         String commentDelReason
 ) {
+    public void setUserId(String sessionUserId) {
+    }
 }

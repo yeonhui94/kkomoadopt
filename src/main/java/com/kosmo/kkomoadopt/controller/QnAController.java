@@ -1,5 +1,6 @@
 package com.kosmo.kkomoadopt.controller;
 import com.kosmo.kkomoadopt.dto.QnADTO;
+import com.kosmo.kkomoadopt.dto.QnAListDTO;
 import com.kosmo.kkomoadopt.enums.Authority;
 import com.kosmo.kkomoadopt.service.QnAService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,8 +11,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+
+import java.util.List;
+
 @RestController
-@RequestMapping("/api/qna")
+@RequestMapping("/api/qna/posts")
 @RequiredArgsConstructor
 public class QnAController {
 
@@ -102,4 +106,20 @@ public class QnAController {
             return new ResponseEntity<>("QnA 삭제 실패", HttpStatus.NOT_FOUND);
         }
     }
+
+
+    @GetMapping
+    public ResponseEntity<List<QnAListDTO>> getQnaList(
+            @RequestParam(name = "page", defaultValue =  "0") int page,
+            @RequestParam(name = "size", defaultValue = "10") int size
+    ){
+        try{
+            List<QnAListDTO> qnaList = qnAService.getQnaList(page,size);
+            return ResponseEntity.ok(qnaList);
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+
 }

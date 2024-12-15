@@ -2,8 +2,15 @@ import QnaItem from "./QnaItem";
 import PropTypes from "prop-types";
 import { mainContainer, mainContainerItem, link,header } from "./QnaList.module.css";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const QnaList = ({ qnaList }) => {
+
+      useEffect(() => {
+          // console.log("큐엔에이ㅣ 리스트ㅡ으으으응 ",qnaList);
+      }, [qnaList])
+
+  // console.log(qnaList)
   return (
     <div className={mainContainer}>
       <div className={mainContainerItem+" "+header}>
@@ -13,9 +20,10 @@ const QnaList = ({ qnaList }) => {
         <span>작성일</span>
         <span>조회수</span>
       </div>
+      
       {qnaList.map((qna) => (
         <Link to={`result/${qna.id}`} key={qna.id} className={link}>
-          <QnaItem key={qna.id} {...qna} />
+          <QnaItem key={qna.id} {...qna}/>
         </Link>
       ))}
     </div>

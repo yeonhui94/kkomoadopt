@@ -148,6 +148,8 @@ public class CommunityPostService {
 //        return new AdoptNoticeListDTO(notices, adoptionNoticePage.getTotalElements(), adoptionNoticePage.getNumber());
 //    }
 
+    
+    // 페이지 별 특정 글 가져오기
     public CommunityListDTO getCommunityPostUid (String postUid) {
         Optional<CommunityPostEntity> optionalPost = communityPostRepository.findByPostUid(postUid);
 
@@ -165,7 +167,7 @@ public class CommunityPostService {
         //댓글 리스트 조회
         List<CommentEntity> commentEntities = commentRepository.findByPostUid(postUid);
         List<CommentListDTO> comments = commentEntities.stream().map(comment ->{
-            Optional<UserEntity> commenterOptional = userRepository.findById(comment.getCommentId());
+            Optional<UserEntity> commenterOptional = userRepository.findById(comment.getUserId());
             String commenterNickname = commenterOptional.map(UserEntity::getNickname).orElse("Unknown");
 
             return new CommentListDTO(

@@ -153,7 +153,12 @@ export const deleteCommunityPost = (postUid) => apiClient.delete(`/api/community
 // QNA 관련 API 요청 메서드 추가
 
 // 1. 전체 QNA 게시물 조회
-export const getQnaPosts = () => apiClient.get('/api/qna/posts');
+export const getQnaPosts = (page,size) => apiClient.get('/api/qna/posts', {
+  params : {
+    page : page,
+    size : size
+  }
+});
 
 // 2. 특정 QNA 게시물 상세 조회
 export const getQnaPostDetail = (qnaUid) => apiClient.get(`/api/qna/posts/${qnaUid}`);

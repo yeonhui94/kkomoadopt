@@ -70,7 +70,7 @@ function App() {
           element: <IdPasswordContents gridArea="section" />,
         },
         //로그인
-        { path: "/login", element: <LoginPageContents gridArea="section" /> },
+        // { path: "/login", element: <LoginPageContents gridArea="section" /> },
         //회원가입
         { path: "/join", element: <AccesstionPageContents gridArea="section" /> },
         // 회원가입 페이지

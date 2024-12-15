@@ -1,6 +1,6 @@
 import Divider from '../../../components/Divider';
 import { createBrowserRouter, Form, Route, Router, Routes, useParams } from 'react-router-dom';
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 // import Slider from "react-slick";
 import postst from '../../community/Commu_post.module.css';
 import "slick-carousel/slick/slick.css";
@@ -11,8 +11,10 @@ import PostSlickSlide from '../report/PostSlickSlide';
 import { filterProps } from 'framer-motion';
 import Comment from '../report/Comment';
 import Button from '../../../components/Button/Button';
+import { useStore as CommentStore2 } from "../../../stores/CommentStore2/useStore";
 
-const Announcement_Post = ({postDetail}) => {
+
+const Announcement_Post = ({postDetail }) => {
     if (!postDetail) {
         // 데이터가 없으면 로딩 중 또는 오류 메시지를 표시
         return <p>Loading post details...</p>;
@@ -20,6 +22,25 @@ const Announcement_Post = ({postDetail}) => {
 
 //  { title: "새 게시물 제목 41", admin: "관리자", sdfsdf
 // date: new Date("2021-07-03"), img: "" , content:"쓰기 귀찮다 아무거나 쓸게요 나 맛있는거 먹고싶어 프로젝트 끝나면 잘거야",views: 21, files: 2 },
+
+
+    const {state : commentState, actions : commentActions} = CommentStore2();
+    const { commentId } = useParams();
+
+    useEffect(()=>{
+      const fetchData = async ()=>{
+        try{
+          commentActions.readComments(commentId);
+        }catch (error){
+          setError(error);
+        }finally{
+        setLoading(false);
+      }
+    };
+    fetchData();
+},[]);
+
+
 
     return (
 
@@ -51,7 +72,7 @@ const Announcement_Post = ({postDetail}) => {
                     <div className={postst.post_article} dangerouslySetInnerHTML={{ __html: postDetail.postContent }}
                     />
                 </div>
-                <Comment className={postst.post_petif}  postDetail={postDetail} />
+                <Comment className={postst.post_petif}/>
                 <div className={postst.buttonwrap}>
                     <Button  text={"수정"} width={"100px"} fontSize={"20px"} />
                     <Button text={"삭제"} width={"100px"} fontSize={"20px"} />

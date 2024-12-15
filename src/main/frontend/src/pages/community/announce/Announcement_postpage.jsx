@@ -4,15 +4,15 @@ import wtstyles from "../CommunityWt.module.css";
 import { Outlet, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Announcement_Post from "./Announcement_Post";
+import { useStore } from "../../../stores/CommunityPostStore2/useStore";
 import { readCommunityPostDetail } from "../../../stores/CommunityPostStore2/action";
 import { useStore as CommentStore2 } from "../../../stores/CommentStore2/useStore";
 import { useStore as CommunityPostStore2 } from "../../../stores/CommunityPostStore2/useStore";
 
 const Announcement_postpage = ({ text = "공지사항"  , gridArea}) => {
 
-    const {state : communityState, actions : communityActions } = CommunityPostStore2();
-    const {state : commentState, actions : commentActions} = CommentStore2();
-    // const [loadingComments, setLoadingComments] = useState(true);
+
+    const {state : communityState, actions : communityActions } = useStore();
 
     const { postUid } = useParams();
 
@@ -24,7 +24,7 @@ const Announcement_postpage = ({ text = "공지사항"  , gridArea}) => {
         const fetchData = async () => {
             try {
               await communityActions.readCommunityPostDetail(postUid);
-              await commentActions.readComments(postUid); 
+              await commentActions.readComments(postUid);
             } catch (error) {
                 console.error("Error fetching post detail:", error);
                 setError(error);
@@ -36,15 +36,13 @@ const Announcement_postpage = ({ text = "공지사항"  , gridArea}) => {
         fetchData();
     },[]);
 
-    if(loading) return <p>Loading...</p>;
-    if(error) return <p>Error loading post : {error.message} </p>;
   
   return (
     <div className="commwrapper"
     style={{gridArea : gridArea }}>
       <div className={wtstyles.mainContainer}>
         <h1 style={{textAlign :"center"}}>{text}</h1>
-        <Announcement_Post postDetail={communityState.communityPostDetail} />
+        <Announcement_Post postDetail={communityState.communityPostDetail}  />
       </div>
     </div>
   );

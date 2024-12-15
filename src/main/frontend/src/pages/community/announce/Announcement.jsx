@@ -139,8 +139,8 @@ const Announcement = ({ gridArea }) => {
                   {/* index+1 나중에 postId 로 변경 */}
                   <p className={comstyle.titleli}>{post.postTitle}</p>
                   <p className={comstyle.adminli}>{post.postAuthor}</p>
-                  <p className={comstyle.dateli}>{post.postCreatedAt}</p>
-                  <p className={comstyle.viewsli}>{post.postViewCount}</p>
+            <p className={comstyle.dateli}>{post.postCreatedAt}</p>
+            <p className={comstyle.viewsli}>{post.postViewCount}</p>
                 </li>
               </Link>
             ))}

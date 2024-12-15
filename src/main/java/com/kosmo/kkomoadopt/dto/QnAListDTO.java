@@ -17,6 +17,7 @@ public record QnAListDTO(
         String qnaAnswer,
         List<String> qnaAnswerFile,
         String nickname,
-        String answerAuthor
+        String answerAuthor,
+        Integer qnaViewCount
 ) {
 }

@@ -1,14 +1,21 @@
 import PropTypes from "prop-types";
 import { mainContainerItem } from "./QnaList.module.css";
+import { useEffect } from "react";
 
-const QnaItem = ({ id, title, author, createdAt, views }) => {
+const QnaItem = ({ qnaId, qnaTitle, nickname, qnaCreatedAt, qnaViewCount }) => {
+
+      // useEffect(() => {
+      //   console.log("아이테에에에에에에에에ㅔ엠 ",qnaList);
+      // }, [qnaList])
+      // console.log("큐엔에이ㅣ 리스트ㅡ으으으응 ",qnaList);
+
   return (
     <div className={mainContainerItem}>
-      <span>{id}</span>
-      <span>{title}</span>
-      <span>{author}</span>
-      <span>{createdAt.toLocaleString()}</span>
-      <span>{views}</span>
+      <span>{qnaId}</span>
+      <span>{qnaTitle}</span>
+      <span>{nickname}</span>
+      <span>{qnaCreatedAt}</span>
+      <span>{qnaViewCount}</span>
     </div>
   );
 };

@@ -50,10 +50,14 @@ export const resetState = () => ({ type: RESET_STATE });
 export const readQnaPosts = () => async (dispatch) => {
     try {
         const response = await getQnaPosts();  // API 호출: QNA 게시물 목록 조회
+
+        if (response.status === 200 ){
         dispatch({
             type: READ_QNA_POSTS,
             payload: response.data,  // 반환된 QNA 게시물 목록
         });
+        return "ok"
+    };
     } catch (error) {
         console.error("QNA 게시물 목록을 불러올 수 없습니다.", error);
     }

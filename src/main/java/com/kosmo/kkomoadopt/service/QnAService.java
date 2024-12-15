@@ -1,15 +1,24 @@
 package com.kosmo.kkomoadopt.service;
 
 import com.kosmo.kkomoadopt.dto.QnADTO;
+import com.kosmo.kkomoadopt.dto.QnAListDTO;
 import com.kosmo.kkomoadopt.entity.QnAEntity;
+import com.kosmo.kkomoadopt.entity.UserEntity;
 import com.kosmo.kkomoadopt.enums.QnAState;
 import com.kosmo.kkomoadopt.repository.QnARepository;
+import com.kosmo.kkomoadopt.repository.UserRepository;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -20,9 +29,12 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Service
 public class QnAService {
-
+    @Autowired
     private final QnARepository qnARepository;
+    @Autowired
     private final FileService fileService;
+    @Autowired
+    private final UserRepository userRepository;
     @Autowired
     private EntityManager em;
 
@@ -132,5 +144,42 @@ public class QnAService {
         qnARepository.delete(qnAEntity); // QnA 삭제
         return true; // 삭제 성공
     }
+
+    //QNA 전체 글 가져오기
+    public List<QnAListDTO> getQnaList(int page, int size){
+        Pageable pageable = PageRequest.of(page,size);
+        Page<QnAEntity> qnaPage = qnARepository.findAll(pageable);
+
+
+        return qnaPage.getContent().stream().map(qna -> {
+            Optional<UserEntity> userOptional = userRepository.findById(qna.getUserId());
+            String nickname = userOptional.map(UserEntity::getNickname).orElse("Unknown");
+
+            // 3.답변자 닉네임 조회
+            String answerAuthor = null;
+            if (qna.getAnswerAuthor() != null) {
+                Optional<UserEntity> answerAuthorOptional = userRepository.findById(qna.getAnswerAuthor());
+                answerAuthor = answerAuthorOptional.map(UserEntity::getNickname).orElse("Unknown");
+            }
+
+            return new QnAListDTO(
+                    qna.getQnaUid(),
+                    qna.getQnaId(),
+                    qna.getQnaTitle(),
+                    qna.getQnaCreatedAt(),
+                    qna.getQnaPassword(),
+                    qna.getQnaState(),
+                    qna.getQnaRequestFile(),
+                    qna.getQnaContent(),
+                    qna.getQnaAnswer(),
+                    qna.getQnaAnswerFile(),
+                    nickname,
+                    answerAuthor,
+                    qna.getQnaViewCount()
+            );
+        }).toList();
+    }
+
+
 
 }

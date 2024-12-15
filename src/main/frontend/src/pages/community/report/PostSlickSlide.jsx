@@ -23,7 +23,7 @@ const StyledSlider = styled(Slider)`
   height: 100%; /* 부모 div와 동일한 높이 *
 `;
 
-const SlideWrapper = styled.div`
+const SlideWrapper2 = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -84,9 +84,9 @@ function PostSlickSlide({img}) {
     <SliderContainer>
       <StyledSlider {...settings}>
         {img.map((image, index) => (
-          <SlideWrapper key={index}>
+          <SlideWrapper2 key={index}>
             <SlideImage src={`http://localhost:8080/upload/${image}`} alt={`Slide ${index + 1}`} />
-          </SlideWrapper>
+          </SlideWrapper2>
         ))}
       </StyledSlider>
     </SliderContainer>

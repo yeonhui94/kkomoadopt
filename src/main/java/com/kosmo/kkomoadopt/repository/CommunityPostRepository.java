@@ -30,4 +30,6 @@ public interface CommunityPostRepository extends JpaRepository<CommunityPostEnti
 
     // 카테고리로 입양 공고 조회
     //Page<CommunityPostEntity> findByCommunityCategory(PostCategory postCategory, Pageable pageable);
+
+    Optional<CommunityPostEntity> findByUserIdAndPostUid(String userId, String postUid);
 }

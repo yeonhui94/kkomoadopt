@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -44,10 +45,10 @@ public class CommunityPostEntity {
 
     @Convert(converter = UrlConverter.class)
     @Column(name = "post_img_url", columnDefinition = "text")
-    private List<String> postImgUrl;
+    private List<String> postImgUrl  = new ArrayList<>();
 
     @Column(name = "is_deleted", nullable = false)
-    private Boolean isDeleted;
+    private Boolean isDeleted = false;
 
     @Column(name = "delete_reason")
     private String deleteReason;

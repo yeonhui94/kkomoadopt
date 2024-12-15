@@ -30,7 +30,7 @@ public class CommentController {
     }
 
     //댓글 업데이트 (수정)
-    @PostMapping("/update")
+    @PutMapping("/update")
     public ResponseEntity<String> updateComment(
             @RequestBody CommentDTO commentDTO, HttpServletRequest request) {
 

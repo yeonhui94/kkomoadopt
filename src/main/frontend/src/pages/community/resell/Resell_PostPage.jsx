@@ -4,11 +4,14 @@ import { useParams } from "react-router-dom";
 import Resell_Post from "./Resell_Post";
 import { useStore } from "../../../stores/CommunityPostStore2/useStore";
 import { readCommunityPostDetail } from "../../../stores/CommunityPostStore2/action";
+import { useStore as CommentStore2 } from "../../../stores/CommentStore2/useStore";
+import { useStore as CommunityPostStore2 } from "../../../stores/CommunityPostStore2/useStore";
+
 
 function Resell_PostPage({ text = "사고팝니다", gridArea }) {
 
-        const {state : communityState, actions : communityActions } = useStore();
-
+    const {state : communityState, actions : communityActions } = useStore();
+    const {state : commentState, actions : commentActions} = CommentStore2();
     // // 파라미터로 받은 id로 게시글 찾기
     const { postUid } = useParams();
     // console.log(typeof alqlPosts);
@@ -17,12 +20,11 @@ function Resell_PostPage({ text = "사고팝니다", gridArea }) {
     const [ loading, setLoading ] = useState(true);
     const [ error, setError ] = useState(null);
 
-
-
         useEffect(()=>{
             const fetchData = async () => {
                 try {
-                   communityActions.readCommunityPostDetail(postUid);
+                   await communityActions.readCommunityPostDetail(postUid);
+                   await commentActions.readComments(postUid);
                 } catch (error) {
                     console.error("Error fetching post detail:", error);
                     setError(error);

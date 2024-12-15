@@ -4,12 +4,14 @@ import Adopt_reviewPost from "./Adopt_reviewPost";
 import { useParams } from "react-router-dom";
 import { useStore } from "../../../stores/CommunityPostStore2/useStore";
 import { readCommunityPostDetail } from "../../../stores/CommunityPostStore2/action";
+import { useStore as CommentStore2 } from "../../../stores/CommentStore2/useStore";
+import { useStore as CommunityPostStore2 } from "../../../stores/CommunityPostStore2/useStore";
 
 function Adopt_reviewPostPage({ text = "입양 후기", gridArea}) {
 
 
     const {state : communityState, actions : communityActions } = useStore();
-
+    const {state : commentState, actions : commentActions} = CommentStore2();
     
     const { postUid  } = useParams();
 
@@ -22,6 +24,7 @@ function Adopt_reviewPostPage({ text = "입양 후기", gridArea}) {
         const fetchData = async () => {
             try {
                communityActions.readCommunityPostDetail(postUid);
+               await commentActions.readComments(postUid);
             } catch (error) {
                 console.error("Error fetching post detail:", error);
                 setError(error);

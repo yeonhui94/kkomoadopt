@@ -51,7 +51,7 @@ const Report_Post = ({postDetail}) => {
                     <div className={postst.post_article} dangerouslySetInnerHTML={{ __html: postDetail.postContent }}
                     />
                 </div>
-                <Comment className={postst.post_petif}/>
+                <Comment className={postst.post_petif} postDetail={postDetail}/>
                 <div className={postst.buttonwrap}>
                     <Button  text={"수정"} width={"100px"} fontSize={"20px"} />
                     <Button text={"삭제"} width={"100px"} fontSize={"20px"} />

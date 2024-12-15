@@ -5,15 +5,14 @@ import { Outlet, useParams } from "react-router-dom";
 import Report_Post from "./Report_Post";
 import { useEffect, useState } from "react";
 import { useStore } from "../../../stores/CommunityPostStore2/useStore";
+import { useStore as CommentStore2 } from "../../../stores/CommentStore2/useStore";
+import { useStore as CommunityPostStore2 } from "../../../stores/CommunityPostStore2/useStore";
 import { readCommunityPostDetail } from "../../../stores/CommunityPostStore2/action";
-
-
-
 
 const Report_postpage = ({ text = "신고합니다"  , gridArea}) => {
 
-      const {state : communityState, actions : communityActions } = useStore();
-
+  const {state : communityState, actions : communityActions } = useStore();
+  const {state : commentState, actions : commentActions} = CommentStore2();
 
 
   const { postUid } = useParams();
@@ -26,7 +25,8 @@ const Report_postpage = ({ text = "신고합니다"  , gridArea}) => {
     useEffect(()=>{
         const fetchData = async () => {
             try {
-               communityActions.readCommunityPostDetail(postUid);
+               await communityActions.readCommunityPostDetail(postUid);
+               await commentActions.readComments(postUid);
             } catch (error) {
                 console.error("Error fetching post detail:", error);
                 setError(error);

@@ -89,14 +89,5 @@ public class CommentController {
         }
     }
 
-    @GetMapping("/{commentId}")
-    public ResponseEntity<List<CommentListDTO>> getCommentByPostId(@PathVariable("commentId") String commentId){
-        try{
-            List<CommentListDTO> comments = commentService.getCommentByPostId(commentId);
-            return ResponseEntity.ok(comments);
-        }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-        }
-    }
 
 }

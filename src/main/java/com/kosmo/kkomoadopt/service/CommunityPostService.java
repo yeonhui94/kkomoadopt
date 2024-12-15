@@ -1,13 +1,16 @@
 package com.kosmo.kkomoadopt.service;
 
 import com.kosmo.kkomoadopt.dto.AdoptNoticeListDTO;
+import com.kosmo.kkomoadopt.dto.CommentListDTO;
 import com.kosmo.kkomoadopt.dto.CommunityListDTO;
 import com.kosmo.kkomoadopt.dto.CommunityDTO;
 import com.kosmo.kkomoadopt.entity.AdoptionNoticeEntity;
 import com.kosmo.kkomoadopt.enums.NoticeCategory;
+import com.kosmo.kkomoadopt.entity.CommentEntity;
 import com.kosmo.kkomoadopt.enums.PostCategory;
 import com.kosmo.kkomoadopt.entity.CommunityPostEntity;
 import com.kosmo.kkomoadopt.entity.UserEntity;
+import com.kosmo.kkomoadopt.repository.CommentRepository;
 import com.kosmo.kkomoadopt.repository.CommunityPostRepository;
 import com.kosmo.kkomoadopt.repository.UserRepository;
 import jakarta.persistence.EntityManager;
@@ -31,9 +34,14 @@ import java.util.stream.Collectors;
 @Service
 public class CommunityPostService {
 
+    @Autowired
     private final CommunityPostRepository communityPostRepository;
+    @Autowired
     private final FileService fileService;
+    @Autowired
     private final UserRepository userRepository;
+    @Autowired
+    private  CommentRepository commentRepository;
 
     @Autowired
     private EntityManager em;
@@ -91,7 +99,7 @@ public class CommunityPostService {
                 .map(community -> {
                     // Fetch the user entity by userId
                     Optional<UserEntity> user = userRepository.findById(community.getUserId());
-
+                    List<CommentListDTO> comments = null;
                     // Create CommunityListDTO using the nickname as postAuthor
                     return new CommunityListDTO(
                             community.getPostUid(),
@@ -106,7 +114,8 @@ public class CommunityPostService {
                             community.getDeleteReason(),
                             community.getUserId(),
                             community.getPostViewCount(),
-                            user.isPresent() ? user.get().getNickname() : "Unknown"  // Using nickname as postAuthor
+                            user.isPresent() ? user.get().getNickname() : "Unknown",
+                            comments
                     );
                 })
                 .collect(Collectors.toList());
@@ -135,12 +144,28 @@ public class CommunityPostService {
         }
 
         CommunityPostEntity post = optionalPost.get();
-        System.out.println("User ID: " + post.getUserId());
-
 
         //유저 정보 조회
         Optional<UserEntity> userOptional = userRepository.findById(post.getUserId());
         String nickname = userOptional.map(UserEntity::getNickname).orElse("Unknown");
+
+
+        //댓글 리스트 조회
+        List<CommentEntity> commentEntities = commentRepository.findByPostUid(postUid);
+        List<CommentListDTO> comments = commentEntities.stream().map(comment ->{
+            Optional<UserEntity> commenterOptional = userRepository.findById(comment.getCommentId());
+            String commenterNickname = commenterOptional.map(UserEntity::getNickname).orElse("Unknown");
+
+            return new CommentListDTO(
+                    comment.getCommentId(),         // 댓글 ID
+                    comment.getCommentContent(),    // 댓글 내용
+                    comment.getCommentCreatedAt(),  // 작성일
+                    comment.getPostUid(),
+                    commenterNickname,
+                    comment.getIsDeleted(),
+                    comment.getCommentDelReason()
+            );
+        }).toList();
 
         return new CommunityListDTO(
                 post.getPostUid(),
@@ -155,9 +180,48 @@ public class CommunityPostService {
                 post.getDeleteReason(),
                 post.getUserId(),
                 post.getPostViewCount(),
-                nickname
+                nickname,
+                comments
         );
     };
+
+
+//
+// 댓글로직 추가 예정입니다............
+//    public CommunityListDTO getCommunityPostWithComments (String postUid) {
+//        Optional<CommunityPostEntity> optionalPost = communityPostRepository.findByPostUid(postUid);
+//
+//        if(optionalPost.isEmpty()){
+//            throw new RuntimeException("Post with UID" + postUid + "not found");
+//        }
+//
+//        CommunityPostEntity post = optionalPost.get();
+//        System.out.println("User ID: " + post.getUserId());
+//
+//
+//        //유저 정보 조회
+//        Optional<UserEntity> userOptional = userRepository.findById(post.getUserId());
+//        String nickname = userOptional.map(UserEntity::getNickname).orElse("Unknown");
+//
+//        List<CommentListDTO> comments = CommentRepository.findByPostUid(postUid).stream();
+//
+//        return new CommunityListDTO(
+//                post.getPostUid(),
+//                post.getPostId(),
+//                post.getPostCategory(),
+//                post.getPostTitle(),
+//                post.getPostContent(),
+//                post.getPostCreatedAt(),
+//                post.getPostUpdatedAt(),
+//                post.getPostImgUrl(),
+//                post.getIsDeleted(),
+//                post.getDeleteReason(),
+//                post.getUserId(),
+//                post.getPostViewCount(),
+//                nickname,
+//                comments
+//        );
+//    };
 
 
 

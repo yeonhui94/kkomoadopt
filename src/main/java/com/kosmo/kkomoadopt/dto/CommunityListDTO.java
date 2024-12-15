@@ -19,5 +19,7 @@ public record CommunityListDTO
                 String deleteReason,
                 String userId,
                 Integer postViewCount,
-                String postAuthor
+                String postAuthor,
+                List<CommentListDTO> comments
+
         ){ }

@@ -55,9 +55,20 @@ public class CommunityPostController {
 
 
     @GetMapping("/{postUid}")
-    public ResponseEntity<CommunityListDTO> getPostByUid(@PathVariable String postUid){
+    public ResponseEntity<CommunityListDTO> getPostByUid(@PathVariable(name = "postUid") String postUid){
         CommunityListDTO post = communityPostService.getCommunityPostUid(postUid);
         return ResponseEntity.ok(post);
     }
+
+
+
+//    @GetMapping("/{postUid}")
+//    public ResponseEntity<CommunityListDTO> getPostByUid(@PathVariable String postUid){
+//        CommunityListDTO post = communityPostService.getCommunityPostWithComments(postUid);
+//        return ResponseEntity.ok(post);
+//    }
+
+
+
 
 }

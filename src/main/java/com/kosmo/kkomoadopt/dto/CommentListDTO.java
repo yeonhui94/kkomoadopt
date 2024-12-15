@@ -8,10 +8,10 @@ public record CommentListDTO(
         String commentId,
         String commentContent,
         LocalDateTime commentCreatedAt,
-        String postId,
+        String postUid,
         String nickname,
         Boolean isDeleted,
-        String commentDelReason,
-        PostCategory postCategory
+        String commentDelReason
+//        PostCategory postCategory
 ) {
 }

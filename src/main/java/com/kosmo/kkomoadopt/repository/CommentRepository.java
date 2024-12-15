@@ -17,6 +17,6 @@ public interface CommentRepository extends JpaRepository<CommentEntity, String> 
 
     //게시물 댓글 조회 메서드
     List<CommentEntity> findByPostUid(String postUid);
-
+//    List<CommentEntity> findByPostUid(String postUid);
 }
 

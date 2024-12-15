@@ -21,10 +21,10 @@ const ScrapContainer = styled.div`
   right: 16px;
 `;
 
-const Card2 = ({ imageFile, text1, text2, isScraped, onScrapToggle, adoptNum }) => {
+const Card2 = ({ imageFile, text1, text2, isScraped, onScrapToggle, adoptNum,to }) => {
     return (
         <CardBox>
-            <Img imageFile={imageFile}  adoptNum={adoptNum}/>
+            <Img imageFile={imageFile}  adoptNum={adoptNum} to={to}/>
             <TextBox text={text1 || "Text"} />
             <TextBox text={text2 || "Text"} />
             {onScrapToggle && ( // onScrapToggle

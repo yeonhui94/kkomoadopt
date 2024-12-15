@@ -29,6 +29,7 @@ const Missing = ({ gridArea }) => {
     // const [sortedData, setSortedData] = useState(cardData);
     const [searchQuery, setSearchQuery] = useState('');  // 검색어 상태 추가
 
+    // console.log(communityState.communityPosts)
 
 
     return (
@@ -65,9 +66,11 @@ const Missing = ({ gridArea }) => {
                                 </Link>
                             ))
                         )} */}
+                        {console.log("communityPosts before map:", communityState.communityPosts)}
                         {communityState.communityPosts.map((card, index) => (
-                            <Link to={`/find-child/post/${card.postUid}`} key={card.id}>
+                            <Link key={card.id}>
                                 <Card2
+                                    to={`/find-child/post/${card.postUid}`}
                                     key={index}
                                     imageFile={card.postImgUrl}
                                     text1={card.postTitle}

@@ -104,8 +104,9 @@ const Resell = ({ gridArea }) => {
                             <Divider width={"100%"} backgroundColor={"var(--line-color)"} />
                         </div>
                         {communityState.communityPosts.map((card, index) => (
-                            <Link to={`/resell/post/${card.postUid}`} key={card.id}>
+                            <Link key={card.id}>
                             <Card2
+                                to={`/resell/post/${card.postUid}`} 
                                 key={index}  // key prop을 고유하게 설정
                                 imageFile={card.postImgUrl}
                                 text1={card.postTitle}

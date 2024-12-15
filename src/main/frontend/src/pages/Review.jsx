@@ -86,8 +86,9 @@ const Review = ({ gridArea }) => {
           {console.log("communityPosts before map:", communityState.communityPosts)}
           {communityState.communityPosts.length > 0 ? (
             communityState.communityPosts.map((slideData, index) => (
-              <Link to={`/adoption-review/post/${slideData.postUid}`} key={slideData.id}>
+              <Link key={slideData.id}>
                 <Card1 
+                  to={`/adoption-review/post/${slideData.postUid}`}
                   key={index} 
                   images={slideData.postImgUrl} 
                   text={slideData.postTitle}

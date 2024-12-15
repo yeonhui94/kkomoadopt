@@ -9,17 +9,19 @@ import Button from "../../../components/Button/Button";
 
 
 
-function FindChild_Post ({ postDetail }) {
 
+function FindChild_Post({ postDetail }) {
     if (!postDetail) {
         // 데이터가 없으면 로딩 중 또는 오류 메시지를 표시
         return <p>Loading post details...</p>;
     }
 
+
+
     return (
 
         <div className={postst.post_container}>
-            <Divider/>
+            <Divider />
             <div className={postst.post_title}>
                 <h3>&nbsp; {postDetail.postTitle}</h3>
             </div>
@@ -33,23 +35,21 @@ function FindChild_Post ({ postDetail }) {
                 <p className={postst.post_view}>조회수 : {postDetail.postViewCount}</p>
             </div>
 
-            
+
             <article className={postst.post_content}>
                 <div className={postst.post_content1}>
-                    
                     {/* 이미지 */}
                     {!postDetail.postImgUrl ? (  // post.img가 없는 경우 "이미지 없음" 표시
-                    ""
+                        ""
                     ) : (
-                    <PostSlickSlide className={postst.post_postimgs} img={postDetail.postImgUrl} /> 
+                        <PostSlickSlide className={postst.post_postimgs} img={postDetail.postImgUrl} />
                     )}
-                    <div className={postst.post_article} dangerouslySetInnerHTML={{ __html: postDetail.postContent }}
-                    />
+                    {/* <div className={postst.post_article} dangerouslySetInnerHTML={{ __html: postDetail.postContent }} */}
+                    {/* /> */}
                 </div>
-                <Comment className={postst.post_petif}/>
-
+                <Comment className={postst.post_petif} postDetail={postDetail} />
                 <div className={postst.buttonwrap}>
-                    <Button  text={"수정"} width={"100px"} fontSize={"20px"} />
+                    <Button text={"수정"} width={"100px"} fontSize={"20px"} />
                     <Button text={"삭제"} width={"100px"} fontSize={"20px"} />
                 </div>
             </article>

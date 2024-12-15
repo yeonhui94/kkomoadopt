@@ -18,14 +18,14 @@ const Image = styled.img`
   }
 `;
 
-const Img = ( {imageFile,onDetailPage,adoptNum} ) =>{
+const Img = ( {imageFile,onDetailPage,adoptNum , to=`/adoption/post/${adoptNum}`} ) =>{
     // imageFile이 배열일 경우 첫 번째 요소만 사용
 
 
     return(
-        <Link to={`/adoption/post/${adoptNum}`}>
+        <Link to={to}>
         <ImageBox onClick={onDetailPage}>
-         <Image src={imageFile[0]} />
+        <Image src={`http://localhost:8080/upload/${imageFile[0]}`} />
         </ImageBox>
         </Link>
     )

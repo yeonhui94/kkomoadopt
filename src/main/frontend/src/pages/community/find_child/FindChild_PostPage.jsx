@@ -3,13 +3,15 @@ import img1 from './missingdog.jpg';
 import wtstyles from "../CommunityWt.module.css";
 import FindChild_Post from "./FindChild_Post";
 import { useParams } from "react-router-dom";
-import { useStore } from "../../../stores/CommunityPostStore2/useStore";
+import { useStore as CommunityPostStore2 } from "../../../stores/CommunityPostStore2/useStore";
+import { useStore as CommentStore2 } from "../../../stores/CommentStore2/useStore";
 import { readCommunityPostDetail } from "../../../stores/CommunityPostStore2/action";
 
 function FindChild_PostPage({ text = "아이를 찾습니다", gridArea }) {
 
 
-        const {state : communityState, actions : communityActions } = useStore();
+        const {state : communityState, actions : communityActions } = CommunityPostStore2();
+        const {state : commentState, actions : commentActions} = CommentStore2();
 
 
     const { postUid } = useParams();
@@ -22,7 +24,8 @@ function FindChild_PostPage({ text = "아이를 찾습니다", gridArea }) {
     useEffect(()=>{
         const fetchData = async()=>{
             try {
-                communityActions.readCommunityPostDetail(postUid);
+                await communityActions.readCommunityPostDetail(postUid);
+                await commentActions.readComments(postUid);
             } catch(error){
                 console.error("error fetching post detail", error);
                 setError(error);
@@ -33,16 +36,42 @@ function FindChild_PostPage({ text = "아이를 찾습니다", gridArea }) {
         fetchData();
     },[]);
 
+
+//     const [ commentDetail, setCommentDetail ] = useState(null);
+
+
+//     useEffect(()=>{
+//       const fetchData = async ()=>{
+//         try{
+//           commentActions.readComments(commentId)
+//           console.log("Fetched comments:", commentState.comments); 
+//         }catch (error){
+//           setError(error);
+//           console.error("Error fetching comments:", error);
+//         }finally{
+//         setLoading(false);
+//       }
+//     };
+//     fetchData();
+// },[]);
+
+
+// console.log("commentState :",commentState)
+//     console.log("commentState.comments :",commentState.comments)
+
+
     if(loading) return <p>Loading...</p>;
     if(error) return <p>Error loading post : {error.message} </p>;
 
+
+    
 
     return (
         <div className="commwrapper"
             style={{ gridArea: gridArea }}>
             <div className={wtstyles.mainContainer}>
                 <h1 style={{ textAlign: "center" }}>{text}</h1>
-                <FindChild_Post postDetail={communityState.communityPostDetail} />
+                <FindChild_Post postDetail={communityState.communityPostDetail}/>
             </div>
         </div>
     );

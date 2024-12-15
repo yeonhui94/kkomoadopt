@@ -32,7 +32,7 @@ export const useStore = () => {
     resetState: () => dispatch(resetState()),  // 상태 초기화
 
     // 댓글 CRUD 관련 액션들
-    readComments: (commentId) => dispatch(readComments(commentId)),  // 페이지별댓글 목록 불러오기
+    readComments: (postUid) => readComments(postUid)(dispatch),  // 페이지별댓글 목록 불러오기
     readCommentDetail: () => dispatch(readCommentDetail()),  // 댓글 상세 정보 불러오기
     createComment: (commentData) => dispatch(createComment(commentData)),  // 댓글 생성
     updateComment: (commentId, updatedData) => dispatch(updateComment(commentId, updatedData)),  // 댓글 수정

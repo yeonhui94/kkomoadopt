@@ -26,12 +26,13 @@ public class QnAController {
         // 세션에서 권한 값 가져오기
         HttpSession session = request.getSession();
         Authority authority = (Authority) session.getAttribute("authority");
+        String sessionUserId = (String) session.getAttribute("userId"); // 현재 로그인한 사용자 ID
         // 권한 체크
         if (authority == null || !authority.equals(Authority.USER)) {
             return new ResponseEntity<>("권한이 없습니다.", HttpStatus.FORBIDDEN);
         }
         // QnA 저장
-        boolean result = qnAService.saveQnA(qnADTO, files); // files가 null이어도 처리 가능하도록 서비스 수정 필요
+        boolean result = qnAService.saveQnA(qnADTO, files, sessionUserId); // files가 null이어도 처리 가능하도록 서비스 수정 필요
         // 결과 반환
         if (result) {
             return new ResponseEntity<>("QnA 작성이 완료되었습니다.", HttpStatus.CREATED);
@@ -41,9 +42,10 @@ public class QnAController {
     }
 
     //QnA  답변(update) (관리자의 답변)
-    @PostMapping("/update")
+    @PutMapping("/update")
     public ResponseEntity<String> updateQna(
-            @RequestBody QnADTO qnADTO, HttpServletRequest request) {
+            @RequestBody QnADTO qnADTO, @RequestParam(value = "files", required = false) MultipartFile[] files,
+            HttpServletRequest request) {
 
         // 세션에서 권한 값과 사용자 ID를 가져옴
         HttpSession session = request.getSession();
@@ -66,7 +68,10 @@ public class QnAController {
 
     // QnA 삭제 로직(USER 중에 자신이 쓴 QnA만 삭제가능)
     @DeleteMapping("/delete")
-    public ResponseEntity<String> deleteQna(@RequestBody QnADTO qnADTO, HttpServletRequest request) {
+    public ResponseEntity<String> deleteQna(
+            @RequestBody QnADTO qnADTO,
+            @SessionAttribute("userId") String userId,
+            HttpServletRequest request) {
 
         // 1. 세션에서 권한 값과 사용자 ID를 가져옴
         HttpSession session = request.getSession();
@@ -88,7 +93,7 @@ public class QnAController {
         }
 
         // 5. QnA 삭제 로직 호출
-        boolean isDeleted = qnAService.deleteQnAByQnaUid(qnaUid);
+        boolean isDeleted = qnAService.deleteQnAByQnaUid(qnaUid, userId);
 
         // 6. 삭제 결과에 따라 적절한 응답 반환
         if (isDeleted) {

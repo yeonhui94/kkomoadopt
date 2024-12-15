@@ -8,6 +8,7 @@ import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -26,7 +27,7 @@ public class QnAService {
     private EntityManager em;
 
     // QnA 저장 메서드
-    public boolean saveQnA(QnADTO qnADTO,MultipartFile[] files) {
+    public boolean saveQnA(QnADTO qnADTO,MultipartFile[] files,  @SessionAttribute("userId") String userId) {
 
         QnAEntity qnAEntity = new QnAEntity();
 
@@ -38,11 +39,18 @@ public class QnAService {
             qnAEntity.setQnaId(maxPostId + 1);  // 기존의 최대 postId 값에 1을 더해 다음 postId를 설정
         }
         // 엔티티 생성 및 기본 값 설정
-        qnAEntity.setUserId(qnADTO.userId());
         qnAEntity.setQnaTitle(qnADTO.qnaTitle());
         qnAEntity.setQnaContent(qnADTO.qnaContent());
         qnAEntity.setQnaCreatedAt(LocalDateTime.now());
         qnAEntity.setQnaPassword(qnADTO.qnaPassword());
+
+        if (userId == null) {
+            throw new RuntimeException("User is not logged in or userId is not in session");
+        }
+
+        // userId로 작성자 설정
+        qnAEntity.setUserId(userId);
+
         // 파일 저장 및 처리
         List<String> fileNames = saveFiles(files); // 파일 저장 로직 분리
         if (fileNames != null && !fileNames.isEmpty()) {
@@ -75,7 +83,7 @@ public class QnAService {
 
 
     // QnA 답변(update) 메서드
-    public boolean updateQna(QnADTO qnADTO, String authority, String sessionUserId) {
+    public boolean updateQna(QnADTO qnADTO, String authority, @SessionAttribute("userId") String userId) {
         // QnA UID로 DB에서 해당 댓글 조회
         Optional<QnAEntity> existingQnAOptional = qnARepository.findById(qnADTO.qnaUid());
 
@@ -101,20 +109,28 @@ public class QnAService {
         return true;
     }
 
+    // QnA 작성자인지 확인하는 메서드
     public boolean isQnaAuthor(String qnaUid, String userId) {
-        // 댓글 ID와 작성자 ID를 기반으로 댓글 작성 여부 확인
         return qnARepository.existsByQnaUidAndUserId(qnaUid, userId);
     }
 
     // QnA 삭제
-    public boolean deleteQnAByQnaUid(String qnaUid) {
+    public boolean deleteQnAByQnaUid(String qnaUid, String userId) {
+        // QnA가 존재하는지 확인
         Optional<QnAEntity> qnAEntityOptional = qnARepository.findById(qnaUid);
-
         if (qnAEntityOptional.isEmpty()) {
-            return false; // QnA가 없으면 삭제 실패
+            return false; // QnA가 존재하지 않으면 삭제 실패
         }
+
+        // QnA 작성자가 현재 로그인한 사용자와 일치하는지 확인
         QnAEntity qnAEntity = qnAEntityOptional.get();
+        if (!isQnaAuthor(qnaUid, userId)) {
+            return false; // 작성자가 아니면 삭제 불가
+        }
+
+        // QnA 삭제
         qnARepository.delete(qnAEntity); // QnA 삭제
         return true; // 삭제 성공
     }
+
 }

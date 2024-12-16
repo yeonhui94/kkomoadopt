@@ -7,5 +7,6 @@ public record QnADTO(
         String qnaContent,
         Integer qnaPassword,
         String qnaAnswer
+
 ) {
 }

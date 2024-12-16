@@ -146,16 +146,15 @@ public class QnAService {
     }
 
     //QNA 전체 글 가져오기
-    public List<QnAListDTO> getQnaList(int page, int size){
-        Pageable pageable = PageRequest.of(page,size);
-        Page<QnAEntity> qnaPage = qnARepository.findAll(pageable);
+// QNA 전체 글 가져오기
+    public List<QnAListDTO> getQnaList() {
+        List<QnAEntity> qnaList = qnARepository.findAll();  // 전체 데이터 조회
 
-
-        return qnaPage.getContent().stream().map(qna -> {
+        return qnaList.stream().map(qna -> {
             Optional<UserEntity> userOptional = userRepository.findById(qna.getUserId());
             String nickname = userOptional.map(UserEntity::getNickname).orElse("Unknown");
 
-            // 3.답변자 닉네임 조회
+            // 3. 답변자 닉네임 조회
             String answerAuthor = null;
             if (qna.getAnswerAuthor() != null) {
                 Optional<UserEntity> answerAuthorOptional = userRepository.findById(qna.getAnswerAuthor());
@@ -179,7 +178,6 @@ public class QnAService {
             );
         }).toList();
     }
-
 
 
 }

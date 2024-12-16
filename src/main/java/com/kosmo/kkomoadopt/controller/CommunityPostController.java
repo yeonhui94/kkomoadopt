@@ -94,12 +94,12 @@ public class CommunityPostController {
         Authority authority = (Authority) session.getAttribute("authority");
         String sessionUserId = (String) session.getAttribute("userId"); // 현재 로그인한 사용자 ID
 
-        // 권한 확인: USER만 접근 가능
+        // 권한 확인: USER(수정), ADMIN(삭제) 접근
         if (authority == null || (!authority.name().equals("USER") && !authority.name().equals("ADMIN"))) {
             return new ResponseEntity<>("권한이 없습니다.", HttpStatus.FORBIDDEN);
         }
 
-        // QnA 업데이트 로직 호출
+        // 게시글 업데이트 로직 호출
         boolean updated = communityPostService.updateCommunityPost(communityDTO, authority.name(), files, sessionUserId);
         if (updated) {
             return new ResponseEntity<>("게시글 업데이트 성공", HttpStatus.OK);

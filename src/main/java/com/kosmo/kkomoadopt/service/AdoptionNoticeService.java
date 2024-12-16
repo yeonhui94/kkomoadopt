@@ -188,7 +188,8 @@ public class AdoptionNoticeService {
                 entity.getNoticeTitle(),
                 entity.getAnnouncementNum(),
                 entity.getNoticeImgUrl(),
-                entity.getEuthanasiaDate()
+                entity.getEuthanasiaDate(),
+                entity.getNoticeCategory()
         );
     }
 

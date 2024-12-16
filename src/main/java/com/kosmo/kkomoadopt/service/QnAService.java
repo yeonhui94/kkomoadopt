@@ -145,8 +145,8 @@ public class QnAService {
         return true; // 삭제 성공
     }
 
-    //QNA 전체 글 가져오기
-// QNA 전체 글 가져오기
+
+    // QNA 전체 글 가져오기
     public List<QnAListDTO> getQnaList() {
         List<QnAEntity> qnaList = qnARepository.findAll();  // 전체 데이터 조회
 
@@ -171,13 +171,54 @@ public class QnAService {
                     qna.getQnaRequestFile(),
                     qna.getQnaContent(),
                     qna.getQnaAnswer(),
-                    qna.getQnaAnswerFile(),
                     nickname,
                     answerAuthor,
                     qna.getQnaViewCount()
             );
         }).toList();
-    }
 
+    }
+    // QnA 게시글 상세 조회
+    public QnAListDTO getQnaPostUid(String qnaUid) {
+        // qnaUid로 게시글 조회
+        Optional<QnAEntity> optionalQna = qnARepository.findByQnaUid(qnaUid);
+
+        // 결과가 없다면 예외 발생
+        if (optionalQna.isEmpty()) {
+            System.out.println("No QnA found with UID: " + qnaUid); // 존재하지 않는 경우 로그 출력
+            throw new RuntimeException("QnA with UID " + qnaUid + " not found");
+        }
+
+        QnAEntity qna = optionalQna.get();
+
+        // qna 객체 정보 출력
+        System.out.println("QnA found: " + qna);
+
+        // 유저 정보 조회
+        Optional<UserEntity> userOptional = userRepository.findById(qna.getUserId());
+        String nickname = userOptional.map(UserEntity::getNickname).orElse("Unknown");
+
+        // 답변자 정보 조회
+        String answerAuthor = null;
+        if (qna.getAnswerAuthor() != null) {
+            Optional<UserEntity> answerAuthorOptional = userRepository.findById(qna.getAnswerAuthor());
+            answerAuthor = answerAuthorOptional.map(UserEntity::getNickname).orElse("관리자");
+        }
+
+        return new QnAListDTO(
+                qna.getQnaUid(),
+                qna.getQnaId(),
+                qna.getQnaTitle(),
+                qna.getQnaCreatedAt(),
+                qna.getQnaPassword(),
+                qna.getQnaState(),
+                qna.getQnaRequestFile(),
+                qna.getQnaContent(),
+                qna.getQnaAnswer(),
+                nickname,
+                answerAuthor,
+                qna.getQnaViewCount()
+        );
+    }
 
 }

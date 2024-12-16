@@ -1,4 +1,5 @@
 package com.kosmo.kkomoadopt.controller;
+import com.kosmo.kkomoadopt.dto.CommunityListDTO;
 import com.kosmo.kkomoadopt.dto.QnADTO;
 import com.kosmo.kkomoadopt.dto.QnAListDTO;
 import com.kosmo.kkomoadopt.enums.Authority;
@@ -121,5 +122,10 @@ public class QnAController {
         }
     }
 
+    @GetMapping("/{qnaUid}")
+    public ResponseEntity<QnAListDTO> getQnaPostUid(@PathVariable(name = "qnaUid") String qnaUid) {
+        QnAListDTO qna = qnAService.getQnaPostUid(qnaUid);
+        return ResponseEntity.ok(qna);
+    }
 
 }

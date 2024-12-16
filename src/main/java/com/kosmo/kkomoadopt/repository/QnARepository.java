@@ -1,5 +1,6 @@
 package com.kosmo.kkomoadopt.repository;
 
+import com.kosmo.kkomoadopt.entity.CommunityPostEntity;
 import com.kosmo.kkomoadopt.entity.QnAEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -19,5 +20,6 @@ public interface QnARepository extends JpaRepository<QnAEntity, String> {
 
     //Qna 글 목록 불러오기
 
-//    Optional<QnAEntity> findByQnaUid(String qnaUid);
+    Optional<QnAEntity> findByQnaUid(String qnaUid);
+
 }

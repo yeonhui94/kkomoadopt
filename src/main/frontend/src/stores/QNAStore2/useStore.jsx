@@ -43,7 +43,7 @@ export const useStore = () => {
 
     // CRUD 액션들
     readQnaPosts: () => readQnaPosts()(dispatch),  
-    readQnaPostDetail: (qnaUid) => dispatch(readQnaPostDetail(qnaUid)),  
+    readQnaPostDetail: (qnaUid) => readQnaPostDetail(qnaUid)(dispatch),  
     createQnaPostAction: (qnaData) => dispatch(createQnaPostAction(qnaData)),  
     updateQnaPostAction: (qnaUid, updatedData) => dispatch(updateQnaPostAction(qnaUid, updatedData)),  
     deleteQnaPostAction: (qnaUid) => dispatch(deleteQnaPostAction(qnaUid)),  

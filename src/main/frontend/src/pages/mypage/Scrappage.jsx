@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card2 from "../../components/Card2/Card2";  // Card2 컴포넌트 임포트
 import img1 from "../../assets/CardImage/1.jpg";   // 이미지 임포트
 import img3 from "../../assets/CardImage/3.jpg";
@@ -13,12 +13,27 @@ import styles from "./MyPage.module.css";  // 스타일시트 임포트
 import SearchBar from "../../components/SearchBar";
 import Pagenumber from "../../components/pagenumber/Pagenumber";  // Pagenumber 컴포넌트 임포트
 import { Link } from "react-router-dom";
+import { getMypageAdoptList } from "../../service/apiService";
 
 const Scrappage = ({ gridArea }) => {
   const [selectedCategory, setSelectedCategory] = useState("전체");
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태
   const [scrapedItems, setScrapedItems] = useState([]); // 스크랩된 아이템들
   const [searchQuery, setSearchQuery] = useState('');
+
+// useEffect(() => {
+//   const getMypageAdoptListAction = () => async() => {
+//     try {
+//     const response = await getMypageAdoptList();
+//       console.log('Notices Data:', response);  // 데이터 콘솔에 출력
+//     } 
+//   catch (error) {
+//       console.error("입양 게시물을 불러올 수 없습니다.", error);
+//     }
+//   }
+//   getMypageAdoptListAction();
+// },[]);
+
 
   // 각 카테고리 아이템
   const allPosts = [

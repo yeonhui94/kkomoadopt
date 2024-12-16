@@ -7,12 +7,14 @@ import Button from "../../components/Button/Button";
 import CheckBox from "../../components/CheckBox";
 import SubNaviBar from "../../components/MyPage/SubNavi/SubNaviBar";
 import Modal from "../../components/Modal/Modal";
+import { useStore as AdoptionNoticeStore2 } from "../../stores/AdoptionNoticeStore2/useStore";
 
 function AdoptionPostPage({ gridArea }) {
     const navigate = useNavigate(); // useNavigate 훅을 사용하여 navigate 함수 선언
-
-    const [selectedCategory, setSelectedCategory] = useState("전체");
-    const [selectedSubCategory, setSelectedSubCategory] = useState(""); 
+    const { state, actions } = AdoptionNoticeStore2();
+    const [selectedCategory, setSelectedCategory] = useState("ALL");
+    const [selectedSubCategory, setSelectedSubCategory] = useState("");
+    const [sortOption, setSortOption] = useState("euthanasiaDate");
     const [currentPage, setCurrentPage] = useState(1);
     const [searchQuery, setSearchQuery] = useState('');
     const [checkedItems, setCheckedItems] = useState(null); // 선택된 체크박스를 관리
@@ -32,44 +34,70 @@ function AdoptionPostPage({ gridArea }) {
     ]);
 
     const tabs = [
-        { label: "전체", category: "전체" },
-        { label: "강아지", category: "강아지" },
-        { label: "고양이", category: "고양이" },
-        { label: "기타동물", category: "기타동물" },
-        { label: "스크랩 보기", category: "스크랩 보기" }
+        { name: "전체", category: "ALL" },
+        { name: "강아지", category: "DOG" },
+        { name: "고양이", category: "CAT" },
+        { name: "기타동물", category: "OTHERS" }
+      ];
+    const options = ["입양상태", "입양가능", "입양불가", "예약중"];
+    const sortOptions = [
+        "ALL",  // 입양상태
+        "ADOPTABLE", // 입양가능
+        "NOTADOPT", // 입양불가
+        "RESERVATION", // 예약중
     ];
 
-    // 입양 상태와 검색어에 따라 필터링된 데이터
-    const filteredData = allPosts.filter(post => {
-        if (selectedCategory === "스크랩 보기") {
-            return post.scrap === true &&
-                (post.id.toString().includes(searchQuery) || post.content?.toLowerCase().includes(searchQuery.toLowerCase()));
+    // 페이지가 변경될 때마다 데이터 요청
+    useEffect(() => {
+        if (searchQuery == null || searchQuery == '') {
+            actions.getAdoptionAdminListAction(currentPage, selectedCategory, sortOption);  // 페이지 번호가 변경되면 API 호출
+        } else {
+            actions.getSearchAdoptionAdminListAction(currentPage, selectedCategory, sortOption, searchQuery);  // 페이지 번호가 변경되면 API 호출
         }
+    }, [currentPage, selectedCategory, sortOption, searchQuery]);
+    console.log(state);
 
-        // 카테고리와 상태에 따른 필터링
-        const isCategoryMatch = selectedCategory === "전체" || post.category === selectedCategory;
-        const isStatusMatch = !selectedSubCategory || post.status === selectedSubCategory;
+    // // 입양 상태와 검색어에 따라 필터링된 데이터
+    // const filteredData = Array.isArray(state.notices.notices) ? state?.notices?.notices.filter(post => {
+    //     if (selectedCategory === "스크랩 보기") {
+    //         return post.scrap === true &&
+    //             (post.id.toString().includes(searchQuery) || post.content?.toLowerCase().includes(searchQuery.toLowerCase()));
+    //     }
 
-        return isCategoryMatch && isStatusMatch && post.id.toString().includes(searchQuery);
-    });
+    //     // 카테고리와 상태에 따른 필터링
+    //     const isCategoryMatch = selectedCategory === "전체" || post.category === selectedCategory;
+    //     const isStatusMatch = !selectedSubCategory || post.status === selectedSubCategory;
 
-    // 페이지당 보여지는 글 수
-    const postsPerPage = 8;
+    //     return isCategoryMatch && isStatusMatch && post.id.toString().includes(searchQuery);
+    // }) : [];
 
-    // 현재 페이지에 맞는 카드 데이터 계산
-    const currentPosts = filteredData.slice(
-        (currentPage - 1) * postsPerPage,
-        currentPage * postsPerPage
-    );
+    // // 페이지당 보여지는 글 수
+    // const postsPerPage = 8;
+
+    // // 현재 페이지에 맞는 카드 데이터 계산
+    // const currentPosts = filteredData.slice(
+    //     (currentPage - 1) * postsPerPage,
+    //     currentPage * postsPerPage
+    // );
 
     // 전체 페이지 수 계산
-    const totalPages = Math.ceil(filteredData.length / postsPerPage);
+    const totalElements = Number(state?.notices?.totalElements);
+    const totalPages = Math.ceil(isNaN(totalElements) ? 0 : totalElements / 8);
 
     // 탭 클릭 시 카테고리 변경
     const handleTabClick = (category) => {
         setSelectedCategory(category);
         setCurrentPage(1); // 카테고리 변경 시 페이지 1로 리셋
     };
+
+    // // 카테고리 필터링
+    // const filteredNotices = Array.isArray(state.notices.notices) ? state?.notices?.notices.filter(item => {
+    //     console.log(item)
+    //     if (selectedCategory === "ALL") {
+    //         return true;
+    //     }
+    //     return item.noticeCategory === selectedCategory;
+    // }) : []; // notices가 배열이 아닌 경우 빈 배열 반환
 
     // 검색어 변경 처리 함수
     const handleSearch = (query) => {
@@ -79,23 +107,24 @@ function AdoptionPostPage({ gridArea }) {
 
     // 페이지네이션 처리
     const handlePageClick = (pageNumber) => {
-        setCurrentPage(pageNumber);
+        if (pageNumber < 1 || pageNumber > totalPages) return;  // 유효한 페이지 번호만 처리
+        setCurrentPage(pageNumber);  // 페이지 번호 업데이트
     };
 
     // 체크박스 상태 변경 처리
-const handleCheckBoxChange = (id) => {
-    setCheckedItems(prevState => {
-        if (prevState === id) {
-            return null;  // 선택된 항목 해제
-        } else {
-            return id;  // 새 항목 선택
-        }
-    });
+    const handleCheckBoxChange = (id) => {
+        setCheckedItems(prevState => {
+            if (prevState === id) {
+                return null;  // 선택된 항목 해제
+            } else {
+                return id;  // 새 항목 선택
+            }
+        });
 
-    const selectedPost = allPosts.find(post => post.id === id);
-    setStatus(selectedPost.status);  // 상태와 이유도 업데이트
-    setReason(selectedPost.reason);
-};
+        const selectedPost = state?.notices?.notices?.find(post => post.announcementNum === id);
+        setStatus(selectedPost.status);  // 상태와 이유도 업데이트
+        setReason(selectedPost.reason);
+    };
 
 
     const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
@@ -117,14 +146,23 @@ const handleCheckBoxChange = (id) => {
     };
 
     const handleConfirmClick = () => {
-        const updatedPosts = allPosts.map(post =>
-            post.id === checkedItems
+        const updatedPosts = state?.notices?.notices?.map(post =>
+            post.announcementNum === checkedItems
                 ? { ...post, status, reason } // 선택된 게시물의 status와 reason 업데이트
                 : post
         );
         setAllPosts(updatedPosts); // 상태를 업데이트하여 렌더링에 반영
         setIsInfoModalOpen(false); // 모달 닫기
         setCheckedItems(null); // 체크박스 해제
+    };
+
+    // 정렬 옵션 변경 처리
+    const handleSortChange = (option) => {
+        const optionIndex = options.indexOf(option);
+        if (optionIndex !== -1) {
+            setSortOption(sortOptions[optionIndex]);
+            setOrderBy(orders[optionIndex]);
+        }
     };
 
     return (
@@ -139,7 +177,7 @@ const handleCheckBoxChange = (id) => {
                 </div>
 
                 <div className={styles.SubNaviBar}>
-                    <SubNaviBar tabs={tabs} onTabClick={handleTabClick} />
+                    <SubNaviBar tabs={tabs} onChange={handleTabClick} />
                 </div>
 
                 <div className={styles.content2}>
@@ -158,8 +196,8 @@ const handleCheckBoxChange = (id) => {
                                         onChange={(e) => setSelectedSubCategory(e.target.value)}
                                     >
                                         <option value="">입양 상태</option>
-                                        <option value="입양 가능">입양 가능</option>
-                                        <option value="입양 불가">입양 불가</option>
+                                        <option value="입양가능">입양 가능</option>
+                                        <option value="입양불가">입양 불가</option>
                                         <option value="예약중">예약중</option>
                                     </select>
                                 </th>
@@ -167,21 +205,46 @@ const handleCheckBoxChange = (id) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {currentPosts.map(post => (
-                                <tr key={post.id}>
-                                    <td>
-                                        <CheckBox
-                                            checked={checkedItems === post.id}
-                                            onChange={() => handleCheckBoxChange(post.id)}
-                                        />
-                                    </td>
-                                    <td>{post.id}</td>
-                                    <td>{post.title}</td>
-                                    <td>{post.date}</td>
-                                    <td>{post.status}</td>
-                                    <td>{post.reason}</td>
-                                </tr>
-                            ))}
+                            {state?.notices?.notices?.map(post => {
+                                // ISO 8601 문자열을 JavaScript Date 객체로 변환
+                                const createdAt = new Date(post.noticeCreatedAt);
+
+                                // 날짜와 시간을 원하는 형식으로 변환
+                                const formattedDate = createdAt.toLocaleDateString('ko-KR'); // 한국 날짜 형식
+
+                                // adoptStatus 값에 따른 문자열 변환
+                                let adoptStatusText = '';
+                                switch (post.adoptStatus) {
+                                    case 'ADOPTABLE':
+                                        adoptStatusText = '입양가능';
+                                        break;
+                                    case 'NOTADOPT':
+                                        adoptStatusText = '입양불가';
+                                        break;
+                                    case 'RESERVATION':
+                                        adoptStatusText = '예약중';
+                                        break;
+                                    default:
+                                        adoptStatusText = ''; // adoptStatus 값이 없으면 빈 문자열 반환
+                                        break;
+                                }
+
+                                return (
+                                    <tr key={post.announcementNum}>
+                                        <td>
+                                            <CheckBox
+                                                checked={checkedItems === post.announcementNum}
+                                                onChange={() => handleCheckBoxChange(post.announcementNum)}
+                                            />
+                                        </td>
+                                        <td>{post.announcementNum}</td>
+                                        <td>{post.noticeTitle}</td>
+                                        <td>{formattedDate}</td> {/* 날짜와 시간을 합쳐서 표시 */}
+                                        <td>{adoptStatusText}</td>
+                                        <td>{post.impossibleReason === "NULL" ? "" : post.impossibleReason}</td>
+                                    </tr>
+                                );
+                            })}
                         </tbody>
                     </table>
                 </div>
@@ -190,7 +253,7 @@ const handleCheckBoxChange = (id) => {
                     <Pagenumber
                         totalPages={totalPages}
                         currentPage={currentPage}
-                        handlePageClick={handlePageClick}
+                        onPageChange={handlePageClick}
                     />
                     <div className={styles.adminbtn}>
                         <Button onClick={handleBtn1} text={"수정"} />

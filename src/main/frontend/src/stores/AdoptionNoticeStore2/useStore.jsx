@@ -23,7 +23,9 @@ import {
   getAdoptionPostListAction,
   getAdoptionSearchPostListAction,
   getAdoptionPostDetailAction,
-  changeMyScrapAction
+  changeMyScrapAction,
+  getAdoptionAdminListAction,
+  getSearchAdoptionAdminListAction
 } from "./action"; // action.js에서 액션들 임포트
 
 export const useStore = () => {
@@ -31,12 +33,18 @@ export const useStore = () => {
 
   const actions = {
 
-    // 입양 공지 카테고리별 조회
+    // 입양 공지 카테고리별 조회(12개)
     getAdoptionPostListAction: (page, noticeCategory, sortBy, sortOrder) => getAdoptionPostListAction(page, noticeCategory, sortBy, sortOrder)(dispatch),
 
-    // dlqdid 공지지
-    getAdoptionSearchPostListAction: (page, noticeCategory, sortBy, sortOrder,search) => getAdoptionSearchPostListAction(page, noticeCategory ,sortBy, sortOrder, search)(dispatch),
-    
+    // 입양 공지 카테고리별 조회(8개)
+    getAdoptionAdminListAction: (page, noticeCategory, sortBy) => getAdoptionAdminListAction(page, noticeCategory, sortBy)(dispatch),
+
+    // 입양 공지 검색(12개)
+    getAdoptionSearchPostListAction: (page, noticeCategory, sortBy, sortOrder, search) => getAdoptionSearchPostListAction(page, noticeCategory, sortBy, sortOrder, search)(dispatch),
+
+    // 입양 공지 검색(8개)
+    getSearchAdoptionAdminListAction: (page, noticeCategory, sortBy, search) => getSearchAdoptionAdminListAction(page, noticeCategory, sortBy, sortOrder, search)(dispatch),
+
     // 입양 공지 게시물 상세조회
     getAdoptionPostDetailAction: (announcementNum) => getAdoptionPostDetailAction(announcementNum)(dispatch),
 
@@ -47,7 +55,7 @@ export const useStore = () => {
     changeAdoptionNoticeViewCount: (noticeViewCount) => dispatch(changeAdoptionNoticeViewCount(noticeViewCount)),
     changeAdoptionAnimalType: (animalType) => dispatch(changeAdoptionAnimalType(animalType)),
     changeAdoptionStatus: (adoptStatus) => dispatch(changeAdoptionStatus(adoptStatus)),
-    
+
     changeAdoptionNoticeNum: (announcementNum) => dispatch(changeAdoptionNoticeNum(announcementNum)),
     changeAdoptionUniqueNum: (uniqueNum) => dispatch(changeAdoptionUniqueNum(uniqueNum)),
     changeAdoptionNoticeImgUrl: (noticeImgUrl) => dispatch(changeAdoptionNoticeImgUrl(noticeImgUrl)),

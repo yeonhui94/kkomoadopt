@@ -15,7 +15,7 @@ function LoginPageContents({ gridArea }) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  // const { state, actions } = UserStore2(); // UserStore2에서 상태와 액션 가져오기
+  const { state, actions } = UserStore2(); // UserStore2에서 상태와 액션 가져오기
   // const { state: visitRequestState, actions: visitRequestActions } = VisitRequestStore2();
   // const { state: communityPostState, actions: communityPostActions } = CommunityPostStore2();
   // const { actions: commentActions } = CommentStore2(); // CommentStore에서 actions 가져오기

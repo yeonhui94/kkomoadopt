@@ -118,8 +118,9 @@ const totalPages = Math.ceil(isNaN(totalElements) ? 0 : totalElements / 12);
 
        let value = changeScraps;
        setChangeScraps(++value)
-
   }
+
+  state
 
   return (
     <div style={{ gridArea: gridArea }}>

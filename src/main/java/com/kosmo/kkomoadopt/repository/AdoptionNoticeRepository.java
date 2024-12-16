@@ -17,15 +17,23 @@ public interface AdoptionNoticeRepository extends JpaRepository<AdoptionNoticeEn
     Optional<AdoptionNoticeEntity> findByNoticeUid(String noticeUid);
 
     // 입양 공고 전체 조회
+
+
+    // 입양 공고 전체 조회
     Page<AdoptionNoticeEntity> findAll(Pageable pageable);
 
     // 카테고리로 입양 공고 조회
     Page<AdoptionNoticeEntity> findByNoticeCategory(NoticeCategory noticeCategory, Pageable pageable);
 
-    // LIKE 검색을 위한 쿼리
+    // 품종 전체 검색을 위한 쿼리
     @Query("SELECT a FROM AdoptionNoticeEntity a WHERE a.animalType LIKE %:searchTerm%" )
     Page<AdoptionNoticeEntity> findBySearchTerm(@Param("searchTerm") String searchTerm, Pageable pageable);
 
+    // 공고번호 전체 검색을 위한 쿼리
+    @Query("SELECT a FROM AdoptionNoticeEntity a WHERE a.announcementNum LIKE %:searchTerm%" )
+    Page<AdoptionNoticeEntity> findBySearchTerm2(@Param("searchTerm") String searchTerm, Pageable pageable);
+
+    // 품종 카테고리 검색을 위한 쿼리
     @Query("SELECT a FROM AdoptionNoticeEntity a WHERE a.animalType LIKE %:searchTerm% AND noticeCategory = :noticeCategory" )
     Page<AdoptionNoticeEntity> findBySearchTermCategory(@Param("searchTerm")String searchTerm, @Param("noticeCategory")NoticeCategory noticeCategory,Pageable pageable);
 

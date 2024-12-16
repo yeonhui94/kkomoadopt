@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -28,7 +29,47 @@ public class AdoptionNoticeController {
     @Autowired
     private final AdoptionNoticeService adoptionNoticeService;
 
-    // 입양공지 조건별 검색
+    // 마이페이지에서 입양 글 전체 가져오기
+    @GetMapping("mypage")
+    public ResponseEntity<List<AdoptMypageDTO>> getMypageAll(){
+
+        List<AdoptMypageDTO> result = adoptionNoticeService.getMypageAllList();
+
+        // 상태 코드 200 OK와 함께 반환
+        return ResponseEntity.ok(result);
+    }
+
+    // 입양공지 조건별 검색(8개)
+    @GetMapping("/list8")
+    public ResponseEntity<AdoptNoticeListDTO> getAdminAdoptLists(
+            @RequestParam(name = "page", defaultValue = "1") int page,   // 페이지 번호 (디폴트: 0)
+            @RequestParam(name = "noticeCategory") NoticeCategory noticeCategory,  // 카테고리 (선택 사항)
+            @RequestParam(name = "sortBy", defaultValue = "ADOPTABLE") String sortBy,  // 정렬 기준 (디폴트: "name")
+            HttpServletRequest request) {  // 정렬 순서 (디폴트: "asc")
+
+        // 페이지와 정렬 설정
+        Sort sort = Sort.by(Sort.Order.asc(sortBy));  // 기본 정렬은 오름차순
+
+        // size를 고정값 12로 설정
+        int size = 8;
+
+        Pageable pageable = PageRequest.of(page, size, sort);
+
+        AdoptNoticeListDTO result;
+        // 카테고리 필터링 처리
+        if (NoticeCategory.ALL.equals(noticeCategory)) {
+            result = adoptionNoticeService.getNotices(pageable);  // 카테고리 없이 전체 아이템 반환
+        } else {
+            result = adoptionNoticeService.getNoticesByCategory(noticeCategory, pageable);
+        }
+
+        result = adoptionNoticeService.getUserScrapMappingList(result,request);
+
+        // 상태 코드 200 OK와 함께 반환
+        return ResponseEntity.ok(result);
+    }
+
+    // 입양공지 조건별 검색(12개)
     @GetMapping("/list")
     public ResponseEntity<AdoptNoticeListDTO> getLists(
             @RequestParam(name = "page", defaultValue = "1") int page,   // 페이지 번호 (디폴트: 0)
@@ -36,7 +77,6 @@ public class AdoptionNoticeController {
             @RequestParam(name = "sortBy", defaultValue = "euthanasiaDate") String sortBy,  // 정렬 기준 (디폴트: "name")
             @RequestParam(name = "sortOrder", defaultValue = "desc") String sortOrder,
             HttpServletRequest request) {  // 정렬 순서 (디폴트: "asc")
-
 
         // 페이지와 정렬 설정
         Sort sort = Sort.by(Sort.Order.asc(sortBy));  // 기본 정렬은 오름차순
@@ -58,7 +98,6 @@ public class AdoptionNoticeController {
         }
 
         result = adoptionNoticeService.getUserScrapMappingList(result,request);
-
 
         // 상태 코드 200 OK와 함께 반환
         return ResponseEntity.ok(result);

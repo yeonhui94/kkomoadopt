@@ -16,14 +16,22 @@ const apiClient = axios.create({
 
 
 // 입양 게시판 관련 API
-
-// 1. 전체, 카테고리별 입양 게시물 조회
+// 전체, 카테고리별 입양 게시물 조회(12개)
 export const getAdoptionPostList = (page, noticeCategory, sortBy, sortOrder) => apiClient.get('/api/adopt/list', {
   params: {
     page: page - 1,
     noticeCategory: noticeCategory,  // 'ALL', 'DOG', 'CAT', 'OTHERS'
     sortBy: sortBy,                 // 'euthanasiaDate', 'noticeCreatedAt', noticeViewCount
     sortOrder: sortOrder            // 'asc', 'desc'
+  }
+});
+
+// 전체, 카테고리별 입양 게시물 조회(8개)
+export const getAdoptionAdminList = (page, noticeCategory, sortBy) => apiClient.get('/api/adopt/list8', {
+  params: {
+    page: page - 1,
+    noticeCategory: noticeCategory,  // 'ALL', 'DOG', 'CAT', 'OTHERS'
+    sortBy: sortBy,                 // 'euthanasiaDate', 'noticeCreatedAt', noticeViewCount
   }
 });
 
@@ -38,7 +46,10 @@ export const changeMyScrap = (adoptNum) => apiClient.post('/api/user/scrap/save'
   adoptNum: adoptNum
 })
 
-// 2. 전체, 카테고리별 품종 검색
+// 마이페이지 입양데이터 전체 불러오기
+export const getMypageAdoptList = () => apiClient.get('/api/adopt/mypage');
+
+// 2. 전체, 카테고리별 품종 검색어 적용(12개)
 export const getSearchAdoptionPostList = (page, noticeCategory,sortBy,  sortOrder, search) => apiClient.get('/api/adopt/search', {
   params: {
     page: page ,
@@ -46,6 +57,16 @@ export const getSearchAdoptionPostList = (page, noticeCategory,sortBy,  sortOrde
     search : search ,
     sortBy: sortBy,                 // 'euthanasiaDate', 'noticeCreatedAt', noticeViewCount
     sortOrder: sortOrder            // 'asc', 'desc'
+  }
+});
+
+// 2. 전체, 카테고리별 품종 검색어 적용(8개)
+export const getSearchAdoptionAdminList = (page, noticeCategory, sortBy, search) => apiClient.get('/api/adopt/search', {
+  params: {
+    page: page ,
+    noticeCategory: noticeCategory,  // 'ALL', 'DOG', 'CAT', 'OTHERS'
+    search : search ,
+    sortBy: sortBy,                 // 'euthanasiaDate', 'noticeCreatedAt', noticeViewCount
   }
 });
 

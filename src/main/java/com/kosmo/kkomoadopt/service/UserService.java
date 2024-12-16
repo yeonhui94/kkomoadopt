@@ -174,6 +174,7 @@ public class UserService {
         return true;
     }
 
+    // 블랙리스트 유저 삭제
     public boolean delBlackUserList ( List<String> blackList) {
 
 
@@ -192,9 +193,4 @@ public class UserService {
 
         return true;
     }
-//    // dummy-Users 저장 메서드
-//    public List<UserEntity> saveUsers(List<UserEntity> userEntities) {
-//        return userRepository.saveAll(userEntities);
-//    }
-
 }

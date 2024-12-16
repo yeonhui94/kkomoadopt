@@ -89,7 +89,7 @@ public class AdoptionNoticeService {
         }
     }
 
-    // 전체 게시물 가져오기
+    // 전체 게시물 가져오기(페이지별)
     public AdoptNoticeListDTO getNotices(Pageable pageable) {
         Page<AdoptionNoticeEntity> adoptionNoticePage = adoptionNoticeRepository.findAll(pageable);
 
@@ -102,7 +102,7 @@ public class AdoptionNoticeService {
         return new AdoptNoticeListDTO(notices, adoptionNoticePage.getTotalElements(), adoptionNoticePage.getNumber(),null);
     }
 
-    // 카테고리로 입양 공고 가져오기
+    // 카테고리로 입양 공고 가져오기(페이지별)
     public AdoptNoticeListDTO getNoticesByCategory(NoticeCategory noticeCategory, Pageable pageable) {
         Page<AdoptionNoticeEntity> adoptionNoticePage = adoptionNoticeRepository.findByNoticeCategory(noticeCategory, pageable);
 
@@ -115,7 +115,7 @@ public class AdoptionNoticeService {
         return new AdoptNoticeListDTO(notices, adoptionNoticePage.getTotalElements(), adoptionNoticePage.getNumber(),null);
     }
 
-    // 검색어로 입양 공고 조회
+    // 검색어로 입양 공고 조회(페이지별)
     public AdoptNoticeListDTO searchNotices(String searchTerm, NoticeCategory noticeCategory,Pageable pageable) {
         Page<AdoptionNoticeEntity> adoptionNoticePage = null;
         if (NoticeCategory.ALL.equals(noticeCategory)) {
@@ -161,7 +161,7 @@ public class AdoptionNoticeService {
         );
     };
 
-    // DTO 변환 함수
+    // AdoptNoticeListDTO 변환 함수
     private AdoptNoticeListDTO.Notice convertToNoticeDTO(AdoptionNoticeEntity entity) {
         return new AdoptNoticeListDTO.Notice(
                 entity.getNoticeUid(),
@@ -179,6 +179,27 @@ public class AdoptionNoticeService {
                 entity.getNoticeViewCount(),
                 entity.getAdoptionAuthor()
         );
+    }
+
+    // AdoptMypageDTO 변환 함수
+    private AdoptMypageDTO convertToAdoptMypageDTO(AdoptionNoticeEntity entity) {
+        return new AdoptMypageDTO(
+                entity.getNoticeUid(),
+                entity.getNoticeTitle(),
+                entity.getAnnouncementNum(),
+                entity.getNoticeImgUrl(),
+                entity.getEuthanasiaDate()
+        );
+    }
+
+    // 입양공지 전체 데이터 불러오기
+    public List<AdoptMypageDTO> getMypageAllList(){
+        List<AdoptionNoticeEntity> adoptionNoticeEntities = adoptionNoticeRepository.findAll();
+
+        // AdoptionNoticeEntity 객체를 AdoptMypageDTO로 변환
+        return adoptionNoticeEntities.stream()
+                .map(this::convertToAdoptMypageDTO)  // convertToAdoptMypageDTO로 변환
+                .collect(Collectors.toList());  // List로 수집
     }
 
     // 입양공지글 업데이트(announcementNum 기준)

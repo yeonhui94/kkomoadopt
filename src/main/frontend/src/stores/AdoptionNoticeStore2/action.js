@@ -6,7 +6,9 @@ import {
   getAdoptionPostList,
   getSearchAdoptionPostList,
   changeMyScrap,
-  getUserList
+  getUserList,
+  getAdoptionAdminList,
+  getSearchAdoptionAdminList
 } from '../../service/apiService'
 
 // 액션 타입 정의
@@ -113,7 +115,7 @@ export const resetAdoptionState = () => ({
 });
 
 // CRUD API 관련 액션 생성자들
-// 전체, 카테고리 list 페이지 불러오기
+// 전체, 카테고리 list 페이지 불러오기(12개)
 export const getAdoptionPostListAction = (page, noticeCategory, sortBy, sortOrder) => async (dispatch) => {
   try {
     const response = await getAdoptionPostList(page, noticeCategory, sortBy, sortOrder);
@@ -127,10 +129,38 @@ export const getAdoptionPostListAction = (page, noticeCategory, sortBy, sortOrde
   }
 } 
 
-// 검색어 적용한 전체, 카테고리 list 페이지 불러오기
+// 전체, 카테고리 list 페이지 불러오기(8개)
+export const getAdoptionAdminListAction = (page, noticeCategory, sortBy) => async (dispatch) => {
+  try {
+    const response = await getAdoptionAdminList(page, noticeCategory, sortBy );
+    console.log('Notices Data:', response.data.notices);  // 데이터 콘솔에 출력
+    dispatch({
+       type: READ_ADOPTION_POSTS,
+       payload: response.data
+    });
+  } catch (error) {
+    console.error("입양 게시물을 불러올 수 없습니다.", error);
+  }
+}
+
+// 검색어 적용한 전체, 카테고리 list 페이지 불러오기(12개)
 export const getAdoptionSearchPostListAction = (page, noticeCategory, sortBy, sortOrder,search) => async (dispatch) => {
   try {
     const response = await getSearchAdoptionPostList(page, noticeCategory, sortBy, sortOrder,search);
+    console.log('Notices Data:', response.data.notices);  // 데이터 콘솔에 출력
+    dispatch({
+       type: READ_ADOPTION_POSTS,
+       payload: response.data
+    });
+  } catch (error) {
+    console.error("입양 게시물을 불러올 수 없습니다.", error);
+  }
+} 
+
+// 검색어 적용한 전체, 카테고리 list 페이지 불러오기(8개)
+export const getSearchAdoptionAdminListAction = (page, noticeCategory, sortBy, search) => async (dispatch) => {
+  try {
+    const response = await getSearchAdoptionAdminList(page, noticeCategory, sortBy, search);
     console.log('Notices Data:', response.data.notices);  // 데이터 콘솔에 출력
     dispatch({
        type: READ_ADOPTION_POSTS,

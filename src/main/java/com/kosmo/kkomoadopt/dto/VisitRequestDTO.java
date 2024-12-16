@@ -4,14 +4,17 @@ import com.kosmo.kkomoadopt.enums.VisitPurpose;
 import com.kosmo.kkomoadopt.enums.VisitTime;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public record VisitRequestDTO(
         String requestUid,
-        String userId,
+        Integer requestId,
         String phoneNum,
         LocalDate visitDate,
         VisitTime visitTime,
         VisitPurpose visitPurpose,
-        String visitContent
+        String visitContent,
+        LocalDateTime visitCreatedAt,
+        String userId
 ) {
 }

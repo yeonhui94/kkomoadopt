@@ -83,16 +83,15 @@ const Review = ({ gridArea }) => {
           <div className={styles.rwdivider}>
             <Divider width={"100%"} backgroundColor={"var(--line-color)"} />
           </div >
-          {console.log("communityPosts before map:", communityState.communityPosts)}
-          {communityState.communityPosts.length > 0 ? (
-            communityState.communityPosts.map((slideData, index) => (
-              <Link key={slideData.id} to={`/adoption-review/post/${slideData.postUid}`}>
+          {console.log("communityPosts before map:", communityState?.communityPosts)}
+          {communityState?.communityPosts.length > 0 ? (
+            communityState?.communityPosts.map((slideData, index) => (
+              <Link key={slideData?.id} to={`/adoption-review/post/${slideData?.postUid}`}>
                 <Card1 
-                  
                   key={index} 
-                  images={slideData.postImgUrl} 
-                  text={slideData.postTitle}
-                  additionaltext={slideData.postContent}
+                  images={slideData?.postImgUrl} 
+                  text={slideData?.postTitle}
+                  additionaltext={slideData?.postContent}
                   />
               </Link>
             ))

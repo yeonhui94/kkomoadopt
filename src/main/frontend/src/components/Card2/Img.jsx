@@ -25,7 +25,7 @@ const Img = ( {imageFile,onDetailPage,adoptNum , to=`/adoption/post/${adoptNum}`
     return(
         <Link to={to}>
         <ImageBox onClick={onDetailPage}>
-        <Image src={`http://localhost:8080/upload/${imageFile[0]}`} />
+        <Image src={imageFile[0]} />
         </ImageBox>
         </Link>
     )

@@ -5,13 +5,13 @@ import FindChild_Post from "./FindChild_Post";
 import { useParams } from "react-router-dom";
 import { useStore as CommunityPostStore2 } from "../../../stores/CommunityPostStore2/useStore";
 import { useStore as CommentStore2 } from "../../../stores/CommentStore2/useStore";
+import { useStore } from "../../../stores/CommunityPostStore2/useStore";
 import { readCommunityPostDetail } from "../../../stores/CommunityPostStore2/action";
 
 function FindChild_PostPage({ text = "아이를 찾습니다", gridArea }) {
 
-
-        const {state : communityState, actions : communityActions } = CommunityPostStore2();
-        const {state : commentState, actions : commentActions} = CommentStore2();
+     const {state : communityState, actions : communityActions } = CommunityPostStore2();
+     const {state : commentState, actions : commentActions} = CommentStore2();
 
 
     const { postUid } = useParams();
@@ -30,7 +30,7 @@ function FindChild_PostPage({ text = "아이를 찾습니다", gridArea }) {
                 console.error("error fetching post detail", error);
                 setError(error);
             }finally{
-                setLoading(false)
+                setLoading(false);
             }
         };
         fetchData();

@@ -6,7 +6,7 @@
         'tmi' 70px 
         'contentbox' 10fr
         'comments'2fr / 1fr; */
-    height: 2800px;
+    height: auto;
     width: 100%;
     margin: 0 auto;
     padding: 10px 70px ;
@@ -111,7 +111,7 @@ p {
 .post_content1 {
     display: flex;
     width: 100%;
-    height: 450px;
+    height: 100%;
     flex-direction: row;
     justify-content: flex-start;
     margin-top: 30px;
@@ -195,7 +195,7 @@ p {
     flex-direction: column;
     justify-content: space-around;
     gap: 20px;
-    margin-right: 150px;
+    margin: 0px 100px;
     /* grid-area: pettmi; */
     /* grid-template: 
         'tb1' 1fr
@@ -277,13 +277,11 @@ p {
     border-radius: 20px;
     border: 1px solid #999;
     color: #444;
-    font-size: 1.4rem;
-    list-style: disc;
+    font-size: 1.0rem;
 
 }
 
 .post_petif_p1 {
-    list-style: inherit; 
     width: 100%;
     height: 10px;
     padding-top: 50px;
@@ -292,17 +290,16 @@ p {
 
 }
 
-.post_petif_p1::marker , .post_petif_p2::marker , .post_petif_p3::marker , 
+/* .post_petif_p1::marker , .post_petif_p2::marker , .post_petif_p3::marker ,
 .post_petif_p4::marker, .post_petif_p5::marker
 {
     font-size: 0.8rem;
     /* color: var(--main-color); */
     /* content: "▶"; */
-}
+/* } */
 
 
 .post_petif_p2 {
-    list-style: inherit; 
     width: 100%;
     height: 10px;
     padding-top: 85px;
@@ -312,7 +309,6 @@ p {
 }
 
 .post_petif_p3 {
-    list-style: inherit; 
     width: 100%;
     height: 10px;
     padding-top: 85px;
@@ -322,7 +318,6 @@ p {
 }
 
 .post_petif_p4 {
-    list-style: inherit; 
     width: 100%;
     height: 10px;
     padding-top: 85px;
@@ -332,7 +327,6 @@ p {
 }
 
 .post_petif_p5 {
-    list-style: inherit; 
     width: 100%;
     height: 10px;
     padding-top: 85px;

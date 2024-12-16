@@ -8,8 +8,6 @@ import React from "react";
 import Button from "../../../components/Button/Button";
 
 
-
-
 function FindChild_Post({ postDetail }) {
     if (!postDetail) {
         // 데이터가 없으면 로딩 중 또는 오류 메시지를 표시
@@ -44,8 +42,8 @@ function FindChild_Post({ postDetail }) {
                     ) : (
                         <PostSlickSlide className={postst.post_postimgs} img={postDetail.postImgUrl} />
                     )}
-                    {/* <div className={postst.post_article} dangerouslySetInnerHTML={{ __html: postDetail.postContent }} */}
-                    {/* /> */}
+{/*                     <div className={postst.post_article} dangerouslySetInnerHTML={{ __html: postDetail.postContent }} */}
+{/*                     /> */}
                 </div>
                 <Comment className={postst.post_petif} postDetail={postDetail} />
                 <div className={postst.buttonwrap}>

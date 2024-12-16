@@ -50,77 +50,46 @@ const Adoption_Post = ({ post, noticedetail }) => {
 
                     {/* 테이블 4개 */}
                     <div className={postst.post_pettmi}>
-                                           <table className={`${postst.post_table} ${postst.post_tb}`}>
-                                               <tr className={`${postst.post_tb}`}>
-                                                   <td className={`${postst.post_td1}`}>카테고리</td>
-                                               </tr>
-                                               <tr>
-                                                   {/* <td className={`${postst.post_td2}`}>{noticedetail.noticeCategory}</td> */}
-                                                   <td className={`${postst.post_td2}`}>{post?.noticeDetail?.noticeCategory}</td>
-                                               </tr>
+                        <table className={`${postst.post_table} ${postst.post_tb}`}>
+                            <tr className={`${postst.post_tb}`}>
+                                <td className={`${postst.post_td1}`}>카테고리</td>
+                            </tr>
+                            <tr>
+                            {/* <td className={`${postst.post_td2}`}>{noticedetail.noticeCategory}</td> */}
+                                <td className={`${postst.post_td2}`}>{post?.noticeDetail?.noticeCategory}</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
 
-                                                <tr>
-                                                    <td></td>
-                                                </tr>
-
-                                               <tr className={`${postst.post_tb}`}>
-                                                   <td className={`${postst.post_td1}`}>품종</td>
-                                               </tr>
-                                               <tr>
-                                                   <td className={`${postst.post_td2}`}>{post?.noticeDetail?.animalType}</td>
-                                               </tr>
-
-                                                <tr>
-                                                    <td></td>
-                                                </tr>
-
-                                               <tr className={`${postst.post_tb}`}>
-                                                   <td className={`${postst.post_td1}`}>공고번호</td>
-                                               </tr>
-                                               <tr>
-                                                   <td className={`${postst.post_td2}`}>{post?.noticeDetail?.announcementNum}</td>
-                                               </tr>
-
-                                                <tr>
-                                                    <td></td>
-                                                </tr>
-
-                                               <tr className={`${postst.post_tb}`}>
-                                                   <td className={`${postst.post_td1}`}>공고마감날짜</td>
-                                               </tr>
-                                               <tr>
-                                                   <td className={`${postst.post_td2}`}>{post?.noticeDetail?.euthanasiaDate}</td>
-                                               </tr>
-                                           </table>
-                                           {/* <table className={`${postst.post_table} ${postst.post_tb}`}>
-                                               <tr className={`${postst.post_tb}`}>
-                                                   <td className={`${postst.post_td1}`}>품종</td>
-                                               </tr>
-                                               <tr> */}
-                                                   {/* <td className={`${postst.post_td2}`}>{noticedetail.animalType}</td> */}
-                                                   {/* <td className={`${postst.post_td2}`}>{post?.noticeDetail?.animalType}</td>
-                                               </tr>
-                                           </table>
-                                           <table className={`${postst.post_table} ${postst.post_tb}`}>
-                                               <tr className={`${postst.post_tb}`}>
-                                                   <td className={`${postst.post_td1}`}>공고번호</td>
-                                               </tr>
-                                               <tr> */}
-                                                   {/* <td className={`${postst.post_td2}`}>{noticedetail.announcementNum}</td> */}
-                                                   {/* <td className={`${postst.post_td2}`}>{post?.noticeDetail?.announcementNum}</td>
-                                               </tr>
-                                           </table>
-                                           <table className={`${postst.post_table} ${postst.post_tb}`}>
-                                               <tr className={`${postst.post_tb}`}>
-                                                   <td className={`${postst.post_td1}`}>공고마감날짜</td>
-                                               </tr>
-                                               <tr> */}
-                                                   {/* <td className={`${postst.post_td2}`}>{noticedetail.euthanasiaDate}</td> */}
-                                                   {/* <td className={`${postst.post_td2}`}>{post?.noticeDetail?.euthanasiaDate}</td>
-                                               </tr>
-                                           </table> */}
-                                       </div>
-                                   </div>
+                            <tr className={`${postst.post_tb}`}>
+                                <td className={`${postst.post_td1}`}>품종</td>
+                            </tr>
+                            <tr>
+                                <td className={`${postst.post_td2}`}>{post?.noticeDetail?.animalType}</td>
+                            </tr>
+                            <tr>
+                                 <td></td>
+                            </tr>
+                            <tr className={`${postst.post_tb}`}>
+                                <td className={`${postst.post_td1}`}>공고번호</td>
+                            </tr>
+                            <tr>
+                                <td className={`${postst.post_td2}`}>{post?.noticeDetail?.announcementNum}</td>
+                            </tr>
+                             <tr>
+                                 <td></td>
+                            </tr>
+                            <tr className={`${postst.post_tb}`}>
+                                <td className={`${postst.post_td1}`}>공고마감날짜</td>
+                            </tr>
+                            <tr>
+                                <td className={`${postst.post_td2}`}>{post?.noticeDetail?.euthanasiaDate}</td>
+                            </tr>
+                                </table>
+                                    
+                            </div>
+                            </div>
 
 
                 <div className={postst.post_petif}

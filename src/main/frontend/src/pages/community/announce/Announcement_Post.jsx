@@ -39,7 +39,14 @@ const Announcement_Post = ({postDetail }) => {
     fetchData();
 },[]);
 
+// 이미지 관련 설정
+    // let postImageComponent = null;
 
+    // if (postDetail.postImgUrl) {
+    // postImageComponent = (
+    //     <PostSlickSlide className={postst.post_postimgs} img={postDetail.postImgUrl} />
+    // );
+    // }
 
     return (
 
@@ -63,11 +70,12 @@ const Announcement_Post = ({postDetail }) => {
                 <div className={postst.post_content1}>
                     
                     {/* 이미지 */}
-                    {!postDetail.postImgUrl ? (  // post.img가 없는 경우 "이미지 없음" 표시
-                    <PostSlickSlide style={{display: "none"}}/>
+                    {/* {!postDetail.postImgUrl ? (  // post.img가 없는 경우 "이미지 없음" 표시
+                    ""
                     ) : (
                     <PostSlickSlide className={postst.post_postimgs} img={postDetail.postImgUrl} /> 
-                    )}
+                    )} */}
+                    {/* {postImageComponent || <div>이미지 없음</div>} */}
                     <div className={postst.post_article} dangerouslySetInnerHTML={{ __html: postDetail.postContent }}
                     />
                 </div>

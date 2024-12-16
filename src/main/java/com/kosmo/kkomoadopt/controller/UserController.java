@@ -128,8 +128,9 @@ public class UserController {
     public ResponseEntity<Boolean> changeScrap(@RequestBody Map<String,Object> map, HttpServletRequest request){
         boolean result = userService.saveScarpUser((String)map.get("adoptNum"), request);
 
-        return ResponseEntity.ok(result);
+        return ResponseEntity.ok(result);//
     }
+//    hkk
 
     // 유저가져오기
     @GetMapping("/user/list")

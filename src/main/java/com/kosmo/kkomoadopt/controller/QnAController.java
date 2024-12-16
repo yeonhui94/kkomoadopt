@@ -6,13 +6,16 @@ import com.kosmo.kkomoadopt.service.QnAService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/qna/posts")
@@ -109,14 +112,11 @@ public class QnAController {
 
 
     @GetMapping
-    public ResponseEntity<List<QnAListDTO>> getQnaList(
-            @RequestParam(name = "page", defaultValue =  "0") int page,
-            @RequestParam(name = "size", defaultValue = "10") int size
-    ){
-        try{
-            List<QnAListDTO> qnaList = qnAService.getQnaList(page,size);
+    public ResponseEntity<List<QnAListDTO>> getQnaList() {
+        try {
+            List<QnAListDTO> qnaList = qnAService.getQnaList();  // 페이지네이션 없이 모든 데이터를 가져옴
             return ResponseEntity.ok(qnaList);
-        }catch (Exception e){
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }

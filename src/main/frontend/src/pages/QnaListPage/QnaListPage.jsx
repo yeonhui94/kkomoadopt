@@ -45,9 +45,9 @@ const QnaListPage = () => {
           <div className={hidden}>
             <Button />
           </div>
-          <Pagenumber
+          {/* <Pagenumber
 
-          />
+          /> */}
           <Link to="communtywt">
             <Button text="글쓰기" />
           </Link>

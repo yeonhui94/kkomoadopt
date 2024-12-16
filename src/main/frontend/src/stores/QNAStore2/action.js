@@ -47,10 +47,10 @@ export const resetState = () => ({ type: RESET_STATE });
 // CRUD 관련 액션 생성자
 
 // 1. QNA 게시물 목록 조회
-export const readQnaPosts = () => async (dispatch) => {
+export const readQnaPosts = (page) => async (dispatch) => {
     try {
-        const response = await getQnaPosts();  // API 호출: QNA 게시물 목록 조회
-
+        const response = await getQnaPosts(page);  // API 호출: QNA 게시물 목록 조회
+        console.log(response);
         if (response.status === 200 ){
         dispatch({
             type: READ_QNA_POSTS,

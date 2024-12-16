@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from "react";
 import SectionBox from "./SectionBox";
 import Section3 from './Section3'; 
-import img3_1 from "../../assets/img2/1.jpg";
-import img3_2 from "../../assets/img2/2.jpg";
-import img3_3 from "../../assets/img2/3.jpg";
-import img3_4 from "../../assets/img2/4.jpg";
-import img3_5 from "../../assets/img2/5.jpg";
-import img3_6 from "../../assets/img2/6.jpg";
-import img3_7 from "../../assets/img2/7.jpg";
-import img3_8 from "../../assets/img2/8.jpg";
-import img3_9 from "../../assets/img2/9.jpg";
-import img3_10 from "../../assets/img2/10.jpg";
-import img3_11 from "../../assets/img2/11.jpg";
-import img3_12 from "../../assets/img2/12.jpg";
+import img3_1 from "../../assets/adopimg/1.jpg";
+import img3_2 from "../../assets/adopimg/2.jpg";
+import img3_3 from "../../assets/adopimg/3.jpg";
+import img3_4 from "../../assets/adopimg/4.jpg";
+import img3_5 from "../../assets/adopimg/5.jpg";
+import img3_6 from "../../assets/adopimg/6.jpg";
+import img3_7 from "../../assets/adopimg/7.jpg";
+import img3_8 from "../../assets/adopimg/8.jpg";
+import img3_9 from "../../assets/adopimg/9.jpg";
+import img3_10 from "../../assets/adopimg/10.jpg";
+import img3_11 from "../../assets/adopimg/11.jpg";
+import img3_12 from "../../assets/adopimg/12.jpg";
+import img3_13 from "../../assets/adopimg/13.jpg";
+import img3_14 from "../../assets/adopimg/14.jpg";
+import img3_15 from "../../assets/adopimg/15.jpg";
 import styles from "./Section3333.module.css";
 import Logo from "../../components/logo/Logo";
 import Button from "../../components/Button/Button";
@@ -20,7 +23,7 @@ import { Link } from "react-router-dom";
 
 const Section3333 = () => {
   // 모든 이미지를 한 번에 불러옴
-  const allImages = [img3_1, img3_2, img3_3, img3_4, img3_5, img3_6, img3_7, img3_8, img3_9, img3_10, img3_11, img3_12];
+  const allImages = [img3_1, img3_2, img3_3, img3_4, img3_5, img3_6, img3_7, img3_8, img3_9, img3_10, img3_11, img3_12,img3_13,img3_14,img3_15];
 
   // 각 박스에 필요한 이미지 배열 분리
   const images1 = allImages.slice(0, 6);

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Card1 from "../../components/Card1/Card1"; // Card1 컴포넌트를 import합니다.
 import { Link } from "react-router-dom";
+import Card3 from "../../components/Card3/Card3";
 
 const LinkStyled = styled(Link)`
   margin-inline: 0;
@@ -15,61 +16,61 @@ const Section3 = ({ currentSlide, allImages }) => {
       main: allImages[2], 
       others: [
         { image: allImages[1] },
-        { image: allImages[4] },
         { image: allImages[3] },
-      ],
-      texts: ["인삼이"], 
-      additionalTexts: ["조인삼 바보 기여운 똥강아지에요"] 
-    },
-    { id :2,
-      main: allImages[3], 
-      others: [
-        { image: allImages[6] },
-        { image: allImages[7] },
-        { image: allImages[8] },
-      ],
-      texts: ["인삼이 바보"], 
-      additionalTexts: ["기여운 인삼이"] 
-    },
-    { id :3,
-      main: allImages[4], 
-      others: [
-        { image: allImages[9] },
-        { image: allImages[10] },
-        { image: allImages[11] },
-      ],
-      texts: ["조랭삼"], 
-      additionalTexts: ["조인삼 바보 기여운 똥강아지에요"] 
-    },
-    { id :4,
-      main: allImages[5], 
-      others: [
-        { image: allImages[4] },
-        { image: allImages[10] },
-        { image: allImages[6] },
-      ],
-      texts: ["조랭이"], 
-      additionalTexts: ["꼬순내 한가득 나는 조인삼 때문에 요즘 제 삶이 "] 
-    },
-    { id :5,
-      main: allImages[6], 
-      others: [
-        { image: allImages[8] },
-        { image: allImages[1] },
         { image: allImages[2] },
       ],
-      texts: ["인쟈미"], 
-      additionalTexts: ["기여운 인쟈미 완젼 사랑스러워 죽겠어요"] 
+      texts: ["3세/믹스견/애교 많은 성격"], 
+      additionalTexts: ["입양종료 날짜:2025-12-20"] 
     },
-    { id :6,
-      main: allImages[7], 
+    { id :2,
+      main: allImages[4], 
       others: [
-        { image: allImages[9] },
-        { image: allImages[5] },
+        { image: allImages[3] },
+        { image: allImages[4] },
+        { image: allImages[6] },
+      ],
+      texts: ["2세/믹스견/차분한 성격"], 
+      additionalTexts: ["입양종료 날짜:2025-12-02"] 
+    },
+    { id :3,
+      main: allImages[13], 
+      others: [
+        { image: allImages[13] },
+        { image: allImages[14] },
+        { image: allImages[15] },
+      ],
+      texts: ["3세/믹스견/사교적인 성격"], 
+      additionalTexts: ["입양종료 날짜:2025-11-25"] 
+    },
+    { id :4,
+      main: allImages[2], 
+      others: [
+        { image: allImages[1] },
+        { image: allImages[2] },
         { image: allImages[3] },
       ],
-      texts: ["우리집 막내는 .."], 
-      additionalTexts: ["인쟈미 완젼 사랑스러워 죽겠어요. 막내"] 
+      texts: ["5세/믹스견/차분한 성격"], 
+      additionalTexts: ["입양종료 날짜:2025-10-15"] 
+    },
+    { id :5,
+      main: allImages[7], 
+      others: [
+        { image: allImages[7] },
+        { image: allImages[8] },
+        { image: allImages[9] },
+      ],
+      texts: ["6세/믹스묘/조용함"], 
+      additionalTexts: ["입양종료 날짜:2025-11-01"] 
+    },
+    { id :6,
+      main: allImages[10], 
+      others: [
+        { image: allImages[10] },
+        { image: allImages[11] },
+        { image: allImages[12] },
+      ],
+      texts: ["4세/믹스묘/차분함"], 
+      additionalTexts: ["입양종료 날짜:2025-11-05"] 
     }
   ];
 
@@ -79,7 +80,7 @@ const Section3 = ({ currentSlide, allImages }) => {
         {imageData.map((slideData, index) => (
           <LinkStyled to={`/adoption-review/post/${slideData.id}`} key={slideData.id}>
           <Slide key={index} boxWidth={boxWidth}>
-            <Card1 images={slideData} />
+            <Card3 images={slideData} />
           </Slide>
           </LinkStyled>
         ))}

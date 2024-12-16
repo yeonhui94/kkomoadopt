@@ -19,7 +19,6 @@ const Announcement_Post = ({postDetail }) => {
         // 데이터가 없으면 로딩 중 또는 오류 메시지를 표시
         return <p>Loading post details...</p>;
     }
-
 //  { title: "새 게시물 제목 41", admin: "관리자", sdfsdf
 // date: new Date("2021-07-03"), img: "" , content:"쓰기 귀찮다 아무거나 쓸게요 나 맛있는거 먹고싶어 프로젝트 끝나면 잘거야",views: 21, files: 2 },
 
@@ -65,7 +64,7 @@ const Announcement_Post = ({postDetail }) => {
                     
                     {/* 이미지 */}
                     {!postDetail.postImgUrl ? (  // post.img가 없는 경우 "이미지 없음" 표시
-                    ""
+                    <PostSlickSlide style={{display: "none"}}/>
                     ) : (
                     <PostSlickSlide className={postst.post_postimgs} img={postDetail.postImgUrl} /> 
                     )}

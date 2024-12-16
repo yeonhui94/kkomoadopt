@@ -90,19 +90,28 @@ function UserMgmt({ gridArea }) {
         }
     
         // 블랙리스트에 추가된 사용자의 `isBlacklisted` 값을 true로 변경
-        const updatedPosts = allPosts.map(post => {
-            if (selectedUsers.includes(post.nickname)) {
-                return { ...post, isBlacklisted: true ,status: "blacklisted" }; // 블랙리스트 처리
-            }
-            return post; // 그 외의 유저는 그대로
-        });
-    
-        setAllPosts(updatedPosts); // 상태 업데이트
-        setIsModalOpen(false); // 모달 닫기
-        setSelectedUsers([]); // 선택된 사용자 목록 초기화
-        setCheckedItems({}); // 체크박스 해제
+        const blackReason = selectedOption;
+        const blackList = selectedUsers;
+
+        const blackInfo = {
+            blackList : blackList,
+            blackReason : blackReason
+        }
+
+        let result = await actions.saveBlackList(blackInfo)
+ 
+        if(result?.data) {
+            setIsModalOpen(false); // 모달 닫기
+            setSelectedUsers([]); // 선택된 사용자 목록 초기화
+            setCheckedItems({}); // 체크박스 해제
+        } else {
+            //TODO: 에러 모달창 띄우기 
+
+        }
+
+        
+        
     };
-    
 
     // 탈퇴 확인 버튼 클릭 시 처리
     const handleDelete = () => {
@@ -127,6 +136,8 @@ function UserMgmt({ gridArea }) {
 
     // 모달 드롭다운 변경 처리
     const handleDropdownChange = (e) => {   //모달 드롭다운
+        
+        
         setSelectedOption(e.target.value);
     };
 
@@ -170,7 +181,7 @@ function UserMgmt({ gridArea }) {
                                     <td>{post.email}</td>
                                     <td>{post.phoneNumber}</td>
                                     <td>{post.userCreate}</td>
-                                    <td>{post.postlist}</td>
+                                    <td>{post.writeCount}</td>
                                     <td>{post.userLastLogin}</td>
                                 </tr>
                             )) : null}

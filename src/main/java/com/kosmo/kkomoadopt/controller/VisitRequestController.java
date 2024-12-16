@@ -2,12 +2,14 @@ package com.kosmo.kkomoadopt.controller;
 
 import com.kosmo.kkomoadopt.dto.CommentDTO;
 import com.kosmo.kkomoadopt.dto.VisitRequestDTO;
+import com.kosmo.kkomoadopt.dto.VisitRequestListDTO;
 import com.kosmo.kkomoadopt.entity.CommunityPostEntity;
 import com.kosmo.kkomoadopt.entity.VisitRequestEntity;
 import com.kosmo.kkomoadopt.enums.Authority;
 import com.kosmo.kkomoadopt.service.VisitRequestService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,13 +19,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/visit")
+@RequestMapping("/api/visit-requests")
 @RequiredArgsConstructor
 public class VisitRequestController {
 
     private final VisitRequestService visitRequestService;
 
-    @PostMapping("/request")
+    @PostMapping("/request")  // 나중에 프론트랑 주소 맞추세요!!!!!!!
     public ResponseEntity<String> createVisitRequest(
             @RequestBody VisitRequestDTO visitRequestDTO,
             HttpServletRequest request) {

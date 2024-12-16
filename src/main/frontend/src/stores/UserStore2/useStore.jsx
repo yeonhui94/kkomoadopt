@@ -19,7 +19,10 @@ import {
     loginSuccess,
     logoutUser,
     register,
-    getUserListAction
+    getUserListAction,
+    saveBlackListAction,
+    delBlackListAction,
+    getBlackListAction
 //     changePasswordSuccess,
 //     verifyPassword
 } from "./action";
@@ -42,13 +45,15 @@ export const useStore = () => {
         changeIsBlacklisted: (isBlacklisted) => dispatch(changeIsBlacklisted(isBlacklisted)),
         changeProvider: (provider) => dispatch(changeProvider(provider)),
         changeAuthority: (authority) => dispatch(changeAuthority(authority)),
-
+        saveBlackList : (blackInfo) => saveBlackListAction(blackInfo)(dispatch),
+        delBlackList : (blackInfo) => delBlackListAction(blackInfo)(dispatch),
         // 로그인 상태 관리
         login: (email, password) => login(email, password)(dispatch),
         loginSuccess: (userData) => dispatch(loginSuccess(userData)),
         logoutUser: () => dispatch(logoutUser()),
         register: (RegisterUserDTO) => register(RegisterUserDTO)(dispatch),
         getUserList: (page,query) => getUserListAction(page,query)(dispatch),
+        getBlackList: (page,query) => getBlackListAction(page,query)(dispatch),
 //         register:(userInDTO) => register(userInDTO)(dispatch),
         // 비밀번호 변경 및 검증
         changePasswordSuccess: (newPassword) => dispatch(changePasswordSuccess(newPassword)),

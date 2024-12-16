@@ -82,7 +82,7 @@ function UserMgmt({ gridArea }) {
         });
     };
 
-    const handleAddToBlacklist = () => {
+    const handleAddToBlacklist = async () => {
         // 사유가 선택되지 않은 경우 경고 메시지 표시
         if (!selectedOption) {
             alert("사유를 선택하세요!");

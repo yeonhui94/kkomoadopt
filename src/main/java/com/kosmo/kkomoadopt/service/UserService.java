@@ -3,6 +3,7 @@ package com.kosmo.kkomoadopt.service;
 import com.kosmo.kkomoadopt.dto.*;
 import com.kosmo.kkomoadopt.enums.Provider;
 import com.kosmo.kkomoadopt.entity.UserEntity;
+import com.kosmo.kkomoadopt.repository.CommunityPostRepository;
 import com.kosmo.kkomoadopt.repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -15,11 +16,13 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
+    private final CommunityPostRepository communityPostRepository;
 
     // 이메일 중복 체크
     public boolean checkEmail(String email) {
@@ -128,6 +131,12 @@ public class UserService {
         return result;
     }
 
+    /**
+     *
+     * @param pageable
+     * @param query
+     * @return
+     */
     public Page<UserEntity> getUserList(Pageable pageable,String query) {
         Page<UserEntity> result= null;
 
@@ -136,6 +145,16 @@ public class UserService {
         } else {
             result =userRepository.findAll( pageable);
         }
+
+        System.out.println("타니");
+        result = result.map(obj-> {
+            System.out.println("userId :"+obj.getUserId());
+
+            Long count = communityPostRepository.countByUserId(obj.getUserId());
+            obj.setWriteCount(count);
+            return obj;
+        });
+
 
         return result;
     }
@@ -149,6 +168,10 @@ public class UserService {
         } else {
             result =userRepository.findAllByIsBlacklisted( true,pageable);
         }
+
+
+
+
 
         return result;
     }

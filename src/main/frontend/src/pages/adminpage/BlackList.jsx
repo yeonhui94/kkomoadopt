@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import styles from "../mypage/MyPage.module.css";
 import SearchBar from "../../components/SearchBar";
 import Pagenumber from "../../components/pagenumber/Pagenumber";
@@ -6,6 +6,8 @@ import Button from "../../components/Button/Button";
 import CheckBox from "../../components/CheckBox";  // CheckBox 임포트
 import Modal from "../../components/Modal/Modal";
 import axios from "axios";  // axios 임포트
+import {useStore as UserStore} from "../../stores/UserStore2/useStore"
+
 
 function Blacklist({ gridArea }) {
     const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태
@@ -15,12 +17,19 @@ function Blacklist({ gridArea }) {
     const [isModalOpen, setIsModalOpen] = useState(false);  // 모달 열기 상태
     const [selectedUsers, setSelectedUsers] = useState([]) // 모달 열면 체크된 사람들 보여줄 상태
 
+    //테스트 데이터
     const [allPosts, setAllPosts] = useState([  // 게시물 예시 데이터
         { name: "지소엽", nickname: "재벌3세", number: "010-1234-1234", email: "soyeob@naver.com", isBlacklisted: true, blacklistReason: "음담패설", addedDate: new Date().toISOString() },
         { name: "조연희", nickname: "조랭삼", number: "010-2255-6688", email: "yeonhui@naver.com", isBlacklisted: true, blacklistReason: "음담패설", addedDate: new Date().toISOString() },
         { name: "장은지", nickname: "덴버", number: "010-4525-5553", email: "eunji@naver.com", isBlacklisted: true, blacklistReason: "음담패설", addedDate: new Date().toISOString() },
         // 다른 사용자들 추가
     ]);
+
+    useEffect(()=> {
+        actions.getBlackList(currentPage,searchQuery)
+    },[currentPage,searchQuery,checkedItems,selectedUsers])
+
+    const { state, actions } = UserStore();
 
     // 검색 필터링된 데이터
     const filteredData = allPosts.filter(post =>
@@ -38,7 +47,7 @@ function Blacklist({ gridArea }) {
     );
 
     // 전체 페이지 수 계산
-    const totalPages = Math.ceil(filteredData.length / postsPerPage);
+    const totalPages = Math.ceil(state.userDataList.totalElements/ postsPerPage);
 
     // 검색어 변경 처리 함수
     const handleSearch = (query) => {
@@ -80,12 +89,13 @@ function Blacklist({ gridArea }) {
     const handleSubmit = async () => {
         try {
             // 실제 API 엔드포인트로 요청 보내기 (블랙리스트 삭제 처리)
-            const response = await axios.post("/api/remove-from-blacklist", { users: selectedUsers });
-            if (response.status === 200) {
-                // API 성공 시 모달 열기
-                setIsModalOpen(true);
-            } else {
-                console.error("Failed to remove users from blacklist");
+            console.log(selectedUsers)
+            let result = await actions.delBlackList({
+                blackList : selectedUsers
+            })
+
+            if(result) {
+                setSelectedUsers([])
             }
         } catch (error) {
             console.error("Error in API request:", error);
@@ -132,7 +142,7 @@ function Blacklist({ gridArea }) {
                             </tr>
                         </thead>
                         <tbody>
-                            {currentPosts.map(post => (
+                        {state?.userDataList ? state?.userDataList?.content.map(post => (
                                 <tr key={post.email}> {/* key는 이메일로 설정 */}
                                     <td>
                                         <CheckBox
@@ -143,11 +153,11 @@ function Blacklist({ gridArea }) {
                                     <td>{post.name}</td>
                                     <td>{post.nickname}</td>
                                     <td>{post.email}</td>
-                                    <td>{post.number}</td>
-                                    <td>{post.blacklistReason}</td>
-                                    <td>{post.addedDate}</td>
+                                    <td>{post.phoneNumber}</td>
+                                    <td>{post?.blacklists[0]?.blackReason}</td>
+                                    <td>{post?.blacklists[0]?.blackedDate}</td>
                                 </tr>
-                            ))}
+                            )) : null}
                         </tbody>
                     </table>
                 </div>

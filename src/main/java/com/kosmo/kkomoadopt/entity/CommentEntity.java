@@ -30,7 +30,7 @@ public class CommentEntity {
     @Column(name = "is_deleted", nullable = false)
     private Boolean isDeleted = false; // 댓글 삭제 여부를 나타내는 필드
     // 댓글 삭제 사유
-    @Column(name = "comment_del_reason", nullable = false)
+    @Column(name = "comment_del_reason")
     private String commentDelReason = null;
     // 삭제여부(관리자)
     // communitypost의 post id

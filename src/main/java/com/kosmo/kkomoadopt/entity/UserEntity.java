@@ -82,6 +82,9 @@ public class UserEntity {
     @Column(columnDefinition = "longtext")
     private List<String> scraps;
 
+    @Transient
+    private Long writeCount;
+
     @Override
     public String toString() {
         return "UserEntity{" +

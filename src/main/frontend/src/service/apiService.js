@@ -42,6 +42,16 @@ export const getUserList = (page,query) => apiClient.get('api/user/user/list', {
   }
 })
 
+export const getBlackList = (page,query) => apiClient.get('api/user/search/blacklist', {
+  params : {
+    page : page,
+    query : query
+  }
+})
+
+export const saveBlackList = (blackInfo)=> apiClient.post('api/user/regi/blacklist', blackInfo);
+export const delBlackList = (blackInfo)=> apiClient.post('api/user/del/blacklist', blackInfo);
+
 export const changeMyScrap = (adoptNum) => apiClient.post('/api/user/scrap/save', {
   adoptNum: adoptNum
 })

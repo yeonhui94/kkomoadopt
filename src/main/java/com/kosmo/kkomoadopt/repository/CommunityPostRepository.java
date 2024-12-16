@@ -26,6 +26,9 @@ public interface CommunityPostRepository extends JpaRepository<CommunityPostEnti
     List<CommunityPostEntity> findByPostCategory(PostCategory postCategory);
     long count();
 
+    Long countByUserId(String userId);
+
+
     Optional<CommunityPostEntity> findByPostUid(String postUid);
 
     // 카테고리로 입양 공고 조회

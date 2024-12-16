@@ -34,37 +34,6 @@ function LoginPageContents({ gridArea }) {
       setError("이메일 또는 비밀번호가 잘못되었습니다.");
     }
   };
-  // useEffect(() => {
-  //   const fetchAllComments = async () => {
-  //     const response = await commentActions.readAllComments();
-  //   };
-  //   fetchAllComments();
-  // }, []);
-//   모든 댓글을 불러오는 함수
-//   useEffect(() => {
-//     const fetchAllComments = async () => {
-//       try {
-//         const comments = await commentActions.readAllComments(); // 모든 댓글 가져오기
-//         console.log("Fetched all comments:", comments); // 콘솔에 로그 출력
-//       } catch (error) {
-//         console.error("Error fetching all comments:", error);
-//       }
-//     };
-
-//     fetchAllComments(); // 페이지 로드 시 모든 댓글 가져오기
-//   }, [commentActions]);
-// useEffect(() => {
-//   const fetchAllComments = async () => {
-//     try {
-//       // 댓글을 읽어오는 액션 호출
-//       await commentActions.readAllComments(); // 댓글 데이터를 가져오는 액션을 dispatch
-//     } catch (error) {
-//       console.error("Error fetching all comments:", error);
-//     }
-//   };
-//
-//   fetchAllComments(); // 페이지 로드 시 모든 댓글 가져오기
-// }, [commentActions, commentActions.readAllComments]);
 
   return (
     <div className={styles.LoginContainer} style={{ gridArea: gridArea }}>

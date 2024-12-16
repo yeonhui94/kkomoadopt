@@ -8,7 +8,10 @@ import {
     deleteUser,
     findUserId,
     changeUserPassword,
-    getUserList
+    getUserList,
+    saveBlackList,
+    delBlackList,
+    getBlackList
 } from '../../service/apiService'; // apiService에서 함수 import
 
 // action.js
@@ -130,6 +133,25 @@ export const getUserListAction = (page,query) => async(dispatch) => {
         console.error('사용자 리스트 가져오기 실패:', error);
     }
 };
+
+/**
+ * 
+ * @param {*} page 
+ * @param {*} query 
+ * @returns 
+ */
+export const getBlackListAction = (page,query) => async(dispatch) => {
+    try {
+        const response = await getBlackList(page,query);
+        dispatch({
+              type: READ_USER_LIST,
+              payload: response.data
+        });
+    } catch (error) {
+        console.error('사용자 리스트 가져오기 실패:', error);
+    }
+};
+
 //사용자 프로필 업데이트
 export const updateProfile = (userId, profileData) => async(dispatch) => {
     try {
@@ -154,6 +176,7 @@ export const register = (userData) => async(dispatch) => {
         console.error('회원가입 실패:', error);
     }
 };
+
 
 // 로그인 및 로그 아웃
 
@@ -203,6 +226,27 @@ export const login = (email, password) => async (dispatch) => {
     dispatch({ type: LOGIN_FAILED, payload: "로그인에 실패했습니다. 다시 시도해주세요." });
   }
 };
+
+
+// 로그인 액션 수정
+export const saveBlackListAction = (blackInfo) => async (dispatch) => {
+  try {
+    return await saveBlackList(blackInfo);
+    
+    } catch (error) {
+        console.error(':', error);
+    }
+};
+
+// 로그인 액션 수정
+export const delBlackListAction = (blackInfo) => async (dispatch) => {
+    try {
+      return await delBlackList(blackInfo);
+      
+      } catch (error) {
+          console.error(':', error);
+      }
+  };
 // 로그아웃
 export const logoutUser = () => async (dispatch) => {
     try {

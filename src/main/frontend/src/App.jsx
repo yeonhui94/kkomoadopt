@@ -64,13 +64,13 @@ function App() {
       element: <Main />,
       children: [
         {   path: "", element: <MainPage/> },
-        // 아이디, 비밀번호 찾기
+        // 아이디, 비밀번호 찾기s
         {
           path: "/IdPassword",
           element: <IdPasswordContents gridArea="section" />,
         },
         //로그인
-        // { path: "/login", element: <LoginPageContents gridArea="section" /> },
+        { path: "/login", element: <LoginPageContents gridArea="section" /> },
         //회원가입
         { path: "/join", element: <AccesstionPageContents gridArea="section" /> },
         // 회원가입 페이지

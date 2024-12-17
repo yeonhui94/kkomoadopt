@@ -17,8 +17,8 @@ const Adoption_Post = ({ post, noticedetail }) => {
 
     const formattedDetails = post?.noticeDetail?.noticeContent.replace(/\n/g, '<br />');
         
-    //{ id: 1, img: [img1, imgc1, imgm1], title: "3세 / 포메라니안 / 성격나쁨",
-    // category: "강아지", isScraped: false, breed: "포메라니안", date: new Date(2024, 12, 10), viewcount: 150 },
+    // const user = JSON.parse(localStorage.getItem("user")); 
+    // const isAdmin = user?.authority === "ADMIN";
         return (
 
         <div className={postst.post_container}>
@@ -116,12 +116,30 @@ const Adoption_Post = ({ post, noticedetail }) => {
                         &nbsp;&nbsp; : &nbsp;&nbsp;&nbsp; 귀여움
                     </li> */}
             </article>
-            <div style={{display: "flex", flexDirection:"row", justifyContent:"end"}} >
-                 <Button text={"수정"} width={"70px"} height={"40px"} verticalPadding={"0px"} horizontalPadding={"0px"}
-                 marginTop={"10px"} marginRight={"15px"}/>
-                  <Button text={"삭제"} width={"70px"} height={"40px"} verticalPadding={"0px"} horizontalPadding={"0px"}
-                  marginTop={"10px"} color={"#444"} bg1color={"var(--mainpage-dark)"} marginRight={"10px"}/>
-            </div>
+            {/* {isAdmin && (
+                <div style={{ display: "flex", flexDirection: "row", justifyContent: "end" }}>
+                    <Button
+                        text={"수정"}
+                        width={"70px"}
+                        height={"40px"}
+                        verticalPadding={"0px"}
+                        horizontalPadding={"0px"}
+                        marginTop={"10px"}
+                        marginRight={"15px"}
+                    />
+                    <Button
+                        text={"삭제"}
+                        width={"70px"}
+                        height={"40px"}
+                        verticalPadding={"0px"}
+                        horizontalPadding={"0px"}
+                        marginTop={"10px"}
+                        color={"#444"}
+                        bg1color={"var(--mainpage-dark)"}
+                        marginRight={"10px"}
+                    />
+                </div>
+            )} */}
         </div>
     )
 }

@@ -146,8 +146,6 @@ export const uploadProfileImage = (imageData) => apiClient.post('/api/mypage/use
 
 
 
-// 아직 백이랑 맞추지 않음
-
 // 1. 댓글 목록 조회
 export const getComments = () => apiClient.get('/api/comments');
 
@@ -194,7 +192,11 @@ export const createCommunityPost = (postData, files) => apiClientForm.post('/api
 export const updateCommunityPost = (postUid, updatedData) => apiClient.patch(`/api/community/posts/${postUid}`, updatedData);
 
 // 6. 커뮤니티 게시물 삭제
-export const deleteCommunityPost = (postUid) => apiClient.delete(`/api/community/posts/${postUid}`);
+export const deleteCommunityPost = (postUid) => apiClient.delete(`/api/community/posts/delete`, {
+  data : {
+    postUid : `${postUid}`
+  }
+});
 
 
 // QNA 관련 API 요청 메서드 추가

@@ -1,43 +1,55 @@
 import Divider from '../../../components/Divider';
-import { createBrowserRouter, Form, Route, Router, Routes, useParams } from 'react-router-dom';
-import React, { Component, useEffect, useState } from "react";
-// import Slider from "react-slick";
+import { useParams, useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
 import postst from '../../community/Commu_post.module.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import postimg1 from '../img/postimg1.svg';
-import styled from 'styled-components';
-import PostSlickSlide from '../report/PostSlickSlide';
-import { filterProps } from 'framer-motion';
 import Comment from '../report/Comment';
 import Button from '../../../components/Button/Button';
-import { useStore as CommentStore2 } from "../../../stores/CommentStore2/useStore";
+import { deleteCommunityPost } from '../../../service/apiService'; 
+
+const Announcement_Post = ({ postDetail }) => {
+    const [isDeleting, setIsDeleting] = useState(false);
+    const navigate = useNavigate(); // useNavigate로 페이지 이동 설정
+
+    const user = JSON.parse(localStorage.getItem("user"));
+    const isAdmin = user?.authority === "ADMIN";
+
+    const deletePost = async () => {
+        setIsDeleting(true);
+        try {
+            const response = await deleteCommunityPost(postDetail.postUid); // API 호출하여 게시글 삭제
+            console.log("게시글 삭제 성공", response); 
+            alert('게시물이 삭제되었습니다.');
+            navigate('/community'); // 페이지 이동 (navigate 사용)
+        } catch (error) {
+            console.error("게시글 삭제 실패", error);
+        } finally {
+            setIsDeleting(false);
+        }
+    };
 
 
-const Announcement_Post = ({postDetail }) => {
     if (!postDetail) {
         // 데이터가 없으면 로딩 중 또는 오류 메시지를 표시
         return <p>Loading post details...</p>;
     }
-//  { title: "새 게시물 제목 41", admin: "관리자", sdfsdf
-// date: new Date("2021-07-03"), img: "" , content:"쓰기 귀찮다 아무거나 쓸게요 나 맛있는거 먹고싶어 프로젝트 끝나면 잘거야",views: 21, files: 2 },
 
-
-    const {state : commentState, actions : commentActions} = CommentStore2();
+    // const {state : commentState, actions : commentActions} = CommentStore2();
     const { commentId } = useParams();
 
-    useEffect(()=>{
-      const fetchData = async ()=>{
-        try{
-          commentActions.readComments(commentId);
-        }catch (error){
-          setError(error);
-        }finally{
-        setLoading(false);
-      }
-    };
-    fetchData();
-},[]);
+//     useEffect(()=>{
+//       const fetchData = async ()=>{
+//         try{
+//           commentActions.readComments(commentId);
+//         }catch (error){
+//           setError(error);
+//         }finally{
+//         setLoading(false);
+//       }
+//     };
+//     fetchData();
+// },[]);
 
 // 이미지 관련 설정
     // let postImageComponent = null;
@@ -80,10 +92,20 @@ const Announcement_Post = ({postDetail }) => {
                     />
                 </div>
                 <Comment className={postst.post_petif} postDetail={postDetail}/>
-                <div className={postst.buttonwrap}>
-                    <Button  text={"수정"} width={"100px"} fontSize={"20px"} />
-                    <Button text={"삭제"} width={"100px"} fontSize={"20px"} />
-                </div>
+ 
+                {/* 수정, 삭제 버튼을 ADMIN 권한일 때만 보여줌 */}
+                {isAdmin && (
+                    <div className={postst.buttonwrap}>
+                        <Button text={"수정"} width={"100px"} fontSize={"20px"} />
+                        <Button
+                         text={"삭제"}
+                        width={"100px"}
+                        fontSize={"20px"} 
+                        onClick={deletePost}  // 삭제 버튼 클릭 시 deletePost 함수 실행
+                        // disabled={isDeleting}
+                        />
+                    </div>
+                )}
             </article>
         </div>
     )

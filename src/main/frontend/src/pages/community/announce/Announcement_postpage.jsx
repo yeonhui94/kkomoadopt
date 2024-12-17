@@ -6,8 +6,9 @@ import { useEffect, useState } from "react";
 import Announcement_Post from "./Announcement_Post";
 import { useStore } from "../../../stores/CommunityPostStore2/useStore";
 import { readCommunityPostDetail } from "../../../stores/CommunityPostStore2/action";
-import { useStore as CommentStore2 } from "../../../stores/CommentStore2/useStore";
+// import { useStore as CommentStore2 } from "../../../stores/CommentStore2/useStore";
 import { useStore as CommunityPostStore2 } from "../../../stores/CommunityPostStore2/useStore";
+
 
 const Announcement_postpage = ({ text = "공지사항"  , gridArea}) => {
 
@@ -24,7 +25,7 @@ const Announcement_postpage = ({ text = "공지사항"  , gridArea}) => {
         const fetchData = async () => {
             try {
               await communityActions.readCommunityPostDetail(postUid);
-              await commentActions.readComments(postUid);
+              // await commentActions.readComments(postUid);
             } catch (error) {
                 console.error("Error fetching post detail:", error);
                 setError(error);

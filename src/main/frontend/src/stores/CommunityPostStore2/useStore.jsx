@@ -47,11 +47,14 @@ export const useStore = () => {
     // CRUD 액션들
     readCommunityPosts: (posts) => readCommunityPosts(posts)(dispatch),
     readCommunityPostDetail: (postUid) => readCommunityPostDetail(postUid)(dispatch),
+    createCommunityPostAction: (postData) => dispatch(createCommunityPost(postData)),
+    updateCommunityPostAction: (postData) => dispatch(updateCommunityPost(postData)),
+    deleteCommunityPostAction: (postUid) => deleteCommunityPostAction(postUid)(dispatch),
     createCommunityPostAction: (postData, files) => createCommunityPostAction(postData, files)(dispatch),
     // updateCommunityPostAction: (postData) => dispatch(updateCommunityPost(postData)),
     // deleteCommunityPostAction: (postId) => dispatch(deleteCommunityPost(postId)),
     readCommunityPostsByCategory: (category) => readCommunityPostsByCategory(category)(dispatch)
-    
+//     deleteCommunityPostAction: (postUid) => deleteCommunityPostAction(postUid)(dispatch),
   };
 
   return { state, actions };  // 상태와 액션들을 반환

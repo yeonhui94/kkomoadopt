@@ -84,7 +84,6 @@ export const reducer = (state = initialState, action) => {
         ), // 삭제된 게시물 필터링
         communityPostDetail: null, // 삭제된 게시물 상세 정보 제거
       };
-
     // 상태 초기화
     case RESET_STATE:
       return initialState;

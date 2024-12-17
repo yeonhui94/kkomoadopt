@@ -13,7 +13,7 @@ import { filterProps } from 'framer-motion';
 import Comment from './Comment';
 import Button from '../../../components/Button/Button';
 
-const Report_Post = ({postDetail}) => {
+const Report_Post = ({postDetail, postActions, isAdded, comments, setIsAdded, user}) => {
 
     if (!postDetail) {
         // 데이터가 없으면 로딩 중 또는 오류 메시지를 표시
@@ -51,7 +51,7 @@ const Report_Post = ({postDetail}) => {
                     <div className={postst.post_article} dangerouslySetInnerHTML={{ __html: postDetail.postContent }}
                     />
                 </div>
-                <Comment className={postst.post_petif} postDetail={postDetail}/>
+                <Comment className={postst.post_petif} postActions={postActions} postDetail={postDetail} comments={comments} isAdded={isAdded} setIsAdded={setIsAdded} user={user} />
                 <div className={postst.buttonwrap}>
                     <Button  text={"수정"} width={"100px"} fontSize={"20px"} />
                     <Button text={"삭제"} width={"100px"} fontSize={"20px"} />

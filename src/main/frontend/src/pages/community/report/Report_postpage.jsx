@@ -11,22 +11,20 @@ import { readCommunityPostDetail } from "../../../stores/CommunityPostStore2/act
 
 const Report_postpage = ({ text = "신고합니다"  , gridArea}) => {
 
-  const {state : communityState, actions : communityActions } = useStore();
+  const {state : communityState, actions : communityActions } = CommunityPostStore2();
   const {state : commentState, actions : commentActions} = CommentStore2();
-
-
   const { postUid } = useParams();
-
-
-    const [ postDetail, setPostDetail ] = useState(null);
-    const [ loading, setLoading ] = useState(true);
-    const [ error, setError ] = useState(null);
+  const user = JSON.parse(localStorage.getItem('user'));
+  const [ postDetail, setPostDetail ] = useState(null);
+  const [ loading, setLoading ] = useState(true);
+  const [ error, setError ] = useState(null);
+  const [isAdded, setIsAdded] = useState(false);
 
     useEffect(()=>{
         const fetchData = async () => {
             try {
                await communityActions.readCommunityPostDetail(postUid);
-               await commentActions.readComments(postUid);
+               
             } catch (error) {
                 console.error("Error fetching post detail:", error);
                 setError(error);
@@ -36,7 +34,11 @@ const Report_postpage = ({ text = "신고합니다"  , gridArea}) => {
         };
 
         fetchData();
-    },[]);
+
+        if(isAdded){
+          setIsAdded(false);
+      }
+    },[postUid, isAdded]);
   
 
     if(loading) return <p>Loading...</p>;
@@ -48,7 +50,12 @@ const Report_postpage = ({ text = "신고합니다"  , gridArea}) => {
     style={{gridArea : gridArea }}>
       <div className={wtstyles.mainContainer}>
         <h1 style={{textAlign :"center"}}>{text}</h1>
-        <Report_Post postDetail={communityState.communityPostDetail}/>
+        <Report_Post postDetail={communityState.communityPostDetail}
+         postActions={communityActions}
+         comments={communityState.communityPostDetail.comments}
+         setIsAdded={setIsAdded}
+         isAdded={isAdded}
+         user={user}/>
       </div>
     </div>
   );

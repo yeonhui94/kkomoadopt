@@ -63,7 +63,7 @@ const Announcement_Wt = ({ gridArea, text = "공지사항" }) => {
             <input
               type="text"
               className={wtstyles.input}
-              value={title}
+              value={state.postTitle}
               onChange={(e) => actions.changePostTitle(e.target.value)}
             />
           </div>
@@ -80,7 +80,7 @@ const Announcement_Wt = ({ gridArea, text = "공지사항" }) => {
             <textarea
               className={wtstyles.textArea}
               defaultValue={``}
-              value={content}
+              value={state.postContent}
               onChange={(e) => actions.changePostContent(e.target.value)} // 내용 입력 처리
             />
           </div>

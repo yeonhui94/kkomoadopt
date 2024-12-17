@@ -7,16 +7,9 @@ import comstyle from '../CommunityWt.module.css';
 import Button from "../../../components/Button/Button";
 import Pagenumber from "../../../components/pagenumber/Pagenumber";
 import { Link, useLocation } from "react-router-dom";
-import img3 from "../../../assets/CardImage/3.jpg";
-import img9 from "../../../assets/CardImage/9.jpg";
-import img11 from "../../../assets/CardImage/11.jpg";
-import imgc2 from "../../../assets/CardImage/c2.jpg";
 // import { useStore as CommunityStore } from "../../../stores/CommentStore2/useStore";
 // import { readCommunityPosts } from "../../../stores/CommunityPostStore2/action";
 import { useStore } from "../../../stores/CommunityPostStore2/useStore";
-import { readCommunityPostsByCategory } from "../../../stores/CommunityPostStore2/action";
-
-
 
 const Announcement = ({ gridArea }) => {
   const { state: communityState, actions: communityActions } = useStore();
@@ -33,8 +26,6 @@ const Announcement = ({ gridArea }) => {
 
   // const [allPosts, setAllPosts] = useState([]);  // State to hold all posts
 
-
-  
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -112,9 +103,6 @@ const Announcement = ({ gridArea }) => {
 
     setAllPosts(sortedPosts); // setPosts 대신 사용
   };
-
-
-
 
   return (
     <div style={{ gridArea }} className={comstyle.posts_container}>

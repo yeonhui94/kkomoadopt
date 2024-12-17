@@ -73,18 +73,9 @@ export const reducer = (state = initialState, action) => {
     case READ_COMMUNITY_POST_DETAIL:
       return { ...state, communityPostDetail: action.payload }; // 게시물 상세 정보
     case CREATE_COMMUNITY_POST:
-      return {
-        ...state,
-        communityPosts: [...state.communityPosts, action.payload], // 새 게시물 추가
-      };
+      return {...state, communityPosts: action.payload}; // 새 게시물 추가
     case UPDATE_COMMUNITY_POST:
-      return {
-        ...state,
-        communityPosts: state.communityPosts.map((post) =>
-          post.postId === action.payload.postId ? action.payload : post
-        ), // 기존 게시물 업데이트
-        communityPostDetail: action.payload, // 수정된 게시물 상세 정보 업데이트
-      };
+      return { ...state, communityPostDetail: action.payload };
     case DELETE_COMMUNITY_POST:
       return {
         ...state,

@@ -176,18 +176,20 @@ export const getCommunityPostsByCategory = (category) => apiClient.get(`/api/com
 export const getCommunityPostDetail = (postUid) => apiClient.get(`/api/community/posts/${postUid}`);
 
 // 4. 커뮤니티 게시물 생성
-export const createCommunityPost = async (postData) => {
-  try {
-    const response = await apiClientForm.post('/api/community/posts', postData, {
-      headers: {
-        'Content-Type': 'application/json',  // JSON으로 보내는 데이터임을 명시
-      },
-    });
-    console.log('게시물 작성 성공:', response.data);
-  } catch (error) {
-    console.error('게시물 작성 실패:', error);
-  }
-};
+export const createCommunityPost = (postData, files) => apiClientForm.post('/api/community/posts/newposts', postData, files);
+
+// export const createCommunityPost = async (postData) => {
+//   try {
+//     const response = await apiClientForm.post('/api/community/posts', postData, {
+//       headers: {
+//         'Content-Type': 'application/json',  // JSON으로 보내는 데이터임을 명시
+//       },
+//     });
+//     console.log('게시물 작성 성공:', response.data);
+//   } catch (error) {
+//     console.error('게시물 작성 실패:', error);
+//   }
+// };
 // 5. 커뮤니티 게시물 수정
 export const updateCommunityPost = (postUid, updatedData) => apiClient.patch(`/api/community/posts/${postUid}`, updatedData);
 

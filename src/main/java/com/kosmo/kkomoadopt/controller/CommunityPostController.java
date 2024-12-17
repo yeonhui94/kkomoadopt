@@ -46,6 +46,8 @@ public class CommunityPostController {
         }
     }
 
+
+
 //    @PostMapping
 //    public ResponseEntity<Boolean> createPosts(@ModelAttribute CommunityDTO communityDTO, @RequestParam("files") MultipartFile[] files) {
 //        Boolean result = communityPostService.savePost(communityDTO, files);
@@ -69,7 +71,7 @@ public class CommunityPostController {
         }
 
         // 카테고리별 권한 체크: "ANNOUNCEMENT" 카테고리는 "ADMIN"만 작성 가능
-        if (communityDTO.postCategory() == PostCategory.ANNOUNCEMENT && !authority.name().equals("ADMIN")) {
+        if (communityDTO.getPostCategory() == PostCategory.ANNOUNCEMENT && !authority.name().equals("ADMIN")) {
             return new ResponseEntity<>("공지사항 카테고리는 ADMIN만 작성할 수 있습니다.", HttpStatus.FORBIDDEN);
         }
 
@@ -83,14 +85,7 @@ public class CommunityPostController {
         }
     }
 
-    @GetMapping
-    public ResponseEntity<List<CommunityListDTO>> getCommunityPostAll() {
-        // 서비스에서 전체 커뮤니티 게시글을 가져옴
-        List<CommunityListDTO> result = communityPostService.getAllCommunities();
 
-        // 200 OK 상태로 리스트 반환
-        return ResponseEntity.ok(result);
-    }
 
 
     @GetMapping("/{postUid}")

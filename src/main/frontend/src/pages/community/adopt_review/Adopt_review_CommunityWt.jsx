@@ -6,42 +6,96 @@ import wtstyles from "../CommunityWt.module.css";
 import Uploadfile from "./Uploadfile";
 import { Form } from "react-router-dom";
 import Button from "../../../components/Button/Button";
+import { useStore } from "../../../stores/CommunityPostStore2/useStore";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-// 폼으로 묶어줘~~~~
+const Adopt_review_CommunityWt = ({ text, gridArea }) => {
+  const { state, actions } = useStore();
+  const [files, setFiles] = useState(null);
 
-const Adopt_review_CommunityWt = ({text, gridArea}) => {
+  const navigate = useNavigate(); // 페이지 이동을 위한 navigate 훅
+
+  const handleFileChange = (files) => {
+    console.log("선택된 파일", files);
+
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setFiles([reader.result]);
+    };
+
+    if (files[0]) {
+      reader.readAsDataURL(files[0]);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // 제목과 내용이 비어있지 않으면 처리
+    if (state.postTitle && state.postContent) {
+      const formData = new FormData();
+      formData.append("postCategory", "ADOPTREVIEW");
+      formData.append("postTitle", state.postTitle);
+      formData.append("postContent", state.postContent);
+      formData.append("files", files);
+
+      actions.createCommunityPostAction(formData);
+
+      // 폼 제출 후 이동
+      navigate("/community/find-child");
+    } else {
+      console.log("모든 필드를 채워주세요");
+    }
+  };
+
   return (
-    <div className="commwrapper"
-    style={{gridArea : gridArea}}>
+    <div className="commwrapper" style={{ gridArea: gridArea }}>
       <div className={wtstyles.mainContainer}>
-        <h1 style={{textAlign :"center"}}>{text="입양 후기"}</h1>
+        <h1 style={{ textAlign: "center" }}>{(text = "입양 후기")}</h1>
         <Divider />
-    <Form 
-    style={{gridArea : gridArea}} className={wtstyles.Container}>
-        {/* 제목과 인풋박스를 묶은 부분 */}
-        <div className={wtstyles.inputContainer}>
-          <h3>제목</h3>
-          <input type="text" className={wtstyles.input} />
-        </div>
+        <Form style={{ gridArea: gridArea }} className={wtstyles.Container}>
+          {/* 제목과 인풋박스를 묶은 부분 */}
+          <div className={wtstyles.inputContainer}>
+            <h3>제목</h3>
+            <input
+              type="text"
+              className={wtstyles.input}
+              value={state.postTitle}
+              onChange={(e) => actions.changePostTitle(e.target.value)}
+            />
+          </div>
 
-        {/* 이미지와 파일첨부 버튼 */}
-        <div className={wtstyles.inputContainer}>
-          <h3>이미지 (필수)</h3>
-          <Uploadfile/>
-        </div>
+          {/* 이미지와 파일첨부 버튼 */}
+          <div className={wtstyles.inputContainer}>
+            <h3>이미지 (필수)</h3>
+            <Uploadfile onChange={handleFileChange} />
+          </div>
 
-        {/* 내용 입력 */}
-        <div className={wtstyles.textAreaContainer}>
-          <h3>내용</h3>
-          <textarea className={wtstyles.textArea} defaultValue={``} />
-        </div>
+          {/* 내용 입력 */}
+          <div className={wtstyles.textAreaContainer}>
+            <h3>내용</h3>
+            <textarea
+              className={wtstyles.textArea}
+              onChange={(e) => actions.changePostContent(e.target.value)}
+              defaultValue={``}
+              value={state.postContent}
+            />
+          </div>
 
-        {/* 등록 버튼 */}
-        <a className={wtstyles.submitButtonContainer}>
-          <Button className={wtstyles.smallButton} text={"등록"} width={"100px"} fontSize={"20px"}/>
-        </a>
-    </Form>
-    </div>
+          {/* 등록 버튼 */}
+          <a className={wtstyles.submitButtonContainer}>
+            <Button
+              className={wtstyles.smallButton}
+              text={"등록"}
+              width={"100px"}
+              fontSize={"20px"}
+              onClick={handleSubmit}
+            />
+          </a>
+        </Form>
+      </div>
     </div>
   );
 };

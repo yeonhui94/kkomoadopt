@@ -1,9 +1,6 @@
 package com.kosmo.kkomoadopt.service;
 
-import com.kosmo.kkomoadopt.dto.AdoptNoticeListDTO;
-import com.kosmo.kkomoadopt.dto.CommentListDTO;
-import com.kosmo.kkomoadopt.dto.CommunityListDTO;
-import com.kosmo.kkomoadopt.dto.CommunityDTO;
+import com.kosmo.kkomoadopt.dto.*;
 import com.kosmo.kkomoadopt.entity.AdoptionNoticeEntity;
 import com.kosmo.kkomoadopt.enums.NoticeCategory;
 import com.kosmo.kkomoadopt.entity.CommentEntity;
@@ -64,9 +61,9 @@ public class CommunityPostService {
             communityPostEntity.setPostId(maxPostId == null ? 1 : maxPostId + 1); // 첫 번째 게시물의 ID는 1
 
             // DTO에서 전달받은 데이터로 엔티티 채우기
-            communityPostEntity.setPostCategory(communityDTO.postCategory());
-            communityPostEntity.setPostTitle(communityDTO.postTitle());
-            communityPostEntity.setPostContent(communityDTO.postContent());
+            communityPostEntity.setPostCategory(communityDTO.getPostCategory());
+            communityPostEntity.setPostTitle(communityDTO.getPostTitle());
+            communityPostEntity.setPostContent(communityDTO.getPostContent());
             communityPostEntity.setPostCreatedAt(LocalDateTime.now()); // 생성 시간
             communityPostEntity.setPostUpdatedAt(LocalDateTime.now()); // 수정 시간
             communityPostEntity.setPostViewCount(0); // 기본 뷰 카운트
@@ -114,12 +111,12 @@ public class CommunityPostService {
         }
 
         // 게시글 ID가 null인지 확인
-        if (communityDTO.postUid() == null) {
+        if (communityDTO.getPostUid() == null) {
             throw new IllegalArgumentException("Post ID must not be null");
         }
 
         // 게시글을 DB에서 조회
-        Optional<CommunityPostEntity> existingCommunityOptional = communityPostRepository.findById(communityDTO.postUid());
+        Optional<CommunityPostEntity> existingCommunityOptional = communityPostRepository.findById(communityDTO.getPostUid());
         if (existingCommunityOptional.isEmpty()) {
             return false; // 게시글이 존재하지 않으면 업데이트 실패
         }
@@ -133,8 +130,8 @@ public class CommunityPostService {
             }
 
             // 게시글 내용과 수정 시간을 업데이트
-            communityPostEntity.setPostTitle(communityDTO.postTitle());
-            communityPostEntity.setPostContent(communityDTO.postContent());
+            communityPostEntity.setPostTitle(communityDTO.getPostTitle());
+            communityPostEntity.setPostContent(communityDTO.getPostContent());
             communityPostEntity.setPostUpdatedAt(LocalDateTime.now()); // 수정 시간을 현재 시간으로 설정
         }
         // ADMIN 권한인 경우: 모든 게시글 수정 가능
@@ -144,8 +141,8 @@ public class CommunityPostService {
 
             // ADMIN 권한일 때는 isDeleted 값을 자동으로 true로 설정 (삭제 처리)
             communityPostEntity.setIsDeleted(true); // 게시글을 삭제 상태로 설정
-            if (communityDTO.deleteReason() != null) {
-                communityPostEntity.setDeleteReason(communityDTO.deleteReason()); // 삭제 이유 저장
+            if (communityDTO.getDeleteReason() != null) {
+                communityPostEntity.setDeleteReason(communityDTO.getDeleteReason()); // 삭제 이유 저장
             }
         }
 
@@ -186,12 +183,12 @@ public class CommunityPostService {
         }
 
         // 게시글 ID가 null인지 확인
-        if (communityDTO.postUid() == null) {
+        if (communityDTO.getPostUid() == null) {
             throw new IllegalArgumentException("Post ID must not be null");
         }
 
         // 게시글을 DB에서 조회
-        Optional<CommunityPostEntity> existingCommunityOptional = communityPostRepository.findById(communityDTO.postUid());
+        Optional<CommunityPostEntity> existingCommunityOptional = communityPostRepository.findById(communityDTO.getPostUid());
         if (existingCommunityOptional.isEmpty()) {
             return false; // 게시글이 존재하지 않으면 삭제 실패
         }
@@ -475,7 +472,7 @@ public class CommunityPostService {
 //    }
 
     // CommunityMypageDTO 변환 함수
-    private CommunityMypageDTO convertToCommunityDTO(CommunityPostEntity entity) {
+    private CommunityMypageDTO communitytoDTO(CommunityPostEntity entity) {
         return new CommunityMypageDTO(
                 entity.getPostUid(),
                 entity.getPostId(),
@@ -493,7 +490,7 @@ public class CommunityPostService {
 
         // CommunityPostEntity 객체를 CommunityMypageDTO 변환
         return communityPostEntities.stream()
-                .map(this::convertToCommunityDTO)  // convertToCommunityDTO 변환
+                .map(this::communitytoDTO)  // convertToCommunityDTO 변환
                 .collect(Collectors.toList());  // List로 수집
     }
 

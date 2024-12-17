@@ -95,9 +95,9 @@ export const readCommunityPostDetail = (postUid) => async (dispatch) => {
 };
 
 // 3. 커뮤니티 게시물 생성
-export const createCommunityPostAction = (postData) => async (dispatch) => {
+export const createCommunityPostAction = (postData, files) => async (dispatch) => {
   try {
-    const response = await createCommunityPost(postData);  // API 호출: 새로운 커뮤니티 게시물 생성
+    const response = await createCommunityPost(postData, files);  // API 호출: 새로운 커뮤니티 게시물 생성
     dispatch({
       type: CREATE_COMMUNITY_POST,
       payload: response.data,  // 생성된 게시물 데이터

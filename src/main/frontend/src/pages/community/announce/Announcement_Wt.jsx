@@ -5,75 +5,98 @@ import { Form, Link, useOutletContext } from "react-router-dom";
 import Uploadfile from "../adopt_review/Uploadfile";
 import { useState } from "react";
 import Button from "../../../components/Button/Button";
+import { useStore } from "../../../stores/CommunityPostStore2/useStore";
+import { useNavigate } from "react-router-dom";
 
+const Announcement_Wt = ({ gridArea, text = "공지사항" }) => {
+  const { state, actions } = useStore();
+  const [files, setFiles] = useState(null);
 
-const Announcement_Wt = ({gridArea, text = "공지사항"}) => {
+  const navigate = useNavigate(); // 페이지 이동을 위한 navigate 훅
 
-  const [title, setTitle] = useState("");  // 제목
-  const [content, setContent] = useState("");  // 내용
-  const [files, setFiles] = useState([]);  // 파일들
+  const handleFileChange = (files) => {
+    console.log("선택된 파일", files);
 
-  // 폼 제출 시 동작sdfsdsdfsdfd
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setFiles([reader.result]);
+    };
+
+    if (files[0]) {
+      reader.readAsDataURL(files[0]);
+    }
+  };
+
   const handleSubmit = (e) => {
-    e.preventDefault(); // 페이지 리로딩 방지
+    e.preventDefault();
+    // 제목과 내용이 비어있지 않으면 처리
+    if (state.postTitle && state.postContent) {
+      const formData = new FormData();
+      formData.append("postCategory", "ANNOUNCEMENT");
+      formData.append("postTitle", state.postTitle);
+      formData.append("postContent", state.postContent);
+      formData.append("files", files);
 
-    // 새로운 게시물 데이터
-    const newPost = {
-      title: "새 게시물 제목",
-      content: "새 게시물 내용",
-      files: selectedFiles,
+      actions.createCommunityPostAction(formData);
+
+      // 폼 제출 후 이동
+      navigate("/community/find-child");
+    } else {
+      console.log("모든 필드를 채워주세요");
+    }
   };
-
-    // addPost 함수로 게시물 추가
-    addPost(newPost);
-
-    // 폼 초기화
-    setTitle("");
-    setContent("");
-    setFiles([]);
-  };
-
-
 
   return (
-    <div className="commwrapper"
-    style={{gridArea : gridArea}}>
+    <div className="commwrapper" style={{ gridArea: gridArea }}>
       <div className={wtstyles.mainContainer}>
-        <h1 style={{textAlign :"center"}}>{text}</h1>
+        <h1 style={{ textAlign: "center" }}>{text}</h1>
         <Divider />
-        <Form 
-        style={{gridArea : gridArea}} className={wtstyles.Container}
-        onSubmit={handleSubmit} >
-        {/* 제목과 인풋박스를 묶은 부분 */}
-        <div className={wtstyles.inputContainer}>
-          <h3>제목</h3>
-          <input type="text" className={wtstyles.input} 
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}  // 제목 입력 처리
-          />
-        </div>
+        <Form
+          style={{ gridArea: gridArea }}
+          className={wtstyles.Container}
+          onSubmit={handleSubmit}
+        >
+          {/* 제목과 인풋박스를 묶은 부분 */}
+          <div className={wtstyles.inputContainer}>
+            <h3>제목</h3>
+            <input
+              type="text"
+              className={wtstyles.input}
+              value={title}
+              onChange={(e) => actions.changePostTitle(e.target.value)}
+            />
+          </div>
 
-        {/* 이미지와 파일첨부 버튼dfdf */}
-        <div className={wtstyles.inputContainer}>
-          <h3>이미지 (필수)</h3>
-          <Uploadfile setFiles={setFiles}/>
-        </div>
+          {/* 이미지와 파일첨부 버튼dfdf */}
+          <div className={wtstyles.inputContainer}>
+            <h3>이미지 (필수)</h3>
+            <Uploadfile onChange={handleFileChange} />
+          </div>
 
-        {/* 내용 입력 */}
-        <div className={wtstyles.textAreaContainer}>
-          <h3>내용</h3>
-          <textarea className={wtstyles.textArea} defaultValue={``} 
-          value={content}
-          onChange={(e) => setContent(e.target.value)}  // 내용 입력 처리
-          />
-        </div>
+          {/* 내용 입력 */}
+          <div className={wtstyles.textAreaContainer}>
+            <h3>내용</h3>
+            <textarea
+              className={wtstyles.textArea}
+              defaultValue={``}
+              value={content}
+              onChange={(e) => actions.changePostContent(e.target.value)} // 내용 입력 처리
+            />
+          </div>
 
-        {/* 등록 버튼dfdfd */}
-        <Link to ="/commu" className={wtstyles.submitButtonContainer}>
-          <Button className={wtstyles.smallButton} text={"등록"} width={"100px"} fontSize={"20px"}/>
-        </Link>
-    </Form>
-    </div>
+          {/* 등록 버튼dfdfd */}
+          <Link to="/commu" className={wtstyles.submitButtonContainer}>
+            <Button
+              className={wtstyles.smallButton}
+              text={"등록"}
+              width={"100px"}
+              fontSize={"20px"}
+              onClick={handleSubmit}
+            />
+          </Link>
+        </Form>
+      </div>
     </div>
   );
 };

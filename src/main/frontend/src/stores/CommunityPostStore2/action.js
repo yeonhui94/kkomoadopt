@@ -20,6 +20,7 @@ export const CHANGE_IS_DELETED = "CHANGE_IS_DELETED";
 export const CHANGE_DELETE_REASON = "CHANGE_DELETE_REASON";
 export const CHANGE_COMMUNITY_AUTHOR = "CHANGE_COMMUNITY_AUTHOR";
 export const CHANGE_POST_VIEW_COUNT = "CHANGE_POST_VIEW_COUNT";
+export const UPDATE_ALL_FIELDS = "UPDATE_ALL_FIELDS";
 export const RESET_STATE = "RESET_STATE";
 
 // CRUD 관련 액션 타입들 추가
@@ -43,6 +44,10 @@ export const changeDeleteReason = (deleteReason) => ({ type: CHANGE_DELETE_REASO
 export const changeCommunityAuthor = (communityAuthor) => ({ type: CHANGE_COMMUNITY_AUTHOR, payload: communityAuthor });
 export const changePostViewCount = (postViewCount) => ({ type: CHANGE_POST_VIEW_COUNT, payload: postViewCount });
 export const resetState = () => ({ type: RESET_STATE });
+export const updateAllFields = (fields) => ({
+  type: UPDATE_ALL_FIELDS,
+  payload: fields
+});
 
 // CRUD 관련 액션 생성자
 
@@ -83,13 +88,13 @@ export const readCommunityPostDetail = (postUid) => async (dispatch) => {
     const response = await getCommunityPostDetail(postUid);  // API 호출: 게시물 상세 정보 가져오기
 
     if (response.status === 200) {
-    dispatch({
-      type: READ_COMMUNITY_POST_DETAIL,
-      payload: response.data,  // 게시물 상세 데이터
-    });
-    return "ok"
-  };
- } catch (error) {
+      dispatch({
+        type: READ_COMMUNITY_POST_DETAIL,
+        payload: response.data,  // 게시물 상세 데이터
+      });
+      return "ok"
+    };
+  } catch (error) {
     console.error("커뮤니티 게시물 상세 정보를 불러올 수 없습니다.", error);
   }
 };

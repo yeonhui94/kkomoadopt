@@ -15,7 +15,8 @@ export const CHANGE_COMMENT_CREATED_AT = "CHANGE_COMMENT_CREATED_AT";
 export const CHANGE_COMMENT_UPDATED_AT = "CHANGE_COMMENT_UPDATED_AT";
 export const CHANGE_IS_DELETED = "CHANGE_IS_DELETED";
 export const CHANGE_POST_UID = "CHANGE_POST_UID";
-export const CHANGE_COMMENT_AUTHOR = "CHANGE_COMMENT_AUTHOR";  
+export const CHANGE_COMMENT_AUTHOR = "CHANGE_COMMENT_AUTHOR";
+export const UPDATE_ALL_FIELDS = "UPDATE_ALL_FIELDS";
 export const RESET_STATE = "RESET_STATE";
 export const CREATE_COMMENT = "CREATE_COMMENT";
 export const READ_COMMENTS = "READ_COMMENTS";
@@ -33,20 +34,23 @@ export const changeIsDeleted = (isDeleted) => ({ type: CHANGE_IS_DELETED, payloa
 export const changePostUid = (postUid) => ({ type: CHANGE_POST_UID, payload: postUid });
 export const changeCommentAuthor = (commentAuthor) => ({ type: CHANGE_COMMENT_AUTHOR, payload: commentAuthor });
 export const resetState = () => ({ type: RESET_STATE });
-
+export const updateAllFields = (fields) => ({
+  type: UPDATE_ALL_FIELDS,
+  payload: fields
+});
 
 //커뮤니티 페이지 클릭 시 댓글리스트 불러오기
 export const readComments = (postUid) => async (dispatch) => {
   try {
     const response = await getComments(postUid);  // API 호출: 댓글 목록 가져오기
 
-    if (response.status ===200){
-    dispatch({
-      type: READ_COMMENTS,
-      payload: response.data,  // 댓글 목록 데이터
-    });
-    return "ok"
-};
+    if (response.status === 200) {
+      dispatch({
+        type: READ_COMMENTS,
+        payload: response.data,  // 댓글 목록 데이터
+      });
+      return "ok"
+    };
   } catch (error) {
     console.error("댓글 목록을 불러올 수 없습니다.", error);
   }
@@ -75,6 +79,7 @@ export const createComment = (commentData) => async (dispatch) => {
     });
   } catch (error) {
     console.error("댓글을 생성할 수 없습니다.", error);
+    throw error;
   }
 };
 

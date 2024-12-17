@@ -6,6 +6,7 @@ import {
   CHANGE_IS_DELETED,
   CHANGE_POST_UID,
   CHANGE_COMMENT_AUTHOR,
+  UPDATE_ALL_FIELDS,
   RESET_STATE,
   READ_COMMENTS,
   READ_COMMENT_DETAIL,
@@ -46,7 +47,8 @@ export const reducer = (state = initialState, action) => {
       return { ...state, commentAuthor: action.payload };
     case RESET_STATE:
       return initialState; // 상태 초기화
-
+    case UPDATE_ALL_FIELDS:
+      return { ...state, ...action.payload };
     // 댓글 목록 읽기
     case READ_COMMENTS:
       return { ...state, comments: action.payload };
@@ -57,7 +59,7 @@ export const reducer = (state = initialState, action) => {
 
     // 새로운 댓글 생성
     case CREATE_COMMENT:
-      return { ...state, comments: [...state.comments, action.payload] };
+      return { ...state, comments: action.payload };
 
     // 댓글 수정
     case UPDATE_COMMENT:
@@ -70,12 +72,12 @@ export const reducer = (state = initialState, action) => {
       };
 
     // 댓글 삭제
-    // case DELETE_COMMENT:
-    //   return {
-    //     ...state,
-    //     comments: state.comments.filter(comment => comment.commentId !== action.payload),
-    //     commentDetail: null // 삭제된 댓글은 상세 정보에서 제거
-    //   };
+    case DELETE_COMMENT:
+      return {
+        ...state,
+        comments: state.comments.filter(comment => comment.commentId !== action.payload),
+        commentDetail: null // 삭제된 댓글은 상세 정보에서 제거
+      };
     case DELETE_COMMENT:
       return {
         ...state,

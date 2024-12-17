@@ -11,12 +11,14 @@ import {
   CHANGE_DELETE_REASON,
   CHANGE_COMMUNITY_AUTHOR,
   CHANGE_POST_VIEW_COUNT,
+  UPDATE_ALL_FIELDS,
   RESET_STATE,
   READ_COMMUNITY_POSTS,  // 추가된 액션 타입
   READ_COMMUNITY_POST_DETAIL,  // 추가된 액션 타입
   CREATE_COMMUNITY_POST,  // 추가된 액션 타입
   UPDATE_COMMUNITY_POST,  // 추가된 액션 타입
   DELETE_COMMUNITY_POST  // 추가된 액션 타입
+
 } from './action';
 
 // 초기 상태 정의
@@ -65,7 +67,8 @@ export const reducer = (state = initialState, action) => {
       return { ...state, communityAuthor: action.payload };
     case CHANGE_POST_VIEW_COUNT:
       return { ...state, postViewCount: action.payload };
-
+    case UPDATE_ALL_FIELDS:
+      return { ...state, ...action.payload };
     // CRUD 작업 관련 상태 변경
     // {커뮤니티관련된state, communityPosts: {데이터 }}
     case READ_COMMUNITY_POSTS:
@@ -73,7 +76,7 @@ export const reducer = (state = initialState, action) => {
     case READ_COMMUNITY_POST_DETAIL:
       return { ...state, communityPostDetail: action.payload }; // 게시물 상세 정보
     case CREATE_COMMUNITY_POST:
-      return {...state, communityPosts: action.payload}; // 새 게시물 추가
+      return { ...state, communityPosts: action.payload }; // 새 게시물 추가
     case UPDATE_COMMUNITY_POST:
       return { ...state, communityPostDetail: action.payload };
     case DELETE_COMMUNITY_POST:

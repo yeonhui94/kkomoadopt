@@ -71,6 +71,7 @@ export const readQnaPostDetail = (qnaUid) => async (dispatch) => {
             type: READ_QNA_POST_DETAIL,
             payload: response,  // 반환된 QNA 게시물 상세 정보
         });
+        
     } catch (error) {
         console.error("QNA 게시물 상세 정보를 불러올 수 없습니다.", error);
     }

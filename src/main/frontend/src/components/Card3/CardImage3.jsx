@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import TextBox2 from "../Card1/TextBox2"; 
+import { Link } from "react-router-dom";
 
 const BackgroundDiv = styled.div`
   background-color: black;
@@ -81,8 +82,9 @@ const AdditionalText = styled.div`
   transition: opacity 0.5s ease, transform 0.5s ease;
 `;
 
-const CardImage3 = ({ imageFile, text, additionalText, ps, size, isFirst,thirdtext }) => {
+const CardImage3 = ({ imageFile, text, additionalText, ps, size, isFirst,thirdtext, to }) => {
   return (
+    <Link to={"adoption/post/2024-74103"}>
     <ImageWrapper url={imageFile} ps={ps}>
       <BackgroundDiv />
       {isFirst && <Divider className="divider" />}
@@ -90,6 +92,7 @@ const CardImage3 = ({ imageFile, text, additionalText, ps, size, isFirst,thirdte
       <AdditionalText className="additional-text">{additionalText}</AdditionalText>
       {thirdtext && <ThirdText>{thirdtext}</ThirdText>}
     </ImageWrapper>
+    </Link>
   );
 };
 

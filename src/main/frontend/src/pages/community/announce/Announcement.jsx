@@ -55,9 +55,9 @@ const Announcement = ({ gridArea }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState(""); // 검색어 상태 추가
   const postsPerPage = 10;
+  const user = JSON.parse(localStorage.getItem('user')); // 로컬스토리지에서 user 정보 가져오기
+
   // const [filteredPosts, setFilteredPosts] = useState([]); // 상태로 관리
-
-
   // 게시물 추가
   // const addPost = (newPost) => {
   //   setAllPosts([newPost, ...allPosts]); // 새로운 게시물을 맨 앞에 추가
@@ -165,7 +165,8 @@ const Announcement = ({ gridArea }) => {
             // handlePageClick={handlePageClick}
           />
         </div>
-        {isAdminPage && (
+        {/* ADMIN 권한일 때만 글쓰기 버튼 표시 */}
+        {user?.authority === "ADMIN" && (
           <Link to="/commu_announce_wt" className={comstyle.report_btn}>
             <Button text={"글쓰기"} width={"100px"} />
           </Link>

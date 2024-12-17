@@ -20,4 +20,5 @@ public class CommunityDTO{
     private String deleteReason;
     private String userId;
     private String postAuthor;
+    private String postId;
 }

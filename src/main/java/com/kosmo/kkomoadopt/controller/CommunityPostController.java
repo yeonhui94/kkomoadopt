@@ -83,7 +83,7 @@ public class CommunityPostController {
         }
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<CommunityListDTO>> getCommunityPostAll() {
         // 서비스에서 전체 커뮤니티 게시글을 가져옴
         List<CommunityListDTO> result = communityPostService.getAllCommunities();

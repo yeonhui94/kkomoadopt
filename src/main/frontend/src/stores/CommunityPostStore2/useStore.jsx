@@ -45,7 +45,7 @@ export const useStore = () => {
     resetState: () => dispatch(resetState()),  // 상태 초기화
 
     // CRUD 액션들
-    readCommunityPosts: (posts) => dispatch(readCommunityPosts(posts)),
+    readCommunityPosts: (posts) => readCommunityPosts(posts)(dispatch),
     readCommunityPostDetail: (postUid) => readCommunityPostDetail(postUid)(dispatch),
     createCommunityPostAction: (postData) => dispatch(createCommunityPost(postData)),
     updateCommunityPostAction: (postData) => dispatch(updateCommunityPost(postData)),

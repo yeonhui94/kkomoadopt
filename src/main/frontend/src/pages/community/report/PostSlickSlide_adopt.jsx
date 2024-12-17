@@ -41,7 +41,7 @@ const SlideImage = styled.img`
   display:  flex;
   justify-self: center;
   align- self: center;
-  max-width: 300px;  /* 최대 너비는 100% */
+  max-width: 100%;  /* 최대 너비는 100% */
   max-height: 100%; /* 최대 높이는 100% */
   object-fit: cover; /* 이미지 비율을 유지하면서 영역에 맞추기 */
   object-position: center; /* 이미지를 항상 중앙에 배치 */
@@ -90,7 +90,7 @@ const ArrowButton = styled.button`
 
 `;
 
-function PostSlickSlide({img}) {
+function PostSlickSlide_adopt({img}) {
   const settings = {
     dots: true,
     infinite: true,
@@ -121,4 +121,4 @@ function PostSlickSlide({img}) {
   );
 }
 
-export default PostSlickSlide;
+export default PostSlickSlide_adopt;

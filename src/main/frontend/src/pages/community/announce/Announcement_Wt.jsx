@@ -41,7 +41,7 @@ const Announcement_Wt = ({ gridArea, text = "공지사항" }) => {
       actions.createCommunityPostAction(formData);
 
       // 폼 제출 후 이동
-      navigate("/community");
+      navigate("/community/find-child");
     } else {
       console.log("모든 필드를 채워주세요");
     }
@@ -86,7 +86,7 @@ const Announcement_Wt = ({ gridArea, text = "공지사항" }) => {
           </div>
 
           {/* 등록 버튼dfdfd */}
-          <Link to="/commu" className={wtstyles.submitButtonContainer}>
+          <Link to="/community" className={wtstyles.submitButtonContainer}>
             <Button
               className={wtstyles.smallButton}
               text={"등록"}

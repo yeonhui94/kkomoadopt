@@ -44,7 +44,7 @@ const Adopt_review_CommunityWt = ({ text, gridArea }) => {
       actions.createCommunityPostAction(formData);
 
       // 폼 제출 후 이동
-      navigate("/community/find-child");
+      navigate("/community/adoption-review");
     } else {
       console.log("모든 필드를 채워주세요");
     }

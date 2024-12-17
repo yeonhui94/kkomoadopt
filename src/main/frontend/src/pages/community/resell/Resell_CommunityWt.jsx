@@ -44,7 +44,7 @@ const Resell_CommunityWt = ({ text, gridArea }) => {
       actions.createCommunityPostAction(formData);
 
       // 폼 제출 후 이동
-      navigate("/community/find-child");
+      navigate("/community/resell");
     } else {
       console.log("모든 필드를 채워주세요");
     }

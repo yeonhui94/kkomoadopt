@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Card1 from "../components/Card1/Card1"; // Card1 컴포넌트 임포트
+import Card1 from "../components/Card1/Card1";
 import styles from "./Review.module.css";
 import Footer from "../container/footer/Footer";
 import Divider from "../components/Divider";
@@ -8,10 +8,8 @@ import Dropdown from "../components/DropDown";
 import Button from "../components/Button/Button";
 import Pagenumber from "../components/pagenumber/Pagenumber";
 import { Link } from "react-router-dom";
-// import ParentComponent from "./ParentComponent";
 import styled from "styled-components";
 import { useStore } from "../stores/CommunityPostStore2/useStore";
-
 
 const Review = ({ gridArea }) => {
   const initialState = {
@@ -21,67 +19,71 @@ const Review = ({ gridArea }) => {
   // useStore에서 상태를 관리하는 경우
   const { state: communityState, actions: communityActions } = useStore(initialState);
 
-  console.log("Available actions:", communityActions);
-
   const options = ["전체보기", "최신 순", "오래된 순", "조회 수 높은 순", "조회 수 낮은 순"];
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [sortOption, setSortOption] = useState("전체보기");
+  const postsPerPage = 12; // 한 페이지에 표시할 카드 수
 
+  // 최초 한 번만 데이터를 불러오는 useEffect
   useEffect(() => {
     const fetchPosts = async () => {
       if (!communityActions || !communityActions.readCommunityPostsByCategory) {
         console.error("communityActions 또는 함수가 초기화되지 않았습니다.");
         return;
       }
-  
+
       try {
         const response = await communityActions.readCommunityPostsByCategory("ADOPTREVIEW");
         console.log("Fetched data:", response); // 반환된 데이터 확인
-        console.log("Updated state after fetching posts:", communityState.communityPosts); // 업데이트된 상태 확인
       } catch (error) {
         console.error("Error fetching posts:", error);
       }
     };
-    fetchPosts();
-  },[]);
 
+    // 데이터가 없을 때만 fetchPosts 호출
+    if (!communityState.communityPosts.length) {
+      fetchPosts();
+    }
+  }, [communityActions, communityState.communityPosts.length]);  // 의존성 배열에 데이터 길이 추가
 
-  // // communityState가 변경된 후 데이터를 확인
-  // useEffect(() => {
-  //   console.log("Updated communityState.communityPosts:", communityState.communityPosts);
-  //   communityState.communityPosts.forEach((post, index) => {
-  //     console.log(`Post ${index}:`, post);
-  //   });
-  // }, [communityState]);
-
-
-
-  const [currentPage, setCurrentPage] = useState(1);
-  // const [sortedData, setSortedData] = useState(cardData);
-  const [searchQuery, setSearchQuery] = useState('');
-  const postsPerPage = 12; // 한 페이지에 표시할 카드 수
-
-  console.log(communityState.communityPosts)
-
-
+  // 게시물 필터링 (검색)
   const filteredPosts = (communityState.communityPosts || []).filter(post => {
-    console.log("post 객체 확인22:", post); // 각 post 객체 확인
     const postTitle = post.postTitle ? post.postTitle.toLowerCase() : ''; // 안전하게 비교
     const postContent = post.postContent ? post.postContent.toLowerCase() : ''; // 안전하게 비교
-    
+
     const query = searchQuery.toLowerCase().trim(); // 검색어 소문자 및 공백 제거
-  
+
     return postTitle.includes(query) || postContent.includes(query); // 필터링 조건
   });
 
+  // 정렬된 게시물 계산
+  const sortedPosts = () => {
+    let sortedPosts = [...filteredPosts];
 
+    if (sortOption === "최신 순") {
+      sortedPosts.sort((a, b) => new Date(b.postCreatedAt) - new Date(a.postCreatedAt)); // 최신순
+    } else if (sortOption === "오래된 순") {
+      sortedPosts.sort((a, b) => new Date(a.postCreatedAt) - new Date(b.postCreatedAt)); // 오래된 순
+    } else if (sortOption === "조회 수 높은 순") {
+      sortedPosts.sort((a, b) => b.postViewCount - a.postViewCount); // 조회 수 높은 순
+    } else if (sortOption === "조회 수 낮은 순") {
+      sortedPosts.sort((a, b) => a.postViewCount - b.postViewCount); // 조회 수 낮은 순
+    }
 
-    // 검색어 변경 시 호출되는 함수
-    const handleSearch = (query) => {
-      setSearchQuery(query); // 검색어 상태 업데이트
-    };
+    return sortedPosts;
+  };
 
+  // 페이지 변경 처리
+  const handlePageClick = (page) => {
+    setCurrentPage(page);
+  };
 
-
+  // 검색어 변경 시 호출되는 함수
+  const handleSearch = (query) => {
+    setSearchQuery(query); // 검색어 상태 업데이트
+  };
 
   return (
     <div style={{ gridArea: gridArea }}>
@@ -91,7 +93,7 @@ const Review = ({ gridArea }) => {
             <Dropdown
               options={options}
               defaultText="전체보기"
-            // onChange={handleSortChange}
+              onChange={(option) => setSortOption(option)} // 정렬 옵션 변경
             />
             <SearchBar
               placeholder={"글 내용 & 글 제목"}
@@ -100,20 +102,23 @@ const Review = ({ gridArea }) => {
             />
           </div>
         </div>
+
         <div className={styles.rwmaincontainer}>
           <div className={styles.rwdivider}>
             <Divider width={"100%"} backgroundColor={"var(--line-color)"} />
-          </div >
-          {console.log("communityPosts before map:", filteredPosts)}
-          {filteredPosts.length > 0 ? (
-            filteredPosts.map((slideData, index) => (
+          </div>
+
+          {console.log("Filtered and Sorted Posts:", sortedPosts())}
+
+          {sortedPosts().length > 0 ? (
+            sortedPosts().slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage).map((slideData, index) => (
               <Link key={slideData?.id} to={`/adoption-review/post/${slideData?.postUid}`}>
                 <Card1 
                   key={index} 
                   images={slideData?.postImgUrl} 
                   text={slideData?.postTitle}
                   additionaltext={slideData?.postContent}
-                  />
+                />
               </Link>
             ))
           ) : (
@@ -123,6 +128,11 @@ const Review = ({ gridArea }) => {
 
         <div className={styles.btnContainer}>
           <div className={styles.pgncontainer}>
+            <Pagenumber
+              totalPages={Math.ceil(sortedPosts().length / postsPerPage)}
+              currentPage={currentPage}
+              handlePageClick={handlePageClick}
+            />
           </div>
           <Link to="/commu_review_wt" className={styles.buttonContainer}>
             <Button text={"글쓰기"} />

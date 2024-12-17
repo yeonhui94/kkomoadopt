@@ -38,6 +38,7 @@ public class AdoptionNoticeService {
     private final FileService fileService;
     private final UserRepository userRepository;
 
+
     // post save 메서드
     public boolean saveNotice(AdoptNoticeDTO adoptNoticeDTO, MultipartFile[] files)  {
 
@@ -89,7 +90,7 @@ public class AdoptionNoticeService {
         }
     }
 
-    // 전체 게시물 가져오기(페이지별)
+    // 전체 게시물 페이지별 가져오기(입양일 상관없이 모두 가져옴, 관리자페이지용)
     public AdoptNoticeListDTO getNotices(Pageable pageable) {
         Page<AdoptionNoticeEntity> adoptionNoticePage = adoptionNoticeRepository.findAll(pageable);
 
@@ -102,7 +103,20 @@ public class AdoptionNoticeService {
         return new AdoptNoticeListDTO(notices, adoptionNoticePage.getTotalElements(), adoptionNoticePage.getNumber(),null);
     }
 
-    // 카테고리로 입양 공고 가져오기(페이지별)
+    // 전체 게시물 페이지별 가져오기(입양일이 안지난것만 가져옴)
+    public AdoptNoticeListDTO getNoticesDateNow(LocalDate today,Pageable pageable) {
+        Page<AdoptionNoticeEntity> adoptionNoticePage = adoptionNoticeRepository.findByEuthanasiaDateGreaterThan(today, pageable);
+
+        // 결과를 DTO로 변환
+        List<AdoptNoticeListDTO.Notice> notices = adoptionNoticePage.getContent().stream()
+                .map(this::convertToNoticeDTO)
+                .collect(Collectors.toList());
+
+        // DTO를 리턴
+        return new AdoptNoticeListDTO(notices, adoptionNoticePage.getTotalElements(), adoptionNoticePage.getNumber(),null);
+    }
+
+    // 카테고리 게시물 페이지별 가져오기(입양일 상관없이 모두 가져옴, 관리자페이지용)
     public AdoptNoticeListDTO getNoticesByCategory(NoticeCategory noticeCategory, Pageable pageable) {
         Page<AdoptionNoticeEntity> adoptionNoticePage = adoptionNoticeRepository.findByNoticeCategory(noticeCategory, pageable);
 
@@ -115,8 +129,21 @@ public class AdoptionNoticeService {
         return new AdoptNoticeListDTO(notices, adoptionNoticePage.getTotalElements(), adoptionNoticePage.getNumber(),null);
     }
 
+    // 카테고리 게시물 페이지별 가져오기(입양일이 안지난것만 가져옴)
+    public AdoptNoticeListDTO getNoticesByCategoryDateNow(NoticeCategory noticeCategory, LocalDate today, Pageable pageable) {
+        Page<AdoptionNoticeEntity> adoptionNoticePage = adoptionNoticeRepository.findByNoticeCategoryAndEuthanasiaDateGreaterThan(noticeCategory, today ,pageable);
+
+        // 결과를 DTO로 변환
+        List<AdoptNoticeListDTO.Notice> notices = adoptionNoticePage.getContent().stream()
+                .map(this::convertToNoticeDTO)
+                .collect(Collectors.toList());
+
+        // DTO를 리턴
+        return new AdoptNoticeListDTO(notices, adoptionNoticePage.getTotalElements(), adoptionNoticePage.getNumber(),null);
+    }
+
     // 검색어로 입양 공고 조회(페이지별)
-    public AdoptNoticeListDTO searchNotices(String searchTerm, NoticeCategory noticeCategory,Pageable pageable) {
+    public AdoptNoticeListDTO searchNoticesDateNow(String searchTerm, NoticeCategory noticeCategory,Pageable pageable, LocalDate today) {
         Page<AdoptionNoticeEntity> adoptionNoticePage = null;
         if (NoticeCategory.ALL.equals(noticeCategory)) {
             adoptionNoticePage = adoptionNoticeRepository.findBySearchTerm(searchTerm, pageable);

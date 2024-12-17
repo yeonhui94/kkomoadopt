@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +40,7 @@ public class AdoptionNoticeController {
         return ResponseEntity.ok(result);
     }
 
-    // 입양공지 조건별 검색(8개)
+    // 입양공지 조건별 검색(8개) 관리자페이지
     @GetMapping("/list8")
     public ResponseEntity<AdoptNoticeListDTO> getAdminAdoptLists(
             @RequestParam(name = "page", defaultValue = "1") int page,   // 페이지 번호 (디폴트: 0)
@@ -69,14 +70,18 @@ public class AdoptionNoticeController {
         return ResponseEntity.ok(result);
     }
 
-    // 입양공지 조건별 검색(12개)
+    // 입양공지 조건별 검색(12개) 메인페이지
     @GetMapping("/list")
     public ResponseEntity<AdoptNoticeListDTO> getLists(
             @RequestParam(name = "page", defaultValue = "1") int page,   // 페이지 번호 (디폴트: 0)
             @RequestParam(name = "noticeCategory") NoticeCategory noticeCategory,  // 카테고리 (선택 사항)
             @RequestParam(name = "sortBy", defaultValue = "euthanasiaDate") String sortBy,  // 정렬 기준 (디폴트: "name")
             @RequestParam(name = "sortOrder", defaultValue = "desc") String sortOrder,
+            @RequestParam(name = "euthanasiaDate", required = false) LocalDate euthanasiaDate, // 입양 종료일 (선택 사항)
             HttpServletRequest request) {  // 정렬 순서 (디폴트: "asc")
+
+        // 현재 날짜 가져오기
+        LocalDate today = LocalDate.now();
 
         // 페이지와 정렬 설정
         Sort sort = Sort.by(Sort.Order.asc(sortBy));  // 기본 정렬은 오름차순
@@ -92,11 +97,13 @@ public class AdoptionNoticeController {
         AdoptNoticeListDTO result;
         // 카테고리 필터링 처리
         if (NoticeCategory.ALL.equals(noticeCategory)) {
-            result = adoptionNoticeService.getNotices(pageable);  // 카테고리 없이 전체 아이템 반환
+                // euthanasiaDate가 오늘일 때
+                result = adoptionNoticeService.getNoticesDateNow(today, pageable);  // 종료일을 직접 받았을 때
         } else {
-            result = adoptionNoticeService.getNoticesByCategory(noticeCategory, pageable);
+                // 카테고리가 특정 값일 때
+                // euthanasiaDate가 오늘일 때
+                result = adoptionNoticeService.getNoticesByCategoryDateNow(noticeCategory, today, pageable);  // 카테고리 + 종료일 필터링
         }
-
         result = adoptionNoticeService.getUserScrapMappingList(result,request);
 
         // 상태 코드 200 OK와 함께 반환
@@ -110,7 +117,12 @@ public class AdoptionNoticeController {
             @RequestParam(name = "noticeCategory") NoticeCategory noticeCategory,  // 카테고리 (선택 사항)
             @RequestParam(name = "search") String search,  // 카테고리 (선택 사항)
             @RequestParam(name = "sortBy", defaultValue = "euthanasiaDate") String sortBy,  // 정렬 기준 (디폴트: "name")
-            @RequestParam(name = "sortOrder", defaultValue = "desc") String sortOrder, HttpServletRequest request) {  // 정렬 순서 (디폴트: "asc")
+            @RequestParam(name = "sortOrder", defaultValue = "desc") String sortOrder,
+            @RequestParam(name = "euthanasiaDate", required = false) LocalDate euthanasiaDate, // 입양 종료일 (선택 사항)
+            HttpServletRequest request) {  // 정렬 순서 (디폴트: "asc")
+
+        // 현재 날짜 가져오기
+        LocalDate today = LocalDate.now();
 
         // 페이지와 정렬 설정
         Sort sort = Sort.by(Sort.Order.asc(sortBy));  // 기본 정렬은 오름차순
@@ -118,7 +130,7 @@ public class AdoptionNoticeController {
             sort = Sort.by(Sort.Order.desc(sortBy));
         }
         Pageable pageable = PageRequest.of(page - 1, 12,sort);
-        AdoptNoticeListDTO result = adoptionNoticeService.searchNotices(search,noticeCategory, pageable);
+        AdoptNoticeListDTO result = adoptionNoticeService.searchNoticesDateNow(search,noticeCategory, pageable, today);
 
         result = adoptionNoticeService.getUserScrapMappingList(result,request);
 

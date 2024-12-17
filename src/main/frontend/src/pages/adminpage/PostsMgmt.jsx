@@ -8,6 +8,7 @@ import Button from "../../components/Button/Button";
 import { useEffect } from "react";
 import Modal from "../../components/Modal/Modal";
 import { Link } from "react-router-dom";
+import {useStore as CommunityPostStore2} from "../../stores/CommunityPostStore2/useStore"
 
 function PostsMgmt({ gridArea }) {
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태
@@ -22,6 +23,8 @@ function PostsMgmt({ gridArea }) {
   const closeInfoModal = () => setIsInfoModalOpen(false);
   const [selectedReason, setSelectedReason] = useState("욕설");
   const [allPosts, setAllPosts] = useState([ // 모든 게시물 상태로 관리
+
+    
     { id: 1, category1: "아이를 찾습니다",adress:"community/find-child", title: "광진구에서 실종", date: "2024-11-28", nickname: "user1", reason: "욕설", category: "삭제된 글" },
     { id: 2, category1: "입양후기",adress:"community/adoption-review", title: "인삼이 너무 기여워요", date: "2024-11-27", nickname: "user2", reason: "음담패설", category: "삭제된 댓글" },
     { id: 3, category1: "사고팝니다",adress:"community/resell", title: "목줄 판매합니다", date: "2024-11-26", nickname: "user3", reason: "", category: "댓글" },

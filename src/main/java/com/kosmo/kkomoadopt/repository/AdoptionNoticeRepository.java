@@ -23,14 +23,14 @@ public interface AdoptionNoticeRepository extends JpaRepository<AdoptionNoticeEn
     // 입양 공고 전체 조회
     Page<AdoptionNoticeEntity> findAll(Pageable pageable);
 
-    // 입양 공고 전체 조회(입양종료일 안지난것만)
-    Page<AdoptionNoticeEntity> findAllAndEuthanasiaDateGreaterThan(LocalDate euthanasiaDate, Pageable pageable);
+//    // 입양 공고 전체 조회(입양종료일 안지난것만)
+//    Page<AdoptionNoticeEntity> findAllAndEuthanasiaDateGreaterThan(LocalDate euthanasiaDate, Pageable pageable);
 
     // 카테고리로 입양 공고 조회
     Page<AdoptionNoticeEntity> findByNoticeCategory(NoticeCategory noticeCategory, Pageable pageable);
 
-    // 카테고리로 입양 공고 조회(입양종료일 안지난것만)
-    Page<AdoptionNoticeEntity> findByNoticeCategoryAndEuthanasiaDateGreaterThan(NoticeCategory noticeCategory, LocalDate euthanasiaDate, Pageable pageable);
+//    // 카테고리로 입양 공고 조회(입양종료일 안지난것만)
+//    Page<AdoptionNoticeEntity> findByNoticeCategoryAndEuthanasiaDateGreaterThan(NoticeCategory noticeCategory, LocalDate euthanasiaDate, Pageable pageable);
 
     // 품종 전체 검색을 위한 쿼리
     @Query("SELECT a FROM AdoptionNoticeEntity a WHERE a.animalType LIKE %:searchTerm%" )

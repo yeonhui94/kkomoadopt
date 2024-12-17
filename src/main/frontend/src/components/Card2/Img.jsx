@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -20,8 +21,6 @@ const Image = styled.img`
 
 const Img = ( {imageFile,onDetailPage,adoptNum , to=`/adoption/post/${adoptNum}`} ) =>{
     // imageFile이 배열일 경우 첫 번째 요소만 사용
-
-
     return(
         <Link to={to}>
         <ImageBox onClick={onDetailPage}>

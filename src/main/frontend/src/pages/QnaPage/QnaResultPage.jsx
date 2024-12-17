@@ -67,6 +67,19 @@ const QnaResultPage = () => {
   //   setItem(foundItem);
   // }, [id]);
 
+  // useEffect(() => {
+  //   const fetchData = async () =>{
+  //     try{
+  //       await qnaaction.readQnaPostDetail(qnaUid);
+  //     } catch(error){
+  //       console.error("error fetching post detail", error);
+  //       setError(error);
+  //     }finally{
+  //       setLoading(false);
+  //     }
+  //   };
+  //   fetchData();
+  // },[qnaUid, qnaaction]);
   useEffect(() => {
     const fetchData = async () =>{
       try{
@@ -79,8 +92,7 @@ const QnaResultPage = () => {
       }
     };
     fetchData();
-  },[qnaUid, qnaaction]);
-
+  },[]);
 
     // 데이터 로딩 상태 처리
     if (loading) {

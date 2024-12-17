@@ -52,7 +52,7 @@ const AnimationContainer = styled.div`
     transform: translateX(-100%);
   }
 }
-//섹샨4->5로 이동할 떄 버벅거림 최소화
+//섹션4->5로 이동할 떄 버벅거림 최소화
 .AnimationContainer {
   will-change: transform;
 }

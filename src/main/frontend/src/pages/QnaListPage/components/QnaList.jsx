@@ -6,9 +6,9 @@ import { useEffect } from "react";
 
 const QnaList = ({ qnaList }) => {
 
-      useEffect(() => {
-          // console.log("큐엔에이ㅣ 리스트ㅡ으으으응 ",qnaList);
-      }, [qnaList])
+      // useEffect(() => {
+      //     // console.log("큐엔에이ㅣ 리스트ㅡ으으으응 ",qnaList);
+      // }, [qnaList])
 
   // console.log(qnaList)
   return (

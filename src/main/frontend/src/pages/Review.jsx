@@ -62,6 +62,27 @@ const Review = ({ gridArea }) => {
 
   console.log(communityState.communityPosts)
 
+
+  const filteredPosts = (communityState.communityPosts || []).filter(post => {
+    console.log("post 객체 확인22:", post); // 각 post 객체 확인
+    const postTitle = post.postTitle ? post.postTitle.toLowerCase() : ''; // 안전하게 비교
+    const postContent = post.postContent ? post.postContent.toLowerCase() : ''; // 안전하게 비교
+    
+    const query = searchQuery.toLowerCase().trim(); // 검색어 소문자 및 공백 제거
+  
+    return postTitle.includes(query) || postContent.includes(query); // 필터링 조건
+  });
+
+
+
+    // 검색어 변경 시 호출되는 함수
+    const handleSearch = (query) => {
+      setSearchQuery(query); // 검색어 상태 업데이트
+    };
+
+
+
+
   return (
     <div style={{ gridArea: gridArea }}>
       <div className={styles.rwWrapper}>
@@ -75,7 +96,7 @@ const Review = ({ gridArea }) => {
             <SearchBar
               placeholder={"글 내용 & 글 제목"}
               width="300px"
-            // onSearch={setSearchQuery} 
+              onSearch={(value) => handleSearch(value)} 
             />
           </div>
         </div>
@@ -83,9 +104,9 @@ const Review = ({ gridArea }) => {
           <div className={styles.rwdivider}>
             <Divider width={"100%"} backgroundColor={"var(--line-color)"} />
           </div >
-          {console.log("communityPosts before map:", communityState?.communityPosts)}
-          {communityState?.communityPosts.length > 0 ? (
-            communityState?.communityPosts.map((slideData, index) => (
+          {console.log("communityPosts before map:", filteredPosts)}
+          {filteredPosts.length > 0 ? (
+            filteredPosts.map((slideData, index) => (
               <Link key={slideData?.id} to={`/adoption-review/post/${slideData?.postUid}`}>
                 <Card1 
                   key={index} 

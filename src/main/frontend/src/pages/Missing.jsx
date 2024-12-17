@@ -15,10 +15,19 @@ const Missing = ({ gridArea }) => {
 
     useEffect(() => {
         const fetchPosts = async () => {
-          const response = await communityActions.readCommunityPostsByCategory("FINDCHILD");
+          try {
+            console.log("데이터 요청 시작");
+            const response = await communityActions.readCommunityPostsByCategory("FINDCHILD");
+            console.log("API Response:", response);
+          } catch (error) {
+            console.error("데이터 불러오기 실패:", error);
+          }
         };
         fetchPosts();
       }, []);
+
+
+      
 
 
 
@@ -32,6 +41,23 @@ const Missing = ({ gridArea }) => {
     // console.log(communityState.communityPosts)
 
 
+    const filteredPosts = (communityState.communityPosts || []).filter(post => {
+        console.log("post 객체 확인22:", post); // 각 post 객체 확인
+        const postTitle = post.postTitle ? post.postTitle.toLowerCase() : ''; // 안전하게 비교
+        const postContent = post.postContent ? post.postContent.toLowerCase() : ''; // 안전하게 비교
+        
+        const query = searchQuery.toLowerCase().trim(); // 검색어 소문자 및 공백 제거
+      
+        return postTitle.includes(query) || postContent.includes(query); // 필터링 조건
+      });
+
+        // 검색어 변경 시 호출되는 함수
+  const handleSearch = (query) => {
+    setSearchQuery(query); // 검색어 상태 업데이트
+  };
+
+
+  
     return (
         <div style={{ gridArea: gridArea }}>
             <div className={styles.rwWrapper}>
@@ -45,7 +71,7 @@ const Missing = ({ gridArea }) => {
                         <SearchBar
                             placeholder={"글 내용 & 글 제목"}
                             width="300px"
-                            // onSearch={handleSearch} 
+                            onSearch={(value) => handleSearch(value)}
                             />
                     </div>
                 </div>
@@ -66,8 +92,8 @@ const Missing = ({ gridArea }) => {
                                 </Link>
                             ))
                         )} */}
-                        {console.log("communityPosts before map:", communityState.communityPosts)}
-                        {communityState.communityPosts.map((card, index) => (
+                        {console.log("communityPosts before map:", filteredPosts)}
+                        {filteredPosts.map((card, index) => (
                             <Link key={card.id}>
                                 <Card2
                                     to={`/find-child/post/${card.postUid}`}

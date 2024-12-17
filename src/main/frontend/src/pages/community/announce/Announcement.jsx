@@ -16,30 +16,34 @@ import imgc2 from "../../../assets/CardImage/c2.jpg";
 import { useStore } from "../../../stores/CommunityPostStore2/useStore";
 import { readCommunityPostsByCategory } from "../../../stores/CommunityPostStore2/action";
 
-//로컬스토리지 사용해보기
-// async function readCommunityPosts() {
-//   try {
-//     const response = await fetch('/data/community_post.json');
-//     const data = await response.json();
 
-//     // post_category가 없는게 공지사항
-//     const filteredData = data.filter(post => !post.post_category);
-
-//     //로컬스토리지에 저장
-//     localStorage.setItem('communityPosts', JSON.stringify(filteredData));
-//   } catch (error) {
-//     console.log('error reason', error);
-//   }
-// }
 
 const Announcement = ({ gridArea }) => {
   const { state: communityState, actions: communityActions } = useStore();
 
-  const [allPosts, setAllPosts] = useState([]);  // State to hold all posts
+  useEffect(() => {
+    console.log("커뮤니티 포스트 상태 변화:", communityState.communityPosts);
+  
+    if (communityState.communityPosts.length > 0) {
+      communityState.communityPosts.forEach(post => {
+        console.log("post 객체 확인:", post);
+      });
+    }
+  }, []);
 
+  // const [allPosts, setAllPosts] = useState([]);  // State to hold all posts
+
+
+  
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await communityActions.readCommunityPostsByCategory("announcement");
+      try {
+        console.log("데이터 요청 시작");
+        const response = await communityActions.readCommunityPostsByCategory("announcement");
+        console.log("API Response:", response);
+      } catch (error) {
+        console.error("데이터 불러오기 실패:", error);
+      }
     };
     fetchPosts();
   }, []);
@@ -51,24 +55,31 @@ const Announcement = ({ gridArea }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState(""); // 검색어 상태 추가
   const postsPerPage = 10;
+  // const [filteredPosts, setFilteredPosts] = useState([]); // 상태로 관리
+
 
   // 게시물 추가
-  const addPost = (newPost) => {
-    setAllPosts([newPost, ...allPosts]); // 새로운 게시물을 맨 앞에 추가
-  };
+  // const addPost = (newPost) => {
+  //   setAllPosts([newPost, ...allPosts]); // 새로운 게시물을 맨 앞에 추가
+  // };
 
   const options = ["전체보기", "최신 순", "오래된 순", "조회 수 높은 순", "조회 수 낮은 순"];
 
 
 
   // 전체 페이지 수 계산
-  const totalPages = Math.ceil(allPosts.length / postsPerPage);
+  // const totalPages = Math.ceil(allPosts.length / postsPerPage);
 
   // 게시물 필터링 (검색어에 맞는 게시물만 필터링)
-  const filteredPosts = allPosts.filter(post =>
-    post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    post.admin.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredPosts = (communityState.communityPosts || []).filter(post => {
+    console.log("post 객체 확인22:", post); // 각 post 객체 확인
+    const postTitle = post.postTitle ? post.postTitle.toLowerCase() : ''; // 안전하게 비교
+    const postContent = post.postContent ? post.postContent.toLowerCase() : ''; // 안전하게 비교
+    
+    const query = searchQuery.toLowerCase().trim(); // 검색어 소문자 및 공백 제거
+  
+    return postTitle.includes(query) || postContent.includes(query); // 필터링 조건
+  });
 
   // 현재 페이지에 해당하는 게시물 계산
   const startIndex = (currentPage - 1) * postsPerPage; // 시작 인덱스
@@ -110,7 +121,7 @@ const Announcement = ({ gridArea }) => {
 
       <div className={`${styles.rwsubcontainer2} ${comstyle.inputdrop}`}>
         <Dropdown options={options} onChange={handleSort} />
-        <SearchBar placeholder={"글 내용 & 글 제목"} width="300px" onSearch={handleSearch} />
+        <SearchBar placeholder={"글 내용 & 글 제목"} width="300px" onSearch={(value) => handleSearch(value)} />
       </div>
       <div className={comstyle.lin}>
         <Divider height={"2px"} width={"100%"} backgroundColor={"var(--line-color)"} />
@@ -125,13 +136,10 @@ const Announcement = ({ gridArea }) => {
       <div className={comstyle.lin2}>
         <Divider height={"2px"} width={"100%"} backgroundColor={"#E5E5E5"} />
       </div>
-      {/* {currentPosts.length > 0 ? ( */}
-      {/* {Array.isArray(posts) && posts.length > 0 ? ( */}
-      {
-        // posts.map(post => {
-        communityState.communityPosts.length > 0 ? (
+
+      {filteredPosts.length > 0 ? (
           <ul className={`${comstyle.postsbox}`}>
-            {communityState.communityPosts.map((post, index) => (
+            {filteredPosts.map((post, index) => (
 
               <Link to={`/announce/post/${post.postUid}`} key={post.id}>
                 <li key={post.post_uid} className={comstyle.post}>
@@ -152,9 +160,9 @@ const Announcement = ({ gridArea }) => {
       < div className={comstyle.buttondiv} >
         <div className={comstyle.pagenum}>
           <Pagenumber
-            totalPages={totalPages}
-            currentPage={currentPage}
-            handlePageClick={handlePageClick}
+            // totalPages={totalPages}
+            // currentPage={currentPage}
+            // handlePageClick={handlePageClick}
           />
         </div>
         {isAdminPage && (

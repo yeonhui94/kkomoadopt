@@ -31,11 +31,22 @@ const Resell = ({ gridArea }) => {
     const postsPerPage = 12; // 한 페이지에 표시할 카드 수
 
 
-        // // 검색 필터링된 데이터
-        // const filteredData = sortedData.filter(card =>
-        //     card.text1.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        //     card.text2.toLowerCase().includes(searchQuery.toLowerCase())
-        // );
+
+    const filteredPosts = (communityState.communityPosts || []).filter(post => {
+        console.log("post 객체 확인22:", post); // 각 post 객체 확인
+        const postTitle = post.postTitle ? post.postTitle.toLowerCase() : ''; // 안전하게 비교
+        const postContent = post.postContent ? post.postContent.toLowerCase() : ''; // 안전하게 비교
+        
+        const query = searchQuery.toLowerCase().trim(); // 검색어 소문자 및 공백 제거
+      
+        return postTitle.includes(query) || postContent.includes(query); // 필터링 조건
+      });
+
+
+        //   검색어 변경 처리 함수
+        const handleSearch = (query) => {
+        setSearchQuery(query);  // 검색어를 상태에 저장
+    }
 
     // 전체 페이지 수 계산
     // const totalPages = Math.ceil(filteredData.length / postsPerPage);
@@ -75,10 +86,7 @@ const Resell = ({ gridArea }) => {
 //     setCurrentPage(1); // 페이지를 첫 번째로 초기화
 //   };
 
-      // 검색어 변경 처리 함수
-    //   const handleSearch = (query) => {
-    //     setSearchQuery(query);  // 검색어를 상태에 저장
-    // };
+;
 
     return (
         <div style={{ gridArea: gridArea }}>
@@ -93,7 +101,7 @@ const Resell = ({ gridArea }) => {
                         <SearchBar 
                         placeholder={"글 내용 & 글 제목"} 
                         width="300px"               
-                        // onSearch={handleSearch} 
+                        onSearch={(value)=>handleSearch(value)} 
                         />
                     </div>
                 </div>
@@ -103,7 +111,7 @@ const Resell = ({ gridArea }) => {
                         <div className={styles.rwdivider} >
                             <Divider width={"100%"} backgroundColor={"var(--line-color)"} />
                         </div>
-                        {communityState.communityPosts.map((card, index) => (
+                        {filteredPosts.map((card, index) => (
                             <Link key={card.id}>
                             <Card2
                                 to={`/resell/post/${card.postUid}`} 

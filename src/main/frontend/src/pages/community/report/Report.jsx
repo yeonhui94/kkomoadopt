@@ -28,6 +28,26 @@ useEffect(() => {
 
 
 
+    // 게시물 필터링 (검색어에 맞는 게시물만 필터링)
+    const filteredPosts = (communityState.communityPosts || []).filter(post => {
+      console.log("post 객체 확인22:", post); // 각 post 객체 확인
+      const postTitle = post.postTitle ? post.postTitle.toLowerCase() : ''; // 안전하게 비교
+      const postContent = post.postContent ? post.postContent.toLowerCase() : ''; // 안전하게 비교
+      
+      const query = searchQuery.toLowerCase().trim(); // 검색어 소문자 및 공백 제거
+    
+      return postTitle.includes(query) || postContent.includes(query); // 필터링 조건
+    });
+
+
+  // 검색어 변경 시 호출되는 함수
+  const handleSearch = (query) => {
+    setSearchQuery(query); // 검색어 상태 업데이트
+  };
+
+
+
+
   const options = ["전체보기", "최신 순", "오래된 순", "조회 수 높은 순", "조회 수 낮은 순"];
 
   // 게시물 추가
@@ -38,11 +58,8 @@ useEffect(() => {
   // 전체 페이지 수 계산
   // const totalPages = Math.ceil(allPosts.length / postsPerPage);
 
-  // 게시물 필터링 (검색어에 맞는 게시물만 필터링)
-  // const filteredPosts = allPosts.filter(post => 
-  //   post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-  //   post.admin.toLowerCase().includes(searchQuery.toLowerCase())
-  // );
+
+
 
   // 현재 페이지에 해당하는 게시물 계산
   // const startIndex = (currentPage - 1) * postsPerPage; // 시작 인덱스
@@ -54,10 +71,7 @@ useEffect(() => {
   //   setCurrentPage(page); // 클릭한 페이지로 이동
   // };
 
-  // 검색어 변경 시 호출되는 함수
-  // const handleSearch = (query) => {
-  //   setSearchQuery(query); // 검색어 상태 업데이트
-  // };
+
 
   // const handleSort = (option) => {
   //   setSortOption(option);
@@ -82,7 +96,7 @@ useEffect(() => {
       // onChange={handleSort}
        />
       <SearchBar placeholder={"글 내용 & 글 제목"} width="300px" 
-      // onSearch={handleSearch} 
+      onSearch={(value)=>handleSearch(value)} 
       />
     </div>
     <div className={comstyle.lin}>
@@ -99,9 +113,9 @@ useEffect(() => {
       <Divider height={"2px"} width={"100%"} backgroundColor={"#E5E5E5"} />
     </div>
 
-    {communityState.communityPosts.length > 0 ? (
+    {filteredPosts.length > 0 ? (
       <ul className={`${comstyle.postsbox}`}>
-        {communityState.communityPosts.map((post ,index) => (
+        {filteredPosts.map((post ,index) => (
           <Link to={`/report/post/${post.postUid}`} key={post.id}>
           <li key={post.id} className={comstyle.post}>
             <p className={comstyle.postnumli}>{index + 1}</p>

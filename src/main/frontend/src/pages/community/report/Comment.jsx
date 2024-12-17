@@ -2,81 +2,110 @@ import Button from "../../../components/Button/Button";
 import postst from "../Commu_post.module.css";
 import { useState, useEffect } from "react";
 import { Form } from "react-router-dom";
+import { useStore } from "../../../stores/CommentStore2/useStore";
+import { useParams } from "react-router-dom";
 
-
-const Comment = ({ postDetail }) => {  // 부모 컴포넌트에서 전달받은 postDetail을 props로 사용
-    const user = JSON.parse(sessionStorage.getItem('user'));
-
-    const [newComment, setNewComment] = useState(""); // 새 댓글 입력 상태
+const Comment = ({ postDetail, postActions, comments, isAdded, setIsAdded, user }) => {  // 부모 컴포넌트에서 전달받은 postDetail을 props로 사용
+    const [inputValue, setInputValue] = useState(""); // Input -> 수정 / 답변
     const [editingComment, setEditingComment] = useState(null); // 수정 중인 댓글의 인덱스 상태
     const [editedCommentText, setEditedCommentText] = useState(""); // 수정된 댓글 내용
+    const { state, actions } = useStore();
+    const { postUid } = useParams();
 
-    // 더 이상 하드코딩된 더미 데이터 대신 postDetail을 기반으로 댓글을 처리
-    const [report_comments, setReportComments] = useState([]);
+    // 문의등록
+    const handleConfirmClick = async () => {
+        if (inputValue.trim()) {
+            const data = {
+                commentContent: inputValue,
+                postUid: postUid
+            };
+            await actions.createComment(data);
+
+            setInputValue(""); // 입력 값 초기화
+            setIsAdded(true)
+        }
+    };
 
     useEffect(() => {
-        console.log(postDetail.comments);
-    }, [postDetail])
+        const currentComment = Array.isArray(comments) ? comments : [];
+        const updatedComment = [...currentComment, inputValue];
 
-    // 댓글 추가 함수
-    const handleAddComment = () => {
-        if (newComment.trim()) { // 댓글이 비어 있지 않으면
-            const newCommentObject = {
-                nickname: user ? user.nickname : "익명", // 유저가 있으면 유저 닉네임, 없으면 익명
-                content: newComment, // 작성된 댓글
-                date: new Date(),
-            };
-            // 댓글 배열을 상태에 반영
-            setReportComments([...report_comments, newCommentObject]);
-            setNewComment(""); // 댓글 입력창 초기화
-        }
-    };
 
-    // 댓글 수정 시작 함수 (로그인한 유저의 닉네임과 동일할 경우에만 수정)
-    const handleEditComment = (index) => {
-        if (!user) {
-            alert("로그인 후 댓글을 수정할 수 있습니다."); // 로그인하지 않은 사용자에 대한 알림
-            return;
+        if (isAdded) {
+            postActions.updateAllFields(prev => {
+                return { ...prev, comments: updatedComment };
+            });
         }
 
-        if (report_comments[index].nickname === user.nickname) {
-            setEditingComment(index); // 수정할 댓글의 인덱스 설정
-            setEditedCommentText(report_comments[index].content); // 기존 댓글 내용으로 수정 텍스트 초기화
-        } else {
-            alert("본인의 댓글만 수정할 수 있습니다."); // 댓글 작성자가 아닐 때 경고
-        }
-    };
+    }, [isAdded])
 
-    // 수정한 댓글 저장
-    const handleSaveEditedComment = (index) => {
-        const updatedComment = {
-            ...report_comments[index], // 기존 댓글 내용 그대로 유지
-            content: editedCommentText, // 수정된 댓글 내용
-        };
+    // const  handleSubmitComment = async () => {
+    //     if (newComment.trim()) {
+    //         const newCommentObject = {
+    //             nickname: user.nickname,
+    //             content: newComment,
+    //             date: new Date(),
+    //             postId: postDetail.postId,
+    //         };
 
-        const updatedComments = report_comments.map((comment, i) =>
-            i === index ? updatedComment : comment
-        );
-        setReportComments(updatedComments);
+    //         try {
+    //             console.log("댓글 등록 요청 데이터:", newCommentObject);
+    //             const result = await createComment(newCommentObject);
+    //             console.log("댓글 등록 성공:", result);
 
-        setEditingComment(null); // 수정 상태 종료
-        setEditedCommentText(""); // 수정된 텍스트 초기화
-    };
+    //             // 부모 컴포넌트의 댓글 목록을 업데이트
+    //             handleAddComment(newCommentObject); // 부모에서 처리하도록 전달
 
-    // 댓글 삭제 함수
-    const handleDeleteComment = (index) => {
-        if (!user) {
-            alert("로그인 후 댓글을 삭제할 수 있습니다."); // 로그인하지 않은 사용자에 대한 알림
-            return;
-        }
+    //             setNewComment(""); // 댓글 입력창 초기화
+    //         } catch (error) {
+    //             console.error("댓글 등록 실패:", error);
+    //             alert("댓글 등록에 실패했습니다! 다시 시도해주세요.");
+    //         }
+    //     }
+    // };
 
-        if (report_comments[index].nickname === user.nickname) {
-            const updatedComments = report_comments.filter((_, i) => i !== index);
-            setReportComments(updatedComments); // 댓글 삭제 후 상태 갱신
-        } else {
-            alert("본인의 댓글만 삭제할 수 있습니다."); // 댓글 작성자가 아닐 때 경고
-        }
-    };
+
+
+    // useEffect(() => {
+    //     // qnaState가 배열이 아니거나 null/undefined인 경우 빈 배열로 초기화
+    //     const currentCommentState = Array.isArray(postDetail.comments) ? postDetail.comments : [];
+
+    //     // 새로운 inputValue를 추가한 배열 생성
+    //     const updatedQnaState = [...currentCommentState, newComment];
+    //     actions.(updatedQnaState);
+    //     qnaState.setIsAdded(true);
+    //   }, [state]);
+
+
+    // 댓글 수정 및 삭제 처리 함수는 그대로 두거나 수정할 수 있음
+    // const handleEditComment = (index) => {
+    //     if (!user) {
+    //         alert("로그인 후 댓글을 수정할 수 있습니다.");
+    //         return;
+    //     }
+
+    //     if (postDetail.comments[index].nickname === user.nickname) {
+    //         setEditingComment(index);
+    //         setEditedCommentText(postDetail.comments[index].content);
+    //     } else {
+    //         alert("본인의 댓글만 수정할 수 있습니다.");
+    //     }
+    // };
+
+    // const handleSaveEditedComment = (index) => {
+    //     const updatedComment = {
+    //         ...postDetail.comments[index],
+    //         content: editedCommentText,
+    //     };
+
+    //     const updatedComments = postDetail.comments.map((comment, i) =>
+    //         i === index ? updatedComment : comment
+    //     );
+
+    //     onAddComment(updatedComment); // 부모 컴포넌트의 상태 업데이트
+    //     setEditingComment(null);
+    //     setEditedCommentText("");
+    // };
 
     return (
         <div className={postst.post_comments}>
@@ -85,16 +114,15 @@ const Comment = ({ postDetail }) => {  // 부모 컴포넌트에서 전달받은
                 <p className={postst.post_commentbar_cell2}></p>
                 <p className={postst.post_commentbar_cell3}>댓글수</p>
             </div>
-
             <div className={postst.post_commentbox}>
                 <div className={postst.post_commentbox_header}>
                     <p className={postst.post_commentbox_header1}>닉네임</p>
                     <p className={postst.post_commentbox_header2}>내용</p>
                     <p className={postst.post_commentbox_header3}>작성일</p>
                 </div>
-                {Array.isArray(postDetail.comments) && postDetail.comments.length > 0 ? (
+                {Array.isArray(comments) && comments.length > 0 ? (
                     <ul>
-                        {postDetail.comments.map((comment, index) => (
+                        {comments.map((comment, index) => (
                             <li key={index} className={postst.comment_list_item}>
                                 <div className={postst.comment_list_item_text}>
                                     <p className={postst.comment_list_item_text1}>
@@ -107,27 +135,24 @@ const Comment = ({ postDetail }) => {  // 부모 컴포넌트에서 전달받은
                                                 editingComment === index ? (
                                                     <>
                                                         <textarea
-                                                            value={editedCommentText}
-                                                            onChange={(e) => setEditedCommentText(e.target.value)}
+                                                            value={inputValue}
+                                                            onChange={(e) => setInputValue(e.target.value)}
                                                         />
-                                                        <button onClick={() => handleSaveEditedComment(index)}>저장</button>
+                                                        {/* <button onClick={() => handleConfirmClick(index)}>저장</button> */}
                                                     </>
                                                 ) : (
-                                                    comment.commentContent.replace(/\n/g, "<br />")
-
+                                                    (comment.commentContent || "").replace(/\n/g, "<br />")
                                                 ),
                                         }}
-
-                                    >
-                                    </p>
+                                    ></p>
                                     <p className={postst.comment_list_item_text3}>
-                                        {comment.commentCreatedAt}
+                                        {comment.date}
                                     </p>
                                 </div>
                                 {comment.nickname === user?.nickname && editingComment !== index && (
                                     <div className={postst.comment_list_item_buttons}>
                                         <Button
-                                            onClick={() => handleDeleteComment(index)}
+                                            // onClick={() => handleDeleteComment(index)}
                                             text={"삭제"}
                                             width={"60px"}
                                             height={"30px"}
@@ -139,7 +164,7 @@ const Comment = ({ postDetail }) => {  // 부모 컴포넌트에서 전달받은
                                             marginRight={"30px"}
                                         />
                                         <Button
-                                            onClick={() => handleEditComment(index)}
+                                            // onClick={() => handleEditComment(index)}
                                             text={"수정"}
                                             width={"60px"}
                                             height={"30px"}
@@ -151,16 +176,13 @@ const Comment = ({ postDetail }) => {  // 부모 컴포넌트에서 전달받은
                                             marginRight={"30px"}
                                         />
                                     </div>
-
                                 )}
                             </li>
                         ))}
                     </ul>
-                    )
-                    : (
-                        <p>댓글이 없습니다.</p>
-                    )
-                }
+                ) : (
+                    <p>댓글이 없습니다.</p>
+                )}
 
                 <div className={postst.post_commentinput}>
                     <div className={postst.post_commentinput_head}>
@@ -168,28 +190,30 @@ const Comment = ({ postDetail }) => {  // 부모 컴포넌트에서 전달받은
                         <p className={postst.post_commentinput_headtext}>댓글쓰기</p>
                         <div className={postst.post_commentinput_headblank2}></div>
                     </div>
-                    <Form>
+                    <Form onSubmit={(e) => { e.preventDefault() }}>
                         <textarea
-                            value={newComment}
+                            value={inputValue}
                             className={postst.post_commentinput_body}
                             placeholder="댓글을 작성해주세요"
-                            onChange={(e) => setNewComment(e.target.value)}
+                            onChange={(e) => setInputValue(e.target.value)}
                         />
+
+                        <div className={postst.post_commentinput_buttons}>
+                            <Button
+                                text={"등록"}
+                                width={"60px"}
+                                height={"30px"}
+                                verticalPadding={"0px"}
+                                horizontalPadding={"10px"}
+                                color={"var(--main-color)"}
+                                bg1color={"var(--main-color)"}
+                                marginBottom={"10px"}
+                                marginRight={"10px"}
+                                onClick={handleConfirmClick}
+                            />
+
+                        </div>
                     </Form>
-                    <div className={postst.post_commentinput_buttons}>
-                        <Button
-                            text={"등록"}
-                            width={"60px"}
-                            height={"30px"}
-                            verticalPadding={"0px"}
-                            horizontalPadding={"10px"}
-                            color={"var(--main-color)"}
-                            bg1color={"var(--main-color)"}
-                            marginBottom={"10px"}
-                            marginRight={"10px"}
-                            onClick={handleAddComment}
-                        />
-                    </div>
                 </div>
             </div>
         </div>

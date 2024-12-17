@@ -1,6 +1,9 @@
 package com.kosmo.kkomoadopt.service;
 
-import com.kosmo.kkomoadopt.dto.*;
+import com.kosmo.kkomoadopt.dto.AdoptNoticeListDTO;
+import com.kosmo.kkomoadopt.dto.CommentListDTO;
+import com.kosmo.kkomoadopt.dto.CommunityListDTO;
+import com.kosmo.kkomoadopt.dto.CommunityDTO;
 import com.kosmo.kkomoadopt.entity.AdoptionNoticeEntity;
 import com.kosmo.kkomoadopt.enums.NoticeCategory;
 import com.kosmo.kkomoadopt.entity.CommentEntity;
@@ -39,14 +42,16 @@ public class CommunityPostService {
     @Autowired
     private final CommunityPostRepository communityPostRepository;
     @Autowired
+    private final CommentRepository commentRepository;
+    @Autowired
     private final FileService fileService;
     @Autowired
     private final UserRepository userRepository;
     @Autowired
-    private  CommentRepository commentRepository;
-
-    @Autowired
     private EntityManager em;
+
+
+
 
     // 게시물 저장 메서드
     public boolean savePost(CommunityDTO communityDTO, MultipartFile[] files, @SessionAttribute("userId") String userId) {
@@ -96,6 +101,177 @@ public class CommunityPostService {
             return false; // 전체적인 예외 발생 시
         }
     }
+
+    private static final Logger logger = LoggerFactory.getLogger(CommunityPostService.class);
+
+    // Service
+    public boolean updateCommunityPost(CommunityDTO communityDTO, String authority, MultipartFile[] files, @SessionAttribute("userId") String userId) {
+
+
+        // userId가 세션에 없으면 예외 처리
+        if (userId == null) {
+            throw new RuntimeException("User is not logged in or userId is not in session");
+        }
+
+        // 게시글 ID가 null인지 확인
+        if (communityDTO.postUid() == null) {
+            throw new IllegalArgumentException("Post ID must not be null");
+        }
+
+        // 게시글을 DB에서 조회
+        Optional<CommunityPostEntity> existingCommunityOptional = communityPostRepository.findById(communityDTO.postUid());
+        if (existingCommunityOptional.isEmpty()) {
+            return false; // 게시글이 존재하지 않으면 업데이트 실패
+        }
+
+        CommunityPostEntity communityPostEntity = existingCommunityOptional.get();
+
+        // USER 권한인 경우: 본인이 작성한 게시글만 수정 가능
+        if (authority.equals("USER")) {
+            if (userId == null || !userId.equals(communityPostEntity.getUserId())) {
+                return false; // 본인이 작성한 게시글이 아니면 업데이트 실패
+            }
+
+            // 게시글 내용과 수정 시간을 업데이트
+            communityPostEntity.setPostTitle(communityDTO.postTitle());
+            communityPostEntity.setPostContent(communityDTO.postContent());
+            communityPostEntity.setPostUpdatedAt(LocalDateTime.now()); // 수정 시간을 현재 시간으로 설정
+        }
+        // ADMIN 권한인 경우: 모든 게시글 수정 가능
+        else if (authority.equals("ADMIN")) {
+            // ADMIN은 게시글을 수정할 수 있으므로, 삭제 상태를 설정하거나 다른 수정 사항을 업데이트할 수 있습니다.
+            communityPostEntity.setPostUpdatedAt(LocalDateTime.now()); // 수정 시간을 현재 시간으로 설정
+
+            // ADMIN 권한일 때는 isDeleted 값을 자동으로 true로 설정 (삭제 처리)
+            communityPostEntity.setIsDeleted(true); // 게시글을 삭제 상태로 설정
+            if (communityDTO.deleteReason() != null) {
+                communityPostEntity.setDeleteReason(communityDTO.deleteReason()); // 삭제 이유 저장
+            }
+        }
+
+        // 파일 업로드 처리
+        String[] fileNames = null;
+        if (files != null && files.length > 0) {
+            try {
+                fileNames = fileService.saveFiles(files);
+            } catch (IOException e) {
+                logger.error("Error saving files", e); // 로깅
+
+                return false; // 파일 저장 실패 시
+            }
+
+            if (fileNames != null && fileNames.length > 0) {
+                communityPostEntity.setPostImgUrl(Arrays.stream(fileNames).toList());
+            } else {
+                communityPostEntity.setPostImgUrl(Collections.emptyList()); // 이미지 URL이 없을 경우 빈 리스트로 설정
+            }
+        }
+
+        // 게시글 저장
+        try {
+            communityPostRepository.save(communityPostEntity);
+        } catch (Exception e) {
+            logger.error("Error saving community post", e); // 로깅
+            return false; // DB 저장 실패 시
+        }
+
+        return true; // 게시글 업데이트 성공
+    }
+
+
+    public boolean deleteCommunityPost(CommunityDTO communityDTO, @SessionAttribute("userId") String userId) {
+        // userId가 세션에 없으면 예외 처리
+        if (userId == null) {
+            throw new RuntimeException("User is not logged in or userId is not in session");
+        }
+
+        // 게시글 ID가 null인지 확인
+        if (communityDTO.postUid() == null) {
+            throw new IllegalArgumentException("Post ID must not be null");
+        }
+
+        // 게시글을 DB에서 조회
+        Optional<CommunityPostEntity> existingCommunityOptional = communityPostRepository.findById(communityDTO.postUid());
+        if (existingCommunityOptional.isEmpty()) {
+            return false; // 게시글이 존재하지 않으면 삭제 실패
+        }
+
+        CommunityPostEntity communityPostEntity = existingCommunityOptional.get();
+
+        // 게시글 작성자(userId)와 로그인한 사용자가 일치하는지 확인
+        if (!communityPostEntity.getUserId().equals(userId)) {
+            return false; // 본인이 작성한 게시글이 아니면 삭제 실패
+        }
+
+        // 게시글을 DB에서 삭제
+        try {
+            communityPostRepository.delete(communityPostEntity); // 게시글 삭제
+        } catch (Exception e) {
+            // 예외 처리 및 로깅
+            logger.error("게시글 삭제 중 오류 발생: ", e);
+            return false; // DB 삭제 실패 시
+        }
+
+        return true; // 삭제 성공
+    }
+
+
+
+
+    private CommunityListDTO convertToCommunityDTO(CommunityPostEntity entity) {
+        // UserEntity에서 PostAuthor를 가져오기 위한 로직
+        Optional<UserEntity> user = userRepository.findById(entity.getUserId());
+
+        // UserEntity가 존재하는 경우에만 PostAuthor를 설정
+        String postAuthor = user.map(UserEntity::getUserId).orElse("Unknown");
+        List<CommentListDTO> comments = null;
+
+        // CommunityListDTO 생성
+        return new CommunityListDTO(
+                entity.getPostUid(),
+                entity.getPostId(),
+                entity.getPostCategory(),
+                entity.getPostTitle(),
+                entity.getPostContent(),
+                entity.getPostCreatedAt(),
+                entity.getPostUpdatedAt(),
+                entity.getPostImgUrl(),
+                entity.getIsDeleted(),
+                entity.getDeleteReason(),
+                entity.getUserId(),
+                entity.getPostViewCount(),
+                postAuthor,
+                comments
+        );
+    }
+
+    private CommentListDTO convertToCommentDTO(CommentEntity commentEntity) {
+        // 사용자 정보를 가져오기 위해 userRepository를 사용
+        Optional<UserEntity> user = userRepository.findById(commentEntity.getUserId()); // commentEntity에 userId가 있다고 가정
+
+        // 사용자 정보가 있을 경우 nickname을 가져오고, 없으면 기본값 사용
+        String nickname = user.map(UserEntity::getNickname).orElse("Unknown");
+
+        // CommentListDTO를 반환하면서 nickname을 추가
+        return new CommentListDTO(
+                commentEntity.getCommentId(),
+                commentEntity.getCommentContent(),
+                commentEntity.getCommentCreatedAt(),
+                commentEntity.getPostUid(),
+                nickname, // nickname 추가
+                commentEntity.getIsDeleted(),
+                commentEntity.getCommentDelReason()
+        );
+    }
+    // 전체 게시글글 조회
+    public List<CommunityListDTO> getAllCommunities(){
+        List<CommunityPostEntity> communityPostEntities = communityPostRepository.findAll();
+
+        return communityPostEntities.stream()
+                .map(this::convertToCommunityDTO)
+                .collect(Collectors.toList());
+    }
+
 
     // category별로 게시물 가져오기
     public List<CommunityListDTO> getCommunityListByCategory(String category) {
@@ -297,117 +473,6 @@ public class CommunityPostService {
 //        // 결과를 CommunityDto에 담아서 반환
 //        return new CommunityListDTO(postDtos, totalCnt, pageNum);
 //    }
-        private static final Logger logger = LoggerFactory.getLogger(CommunityPostService.class);
-
-    // Service
-    public boolean updateCommunityPost(CommunityDTO communityDTO, String authority, MultipartFile[] files, @SessionAttribute("userId") String userId) {
-
-
-        // userId가 세션에 없으면 예외 처리
-        if (userId == null) {
-            throw new RuntimeException("User is not logged in or userId is not in session");
-        }
-
-        // 게시글 ID가 null인지 확인
-        if (communityDTO.postUid() == null) {
-            throw new IllegalArgumentException("Post ID must not be null");
-        }
-
-        // 게시글을 DB에서 조회
-        Optional<CommunityPostEntity> existingCommunityOptional = communityPostRepository.findById(communityDTO.postUid());
-        if (existingCommunityOptional.isEmpty()) {
-            return false; // 게시글이 존재하지 않으면 업데이트 실패
-        }
-
-        CommunityPostEntity communityPostEntity = existingCommunityOptional.get();
-
-        // USER 권한인 경우: 본인이 작성한 게시글만 수정 가능
-        if (authority.equals("USER")) {
-            if (userId == null || !userId.equals(communityPostEntity.getUserId())) {
-                return false; // 본인이 작성한 게시글이 아니면 업데이트 실패
-            }
-
-            // 게시글 내용과 수정 시간을 업데이트
-            communityPostEntity.setPostTitle(communityDTO.postTitle());
-            communityPostEntity.setPostContent(communityDTO.postContent());
-            communityPostEntity.setPostUpdatedAt(LocalDateTime.now()); // 수정 시간을 현재 시간으로 설정
-        }
-        // ADMIN 권한인 경우: 모든 게시글 수정 가능
-        else if (authority.equals("ADMIN")) {
-            // ADMIN은 게시글을 수정할 수 있으므로, 삭제 상태를 설정하거나 다른 수정 사항을 업데이트할 수 있습니다.
-            communityPostEntity.setPostUpdatedAt(LocalDateTime.now()); // 수정 시간을 현재 시간으로 설정
-
-            // ADMIN 권한일 때는 isDeleted 값을 자동으로 true로 설정 (삭제 처리)
-            communityPostEntity.setIsDeleted(true); // 게시글을 삭제 상태로 설정
-            if (communityDTO.deleteReason() != null) {
-                communityPostEntity.setDeleteReason(communityDTO.deleteReason()); // 삭제 이유 저장
-            }
-        }
-
-        // 파일 업로드 처리
-        String[] fileNames = null;
-        if (files != null && files.length > 0) {
-            try {
-                fileNames = fileService.saveFiles(files);
-            } catch (IOException e) {
-                logger.error("Error saving files", e); // 로깅
-
-                return false; // 파일 저장 실패 시
-            }
-
-            if (fileNames != null && fileNames.length > 0) {
-                communityPostEntity.setPostImgUrl(Arrays.stream(fileNames).toList());
-            } else {
-                communityPostEntity.setPostImgUrl(Collections.emptyList()); // 이미지 URL이 없을 경우 빈 리스트로 설정
-            }
-        }
-
-        // 게시글 저장
-        try {
-            communityPostRepository.save(communityPostEntity);
-        } catch (Exception e) {
-            logger.error("Error saving community post", e); // 로깅
-            return false; // DB 저장 실패 시
-        }
-
-        return true; // 게시글 업데이트 성공
-    }
-
-    public boolean deleteCommunityPost(CommunityDTO communityDTO, @SessionAttribute("userId") String userId) {
-        // userId가 세션에 없으면 예외 처리
-        if (userId == null) {
-            throw new RuntimeException("User is not logged in or userId is not in session");
-        }
-
-        // 게시글 ID가 null인지 확인
-        if (communityDTO.postUid() == null) {
-            throw new IllegalArgumentException("Post ID must not be null");
-        }
-
-        // 게시글을 DB에서 조회
-        Optional<CommunityPostEntity> existingCommunityOptional = communityPostRepository.findById(communityDTO.postUid());
-        if (existingCommunityOptional.isEmpty()) {
-            return false; // 게시글이 존재하지 않으면 삭제 실패
-        }
-
-        CommunityPostEntity communityPostEntity = existingCommunityOptional.get();
-
-        // 게시글 작성자(userId)와 로그인한 사용자가 일치하는지 확인
-        if (!communityPostEntity.getUserId().equals(userId)) {
-            return false; // 본인이 작성한 게시글이 아니면 삭제 실패
-        }
-
-        // 게시글을 DB에서 삭제
-        try {
-            communityPostRepository.delete(communityPostEntity); // 게시글 삭제
-        } catch (Exception e) {
-            // 예외 처리 및 로깅
-            logger.error("게시글 삭제 중 오류 발생: ", e);
-            return false; // DB 삭제 실패 시
-        }
-
-        return true; // 삭제 성공
-    }
 
     // CommunityMypageDTO 변환 함수
     private CommunityMypageDTO convertToCommunityDTO(CommunityPostEntity entity) {

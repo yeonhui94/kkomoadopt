@@ -83,6 +83,16 @@ public class CommunityPostController {
         }
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<CommunityListDTO>> getCommunityPostAll() {
+        // 서비스에서 전체 커뮤니티 게시글을 가져옴
+        List<CommunityListDTO> result = communityPostService.getAllCommunities();
+
+        // 200 OK 상태로 리스트 반환
+        return ResponseEntity.ok(result);
+    }
+
+
     @GetMapping("/{postUid}")
     public ResponseEntity<CommunityListDTO> getPostByUid(@PathVariable(name = "postUid") String postUid) {
         CommunityListDTO post = communityPostService.getCommunityPostUid(postUid);

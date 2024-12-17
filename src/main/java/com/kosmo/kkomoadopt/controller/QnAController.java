@@ -119,7 +119,6 @@ public class QnAController {
         }
     }
 
-
     @GetMapping
     public ResponseEntity<List<QnAListDTO>> getQnaList() {
         try {
@@ -130,6 +129,8 @@ public class QnAController {
         }
     }
 
+    
+    // QnA 상세페이지 가져오기
     @GetMapping("/{qnaUid}")
     public ResponseEntity<QnAListDTO> getQnaPostUid(@PathVariable(name = "qnaUid") String qnaUid) {
         QnAListDTO qna = qnAService.getQnaPostUid(qnaUid);

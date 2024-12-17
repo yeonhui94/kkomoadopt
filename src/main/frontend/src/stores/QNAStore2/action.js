@@ -47,9 +47,9 @@ export const resetState = () => ({ type: RESET_STATE });
 // CRUD 관련 액션 생성자
 
 // 1. QNA 게시물 목록 조회
-export const readQnaPosts = (page) => async (dispatch) => {
+export const readQnaPosts = (page,size,sortBy,sortOrder) => async (dispatch) => {
     try {
-        const response = await getQnaPosts(page);  // API 호출: QNA 게시물 목록 조회
+        const response = await getQnaPosts(page,size,sortBy,sortOrder);  // API 호출: QNA 게시물 목록 조회
         console.log(response);
         if (response.status === 200 ){
         dispatch({
@@ -69,7 +69,7 @@ export const readQnaPostDetail = (qnaUid) => async (dispatch) => {
         const response = await getQnaPostDetail(qnaUid);  // API 호출: 특정 QNA 게시물 상세 조회
         dispatch({
             type: READ_QNA_POST_DETAIL,
-            payload: response.data,  // 반환된 QNA 게시물 상세 정보
+            payload: response,  // 반환된 QNA 게시물 상세 정보
         });
     } catch (error) {
         console.error("QNA 게시물 상세 정보를 불러올 수 없습니다.", error);
@@ -105,11 +105,8 @@ export const updateQnaPostAction = (qnaUid, updatedData) => async (dispatch) => 
 // 5. QNA 게시물 삭제
 export const deleteQnaPostAction = (qnaUid) => async (dispatch) => {
     try {
-        await deleteQnaPost(qnaUid);  // API 호출: QNA 게시물 삭제
-        dispatch({
-            type: DELETE_QNA_POST,
-            payload: qnaUid,  // 삭제된 게시물의 UID
-        });
+      return  await deleteQnaPost(qnaUid);  // API 호출: QNA 게시물 삭제
+      
     } catch (error) {
         console.error("QNA 게시물을 삭제할 수 없습니다.", error);
     }

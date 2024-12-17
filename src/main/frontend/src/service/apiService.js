@@ -202,10 +202,13 @@ export const deleteCommunityPost = (postUid) => apiClient.delete(`/api/community
 // QNA 관련 API 요청 메서드 추가
 
 // 1. 전체 QNA 게시물 조회
-export const getQnaPosts = (page,size) => apiClient.get('/api/qna/posts', {
+export const getQnaPosts = (page,size,sortBy,sortOrder) => apiClient.get('/api/qna', {
   params : {
     page : page,
-    size : size
+    size : size,
+    sortBy: sortBy,
+    sortOrder: sortOrder
+
   }
 });
 
@@ -219,7 +222,7 @@ export const createQnaPost = (qnaData) => apiClient.post('/api/qna', qnaData);
 export const updateQnaPost = (qnaUid, updatedData) => apiClient.patch(`/api/qna/${qnaUid}`, updatedData);
 
 // 5. QNA 게시물 삭제
-export const deleteQnaPost = (qnaUid) => apiClient.delete(`/api/qna/${qnaUid}`);
+export const deleteQnaPost = (qnaUid) => apiClient.delete(`/api/qna/delete/${qnaUid}`);
 
 
 // 방문 요청 관련 API 요청 메서드 추가
@@ -236,7 +239,7 @@ export const getVisitRequests = (page, size) => apiClient.get('api/visit/list8',
 export const getVisitRequestDetail = (requestUid) => apiClient.get(`/api/visit-requests/${requestUid}`);
 
 // 3. 방문 요청 생성
-export const createVisitRequest = (visitRequestData) => apiClient.post('/api/visit-requests', visitRequestData);
+export const createVisitRequest = (visitRequestData) => apiClient.post('/api/visit-requests/request', visitRequestData);
 
 // 4. 방문 요청 수정
 export const updateVisitRequest = (requestUid, updatedData) => apiClient.patch(`/api/visit-requests/${requestUid}`, updatedData);

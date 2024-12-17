@@ -21,11 +21,11 @@ const QnaItem = ({ qnaId, qnaTitle, nickname, qnaCreatedAt, qnaViewCount }) => {
 };
 
 QnaItem.propTypes = {
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
-  createdAt: PropTypes.instanceOf(Date).isRequired,
-  views: PropTypes.number.isRequired,
+  qnaId: PropTypes.string.isRequired,
+  qnaTitle: PropTypes.string.isRequired,
+  nickname: PropTypes.string.isRequired,
+  qnaCreatedAt: PropTypes.instanceOf(Date).isRequired,
+  qnaViewCount: PropTypes.number.isRequired,
 };
 
 export default QnaItem;

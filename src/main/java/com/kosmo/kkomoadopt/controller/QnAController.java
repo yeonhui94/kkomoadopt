@@ -1,11 +1,15 @@
 package com.kosmo.kkomoadopt.controller;
 import com.kosmo.kkomoadopt.dto.*;
 import com.kosmo.kkomoadopt.enums.Authority;
+import com.kosmo.kkomoadopt.enums.NoticeCategory;
 import com.kosmo.kkomoadopt.service.QnAService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -83,9 +87,9 @@ public class QnAController {
     }
 
     // QnA 삭제 로직(USER 중에 자신이 쓴 QnA만 삭제가능)
-    @DeleteMapping("/delete")
+    @DeleteMapping("/delete/{qnaUid}")
     public ResponseEntity<String> deleteQna(
-            @RequestBody QnADTO qnADTO,
+            @PathVariable(name = "qnaUid") String qnaUid,
             @SessionAttribute("userId") String userId,
             HttpServletRequest request) {
 
@@ -99,13 +103,12 @@ public class QnAController {
             return new ResponseEntity<>("권한이 없습니다.", HttpStatus.FORBIDDEN);
         }
 
-        // 3. QnAU ID를 DTO에서 가져옴
-        String qnaUid = qnADTO.qnaUid();
+
 
         // 4. 본인이 작성한 QnA인지 확인 (1번 로직이 여기에 위치)
         boolean isAuthor = qnAService.isQnaAuthor(qnaUid, sessionUserId);
         if (!isAuthor) {
-            return new ResponseEntity<>("본인이 작성한 댓글만 삭제할 수 있습니다.", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("본인이 작성한 글만 삭제할 수 있습니다.", HttpStatus.FORBIDDEN);
         }
 
         // 5. QnA 삭제 로직 호출
@@ -120,9 +123,16 @@ public class QnAController {
     }
 
     @GetMapping
-    public ResponseEntity<List<QnAListDTO>> getQnaList() {
+    public ResponseEntity<Page<QnAListDTO>> getQnaList(@RequestParam(name = "page", defaultValue = "1") int page,   // 페이지 번호 (디폴트: 0)
+                                                       @RequestParam(name = "sortBy", defaultValue = "qnaId") String sortBy,  // 정렬 기준 (디폴트: "name")
+                                                       @RequestParam(name = "sortOrder", defaultValue = "desc") String sortOrder)  {
         try {
-            List<QnAListDTO> qnaList = qnAService.getQnaList();  // 페이지네이션 없이 모든 데이터를 가져옴
+
+            Sort sort = Sort.by("desc".equals(sortOrder)?Sort.Order.desc(sortBy):Sort.Order.asc(sortBy));  // 기본 정렬은 오름차순
+
+            Pageable pageable = PageRequest.of(page-1,10,sort);
+
+            Page<QnAListDTO> qnaList = qnAService.getQnaList(pageable);  // 페이지네이e션 없이 모든 데이터를 가져옴
             return ResponseEntity.ok(qnaList);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);

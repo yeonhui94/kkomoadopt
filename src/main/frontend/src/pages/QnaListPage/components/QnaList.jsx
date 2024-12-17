@@ -10,8 +10,10 @@ const QnaList = ({ qnaList }) => {
       //     // console.log("큐엔에이ㅣ 리스트ㅡ으으으응 ",qnaList);
       // }, [qnaList])
 
-  // console.log(qnaList)
+  // console.log(qnaList)\
+  
   return (
+    
     <div className={mainContainer}>
       <div className={mainContainerItem+" "+header}>
         <span>번호</span>
@@ -22,8 +24,8 @@ const QnaList = ({ qnaList }) => {
       </div>
       
       {qnaList.map((qna) => (
-        <Link to={`result/${qna.id}`} key={qna.id} className={link}>
-          <QnaItem key={qna.id} {...qna}/>
+        <Link to={`result/${qna.qnaUid}`} key={qna.qnaUid} className={link}>
+          <QnaItem key={qna.qnaId} {...qna}/>
         </Link>
       ))}
     </div>

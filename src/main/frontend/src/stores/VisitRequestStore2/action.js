@@ -1,27 +1,27 @@
 import {
-  getVisitRequests
+  getVisitRequests,
 //   getVisitRequestDetail,
-//   createVisitRequest as createVisitRequestAPI,
+  createVisitRequest 
 //   updateVisitRequest,
 //   deleteVisitRequest as deleteVisitRequestAPI  // 이름 변경
 } from '../../service/apiService'
 
 // // 액션 타입 정의
-// export const CHANGE_REQUEST_UID = "CHANGE_REQUEST_UID";
-// export const CHANGE_REQUEST_ID = "CHANGE_REQUEST_ID";
-// export const CHANGE_PHONE_NUM = "CHANGE_PHONE_NUM";
-// export const CHANGE_VISIT_DATE = "CHANGE_VISIT_DATE";
-// export const CHANGE_VISIT_TIME = "CHANGE_VISIT_TIME";
-// export const CHANGE_VISIT_PURPOSE = "CHANGE_VISIT_PURPOSE";
-// export const CHANGE_VISIT_CONTENT = "CHANGE_VISIT_CONTENT";
-// export const CHANGE_VISIT_CREATED_AT = "CHANGE_VISIT_CREATED_AT";
-// export const CHANGE_VISIT_REQUEST_AUTHOR = "CHANGE_VISIT_REQUEST_AUTHOR";
-// export const RESET_STATE = "RESET_STATE";
-// export const CREATE_VISIT_REQUEST = "CREATE_VISIT_REQUEST";
+export const CHANGE_REQUEST_UID = "CHANGE_REQUEST_UID";
+export const CHANGE_REQUEST_ID = "CHANGE_REQUEST_ID";
+export const CHANGE_PHONE_NUM = "CHANGE_PHONE_NUM";
+export const CHANGE_VISIT_DATE = "CHANGE_VISIT_DATE";
+export const CHANGE_VISIT_TIME = "CHANGE_VISIT_TIME";
+export const CHANGE_VISIT_PURPOSE = "CHANGE_VISIT_PURPOSE";
+export const CHANGE_VISIT_CONTENT = "CHANGE_VISIT_CONTENT";
+export const CHANGE_VISIT_CREATED_AT = "CHANGE_VISIT_CREATED_AT";
+export const CHANGE_VISIT_REQUEST_AUTHOR = "CHANGE_VISIT_REQUEST_AUTHOR";
+export const RESET_STATE = "RESET_STATE";
+export const CREATE_VISIT_REQUEST = "CREATE_VISIT_REQUEST";
 export const READ_VISIT_REQUESTS = "READ_VISIT_REQUESTS";
-// export const READ_VISIT_REQUEST_DETAIL = "READ_VISIT_REQUEST_DETAIL";
-// export const UPDATE_VISIT_REQUEST = "UPDATE_VISIT_REQUEST";
-// export const DELETE_VISIT_REQUEST = "DELETE_VISIT_REQUEST";
+export const READ_VISIT_REQUEST_DETAIL = "READ_VISIT_REQUEST_DETAIL";
+export const UPDATE_VISIT_REQUEST = "UPDATE_VISIT_REQUEST";
+export const DELETE_VISIT_REQUEST = "DELETE_VISIT_REQUEST";
 
 // // 액션 생성자들
 // export const changeRequestUid = (requestUid) => ({
@@ -102,17 +102,14 @@ export const getVisitRequestsAction = (page) => async (dispatch) => {
 //   }
 // };
 
-// export const createVisitRequest = (visitRequestData) => async (dispatch) => {
-//   try {
-//     const response = await createVisitRequestAPI(visitRequestData);  // 새로운 방문 요청 생성 API 호출
-//     dispatch({
-//       type: CREATE_VISIT_REQUEST,
-//       payload: response.data,  // 생성된 방문 요청 데이터
-//     });
-//   } catch (error) {
-//     console.error("방문 요청을 생성할 수 없습니다.", error);
-//   }
-// };
+export const createVisitRequestAction = (visitRequestData) => async (dispatch) => {
+  try {
+    return await createVisitRequest(visitRequestData);  // 새로운 방문 요청 생성 API 호출
+ 
+  } catch (error) {
+    console.error("방문 요청을 생성할 수 없습니다.", error);
+  }
+};
 
 // export const updateVisitRequest = (requestId, updatedData) => async (dispatch) => {
 //   try {

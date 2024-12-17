@@ -4,25 +4,28 @@ import gridStyles from "../../../styles/grid.module.css";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import Select from "../../../components/Select";
+import {useStore as visitStore} from "../../../stores/VisitRequestStore2/useStore"
 
 const mockOptionsTime = [
-  { value: "09:30 ~ 10:30", label: "09:30 ~ 10:30" },
-  { value: "10:30 ~ 11:30", label: "10:30 ~ 11:30" },
-  { value: "11:30 ~ 12:30", label: "11:30 ~ 12:30" },
-  { value: "14:00 ~ 15:00", label: "14:00 ~ 15:00" },
-  { value: "15:00 ~ 16:00", label: "15:00 ~ 16:00" },
-  { value: "16:00 ~ 17:00", label: "16:00 ~ 17:00" },
+  { value: "TIME1", label: "09:30 ~ 10:30" },
+  { value: "TIME2", label: "10:30 ~ 11:30" },
+  { value: "TIME3", label: "11:30 ~ 12:30" },
+  { value: "TIME4", label: "14:00 ~ 15:00" },
+  { value: "TIME5", label: "15:00 ~ 16:00" },
+  { value: "TIME6", label: "16:00 ~ 17:00" },
 ];
 
 const mockOptionsPurpose = [
-  { value: "adoption", label: "입양" },
-  { value: "visit", label: "단순방문" },
-  { value: "donation", label: "후원" },
-  { value: "volunteer", label: "봉사" },
-  { value: "etc", label: "기타" },
+  { value: "ADOPT", label: "입양" },
+  { value: "VISIT", label: "단순방문" },
+  { value: "DONATE", label: "후원" },
+  { value: "SERVICE", label: "봉사" },
+  { value: "OTHER", label: "기타" },
 ];
 
 const ConcertationForm = ({ initialValue }) => {
+
+  const {state,actions} = visitStore()
   const [formValues, setFormValues] = useState(initialValue);
 
   const handleChange = (e) => {
@@ -31,7 +34,17 @@ const ConcertationForm = ({ initialValue }) => {
       ...formValues,
       [name]: value,
     });
+
+    console.log(formValues)
   };
+
+
+  const registerVisit = async (e) => {
+    e.preventDefault()
+    let result = await actions.createVisitRequest(formValues)
+    console.log(result)
+  }
+
 
   return (
     <form>
@@ -49,8 +62,8 @@ const ConcertationForm = ({ initialValue }) => {
         <input
           className={gridStyles.spanCol2}
           type="text"
-          name="contact"
-          value={formValues.contact}
+          name="phoneNUm"
+          value={formValues.phoneNUm}
           onChange={handleChange}
           disabled
         />
@@ -58,26 +71,26 @@ const ConcertationForm = ({ initialValue }) => {
         <input
           className={gridStyles.spanCol1}
           type="date"
-          name="date"
-          value={formValues.date}
+          name="visitDate"
+          value={formValues.visitDate}
           onChange={handleChange}
         />
 
         <label className={gridStyles.spanCol1}>시간 선택</label>
         <Select
-          name="time"
+          name="visitTime"
           options={mockOptionsTime}
           className={gridStyles.spanCol1}
-          value={formValues.time}
+          value={formValues.visitTime}
           onChange={handleChange}
         />
 
         <label className={gridStyles.spanCol1}>방문 목적</label>
         <Select
-          name="purpose"
+          name="visitPurpose"
           options={mockOptionsPurpose}
           className={gridStyles.spanCol1}
-          value={formValues.purpose}
+          value={formValues.visitPurpose}
           onChange={handleChange}
         />
         <label className={`${gridStyles.spanCol1} ${gridStyles.spanRow5}`}>
@@ -85,13 +98,13 @@ const ConcertationForm = ({ initialValue }) => {
         </label>
         <textarea
           className={`${gridStyles.spanCol5} ${gridStyles.spanRow5}`}
-          name="content"
-          value={formValues.content}
+          name="visitContent"
+          value={formValues.visitContent}
           onChange={handleChange}
         />
       </div>
       <div className={styles.buttonContainer}>
-        <Button text="등록" type="submit" />
+        <Button text="등록" type="button" onClick={registerVisit} />
       </div>
     </form>
   );

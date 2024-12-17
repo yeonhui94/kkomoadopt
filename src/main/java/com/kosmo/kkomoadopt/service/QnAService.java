@@ -151,18 +151,18 @@ public class QnAService {
 
 
     // QNA 전체 글 가져오기
-    public List<QnAListDTO> getQnaList() {
-        List<QnAEntity> qnaList = qnARepository.findAll();  // 전체 데이터 조회
+    public Page<QnAListDTO> getQnaList(Pageable pageable) {
+        Page<QnAEntity> qnaList = qnARepository.findAll(pageable);  // 전체 데이터 조회
 
-        return qnaList.stream().map(qna -> {
+        return qnaList.map(qna -> {
             Optional<UserEntity> userOptional = userRepository.findById(qna.getUserId());
             String nickname = userOptional.map(UserEntity::getNickname).orElse("Unknown");
 
             // 3. 답변자 닉네임 조회
             String answerAuthor = null;
             if (qna.getAnswerAuthor() != null) {
-                Optional<UserEntity> answerAuthorOptional = userRepository.findById(qna.getAnswerAuthor());
-                answerAuthor = answerAuthorOptional.map(UserEntity::getNickname).orElse("Unknown");
+
+                answerAuthor = qna.getAnswerAuthor()!=null ? qna.getAnswerAuthor() : "";
             }
 
             return new QnAListDTO(
@@ -177,9 +177,10 @@ public class QnAService {
                     qna.getQnaAnswer(),
                     nickname,
                     answerAuthor,
-                    qna.getQnaViewCount()
+                    qna.getQnaViewCount(),
+                    null
             );
-        }).toList();
+        });
 
     }
     // QnA 게시글 상세 조회
@@ -204,9 +205,10 @@ public class QnAService {
 
         // 답변자 정보 조회
         String answerAuthor = null;
+        UserEntity answerAuthorOptional = null;
         if (qna.getAnswerAuthor() != null) {
-            Optional<UserEntity> answerAuthorOptional = userRepository.findById(qna.getAnswerAuthor());
-            answerAuthor = answerAuthorOptional.map(UserEntity::getNickname).orElse("관리자");
+            answerAuthorOptional = userRepository.findByNickname(qna.getAnswerAuthor());
+            answerAuthor = answerAuthorOptional.getNickname();
         }
 
         return new QnAListDTO(
@@ -221,7 +223,8 @@ public class QnAService {
                 qna.getQnaAnswer(),
                 nickname,
                 answerAuthor,
-                qna.getQnaViewCount()
+                qna.getQnaViewCount(),
+                answerAuthorOptional != null ? answerAuthorOptional.getPhoneNumber() : null
         );
     }
 

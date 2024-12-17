@@ -9,33 +9,36 @@ const QnaResult = ({ data, onAnswerSubmit, postDetail }) => {
   // const location = useLocation();
   const isAdminPage = location.pathname.includes('admin');
 
-  const isResponseEmpty = !data.response || data.response.trim() === "";
+  const isResponseEmpty = !data?.response || data?.response.trim() === "";
       if (!postDetail) {
         // 데이터가 없으면 로딩 중 또는 오류 메시지를 표시
         return <p>Loading post details...</p>;
     }
 
   // 관리자가 답변을 수정할 수 있도록 상태 관리
-  const [response, setResponse] = useState(data.response);
-
+  const [response, setResponse] = useState(data?.response);
+    console.log(postDetail)
 
   // 답변 내용 변경 시 호출되는 함수
   const handleResponseChange = (e) => {
     setResponse(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (e,type) => {
+      e.preventDefault()
+    onAnswerSubmit(postDetail.qnaUid,type)
+      
+    
 
-    if (onAnswerSubmit) {
-      // 답변을 제출하면, 부모 컴포넌트에 상태 업데이트를 요청
-      onAnswerSubmit(data.id, response); // 답변 내용도 함께 전달
-    }
+    
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form >
+      
       <div className={styles.gridResponseContainer}>
+
+        
         <label className={gridStyles.spanCol1}>닉네임</label>
         {/* <input
           className={gridStyles.spanCol1}
@@ -43,7 +46,7 @@ const QnaResult = ({ data, onAnswerSubmit, postDetail }) => {
           value={data.nickname}
           disabled
         /> */}
-          <input type="text" value={postDetail.qnaAuthor} readOnly className={gridStyles.spanCol1} />
+          <input type="text" value={postDetail.nickname} readOnly className={gridStyles.spanCol1} />
         <label className={gridStyles.spanCol2}>연락처</label>
         {/* <input
           className={gridStyles.spanCol2}
@@ -51,7 +54,7 @@ const QnaResult = ({ data, onAnswerSubmit, postDetail }) => {
           value={data.contact}
           disabled
         /> */}
-          <input value={postDetail.qnaUid} className={gridStyles.spanCol2} readOnly/>
+          <input value={postDetail.answerPhoneNumber} className={gridStyles.spanCol2} readOnly/>
         <label className={gridStyles.spanCol1}>제목</label>
         {/* <input
           className={gridStyles.spanCol5}
@@ -99,11 +102,11 @@ const QnaResult = ({ data, onAnswerSubmit, postDetail }) => {
         {isAdminPage ? (
           // 관리자인 경우
           isResponseEmpty ? (
-            <Button text="등록" type="submit" />
+            <Button text="등록" type="button" id="register" onClick={()=> {handleSubmit('register')}}/>
           ) : null
         ) : (
           // 관리자가 아닌 경우
-          <Button text="삭제" type="submit" />
+          <Button text="삭제" type="button" id="delete" onClick={(e)=>  {handleSubmit(e,'delete')}}/>
         )}
       </div>
     </form>

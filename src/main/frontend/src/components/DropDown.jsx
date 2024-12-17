@@ -11,11 +11,7 @@ function Dropdown({ options = [], orders = [], defaultText = "선택해주세요
   };
 
   const handleOptionClick = (option, order) => {
-    console.log("옵션 선택됨:", option); // 디버깅 로그
-    console.log("순서 선택됨:", order); // 디버깅 로그
-    setSelectedOption(option);
-    setSelectedOrder(order);
-    setIsOpen(false);
+
     onChange?.(option, order); // 부모로 전달
   };
   console.log(options);
@@ -34,9 +30,9 @@ function Dropdown({ options = [], orders = [], defaultText = "선택해주세요
               <li
                 key={index}
                 className={styles.dropdownItem}
-                onClick={() => handleOptionClick(option, orders[index])}
+                onClick={() => handleOptionClick(option.value, option.order)}
               >
-                {option}
+                {option.text}
               </li>
             ))
           ) : (

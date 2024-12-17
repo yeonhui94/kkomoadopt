@@ -146,7 +146,7 @@ function App() {
             { path: "", element: <QnaListPage /> },
             // QNA 게시글
             {
-              path: "result/:id",
+              path: "result/:qnaUid",
               element: <QnaResultPage gridArea="subsection" />,
             },
             // QNA 글쓰기

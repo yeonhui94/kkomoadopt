@@ -29,10 +29,10 @@ const Adoption_NewPost = ({ gridArea }) => {
     const [text, setText] = useState("");
 
     const handleInputChange = (e) => {
-        
+        console.log(e)
         const { name, value } = e.target;
 
-        console.log(e.target.value)
+        console.log(name, value)
 
         setFormData((prevData) => ({
             ...prevData,
@@ -70,6 +70,8 @@ const Adoption_NewPost = ({ gridArea }) => {
             console.log(pair[0] + ': ' + pair[1]);
         }
 
+
+        console.log(formDataObj)
 
         // createAdoptionPostAction 액션을 호출하여 게시물 생성
           let result =await actions.createAdoptionPostAction(formDataObj);

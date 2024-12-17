@@ -44,7 +44,7 @@ const StyledInput = styled.input`
 
 // InputBox 컴포넌트
 function InputBox({ text,padding2,backgroundColor1, backgroundColor2, color,padding3, paddingBottom3, border, borderBottom ,padding, itype, value, width, height, onChange, placeholder,radius,width1,
-                    backgroundColor,border1,fixedText,fontSize,marginBottom, paddingRight,marginRight, focus,id}) {
+                    backgroundColor,border1,fixedText,fontSize,marginBottom, paddingRight,marginRight, focus,id,name}) {
   return (
     <StyledDiv 
         width={width} 

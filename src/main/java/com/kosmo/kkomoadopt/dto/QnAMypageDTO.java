@@ -9,6 +9,8 @@ public record QnAMypageDTO(
         Integer qnaId,
         String qnaTitle,
         LocalDateTime qnaCreatedAt,
-        QnAState qnaState
+        QnAState qnaState,
+        String userId,
+        String answerAuthor
 ) {
 }

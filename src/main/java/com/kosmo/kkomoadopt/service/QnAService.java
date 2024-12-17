@@ -232,7 +232,9 @@ public class QnAService {
                 entity.getQnaId(),
                 entity.getQnaTitle(),
                 entity.getQnaCreatedAt(),
-                entity.getQnaState()
+                entity.getQnaState(),
+                entity.getUserId(),
+                entity.getAnswerAuthor()
         );
     }
 

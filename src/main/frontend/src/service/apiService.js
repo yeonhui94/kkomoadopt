@@ -63,7 +63,7 @@ export const getMypageAdoptList = () => apiClient.get('/api/adopt/mypage');
 export const getMypageCommentList = () => apiClient.get('/api/comment/mypage');
 
 // 마이페이지 CommunityPost 전체 불러오기
-export const getMypageCommunityPostList = () => apiClient.get('/api/comment/mypage');
+export const getMypageCommunityPostList = () => apiClient.get('/api/community/posts/mypage');
 
 // 마이페이지 QnA 전체 불러오기
 export const getMypageQnAList = () => apiClient.get('/api/qna/mypage');
@@ -103,6 +103,9 @@ export const updateAdoptionPost = (noticeUid, updatedData) => apiClient.patch(`/
 
 // 6. 입양 게시물 삭제
 export const deleteAdoptionPost = (noticeUid) => apiClient.delete(`/api/adoption/posts/${noticeUid}`);
+
+//마이페이지, 어드민페이지에서 쓸 모든 입양공고 가져오기
+//export const getAllNotices = () => apiClient.get('/api/adopt/mypage');
 
 // // 7. 입양 게시물 이미지 업로드
 // export const uploadAdoptionPostImage = (imageData) => apiClient.post('/api/adoption/posts/upload-image', imageData);
@@ -147,7 +150,6 @@ export const uploadProfileImage = (imageData) => apiClient.post('/api/mypage/use
 
 // 1. 댓글 목록 조회
 export const getComments = () => apiClient.get('/api/comments');
-
 
 // 2. 페이지 별, 특정 댓글 상세 조회
 export const getCommentDetail = (commentId) => apiClient.get(`/api/comments/${commentId}`);

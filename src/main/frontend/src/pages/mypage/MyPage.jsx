@@ -6,7 +6,7 @@ import Profile from "../../components/MyPage/Profile/Profile";
 import styles from "./MyPage.module.css";
 import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { getMypageAdoptList,getMypageCommentList, getMypageCommunityPostList, getMypageQnAList, getMypageVisitRequestList } from "../../service/apiService";
+import { getMypageAdoptList} from "../../service/apiService";
 
 function MyPage({ gridArea }) {
   const location = useLocation(); // 현재 경로를 가져옴
@@ -28,49 +28,49 @@ function MyPage({ gridArea }) {
     }
     getMypageAdoptListAction();
 
-    const getMypageCommentListAction = async () => {
-      try {
-        const response = await getMypageCommentList();
-        console.log('Comments Data:', response);  // 데이터 콘솔에 출력
-      }
-      catch (error) {
-        console.error("입양 게시물을 불러올 수 없습니다.", error);
-      }
-    }
-    getMypageCommentListAction();
+    // const getMypageCommentListAction = async () => {
+    //   try {
+    //     const response = await getMypageCommentList();
+    //     console.log('Comments Data:', response);  // 데이터 콘솔에 출력
+    //   }
+    //   catch (error) {
+    //     console.error("입양 게시물을 불러올 수 없습니다.", error);
+    //   }
+    // }
+    // getMypageCommentListAction();
 
-    const getMypageCommunityPostListAction = async () => {
-      try {
-        const response = await getMypageCommunityPostList();
-        console.log('Communities Data:', response);  // 데이터 콘솔에 출력
-      }
-      catch (error) {
-        console.error("입양 게시물을 불러올 수 없습니다.", error);
-      }
-    }
-    getMypageCommunityPostListAction();
+    // const getMypageCommunityPostListAction = async () => {
+    //   try {
+    //     const response = await getMypageCommunityPostList();
+    //     console.log('Communities Data:', response);  // 데이터 콘솔에 출력
+    //   }
+    //   catch (error) {
+    //     console.error("입양 게시물을 불러올 수 없습니다.", error);
+    //   }
+    // }
+    // getMypageCommunityPostListAction();
 
-    const getMypageQnAListAction = async () => {
-      try {
-        const response = await getMypageQnAList();
-        console.log('Qnas Data:', response);  // 데이터 콘솔에 출력
-      }
-      catch (error) {
-        console.error("입양 게시물을 불러올 수 없습니다.", error);
-      }
-    }
-    getMypageQnAListAction();
+    // const getMypageQnAListAction = async () => {
+    //   try {
+    //     const response = await getMypageQnAList();
+    //     console.log('Qnas Data:', response);  // 데이터 콘솔에 출력
+    //   }
+    //   catch (error) {
+    //     console.error("입양 게시물을 불러올 수 없습니다.", error);
+    //   }
+    // }
+    // getMypageQnAListAction();
 
-    const getMypageVisitRequestListAction = async () => {
-      try {
-        const response = await getMypageVisitRequestList();
-        console.log('VisitRequest Data:', response);  // 데이터 콘솔에 출력
-      }
-      catch (error) {
-        console.error("입양 게시물을 불러올 수 없습니다.", error);
-      }
-    }
-    getMypageVisitRequestListAction();
+    // const getMypageVisitRequestListAction = async () => {
+    //   try {
+    //     const response = await getMypageVisitRequestList();
+    //     console.log('VisitRequest Data:', response);  // 데이터 콘솔에 출력
+    //   }
+    //   catch (error) {
+    //     console.error("입양 게시물을 불러올 수 없습니다.", error);
+    //   }
+    // }
+    // getMypageVisitRequestListAction();
 
     const storedAdoptData = localStorage.getItem('adoption');
     const storedUserData = localStorage.getItem('user');

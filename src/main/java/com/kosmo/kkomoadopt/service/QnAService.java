@@ -1,7 +1,10 @@
 package com.kosmo.kkomoadopt.service;
 
+import com.kosmo.kkomoadopt.dto.CommunityMypageDTO;
 import com.kosmo.kkomoadopt.dto.QnADTO;
 import com.kosmo.kkomoadopt.dto.QnAListDTO;
+import com.kosmo.kkomoadopt.dto.QnAMypageDTO;
+import com.kosmo.kkomoadopt.entity.CommunityPostEntity;
 import com.kosmo.kkomoadopt.entity.QnAEntity;
 import com.kosmo.kkomoadopt.entity.UserEntity;
 import com.kosmo.kkomoadopt.enums.QnAState;
@@ -25,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -221,4 +225,24 @@ public class QnAService {
         );
     }
 
+    // QnAMypageDTO 변환 함수
+    private QnAMypageDTO convertToQnaDTO(QnAEntity entity) {
+        return new QnAMypageDTO(
+                entity.getQnaUid(),
+                entity.getQnaId(),
+                entity.getQnaTitle(),
+                entity.getQnaCreatedAt(),
+                entity.getQnaState()
+        );
+    }
+
+    // 마이페이지 Qna 전체 데이터 불러오기
+    public List<QnAMypageDTO> getMypageQnaList(){
+        List<QnAEntity> qnAEntities = qnARepository.findAll();
+
+        // QnAEntity 객체를 QnAMypageDTO 변환
+        return qnAEntities.stream()
+                .map(this::convertToQnaDTO)  // convertToQnaDTO 변환
+                .collect(Collectors.toList());  // List로 수집
+    }
 }

@@ -1,15 +1,16 @@
 package com.kosmo.kkomoadopt.controller;
 
 import com.kosmo.kkomoadopt.dto.CommentDTO;
+import com.kosmo.kkomoadopt.dto.CommentMypageDTO;
 import com.kosmo.kkomoadopt.dto.VisitRequestDTO;
-import com.kosmo.kkomoadopt.dto.VisitRequestListDTO;
+import com.kosmo.kkomoadopt.dto.VisitRequestMypageDTO;
+import com.kosmo.kkomoadopt.entity.CommentEntity;
 import com.kosmo.kkomoadopt.entity.CommunityPostEntity;
 import com.kosmo.kkomoadopt.entity.VisitRequestEntity;
 import com.kosmo.kkomoadopt.enums.Authority;
 import com.kosmo.kkomoadopt.service.VisitRequestService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,13 +18,25 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/visit-requests")
 @RequiredArgsConstructor
 public class VisitRequestController {
 
+    @Autowired
     private final VisitRequestService visitRequestService;
+
+    // 마이페이지에서 comment 전체 가져오기
+    @GetMapping("mypage")
+    public ResponseEntity<List<VisitRequestMypageDTO>> getMypageAll(){
+
+        List<VisitRequestMypageDTO> result = visitRequestService.getMypageVisitRequestList();
+
+        // 상태 코드 200 OK와 함께 반환
+        return ResponseEntity.ok(result);
+    }
 
     @PostMapping("/request")  // 나중에 프론트랑 주소 맞추세요!!!!!!!
     public ResponseEntity<String> createVisitRequest(

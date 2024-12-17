@@ -1,14 +1,14 @@
 package com.kosmo.kkomoadopt.controller;
 
-import com.kosmo.kkomoadopt.dto.CommentDTO;
-import com.kosmo.kkomoadopt.dto.CommentListDTO;
-import com.kosmo.kkomoadopt.dto.CommunityDTO;
+import com.kosmo.kkomoadopt.dto.*;
 import com.kosmo.kkomoadopt.entity.CommentEntity;
 import com.kosmo.kkomoadopt.enums.Authority;
+import com.kosmo.kkomoadopt.repository.CommentRepository;
 import com.kosmo.kkomoadopt.service.CommentService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +20,18 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CommentController {
 
+    @Autowired
     private final CommentService commentService;
+
+    // 마이페이지에서 comment 전체 가져오기
+    @GetMapping("mypage")
+    public ResponseEntity<List<CommentMypageDTO>> getMypageAll(){
+
+        List<CommentMypageDTO> result = commentService.getMypageCommentList();
+
+        // 상태 코드 200 OK와 함께 반환
+        return ResponseEntity.ok(result);
+    }
 
     @PostMapping("/save")
     public ResponseEntity<String> createComment(

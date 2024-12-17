@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -32,6 +33,9 @@ public interface UserRepository extends JpaRepository<UserEntity, String> {
 
     // nickname으로 userId를 찾는 쿼리
     UserEntity findByNickname(String nickname);
+
+    // 여러 userId로 UserEntity 조회
+    List<UserEntity> findByUserIdIn(List<String> userIds);
 
     Page<UserEntity> findAllByIsBlacklisted(Boolean blackYn ,Pageable pageable);
     @Query("SELECT a FROM UserEntity a WHERE a.nickname LIKE %:query% OR a.email LIKE %:query% AND isBlacklisted = :blackListed"  )

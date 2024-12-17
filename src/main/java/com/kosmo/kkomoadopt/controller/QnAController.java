@@ -1,7 +1,5 @@
 package com.kosmo.kkomoadopt.controller;
-import com.kosmo.kkomoadopt.dto.CommunityListDTO;
-import com.kosmo.kkomoadopt.dto.QnADTO;
-import com.kosmo.kkomoadopt.dto.QnAListDTO;
+import com.kosmo.kkomoadopt.dto.*;
 import com.kosmo.kkomoadopt.enums.Authority;
 import com.kosmo.kkomoadopt.service.QnAService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,11 +17,21 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/qna/posts")
+@RequestMapping("/api/qna")
 @RequiredArgsConstructor
 public class QnAController {
 
     private final QnAService qnAService;
+
+    // 마이페이지에서 qna 전체 가져오기
+    @GetMapping("mypage")
+    public ResponseEntity<List<QnAMypageDTO>> getMypageAll(){
+
+        List<QnAMypageDTO> result = qnAService.getMypageQnaList();
+
+        // 상태 코드 200 OK와 함께 반환
+        return ResponseEntity.ok(result);
+    }
 
     @PostMapping("/save")
     public ResponseEntity<?> createNotices(

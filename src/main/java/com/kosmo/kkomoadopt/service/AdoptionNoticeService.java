@@ -144,6 +144,12 @@ public class AdoptionNoticeService {
         AdoptionNoticeEntity aNum = optionalAnnouncementNum.get();
         System.out.println("AnnouncementNum: " + aNum.getAnnouncementNum());
 
+        // 조회수 1 증가
+        aNum.setNoticeViewCount(aNum.getNoticeViewCount() + 1);
+
+        // 변경된 데이터를 데이터베이스에 저장
+        adoptionNoticeRepository.save(aNum);
+
         return new AdoptNoticeDTO(
                 aNum.getNoticeUid(),
                 aNum.getNoticeCategory(),

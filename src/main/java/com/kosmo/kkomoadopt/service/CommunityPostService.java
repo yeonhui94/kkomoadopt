@@ -1,9 +1,6 @@
 package com.kosmo.kkomoadopt.service;
 
-import com.kosmo.kkomoadopt.dto.AdoptNoticeListDTO;
-import com.kosmo.kkomoadopt.dto.CommentListDTO;
-import com.kosmo.kkomoadopt.dto.CommunityListDTO;
-import com.kosmo.kkomoadopt.dto.CommunityDTO;
+import com.kosmo.kkomoadopt.dto.*;
 import com.kosmo.kkomoadopt.entity.AdoptionNoticeEntity;
 import com.kosmo.kkomoadopt.enums.NoticeCategory;
 import com.kosmo.kkomoadopt.entity.CommentEntity;
@@ -99,8 +96,6 @@ public class CommunityPostService {
             return false; // 전체적인 예외 발생 시
         }
     }
-
-
 
     // category별로 게시물 가져오기
     public List<CommunityListDTO> getCommunityListByCategory(String category) {
@@ -378,7 +373,6 @@ public class CommunityPostService {
         return true; // 게시글 업데이트 성공
     }
 
-
     public boolean deleteCommunityPost(CommunityDTO communityDTO, @SessionAttribute("userId") String userId) {
         // userId가 세션에 없으면 예외 처리
         if (userId == null) {
@@ -415,5 +409,27 @@ public class CommunityPostService {
         return true; // 삭제 성공
     }
 
+    // CommunityMypageDTO 변환 함수
+    private CommunityMypageDTO convertToCommunityDTO(CommunityPostEntity entity) {
+        return new CommunityMypageDTO(
+                entity.getPostUid(),
+                entity.getPostId(),
+                entity.getPostCategory(),
+                entity.getPostTitle(),
+                entity.getPostCreatedAt(),
+                entity.getUserId(),
+                entity.getPostViewCount()
+        );
+    }
+
+    // 마이페이지 Comment 전체 데이터 불러오기
+    public List<CommunityMypageDTO> getMypageCommunityList(){
+        List<CommunityPostEntity> communityPostEntities = communityPostRepository.findAll();
+
+        // CommunityPostEntity 객체를 CommunityMypageDTO 변환
+        return communityPostEntities.stream()
+                .map(this::convertToCommunityDTO)  // convertToCommunityDTO 변환
+                .collect(Collectors.toList());  // List로 수집
+    }
 
 }

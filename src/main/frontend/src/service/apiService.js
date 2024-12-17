@@ -59,6 +59,18 @@ export const changeMyScrap = (adoptNum) => apiClient.post('/api/user/scrap/save'
 // 마이페이지 입양데이터 전체 불러오기
 export const getMypageAdoptList = () => apiClient.get('/api/adopt/mypage');
 
+// 마이페이지 Comment 전체 불러오기
+export const getMypageCommentList = () => apiClient.get('/api/comment/mypage');
+
+// 마이페이지 CommunityPost 전체 불러오기
+export const getMypageCommunityPostList = () => apiClient.get('/api/comment/mypage');
+
+// 마이페이지 QnA 전체 불러오기
+export const getMypageQnAList = () => apiClient.get('/api/qna/mypage');
+
+// 마이페이지 VistRequest 전체 불러오기
+export const getMypageVisitRequestList = () => apiClient.get('/api/visit-requests/mypage');
+
 // 2. 전체, 카테고리별 품종 검색어 적용(12개)
 export const getSearchAdoptionPostList = (page, noticeCategory,sortBy,  sortOrder, search) => apiClient.get('/api/adopt/search', {
   params: {
@@ -192,22 +204,27 @@ export const getQnaPosts = (page,size) => apiClient.get('/api/qna/posts', {
 });
 
 // 2. 특정 QNA 게시물 상세 조회
-export const getQnaPostDetail = (qnaUid) => apiClient.get(`/api/qna/posts/${qnaUid}`);
+export const getQnaPostDetail = (qnaUid) => apiClient.get(`/api/qna/${qnaUid}`);
 
 // 3. QNA 게시물 생성
-export const createQnaPost = (qnaData) => apiClient.post('/api/qna/posts', qnaData);
+export const createQnaPost = (qnaData) => apiClient.post('/api/qna', qnaData);
 
 // 4. QNA 게시물 수정
-export const updateQnaPost = (qnaUid, updatedData) => apiClient.patch(`/api/qna/posts/${qnaUid}`, updatedData);
+export const updateQnaPost = (qnaUid, updatedData) => apiClient.patch(`/api/qna/${qnaUid}`, updatedData);
 
 // 5. QNA 게시물 삭제
-export const deleteQnaPost = (qnaUid) => apiClient.delete(`/api/qna/posts/${qnaUid}`);
+export const deleteQnaPost = (qnaUid) => apiClient.delete(`/api/qna/${qnaUid}`);
 
 
 // 방문 요청 관련 API 요청 메서드 추가
 
-// 1. 전체 방문 요청 조회
-export const getVisitRequests = () => apiClient.get('../../../');
+// 관리자 페이지 방문 요청 조회(페이지별)
+export const getVisitRequests = (page, size) => apiClient.get('api/visit/list8', {
+  params : {
+    page : page,
+    size : size
+  }
+});
 
 // 2. 특정 방문 요청 상세 조회
 export const getVisitRequestDetail = (requestUid) => apiClient.get(`/api/visit-requests/${requestUid}`);

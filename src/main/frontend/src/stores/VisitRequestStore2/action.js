@@ -1,10 +1,10 @@
-// import {
-//   getVisitRequests,
+import {
+  getVisitRequests
 //   getVisitRequestDetail,
 //   createVisitRequest as createVisitRequestAPI,
 //   updateVisitRequest,
 //   deleteVisitRequest as deleteVisitRequestAPI  // 이름 변경
-// } from '../../service/apiService'
+} from '../../service/apiService'
 
 // // 액션 타입 정의
 // export const CHANGE_REQUEST_UID = "CHANGE_REQUEST_UID";
@@ -18,7 +18,7 @@
 // export const CHANGE_VISIT_REQUEST_AUTHOR = "CHANGE_VISIT_REQUEST_AUTHOR";
 // export const RESET_STATE = "RESET_STATE";
 // export const CREATE_VISIT_REQUEST = "CREATE_VISIT_REQUEST";
-// export const READ_VISIT_REQUESTS = "READ_VISIT_REQUESTS";
+export const READ_VISIT_REQUESTS = "READ_VISIT_REQUESTS";
 // export const READ_VISIT_REQUEST_DETAIL = "READ_VISIT_REQUEST_DETAIL";
 // export const UPDATE_VISIT_REQUEST = "UPDATE_VISIT_REQUEST";
 // export const DELETE_VISIT_REQUEST = "DELETE_VISIT_REQUEST";
@@ -73,18 +73,22 @@
 //   type: RESET_STATE,
 // });
 
-// // CRUD API 관련 액션 생성자들
-// export const readVisitRequests = () => async (dispatch) => {
-//   try {
-//     const response = await getVisitRequests();  // API 호출
-//     dispatch({
-//       type: READ_VISIT_REQUESTS,
-//       payload: response.data,  // 서버로부터 받은 데이터
-//     });
-//   } catch (error) {
-//     console.error("방문 요청 목록을 불러올 수 없습니다.", error);
-//   }
-// };
+// CRUD API 관련 액션 생성자들
+export const getVisitRequestsAction = (page) => async (dispatch) => {
+  try {
+    const response = await getVisitRequests(page);  // API 호출
+    console.log('Notices Data:', response.data);  // 데이터 콘솔에 출력
+    if (response.status === 200 ){
+    dispatch({
+      type: READ_VISIT_REQUESTS,
+      payload: response.data,  // 서버로부터 받은 데이터
+    });
+    return "ok"
+  };
+  } catch (error) {
+    console.error("방문 요청 목록을 불러올 수 없습니다.", error);
+  }
+};
 
 // export const readVisitRequestDetail = (requestId) => async (dispatch) => {
 //   try {

@@ -1,8 +1,6 @@
 package com.kosmo.kkomoadopt.controller;
 
-import com.kosmo.kkomoadopt.dto.CommunityListDTO;
-import com.kosmo.kkomoadopt.dto.CommunityDTO;
-import com.kosmo.kkomoadopt.dto.QnADTO;
+import com.kosmo.kkomoadopt.dto.*;
 import com.kosmo.kkomoadopt.enums.Authority;
 import com.kosmo.kkomoadopt.enums.PostCategory;
 import com.kosmo.kkomoadopt.service.CommunityPostService;
@@ -10,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Response;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,8 +22,20 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CommunityPostController {
 
+    @Autowired
     private final CommunityPostService communityPostService;
 
+    // 마이페이지에서 community 전체 가져오기
+    @GetMapping("mypage")
+    public ResponseEntity<List<CommunityMypageDTO>> getMypageAll(){
+
+        List<CommunityMypageDTO> result = communityPostService.getMypageCommunityList();
+
+        // 상태 코드 200 OK와 함께 반환
+        return ResponseEntity.ok(result);
+    }
+
+    // category 별 게시글 가져오기
     @GetMapping
     public ResponseEntity<List<CommunityListDTO>> getPostByCategory(@RequestParam(name = "category") String projectCategory) {
         try {
@@ -94,12 +105,12 @@ public class CommunityPostController {
         Authority authority = (Authority) session.getAttribute("authority");
         String sessionUserId = (String) session.getAttribute("userId"); // 현재 로그인한 사용자 ID
 
-        // 권한 확인: USER(수정), ADMIN(삭제) 접근
+        // 권한 확인: USER만 접근 가능
         if (authority == null || (!authority.name().equals("USER") && !authority.name().equals("ADMIN"))) {
             return new ResponseEntity<>("권한이 없습니다.", HttpStatus.FORBIDDEN);
         }
 
-        // 게시글 업데이트 로직 호출
+        // QnA 업데이트 로직 호출
         boolean updated = communityPostService.updateCommunityPost(communityDTO, authority.name(), files, sessionUserId);
         if (updated) {
             return new ResponseEntity<>("게시글 업데이트 성공", HttpStatus.OK);

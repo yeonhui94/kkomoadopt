@@ -1,7 +1,10 @@
 package com.kosmo.kkomoadopt.service;
 
+import com.kosmo.kkomoadopt.dto.AdoptMypageDTO;
 import com.kosmo.kkomoadopt.dto.CommentDTO;
 import com.kosmo.kkomoadopt.dto.CommentListDTO;
+import com.kosmo.kkomoadopt.dto.CommentMypageDTO;
+import com.kosmo.kkomoadopt.entity.AdoptionNoticeEntity;
 import com.kosmo.kkomoadopt.entity.CommentEntity;
 import com.kosmo.kkomoadopt.entity.CommunityPostEntity;
 import com.kosmo.kkomoadopt.entity.UserEntity;
@@ -121,5 +124,26 @@ public class CommentService {
         return true; // 삭제 성공
     }
 
+    // CommentMypageDTO 변환 함수
+    private CommentMypageDTO convertToCommentDTO(CommentEntity entity) {
+        return new CommentMypageDTO(
+                entity.getCommentId(),
+                entity.getCommentContent(),
+                entity.getCommentCreatedAt(),
+                entity.getIsDeleted(),
+                entity.getPostUid(),
+                entity.getUserId()
+        );
+    }
+
+    // 마이페이지 Comment 전체 데이터 불러오기
+    public List<CommentMypageDTO> getMypageCommentList(){
+        List<CommentEntity> commentEntities = commentRepository.findAll();
+
+        // CommentEntity 객체를 CommentMypageDTO 변환
+        return commentEntities.stream()
+                .map(this::convertToCommentDTO)  // convertToCommentDTO 변환
+                .collect(Collectors.toList());  // List로 수집
+    }
 
 }

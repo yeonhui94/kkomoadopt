@@ -4,7 +4,7 @@ function Map() {
   const [error, setError] = useState(null); // 에러 상태를 관리
   const script = document.createElement("script");
   script.type = "text/javascript";
-  script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=748d20c2d0b857da185e5e7c655d9ac7&autoload=false`; // 카카오맵 API URL
+  script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=0d4c2ab52d4c65f286c1b559096704c1&autoload=false`; // 카카오맵 API URL
   
 // 스크립트를 head에 추가
   document.head.appendChild(script);

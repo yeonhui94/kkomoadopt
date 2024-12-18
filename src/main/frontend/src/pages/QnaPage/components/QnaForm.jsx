@@ -20,7 +20,7 @@ const QnaForm = ({ initialValue }) => {
     console.log("formValues.nickname" , formValues.nickname)
   };
 
-  return (
+  return (  
     <form>
       <div className={styles.gridFormContainer}>
         <label className={gridStyles.spanCol1}>닉네임</label>

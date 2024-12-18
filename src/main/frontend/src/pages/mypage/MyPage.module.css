@@ -13,7 +13,7 @@
     flex-direction: column;
     grid-column: 2;
     padding: 30px;
-    gap: 20px;
+    gap: 20px;  
   }
   .noScrapMessage{
     margin: 50px;

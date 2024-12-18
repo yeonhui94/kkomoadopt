@@ -625,7 +625,7 @@ const Scrappage = ({ gridArea }) => {
                 onScrapToggle={() => toggleScrap(item.announcementNum)}
               />
             ))
-          ) : (
+          ) : (  
             <p className={styles.noScrapMessage}>스크랩한 게시물이 없습니다.</p>
           )}
         </div>

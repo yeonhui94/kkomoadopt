@@ -16,7 +16,7 @@ const QnaWritePage = () => {
 
     const [init, setInit] = useState(false)
 
-
+  
       useEffect(()=> {
         let userInfo = JSON.parse(localStorage.getItem('user'));
         console.log(userInfo)

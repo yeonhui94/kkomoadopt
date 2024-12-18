@@ -92,7 +92,7 @@ const Resell = ({ gridArea }) => {
                         currentPosts.map((card) => (
                             <Link key={card.postUid}>
                                 <Card2
-                                to={`/resell/post/${card.postUid}`} 
+                                    to={`/resell/post/${card.postUid}`} 
                                     imageFile={card.postImgUrl}
                                     text1={card.postTitle}
                                     text2={card.postContent}

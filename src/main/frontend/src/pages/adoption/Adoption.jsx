@@ -5,9 +5,9 @@ import SubMenuBar from "../../components/submenubar/SubMenuBar";
 import Card2 from "../../components/Card2/Card2";
 import Pagenumber from "../../components/pagenumber/Pagenumber";
 import styles from "../Review.module.css";
-import Dropdown2 from "../../components/DropDown2";
 import Divider from "../../components/Divider";
 import { useStore as AdoptionNoticeStore2 } from "../../stores/AdoptionNoticeStore2/useStore";
+import Dropdown from "../../components/DropDown";
 
 const Adoption = ({ gridArea }) => {
   const [selectedCategory, setSelectedCategory] = useState("ALL");
@@ -167,7 +167,7 @@ const totalPages = Math.ceil(isNaN(totalElements) ? 0 : totalElements / 12);
       <div className={styles.rwWrapper}>
         <div className={styles.rwsubcontainer}>
           <div className={styles.rwsubcontainer2}>
-            <Dropdown2
+            <Dropdown
               options={options}
               orders={orders}
               defaultText="전체보기"

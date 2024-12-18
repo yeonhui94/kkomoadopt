@@ -16,6 +16,7 @@ function Resell_PostPage({ text = "사고팝니다", gridArea }) {
     const [ loading, setLoading ] = useState(true);
     const [ error, setError ] = useState(null);
     const [isAdded, setIsAdded] = useState(false);
+    const user = JSON.parse(localStorage.getItem('user'));
 
         useEffect(()=>{
             const fetchData2 = async () => {

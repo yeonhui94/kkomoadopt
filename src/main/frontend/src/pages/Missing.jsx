@@ -97,8 +97,9 @@ const Missing = ({ gridArea }) => {
 
                         {currentPosts.length > 0 ? (
                             currentPosts.map((card) => (
-                                <Link to={`/find-child/post/${card.postUid}`} key={card.postUid}>
+                                <Link key={card.postUid}>
                                     <Card2
+                                    to={`/find-child/post/${card.postUid}`} 
                                         imageFile={card.postImgUrl}
                                         text1={card.postTitle}
                                         text2={card.postContent}

@@ -90,8 +90,9 @@ const Resell = ({ gridArea }) => {
 
                     {currentPosts.length > 0 ? (
                         currentPosts.map((card) => (
-                            <Link to={`/resell/post/${card.postUid}`} key={card.postUid}>
+                            <Link key={card.postUid}>
                                 <Card2
+                                to={`/resell/post/${card.postUid}`} 
                                     imageFile={card.postImgUrl}
                                     text1={card.postTitle}
                                     text2={card.postContent}

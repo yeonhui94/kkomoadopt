@@ -626,7 +626,7 @@ const Scrappage = ({ gridArea }) => {
               />
             ))
           ) : (
-            <h1 className={styles.noScrapMessage}>스크랩한 게시물이 없습니다.</h1>
+            <p className={styles.noScrapMessage}>스크랩한 게시물이 없습니다.</p>
           )}
         </div>
 

@@ -139,7 +139,7 @@ const QnaListPage = () => {
             <Button text="글쓰기" />
           </Link>
         </div>
-      </div>``
+      </div>
     </div>
   );
 };

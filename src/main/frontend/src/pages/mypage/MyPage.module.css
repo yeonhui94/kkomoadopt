@@ -15,7 +15,9 @@
     padding: 30px;
     gap: 20px;
   }
-  
+  .noScrapMessage{
+    margin: 50px;
+  }
   .Profile {
     grid-column: 1; /* 첫 번째 열에 배치 */
   }

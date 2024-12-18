@@ -8,12 +8,16 @@ import Uploadfile from "./../../community/adopt_review/Uploadfile";
 const QnaForm = ({ initialValue }) => {
   const [formValues, setFormValues] = useState(initialValue);
 
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({
       ...formValues,
       [name]: value,
     });
+
+    console.log(formValues)
+    console.log("formValues.nickname" , formValues.nickname)
   };
 
   return (
@@ -33,7 +37,7 @@ const QnaForm = ({ initialValue }) => {
           className={gridStyles.spanCol2}
           type="text"
           name="contact"
-          value={formValues.contact}
+          value={formValues.phoneNUm}
           onChange={handleChange}
           disabled
         />

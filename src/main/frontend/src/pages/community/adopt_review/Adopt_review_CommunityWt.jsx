@@ -1,6 +1,4 @@
 import styled from "styled-components";
-// import Header from "../container/header/Header";
-// import Footer from "../../container/Footer";
 import Divider from "../../../components/Divider";
 import wtstyles from "../CommunityWt.module.css";
 import Uploadfile from "./Uploadfile";
@@ -10,26 +8,19 @@ import { useStore } from "../../../stores/CommunityPostStore2/useStore";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Adopt_review_CommunityWt = ({ text, gridArea }) => {
+const Adopt_review_CommunityWt = ({ text = "입양 후기", gridArea }) => {
   const { state, actions } = useStore();
   const [files, setFiles] = useState(null);
 
   const navigate = useNavigate(); // 페이지 이동을 위한 navigate 훅
 
-  const handleFileChange = (files) => {
-    console.log("선택된 파일", files);
-
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      setFiles([reader.result]);
-    };
-
-    if (files[0]) {
-      reader.readAsDataURL(files[0]);
-    }
+  // 파일 변경 시 호출되는 함수
+  const handleFileChange = (selectedFiles) => {
+    console.log("선택된 파일", selectedFiles);
+    setFiles(selectedFiles); // 파일 객체 그대로 상태에 저장
   };
 
+  // 폼 제출 시 호출되는 함수
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -39,8 +30,15 @@ const Adopt_review_CommunityWt = ({ text, gridArea }) => {
       formData.append("postCategory", "ADOPTREVIEW");
       formData.append("postTitle", state.postTitle);
       formData.append("postContent", state.postContent);
-      formData.append("files", files);
 
+      // 파일이 존재하면 FormData에 추가
+      if (files && files.length > 0) {
+        Array.from(files).forEach((file, index) => {
+          formData.append("files", file); // 파일 객체 추가
+        });
+      }
+
+      // 액션 호출 (서버로 데이터 전송)
       actions.createCommunityPostAction(formData);
 
       alert("게시글이 작성되었습니다!");
@@ -54,10 +52,10 @@ const Adopt_review_CommunityWt = ({ text, gridArea }) => {
   return (
     <div className="commwrapper" style={{ gridArea: gridArea }}>
       <div className={wtstyles.mainContainer}>
-        <h1 style={{ textAlign: "center" }}>{(text = "입양 후기")}</h1>
+        <h1 style={{ textAlign: "center" }}>{text}</h1>
         <Divider />
-        <Form style={{ gridArea: gridArea }} className={wtstyles.Container}>
-          {/* 제목과 인풋박스를 묶은 부분 */}
+        <Form style={{ gridArea: gridArea }} className={wtstyles.Container} onSubmit={handleSubmit}>
+          {/* 제목 입력 */}
           <div className={wtstyles.inputContainer}>
             <h3>제목</h3>
             <input
@@ -68,7 +66,7 @@ const Adopt_review_CommunityWt = ({ text, gridArea }) => {
             />
           </div>
 
-          {/* 이미지와 파일첨부 버튼 */}
+          {/* 파일 첨부 */}
           <div className={wtstyles.inputContainer}>
             <h3>이미지 (필수)</h3>
             <Uploadfile onChange={handleFileChange} />
@@ -79,25 +77,25 @@ const Adopt_review_CommunityWt = ({ text, gridArea }) => {
             <h3>내용</h3>
             <textarea
               className={wtstyles.textArea}
-              onChange={(e) => actions.changePostContent(e.target.value)}
-              defaultValue={``}
               value={state.postContent}
+              onChange={(e) => actions.changePostContent(e.target.value)}
             />
           </div>
 
           {/* 등록 버튼 */}
-          <a className={wtstyles.submitButtonContainer}>
+          <div className={wtstyles.submitButtonContainer}>
             <Button
+              type="submit"
               className={wtstyles.smallButton}
               text={"등록"}
               width={"100px"}
               fontSize={"20px"}
-              onClick={handleSubmit}
             />
-          </a>
+          </div>
         </Form>
       </div>
     </div>
   );
 };
+
 export default Adopt_review_CommunityWt;

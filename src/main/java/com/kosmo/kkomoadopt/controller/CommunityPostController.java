@@ -46,8 +46,6 @@ public class CommunityPostController {
         }
     }
 
-
-
 //    @PostMapping
 //    public ResponseEntity<Boolean> createPosts(@ModelAttribute CommunityDTO communityDTO, @RequestParam("files") MultipartFile[] files) {
 //        Boolean result = communityPostService.savePost(communityDTO, files);

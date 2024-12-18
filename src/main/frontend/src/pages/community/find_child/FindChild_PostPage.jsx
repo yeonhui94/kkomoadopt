@@ -10,87 +10,56 @@ import { readCommunityPostDetail } from "../../../stores/CommunityPostStore2/act
 
 function FindChild_PostPage({ text = "아이를 찾습니다", gridArea }) {
 
-     const {state : communityState, actions : communityActions } = CommunityPostStore2();
+    const { state: communityState, actions: communityActions } = CommunityPostStore2();
     //  const {state : commentState, actions : commentActions} = CommentStore2();
-
 
     const { postUid } = useParams();
     // console.log(typeof alqlPosts);
     const user = JSON.parse(localStorage.getItem('user'));
-    const [ postDetail, setPostDetail] = useState(null);
-    const [ loading, setLoading ] = useState(true);
-    const [ error, setError ] = useState(null);
+    const [postDetail, setPostDetail] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const [isAdded, setIsAdded] = useState(false);
 
-    useEffect(()=>{
-        const fetchData = async()=>{
+    useEffect(() => {
+        const fetchData = async () => {
             try {
                 await communityActions.readCommunityPostDetail(postUid);
                 // await commentActions.readComments(postUid);
-            } catch(error){
+            } catch (error) {
                 console.error("error fetching post detail", error);
                 setError(error);
-            }finally{
+            } finally {
                 setLoading(false);
             }
         };
+
         fetchData();
 
-        if(isAdded){
+        if (isAdded) {
             setIsAdded(false);
         }
-    },[postUid, isAdded]);
+    }, [postUid, isAdded]); // 의존성 배열에 `postUid`, `isAdded`만 넣어 무한 렌더링 방지
 
-    useEffect(()=>{
-        console.log(communityActions.readCommunityPostDetail(postUid))
-    },[communityActions.readCommunityPostDetail(postUid)])
-//     const [ commentDetail, setCommentDetail ] = useState(null);
-
-
-//     useEffect(()=>{
-//       const fetchData = async ()=>{
-//         try{
-//           commentActions.readComments(commentId)
-//           console.log("Fetched comments:", commentState.comments); 
-//         }catch (error){
-//           setError(error);
-//           console.error("Error fetching comments:", error);
-//         }finally{
-//         setLoading(false);
-//       }
-//     };
-//     fetchData();
-// },[]);
-
-
-// console.log("commentState :",commentState)
-//     console.log("commentState.comments :",commentState.comments)
-
-
-    if(loading) return <p>Loading...</p>;
-    if(error) return <p>Error loading post : {error.message} </p>;
-
-
-    
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error loading post : {error.message} </p>;
 
     return (
-        <div className="commwrapper"
-            style={{ gridArea: gridArea }}>
+        <div className="commwrapper" style={{ gridArea: gridArea }}>
             {communityState &&
-            <div className={wtstyles.mainContainer}>
-                <h1 style={{ textAlign: "center" }}>{text}</h1>
-                <FindChild_Post
-                postDetail={communityState.communityPostDetail}
-                postActions={communityActions}
-                comments={communityState.communityPostDetail.comments}
-                setIsAdded={setIsAdded}
-                isAdded={isAdded}
-                user={user}/>
-            </div>
+                <div className={wtstyles.mainContainer}>
+                    <h1 style={{ textAlign: "center" }}>{text}</h1>
+                    <FindChild_Post
+                        postDetail={communityState.communityPostDetail}
+                        postActions={communityActions}
+                        comments={communityState.communityPostDetail.comments}
+                        setIsAdded={setIsAdded}
+                        isAdded={isAdded}
+                        user={user} />
+                </div>
             }
         </div>
     );
 };
-
 
 export default FindChild_PostPage;

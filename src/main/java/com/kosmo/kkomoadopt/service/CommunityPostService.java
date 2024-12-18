@@ -350,6 +350,14 @@ public class CommunityPostService {
             );
         }).toList();
 
+        System.out.println("AnnouncementNum: " + post.getPostUid());
+
+        // 조회수 1 증가
+        post.setPostViewCount(post.getPostViewCount() + 1);
+
+        // 변경된 데이터를 데이터베이스에 저장
+        communityPostRepository.save(post);
+
         return new CommunityListDTO(
                 post.getPostUid(),
                 post.getPostId(),

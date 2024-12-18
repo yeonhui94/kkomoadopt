@@ -9,6 +9,7 @@ import Pagenumber from "../../../components/pagenumber/Pagenumber";
 import { Link, useLocation } from "react-router-dom";
 import { useStore } from "../../../stores/CommunityPostStore2/useStore";
 import { readCommunityPostsByCategory } from "../../../stores/CommunityPostStore2/action";
+import { formatDate } from "../../../utils/formattedDate";
 
 const Announcement = ({ gridArea }) => {
   const { state: communityState, actions: communityActions } = useStore();
@@ -110,7 +111,7 @@ const Announcement = ({ gridArea }) => {
                 <p className={comstyle.postnumli}>{post.postId}</p>
                 <p className={comstyle.titleli}>{post.postTitle}</p>
                 <p className={comstyle.adminli}>{post.postAuthor}</p>
-                <p className={comstyle.dateli}>{post.postCreatedAt}</p>
+                <p className={comstyle.dateli}>{formatDate(post.postCreatedAt)}</p>
                 <p className={comstyle.viewsli}>{post.postViewCount}</p>
               </li>
             </Link>

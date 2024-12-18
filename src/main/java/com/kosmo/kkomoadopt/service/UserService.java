@@ -216,4 +216,12 @@ public class UserService {
 
         return true;
     }
+
+
+    // 이름과 전화번호로 이메일 찾기
+    public String findEmailByNameAndPhoneNumber(String name, String phoneNumber) {
+        UserEntity user = userRepository.findByNameAndPhoneNumber(name, phoneNumber)
+                .orElseThrow(() -> new IllegalArgumentException("이름과 전화번호로 사용자를 찾을 수 없습니다."));
+        return user.getEmail();
+    }
 }

@@ -3,6 +3,7 @@ package com.kosmo.kkomoadopt.controller;
 import com.kosmo.kkomoadopt.dto.LoginRequestDTO;
 import com.kosmo.kkomoadopt.dto.LoginResponseDTO;
 import com.kosmo.kkomoadopt.dto.RegisterUserDTO;
+import com.kosmo.kkomoadopt.dto.UserRequest;
 import com.kosmo.kkomoadopt.entity.UserEntity;
 import com.kosmo.kkomoadopt.enums.NoticeCategory;
 import com.kosmo.kkomoadopt.repository.UserRepository;
@@ -69,6 +70,7 @@ public class UserController {
         // 가입 성공
         return ResponseEntity.ok("회원가입 성공");
     }
+
 
     // 로그인 처리 API
     @PostMapping("/login")
@@ -193,6 +195,25 @@ public class UserController {
 
         return ResponseEntity.ok(null);
     }
+
+    @PostMapping("/id")
+    public ResponseEntity<String> findUserId(@RequestBody UserRequest userRequest) {
+        // DTO에서 name과 phoneNumber를 꺼냄
+        String name = userRequest.getName();
+        String phoneNumber = userRequest.getPhoneNumber();
+
+        // 서비스 호출
+        String email = userService.findEmailByNameAndPhoneNumber(name, phoneNumber);
+
+        if (email == null) {
+            return ResponseEntity.status(404).body("User not found");
+        }
+        return ResponseEntity.ok(email);
+    }
+
+
+
+
 
     // Dummy-Users 등록
 //    @PostMapping("/dummy_users")

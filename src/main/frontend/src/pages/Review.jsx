@@ -4,7 +4,7 @@ import styles from "./Review.module.css";
 import Footer from "../container/footer/Footer";
 import Divider from "../components/Divider";
 import SearchBar from "../components/SearchBar";
-import Dropdown from "../components/DropDown";
+import Dropdown2 from "../components/DropDown2";
 import Button from "../components/Button/Button";
 import Pagenumber from "../components/pagenumber/Pagenumber";
 import { Link } from "react-router-dom";
@@ -90,7 +90,7 @@ const Review = ({ gridArea }) => {
       <div className={styles.rwWrapper}>
         <div className={styles.rwsubcontainer}>
           <div className={styles.rwsubcontainer2}>
-            <Dropdown
+            <Dropdown2
               options={options}
               defaultText="전체보기"
               onChange={(option) => setSortOption(option)} // 정렬 옵션 변경

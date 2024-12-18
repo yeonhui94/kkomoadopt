@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import styles from "./Review.module.css";
 import SearchBar from "../components/SearchBar";
 import Divider from "../components/Divider";
-import Dropdown from "../components/DropDown";
+import Dropdown2 from "../components/DropDown2";
 import Card2 from "../components/Card2/Card2";
 import Button from "../components/Button/Button";
 import Pagenumber from "../components/pagenumber/Pagenumber";
@@ -70,7 +70,7 @@ const Resell = ({ gridArea }) => {
             <div className={styles.rwWrapper}>
                 <div className={styles.rwsubcontainer}>
                     <div className={styles.rwsubcontainer2}>
-                        <Dropdown 
+                        <Dropdown2
                             options={options} 
                             defaultText="전체보기"
                             onChange={(option) => setSortOption(option)} // 정렬 옵션 변경

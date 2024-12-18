@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import styles from "../../Review.module.css";
 import SearchBar from "../../../components/SearchBar";
 import Divider from "../../../components/Divider";
-import Dropdown from "../../../components/DropDown";
+import Dropdown2 from "../../../components/DropDown2";
 import comstyle from '../CommunityWt.module.css';
 import Button from "../../../components/Button/Button";
 import Pagenumber from "../../../components/pagenumber/Pagenumber";
@@ -71,7 +71,7 @@ const Report = ({ gridArea }) => {
   return (
     <div style={{ gridArea }} className={comstyle.posts_container}>
       <div className={`${styles.rwsubcontainer2} ${comstyle.inputdrop}`}>
-        <Dropdown options={options} onChange={handleSort} />
+        <Dropdown2 options={options} onChange={handleSort} />
         <SearchBar placeholder={"글 내용 & 글 제목"} width="300px" onSearch={handleSearch} />
       </div>
       <div className={comstyle.lin}>

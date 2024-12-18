@@ -44,6 +44,9 @@ public interface UserRepository extends JpaRepository<UserEntity, String> {
 
     @Query("SELECT a FROM UserEntity a WHERE a.nickname LIKE %:query% OR a.email LIKE %:query%" )
     Page<UserEntity> findEmailOrNick(@Param("query") String query, Pageable pageable);
+
+    // 이름과 전화번호로 사용자를 찾는 메서드
+    Optional<UserEntity> findByNameAndPhoneNumber(String name, String phoneNumber);
 //
 //    // 유저 전체 조회
 //    Page<UserEntity> findAll(Pageable pageable);

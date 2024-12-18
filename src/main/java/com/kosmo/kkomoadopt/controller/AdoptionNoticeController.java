@@ -31,7 +31,7 @@ public class AdoptionNoticeController {
     private final AdoptionNoticeService adoptionNoticeService;
 
     // 마이페이지에서 입양 글 전체 가져오기
-    @GetMapping("mypage")
+    @GetMapping("/mypage")
     public ResponseEntity<List<AdoptMypageDTO>> getMypageAll(){
 
         List<AdoptMypageDTO> result = adoptionNoticeService.getMypageAllList();

@@ -75,9 +75,31 @@
     width: 100%;
   }
 
-  .pgncontainer{
-    flex-grow: 1;
-  }
+/* .pageButton {
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    margin: 0 4px;
+    cursor: pointer;
+    background-color: white;
+    color: #333;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.3s, color 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+} */
+
+.pageButton:hover {
+    background-color: #f0f0f0;
+}
+
+.pageButton.active {
+    background-color: white;
+    color: var(--main-color);
+    border-color: black;
+}
   
   /* 1024px 이하: 3*3 그리드 */
   @media (max-width: 1024px) {

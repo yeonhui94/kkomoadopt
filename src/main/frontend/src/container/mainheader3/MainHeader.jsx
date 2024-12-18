@@ -29,7 +29,7 @@ const MainHeader = ({ isScrolled, currentSection, setCurrentSection, setIsAnimat
 
   const handleLogoClick = () => {
 //     setCurrentSection(2);
-    setIsAnimatingComplete(true);
+    // setIsAnimatingComplete(true);
     setIsMenuOpen(false);
     setIsScrolled(false);
   };
@@ -56,6 +56,25 @@ const MainHeader = ({ isScrolled, currentSection, setCurrentSection, setIsAnimat
       document.body.style.overflow = 'auto'; // 컴포넌트가 언마운트될 때 스크롤 활성화
     };
   }, [isMenuOpen]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1025) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    // 초기 크기 설정
+    handleResize();
+
+    // 이벤트 리스너 추가
+    window.addEventListener('resize', handleResize);
+
+    // 클린업 함수로 이벤트 리스너 제거
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   // 로그아웃 처리
   const handleLogout = () => {
@@ -163,6 +182,7 @@ const MainHeader = ({ isScrolled, currentSection, setCurrentSection, setIsAnimat
       <div
         className={`${styles['menu-overlay']} ${isMenuOpen ? styles['menu-open'] : ''}`}
         style={{
+          display: isMenuOpen ? 'block' : 'none', // 메뉴 닫힘 시 숨김
           top: currentSection === 1 ? 0 : '105px',
           height: currentSection === 1 ? '100vh' : '89vh',
         }}

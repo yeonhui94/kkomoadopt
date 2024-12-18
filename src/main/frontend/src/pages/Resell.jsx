@@ -5,65 +5,59 @@ import Divider from "../components/Divider";
 import Dropdown2 from "../components/DropDown2";
 import Card2 from "../components/Card2/Card2";
 import Button from "../components/Button/Button";
-import Pagenumber from "../components/pagenumber/Pagenumber";
 import { Link } from "react-router-dom";
 import { useStore } from "../stores/CommunityPostStore2/useStore";
 
 const Resell = ({ gridArea }) => {
     const { state: communityState, actions: communityActions } = useStore();
     const [sortOption, setSortOption] = useState("전체보기");
-    const [searchQuery, setSearchQuery] = useState(""); // 검색어 상태
-    const [currentPage, setCurrentPage] = useState(1); // 페이지 상태
-    const postsPerPage = 12; // 한 페이지에 표시할 게시물 수
-    const options = ["전체보기", "최신 순", "오래된 순", "조회 수 높은 순", "조회 수 낮은 순"]; // 정렬 옵션
+    const [searchQuery, setSearchQuery] = useState("");
+    const [currentPage, setCurrentPage] = useState(1);
+    const postsPerPage = 12;
+    const options = ["전체보기", "최신 순", "오래된 순", "조회 수 높은 순", "조회 수 낮은 순"];
 
-    // 게시물 데이터 로딩 (최초 한 번만 실행)
     useEffect(() => {
         const fetchPosts = async () => {
             await communityActions.readCommunityPostsByCategory("BUYANDSELL");
         };
         fetchPosts();
-    }, []); // 의존성 배열이 빈 배열이므로 한 번만 실행됨
+    }, []);
 
-    // 검색어 변경 처리 함수
     const handleSearch = (query) => {
         setSearchQuery(query);  // 검색어를 상태에 저장
+//         setCurrentPage(1);
     };
 
-    // 게시물 필터링 (검색)
     const filteredPosts = (communityState.communityPosts || []).filter(post => {
-        const postTitle = post.postTitle ? post.postTitle.toLowerCase() : '';
-        const postContent = post.postContent ? post.postContent.toLowerCase() : '';
+        const postTitle = post.postTitle ? post.postTitle.toLowerCase() : "";
+        const postContent = post.postContent ? post.postContent.toLowerCase() : "";
         const query = searchQuery.toLowerCase().trim();
-        return postTitle.includes(query) || postContent.includes(query); // 검색어로 필터링
+        return postTitle.includes(query) || postContent.includes(query);
     });
 
-    // 정렬된 게시물 계산
     const sortedPosts = () => {
         let sortedPosts = [...filteredPosts];
-
         if (sortOption === "최신 순") {
-            sortedPosts.sort((a, b) => new Date(b.postCreatedAt) - new Date(a.postCreatedAt)); // 최신순
+            sortedPosts.sort((a, b) => new Date(b.postCreatedAt) - new Date(a.postCreatedAt));
         } else if (sortOption === "오래된 순") {
-            sortedPosts.sort((a, b) => new Date(a.postCreatedAt) - new Date(b.postCreatedAt)); // 오래된 순
+            sortedPosts.sort((a, b) => new Date(a.postCreatedAt) - new Date(b.postCreatedAt));
         } else if (sortOption === "조회 수 높은 순") {
-            sortedPosts.sort((a, b) => b.postViewCount - a.postViewCount); // 조회 수 높은 순
+            sortedPosts.sort((a, b) => b.postViewCount - a.postViewCount);
         } else if (sortOption === "조회 수 낮은 순") {
-            sortedPosts.sort((a, b) => a.postViewCount - b.postViewCount); // 조회 수 낮은 순
+            sortedPosts.sort((a, b) => a.postViewCount - b.postViewCount);
         }
-
         return sortedPosts;
     };
 
-    // 현재 페이지에 해당하는 게시물
     const startIndex = (currentPage - 1) * postsPerPage;
     const endIndex = startIndex + postsPerPage;
     const currentPosts = sortedPosts().slice(startIndex, endIndex);
 
-    // 페이지 클릭 시 처리 함수
     const handlePageClick = (page) => {
         setCurrentPage(page);
     };
+
+    const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
 
     return (
         <div style={{ gridArea: gridArea }}>
@@ -73,7 +67,7 @@ const Resell = ({ gridArea }) => {
                         <Dropdown2
                             options={options} 
                             defaultText="전체보기"
-                            onChange={(option) => setSortOption(option)} // 정렬 옵션 변경
+                            onChange={(option) => setSortOption(option)}
                         />
                         <SearchBar 
                             placeholder={"글 내용 & 글 제목"} 
@@ -92,7 +86,7 @@ const Resell = ({ gridArea }) => {
                         currentPosts.map((card) => (
                             <Link key={card.postUid}>
                                 <Card2
-                                    to={`/resell/post/${card.postUid}`} 
+                                    to={`/resell/post/${card.postUid}`}
                                     imageFile={card.postImgUrl}
                                     text1={card.postTitle}
                                     text2={card.postContent}
@@ -104,13 +98,20 @@ const Resell = ({ gridArea }) => {
                     )}
                 </div>
 
+                {/* 페이지네이션 버튼 직접 구현 */}
                 <div className={styles.btnContainer}>
-                    <div className={styles.pgncontainer}>
-                        <Pagenumber
-                            totalPages={Math.ceil(filteredPosts.length / postsPerPage)}
-                            currentPage={currentPage}
-                            handlePageClick={handlePageClick}
-                        />
+                    <div className={styles.pgncontainer} style={{display:'flex',justifyContent:'center',alignItems:'center',marginLeft:'50%'}} >
+                        {Array.from({ length: totalPages }, (_, index) => (
+                            <button
+                                key={index + 1}
+                                onClick={() => handlePageClick(index + 1)}
+                                className={`${styles.pageButton} ${
+                                    currentPage === index + 1 ? styles.active : ""
+                                }`}
+                            >
+                                {index + 1}
+                            </button>
+                        ))}
                     </div>
                     <Link to="/commu_resell_wt">
                         <div className={styles.buttonContainer}>

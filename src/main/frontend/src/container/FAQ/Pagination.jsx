@@ -10,20 +10,20 @@ const PaginationWrapper = styled.div`
 const PageButton = styled.button`
   padding: 10px;
   margin: 0 5px;
-  border: 1px solid #ddd;
+  /* border: 1px solid #ddd; */
   border-radius: 5px;
   background-color: white;
   cursor: pointer;
   font-size: 16px;
 
   &.active {
-    background-color: var(--main-color);
-    color: white;
+    /* background-color: var(--main-color); */
+    color: var(--main-color);
     font-weight: bold;
   }
 
   &:hover {
-    background-color: #f0f0f0;
+    
   }
 `;
 

@@ -43,6 +43,7 @@ const ConcertationForm = ({ initialValue }) => {
     e.preventDefault()
     let result = await actions.createVisitRequest(formValues)
     console.log(result)
+    alert('방문 상담 신청이 등록되었습니다!')
   }
 
 

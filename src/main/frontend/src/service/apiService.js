@@ -189,7 +189,7 @@ export const createCommunityPost = (postData, files) => apiClientForm.post('/api
 //   }
 // };
 // 5. 커뮤니티 게시물 수정
-export const updateCommunityPost = (postUid, updatedData) => apiClient.patch(`/api/community/posts/${postUid}`, updatedData);
+export const updateCommunityPost = (postUid, updatedData) => apiClient.patch(`/api/community/posts/update`, updatedData);
 
 // 6. 커뮤니티 게시물 삭제
 export const deleteCommunityPost = (postUid) => apiClient.delete(`/api/community/posts/delete`, {

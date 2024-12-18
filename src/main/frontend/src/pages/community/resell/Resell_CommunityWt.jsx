@@ -44,6 +44,7 @@ const Resell_CommunityWt = ({ text, gridArea }) => {
       actions.createCommunityPostAction(formData);
 
       // 폼 제출 후 이동
+      alert("게시글이 작성되었습니다!");
       navigate("/community/resell");
     } else {
       console.log("모든 필드를 채워주세요");

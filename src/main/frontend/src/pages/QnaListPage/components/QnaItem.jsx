@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { mainContainerItem } from "./QnaList.module.css";
 import { useEffect } from "react";
-
+import { formatDate } from "../../../utils/formattedDate";
 const QnaItem = ({ qnaId, qnaTitle, nickname, qnaCreatedAt, qnaViewCount }) => {
 
       // useEffect(() => {
@@ -14,7 +14,7 @@ const QnaItem = ({ qnaId, qnaTitle, nickname, qnaCreatedAt, qnaViewCount }) => {
       <span>{qnaId}</span>
       <span>{qnaTitle}</span>
       <span>{nickname}</span>
-      <span>{qnaCreatedAt}</span>
+      <span>{formatDate(qnaCreatedAt)}</span>
       <span>{qnaViewCount}</span>
     </div>
   );

@@ -47,7 +47,7 @@ export const useStore = () => {
     // CRUD 액션들
     readCommunityPosts: (posts) => readCommunityPosts(posts)(dispatch),
     readCommunityPostDetail: (postUid) => readCommunityPostDetail(postUid)(dispatch),
-    createCommunityPostAction: (postData) => dispatch(createCommunityPost(postData)),
+    // createCommunityPostAction: (postData) => dispatch(createCommunityPost(postData)),
     updateCommunityPostAction: (postData) => dispatch(updateCommunityPost(postData)),
     deleteCommunityPostAction: (postUid) => deleteCommunityPostAction(postUid)(dispatch),
     createCommunityPostAction: (postData, files) => createCommunityPostAction(postData, files)(dispatch),

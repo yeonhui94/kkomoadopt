@@ -6,7 +6,7 @@ import Profile from "../../components/MyPage/Profile/Profile";
 import styles from "./MyPage.module.css";
 import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { getMypageAdoptList} from "../../service/apiService";
+import { getMypageAdoptList } from "../../service/apiService";
 
 function MyPage({ gridArea }) {
   const location = useLocation(); // 현재 경로를 가져옴

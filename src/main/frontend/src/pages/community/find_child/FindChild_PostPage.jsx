@@ -4,11 +4,15 @@ import wtstyles from "../CommunityWt.module.css";
 import FindChild_Post from "./FindChild_Post";
 import { useParams } from "react-router-dom";
 import { useStore as CommunityPostStore2 } from "../../../stores/CommunityPostStore2/useStore";
+// import { useStore as CommentStore2 } from "../../../stores/CommentStore2/useStore";
+import { useStore } from "../../../stores/CommunityPostStore2/useStore";
 import { readCommunityPostDetail } from "../../../stores/CommunityPostStore2/action";
 
 function FindChild_PostPage({ text = "아이를 찾습니다", gridArea }) {
 
      const {state : communityState, actions : communityActions } = CommunityPostStore2();
+    //  const {state : commentState, actions : commentActions} = CommentStore2();
+
 
     const { postUid } = useParams();
     // console.log(typeof alqlPosts);
@@ -22,6 +26,7 @@ function FindChild_PostPage({ text = "아이를 찾습니다", gridArea }) {
         const fetchData = async()=>{
             try {
                 await communityActions.readCommunityPostDetail(postUid);
+                // await commentActions.readComments(postUid);
             } catch(error){
                 console.error("error fetching post detail", error);
                 setError(error);
@@ -36,7 +41,9 @@ function FindChild_PostPage({ text = "아이를 찾습니다", gridArea }) {
         }
     },[postUid, isAdded]);
 
-
+    useEffect(()=>{
+        console.log(communityActions.readCommunityPostDetail(postUid))
+    },[communityActions.readCommunityPostDetail(postUid)])
 //     const [ commentDetail, setCommentDetail ] = useState(null);
 
 
@@ -69,7 +76,7 @@ function FindChild_PostPage({ text = "아이를 찾습니다", gridArea }) {
     return (
         <div className="commwrapper"
             style={{ gridArea: gridArea }}>
-            {communityState &&    
+            {communityState &&
             <div className={wtstyles.mainContainer}>
                 <h1 style={{ textAlign: "center" }}>{text}</h1>
                 <FindChild_Post

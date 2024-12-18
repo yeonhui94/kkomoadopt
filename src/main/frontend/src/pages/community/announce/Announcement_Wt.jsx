@@ -8,6 +8,7 @@ import Button from "../../../components/Button/Button";
 import { useStore } from "../../../stores/CommunityPostStore2/useStore";
 import { useNavigate } from "react-router-dom";
 
+
 const Announcement_Wt = ({ gridArea, text = "공지사항" }) => {
   const { state, actions } = useStore();
   const [files, setFiles] = useState(null);
@@ -41,9 +42,11 @@ const Announcement_Wt = ({ gridArea, text = "공지사항" }) => {
       actions.createCommunityPostAction(formData);
 
       // 폼 제출 후 이동
-      navigate("/community/find-child");
+      alert("게시글이 작성되었습니다!");
+      navigate("/community");
     } else {
       console.log("모든 필드를 채워주세요");
+      alert("모든 필드를 채워주세요");
     }
   };
 

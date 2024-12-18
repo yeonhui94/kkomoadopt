@@ -24,7 +24,7 @@ const Report_postpage = ({ text = "신고합니다"  , gridArea}) => {
         const fetchData = async () => {
             try {
                await communityActions.readCommunityPostDetail(postUid);
-               
+
             } catch (error) {
                 console.error("Error fetching post detail:", error);
                 setError(error);

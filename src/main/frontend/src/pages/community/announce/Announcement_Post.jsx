@@ -7,7 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Comment from '../report/Comment';
 import Button from '../../../components/Button/Button';
 import { deleteCommunityPost } from '../../../service/apiService'; 
-
+import { formatDate } from '../../../utils/formattedDate';
 const Announcement_Post = ({ postDetail }) => {
     const [isDeleting, setIsDeleting] = useState(false);
     const navigate = useNavigate(); // useNavigate로 페이지 이동 설정
@@ -24,6 +24,7 @@ const Announcement_Post = ({ postDetail }) => {
             navigate('/community'); // 페이지 이동 (navigate 사용)
         } catch (error) {
             console.error("게시글 삭제 실패", error);
+            alert('게시물 작성자가 아닙니다!');
         } finally {
             setIsDeleting(false);
         }
@@ -72,7 +73,7 @@ const Announcement_Post = ({ postDetail }) => {
                 <div className={postst.post_tmi1}>
                     <p className={postst.post_nick}>&nbsp;&nbsp;닉네임&nbsp;:&nbsp; {postDetail.nickname}</p>
                     <p className={postst.post_postnum}> 글번호 &nbsp;:&nbsp; {postDetail.postId}</p>
-                    <p className={postst.post_date}>작성일&nbsp;:&nbsp; {postDetail.postCreatedAt} </p>
+                    <p className={postst.post_date}>작성일&nbsp;:&nbsp; {formatDate(postDetail.postCreatedAt)} </p>
                 </div>
                 <p className={postst.post_view}>조회수 : {postDetail.postViewCount}</p>
             </div>

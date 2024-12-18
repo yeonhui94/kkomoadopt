@@ -43,7 +43,7 @@ const Content = ({ items }) => {
 
   const handleToggle = (index) => {
     if (activeIndex === index) {
-      setActiveIndex(null); 제
+      setActiveIndex(null); 
     } else {
       setActiveIndex(index); 
     }
